@@ -12,6 +12,9 @@ import type { OriginalPageId } from "../../src/config/originalRoutes";
 const MOBILE = { width: 390, height: 844 };
 const SNAP_SECTION = "[data-mobile-snap-section]";
 const ALIGNMENT_TOLERANCE = 3;
+// Chromium omits the default strictness token in computed CSS: "y" is
+// equivalent to y proximity; it is not y mandatory.
+const PROXIMITY = /^y(?: proximity)?$/;
 test.setTimeout(60_000);
 
 async function openRoute(page: Page, pageId: OriginalPageId, hash = "") {
@@ -166,15 +169,35 @@ for (const pageId of originalPageIds) {
     const errors: string[] = [];
     page.on("pageerror", (error) => errors.push(error.message));
     await openRoute(page, pageId);
-    await expect(page.locator("html")).toHaveCSS(
-      "scroll-snap-type",
-      "y proximity",
-    );
+    await expect(page.locator("html")).toHaveCSS("scroll-snap-type", PROXIMITY);
+    await settleScroll(page);
     const initial = await geometry(page);
     expect(initial.documentIsScroller).toBe(true);
+    expect(
+      initial.scrollY,
+      "Loading padded chapters must not skip the page start",
+    ).toBeLessThanOrEqual(1);
     expect(initial.paddingTop).toBe(70);
     expect(initial.sections.length).toBeGreaterThanOrEqual(2);
     expect(initial.scrollWidth).toBeLessThanOrEqual(MOBILE.width);
+    const nestedTargets = await page
+      .locator(SNAP_SECTION)
+      .evaluateAll((sections) =>
+        sections
+          .filter((section) =>
+            section.closest(
+              ".aicall-tab-content, .hopzie-tab-content, .mentoring-tab-content, .original-mentoring-mockup, .footprint-gallery-container, .cert-panel, .right-gallery, details",
+            ),
+          )
+          .map(
+            (section) =>
+              section.id || section.getAttribute("data-mobile-snap-section"),
+          ),
+      );
+    expect(
+      nestedTargets,
+      "Nested tabs, demo frames, gallery items and accordion panels stay outside the section snap inventory",
+    ).toEqual([]);
     for (const section of initial.sections) {
       expect(
         section.snapAlign,
@@ -234,17 +257,11 @@ test("767 enables snapping, 768 disables it, and reduced motion restores free sc
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await openRoute(page, "home");
   await page.setViewportSize({ width: 767, height: 844 });
-  await expect(page.locator("html")).toHaveCSS(
-    "scroll-snap-type",
-    "y proximity",
-  );
+  await expect(page.locator("html")).toHaveCSS("scroll-snap-type", PROXIMITY);
   await page.setViewportSize({ width: 768, height: 844 });
   await expect(page.locator("html")).toHaveCSS("scroll-snap-type", "none");
   await page.setViewportSize(MOBILE);
-  await expect(page.locator("html")).toHaveCSS(
-    "scroll-snap-type",
-    "y proximity",
-  );
+  await expect(page.locator("html")).toHaveCSS("scroll-snap-type", PROXIMITY);
   await page.emulateMedia({ reducedMotion: "reduce" });
   await expect(page.locator("html")).toHaveCSS("scroll-snap-type", "none");
   await expect(page.locator("html")).toHaveCSS("scroll-behavior", "auto");
@@ -259,10 +276,7 @@ test("767 enables snapping, 768 disables it, and reduced motion restores free sc
   );
   await attachEvidence(page, testInfo, "mobile-reduced-motion-free-scroll");
   await page.emulateMedia({ reducedMotion: "no-preference" });
-  await expect(page.locator("html")).toHaveCSS(
-    "scroll-snap-type",
-    "y proximity",
-  );
+  await expect(page.locator("html")).toHaveCSS("scroll-snap-type", PROXIMITY);
 });
 
 test("native hash anchors and keyboard skip navigation clear the fixed header", async ({
@@ -417,7 +431,11 @@ test("expanded project content remains reachable before and after disclosure col
   await openRoute(page, "projects");
   const disclosure = page
     .locator("details")
-    .filter({ has: page.locator("summary", { hasText: "NAVER CareCall" }) });
+    .filter({
+      has: page.locator("summary", {
+        hasText: /^\s*NAVER CareCall\s+Senior Care AI Call-bot/,
+      }),
+    });
   const summary = disclosure.locator("summary");
   await summary.click();
   await expect(disclosure).toHaveAttribute("open", "");
@@ -488,10 +506,7 @@ test("mobile menu suspends snap, locks background, traps focus and restores scro
     await expect(toggle).toHaveAttribute("aria-expanded", "false");
     await expect(toggle).toBeFocused();
     await expect(page.locator("main")).not.toHaveAttribute("inert");
-    await expect(page.locator("html")).toHaveCSS(
-      "scroll-snap-type",
-      "y proximity",
-    );
+    await expect(page.locator("html")).toHaveCSS("scroll-snap-type", PROXIMITY);
     expect(
       await page.locator("body").evaluate((element) => element.style.overflow),
     ).toBe(originalOverflow);
@@ -538,10 +553,7 @@ test("nested horizontal gallery retains its own native snap without moving the p
   expect(
     Math.abs((await page.evaluate(() => scrollY)) - before.pageY),
   ).toBeLessThanOrEqual(3);
-  await expect(page.locator("html")).toHaveCSS(
-    "scroll-snap-type",
-    "y proximity",
-  );
+  await expect(page.locator("html")).toHaveCSS("scroll-snap-type", PROXIMITY);
   await attachEvidence(
     page,
     testInfo,
@@ -606,4 +618,168 @@ test("Home uses equal mobile section spacing from CTAs to the partner introducti
   await page.setViewportSize({ width: 1440, height: 900 });
   await expect(page.locator("#home")).toHaveCSS("padding-bottom", "104px");
   await expect(page.locator("#partners")).toHaveCSS("padding-top", "80px");
+});
+
+// WHAT: Compare only separate source-layout siblings after real document scrolling.
+// WHY: Changing the body's overflow can activate a formerly inert sticky note.
+// Internal absolute-positioned layers in the product demos are intentionally excluded.
+async function stackedPairGeometry(note: Locator, contentSelector?: string) {
+  return note.evaluate((element, selector) => {
+    const content = selector
+      ? document.querySelector(selector)
+      : element.nextElementSibling;
+    if (!content)
+      throw new Error("The sticky note's downstream content was not found");
+    const rect = (node: Element) => {
+      const box = node.getBoundingClientRect();
+      return {
+        top: box.top,
+        bottom: box.bottom,
+        left: box.left,
+        right: box.right,
+        width: box.width,
+        height: box.height,
+      };
+    };
+    const noteBox = rect(element);
+    const contentBox = rect(content);
+    const overlapWidth = Math.max(
+      0,
+      Math.min(noteBox.right, contentBox.right, innerWidth) -
+        Math.max(noteBox.left, contentBox.left, 0),
+    );
+    const overlapHeight = Math.max(
+      0,
+      Math.min(noteBox.bottom, contentBox.bottom, innerHeight) -
+        Math.max(noteBox.top, contentBox.top, 70),
+    );
+    const noteStyle = getComputedStyle(element);
+    const overlapCenter =
+      overlapWidth > 0 && overlapHeight > 0
+        ? document.elementFromPoint(
+            Math.max(noteBox.left, contentBox.left, 0) + overlapWidth / 2,
+            Math.max(noteBox.top, contentBox.top, 70) + overlapHeight / 2,
+          )
+        : null;
+    return {
+      scrollY,
+      note: {
+        ...noteBox,
+        position: noteStyle.position,
+        cssTop: noteStyle.top,
+        text: element.textContent?.trim().slice(0, 160),
+      },
+      content: {
+        ...contentBox,
+        documentTop: contentBox.top + scrollY,
+        id: content.id,
+        className: content.className,
+      },
+      overlapWidth,
+      overlapHeight,
+      hitInsideNote: overlapCenter !== null && element.contains(overlapCenter),
+      hitInsideContent:
+        overlapCenter !== null && content.contains(overlapCenter),
+      hitElement: overlapCenter
+        ? { tag: overlapCenter.tagName, className: overlapCenter.className }
+        : null,
+    };
+  }, contentSelector);
+}
+
+async function verifyStackedReading(
+  page: Page,
+  testInfo: TestInfo,
+  note: Locator,
+  label: string,
+  contentSelector?: string,
+) {
+  await expect(note).toBeVisible();
+  const before = await stackedPairGeometry(note, contentSelector);
+  // Stop with the next content near the top, then continue another 200px. A
+  // genuinely stacked note should scroll away rather than cover the product UI.
+  const targetY = before.content.documentTop - 160;
+  await page.mouse.move(382, 422);
+  await page.mouse.wheel(0, targetY - before.scrollY);
+  await settleScroll(page);
+  for (const checkpoint of ["content-start", "continued-reading"]) {
+    if (checkpoint === "continued-reading") {
+      await page.mouse.wheel(0, 200);
+      await settleScroll(page);
+    }
+    const after = await stackedPairGeometry(note, contentSelector);
+    await attachEvidence(page, testInfo, `${label}-${checkpoint}`, {
+      before,
+      targetY,
+      after,
+    });
+    expect
+      .soft(
+        after.content.top,
+        "The downstream content has entered the reading viewport",
+      )
+      .toBeLessThan(500);
+    expect
+      .soft(after.content.bottom, "The downstream content remains on screen")
+      .toBeGreaterThan(70);
+    expect
+      .soft(
+        after.overlapWidth <= 2 || after.overlapHeight <= 2,
+        "Single-column explanatory content must not visually overlap the separate UI/gallery below it",
+      )
+      .toBe(true);
+  }
+}
+
+for (const pageId of [
+  "llm-based-voice-ivr",
+  "hopzie-oneclickbuilder",
+  "ai-mentoring-agent-detail",
+] as const) {
+  test(`mobile detail note does not obscure downstream product UI ${pageId}`, async ({
+    page,
+  }, testInfo) => {
+    await page.setViewportSize(MOBILE);
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    await openRoute(page, pageId);
+    const note = page.locator(".concept-note:visible").first();
+    const columns = await note.evaluate((element) =>
+      getComputedStyle(element.parentElement!)
+        .gridTemplateColumns.trim()
+        .split(/\s+/),
+    );
+    expect(columns, "The source mobile grid is one column").toHaveLength(1);
+    await verifyStackedReading(
+      page,
+      testInfo,
+      note,
+      `${pageId}-mobile-stacked-note`,
+    );
+  });
+}
+
+test("Enjoy Culinary and Travel sidebars do not cover their mobile galleries", async ({
+  page,
+}, testInfo) => {
+  await page.setViewportSize(MOBILE);
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await openRoute(page, "enjoy");
+  await expect(page.locator("#life-gallery").locator("..")).toHaveCSS(
+    "flex-direction",
+    "column",
+  );
+  for (const category of ["culinary", "travel"]) {
+    const tab = page.locator(`#life-tabs [data-target='col-${category}']`);
+    await tab.click();
+    await expect(tab).toHaveAttribute("aria-pressed", "true");
+    const gallerySelector = `#gallery-col-${category}`;
+    await expect(page.locator(gallerySelector)).toBeVisible();
+    await verifyStackedReading(
+      page,
+      testInfo,
+      page.locator(`#col-${category} > .sticky`),
+      `enjoy-${category}-mobile-sidebar`,
+      gallerySelector,
+    );
+  }
 });
