@@ -15,7 +15,6 @@ export function HomeHero() {
         </h1>
       </div>
       <div className={styles.description} data-home-description>
-        <p className={styles.summary}>{homeHero.description}</p>
         <p className={styles.experience}>{homeHero.experience}</p>
       </div>
       <div className={styles.actions} data-home-actions>

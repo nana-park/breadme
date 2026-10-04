@@ -21,8 +21,8 @@ describe("Original portfolio React migration", () => {
       screen.getByText("Previously at NAVER Cloud · SK Telecom"),
     ).toBeVisible();
     expect(
-      screen.getByText(/Grounded in psychology and Human–AI Interaction/),
-    ).toBeVisible();
+      screen.queryByText(/Grounded in psychology and Human–AI Interaction/),
+    ).not.toBeInTheDocument();
     expect(
       screen.queryByText("Helping people follow through:"),
     ).not.toBeInTheDocument();

@@ -10,7 +10,7 @@ const widths = [320, 375, 390, 430, 1440];
 const approvedCopy = {
   eyebrow: "NAHYUN PARK · AI PRODUCT MANAGER",
   heading: "Designing AI Product Experiences Across Markets",
-  summary:
+  removedSummary:
     "Grounded in psychology and Human–AI Interaction, I shape conversational AI and agent workflows around user needs—from product planning to launches in Korea and Japan.",
   proof: "Previously at NAVER Cloud · SK Telecom",
 };
@@ -268,11 +268,7 @@ for (const width of widths) {
     await expect(home.getByRole("heading", { level: 1 })).toHaveText(
       approvedCopy.heading,
     );
-    for (const text of [
-      approvedCopy.eyebrow,
-      approvedCopy.summary,
-      approvedCopy.proof,
-    ])
+    for (const text of [approvedCopy.eyebrow, approvedCopy.proof])
       await expect(home.getByText(text, { exact: true })).toBeVisible();
     expect(
       metrics.heroBackground,
@@ -282,9 +278,10 @@ for (const width of widths) {
     const heading = metrics.texts.find(
       (entry) => entry.text === approvedCopy.heading,
     )!;
-    const summary = metrics.texts.find(
-      (entry) => entry.text === approvedCopy.summary,
-    )!;
+    await expect(
+      home.getByText(approvedCopy.removedSummary, { exact: true }),
+    ).toHaveCount(0);
+    expect(metrics.texts).toHaveLength(3);
     const proof = metrics.texts.find(
       (entry) => entry.text === approvedCopy.proof,
     )!;
@@ -292,10 +289,8 @@ for (const width of widths) {
       (entry) => entry.text === approvedCopy.eyebrow,
     )!;
     expect(heading.fontSize).toBeGreaterThanOrEqual(32);
-    expect(heading.fontSize).toBeGreaterThan(summary.fontSize * 1.5);
+    expect(heading.fontSize).toBeGreaterThan(proof.fontSize * 1.5);
     expect(heading.fontWeight).toBeGreaterThanOrEqual(500);
-    expect(summary.fontSize).toBeGreaterThanOrEqual(16);
-    expect(summary.lineHeight).toBeGreaterThanOrEqual(summary.fontSize * 1.45);
     expect(proof.fontSize).toBeGreaterThanOrEqual(12);
     expect(eyebrow.fontSize).toBeGreaterThanOrEqual(10);
     for (const text of metrics.texts) {
