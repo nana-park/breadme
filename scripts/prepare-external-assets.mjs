@@ -74,6 +74,20 @@ export function validateManifest(manifest) {
     if (!/^[a-f0-9]{64}$/.test(asset.sha256) || !Number.isSafeInteger(asset.bytes) || asset.bytes <= 0 || asset.bytes > 100 * 1024 * 1024) {
       throw new Error(`Invalid asset integrity metadata: ${asset.url}`);
     }
+    if (asset.sourceBase64 !== undefined) {
+      // WHY: Original generated fallback avatars are mutable at their URLs. Only their captured,
+      // unchanged PNG bytes may be embedded; the normal size/hash/type checks remain mandatory.
+      if (asset.category !== 'fallback-image' || asset.fileType !== 'png'
+        || new URL(asset.url).origin !== 'https://ui-avatars.com'
+        || asset.sourceText !== undefined || typeof asset.sourceBase64 !== 'string'
+        || asset.sourceBase64.length !== Math.ceil(asset.bytes / 3) * 4
+        || !/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(asset.sourceBase64)) {
+        throw new Error(`Invalid embedded fallback image: ${asset.url}`);
+      }
+      const embedded = Buffer.from(asset.sourceBase64, 'base64');
+      if (embedded.toString('base64') !== asset.sourceBase64) throw new Error(`Noncanonical embedded image: ${asset.url}`);
+      verifyBuffer(embedded, asset);
+    }
     if (asset.category === 'font' && !FONT_TYPES.has(asset.fileType)) throw new Error(`Invalid font type: ${asset.url}`);
     if (['image', 'fallback-image'].includes(asset.category) && !IMAGE_TYPES.has(asset.fileType)) throw new Error(`Invalid image type: ${asset.url}`);
   }
@@ -160,11 +174,13 @@ async function prepareAsset(asset, manifest, verifyOnly) {
     return 'cached';
   }
   if (verifyOnly) throw new Error(`Missing cached asset: ${asset.localPath}`);
-  const embeddedText = asset.sourceText ?? null;
-  // WHY: The Google Fonts CSS API and license branches are mutable. Preserve captured text in the lock;
-  // preparation recreates that exact text instead of silently negotiating a new stylesheet/font version.
-  if (embeddedText !== null) {
-    const bytes = Buffer.from(embeddedText);
+  const embeddedBytes = asset.sourceBase64 !== undefined
+    ? Buffer.from(asset.sourceBase64, 'base64')
+    : asset.sourceText !== undefined ? Buffer.from(asset.sourceText) : null;
+  // WHY: Google CSS, license branches and generated avatar URLs are mutable. Restore the captured
+  // text/PNG bytes from the integrity lock instead of negotiating new content or weakening its hash.
+  if (embeddedBytes !== null) {
+    const bytes = embeddedBytes;
     verifyBuffer(bytes, asset);
     await writeFile(destination, bytes, { flag: 'wx' });
     return 'restored';

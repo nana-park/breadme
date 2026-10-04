@@ -22,7 +22,7 @@ Verified on 2026-10-04:
 | Font files | 140 | All source `url(...)` references, including WOFF format fallbacks and Korean variable subsets |
 | Article images | 47 | Exact `www.artinsight.co.kr/data/tmp/…` URLs from `articles_data.js` |
 | Hopzie channel avatars | 5 | Four original `images.weserv.nl` proxy URLs and one direct YouTube avatar URL |
-| Original avatar fallbacks | 5 | Exact H/L/J/D/G `ui-avatars.com` URLs already present in the original source |
+| Original avatar fallbacks | 5 | Original H/L/J/D/G PNG bytes embedded in the lock; their source URLs generate mutable responses |
 | Gmail SVG | 1 | Exact Wikimedia source SVG |
 | Spline scene | 1 | Original compressed scene |
 | Spline badge icon | 1 | Exact original attribution icon; the badge itself remains visible |
@@ -38,6 +38,10 @@ The generated CSS retains all 259 original `@font-face` rules, their weight/styl
 The source’s families are Playfair Display, Lora, Inter, JetBrains Mono, Outfit, Pretendard, and Pretendard Variable. Pretendard static is the original v1.3.9 file with weights 100–900. The additional Inter 400–800 request and Pretendard Variable dynamic subsets belong to the mentoring mockup; they are retained rather than replacing its fonts.
 
 Google Fonts responds differently to different clients. The manifest records the exact browser User-Agent used to capture its CSS, stores that original CSS text and SHA-256, and locks every resulting font URL. Routine preparation never asks the mutable Google CSS endpoint for a new stylesheet. It reconstructs the exact captured CSS and downloads only the already-locked font binaries, avoiding silent future font-version changes.
+
+### Reproducible generated avatar fallbacks
+
+The five original `ui-avatars.com` fallback image URLs returned different PNG bytes during a clean CI build. Their originally captured SHA-256 values were preserved; no checksums were changed and no replacement response was accepted. The manifest now embeds the exact five previously verified PNG files as canonical `sourceBase64` strings (2,541 bytes decoded in total). Preparation restores those original bytes before considering a network request, then applies the same length, SHA-256, and PNG signature checks. Embedded binary content is restricted to these original `fallback-image` PNG assets from `ui-avatars.com`; other source categories cannot use this restoration path. The original cache was not removed or modified while testing this fix.
 
 ### Spline
 
@@ -84,7 +88,7 @@ Normal preparation:
 2. Checks cached bytes again, including font/image magic signatures. A corrupted cached file fails rather than being overwritten silently.
 3. Downloads only missing locked binaries, with a maximum of four concurrent transfers, a 45-second request timeout, at most three attempts, and at most four redirects to allowed public origins.
 4. Rejects changed redirects, HTML masquerading as media, altered file types, oversized responses, and checksum mismatches.
-5. Recreates captured CSS/license text from the integrity lock, without relying on mutable upstream text.
+5. Recreates captured CSS/license text and the five original generated fallback PNGs from the integrity lock, without relying on mutable upstream responses.
 6. Recreates the local font CSS from the captured original declarations.
 
 `--verify-only` does not download missing files or alter font CSS. `--strict` additionally fails if the lock records any unavailable original asset. If a future source URL disappears or changes its bytes, preparation reports the exact failure; it does not switch to a mirror, hotlink, placeholder, or newly generated replacement. Updating the lock is a deliberate review operation, not a normal build side effect.
@@ -101,6 +105,8 @@ YouTube embeds and the YouTube player API remain external service players, as in
 - Local font CSS contains 259 source `@font-face` rules and zero remote `url(...)` references.
 - A second preparation run reused all cached files without downloads.
 - A cold-cache sample restored one CSS and one license from the lock and downloaded one exact font again.
+- A separate temporary copy, with only the five fallback image files missing and network fetch disabled, restored all five original PNGs and verified all 211 assets.
+- Invalid base64, altered embedded bytes, and attempts to embed binary content in another asset category were rejected.
 - Negative validation checks rejected traversal, hidden-file and empty-segment paths, plus an altered font checksum.
 - `node --check scripts/prepare-external-assets.mjs` and the script’s ESLint check passed.
 

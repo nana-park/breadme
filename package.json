@@ -17,8 +17,9 @@
     "test:e2e": "playwright test",
     "check": "npm run lint && npm run typecheck && npm run test && npm run build",
     "prepare:assets": "node scripts/prepare-original-assets.mjs && node scripts/prepare-external-assets.mjs",
-    "predev": "npm run prepare:assets",
-    "prebuild": "npm run prepare:assets"
+    "predev": "npm run prepare:assets && npm run styles:generate",
+    "prebuild": "npm run prepare:assets && npm run styles:generate",
+    "styles:generate": "tailwindcss -i src/styles/original/tailwind.css -o src/styles/original/tailwind.generated.css --minify"
   },
   "dependencies": {
     "@splinetool/viewer": "1.9.82",

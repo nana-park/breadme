@@ -1,3 +1,5 @@
+import originalUtilities from "@/styles/original/tailwind.generated.css?raw";
+import mobileAccessibility from "@/styles/original/accessibility-mobile.css?raw";
 import { lazy, Suspense, useLayoutEffect, useRef } from "react";
 import type { OriginalPageId } from "@/config/originalRoutes";
 import { useOriginalPageInteractions } from "@/shared/hooks/useOriginalPageInteractions";
@@ -143,6 +145,9 @@ function MountedOriginalPage({ pageId }: { pageId: OriginalPageId }) {
           {pageCss["./generated/OriginalMentoringMockupContent.css"]}
         </style>
       )}
+      {/* WHY: Source CDN utilities are inserted after its authored page CSS. */}
+      <style>{originalUtilities}</style>
+      <style>{mobileAccessibility}</style>
       <Page />
     </div>
   );

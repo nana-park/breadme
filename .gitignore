@@ -39,3 +39,5 @@ source-evidence/
 # Verified build-time copies of original runtime assets
 /public/original/
 /public/original-external/
+
+checkpoint-results/
