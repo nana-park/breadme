@@ -32,3 +32,6 @@ Thumbs.db
 playwright-report/
 test-results/
 *.tsbuildinfo
+
+# Original visual reference captures
+source-evidence/
