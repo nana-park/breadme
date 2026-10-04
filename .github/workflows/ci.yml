@@ -34,8 +34,21 @@ jobs:
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: always()
         with:
+          name: route-mobile-evidence
+          path: test-results/routes-route-smoke-390-*/
+          retention-days: 7
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: always()
+        with:
+          name: route-desktop-evidence
+          path: test-results/routes-route-smoke-1440-*/
+          retention-days: 7
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: always()
+        with:
           name: browser-verification
           path: |
             playwright-report/
             test-results/
+            !test-results/routes-route-smoke-*/
           retention-days: 7

@@ -46,6 +46,8 @@ test("mobile controls leave the original Hero copy clear and center the hamburge
 test("mobile menu contains keyboard focus and restores inert and scroll after repeated dismissal", async ({
   page,
 }, testInfo) => {
+  // Three full keyboard loops plus real Spline rendering exceed the default 30s on software-GPU CI.
+  test.setTimeout(90_000);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
@@ -53,6 +55,7 @@ test("mobile menu contains keyboard focus and restores inert and scroll after re
     document.body.style.overflow = "clip";
     document.querySelector("footer")!.setAttribute("inert", "preserved");
   });
+  await expect(page.locator("footer")).toHaveAttribute("inert", "preserved");
   const toggle = page.locator("#mobileToggle");
   const logo = page.getByRole("link", { name: "breadme home" });
   for (let repeat = 0; repeat < 3; repeat += 1) {
@@ -66,6 +69,7 @@ test("mobile menu contains keyboard focus and restores inert and scroll after re
     ]) {
       await expect(page.locator(selector)).toHaveAttribute("inert");
     }
+    await expect(page.locator("footer")).toHaveAttribute("inert", "preserved");
     await expect(page.locator("body")).toHaveCSS("overflow", "hidden");
     await toggle.focus();
     await page.keyboard.press("Tab");
@@ -102,6 +106,8 @@ test("mobile menu contains keyboard focus and restores inert and scroll after re
 test("1023 and 1024 resize transitions keep focus on a visible counterpart without stealing page focus", async ({
   page,
 }) => {
+  // Every breakpoint resize also relayouts the original interactive Spline scene.
+  test.setTimeout(90_000);
   await page.setViewportSize({ width: 1023, height: 900 });
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
@@ -154,6 +160,8 @@ test("desktop Escape collapses the active submenu and restores its visible paren
 test("materials remain nonmodal and disabled with reliable focus on open and close", async ({
   page,
 }) => {
+  // Keep all repeated pointer/focus checks while allowing software-rendered Spline to share the page.
+  test.setTimeout(90_000);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();

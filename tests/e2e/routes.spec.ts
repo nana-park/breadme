@@ -94,7 +94,15 @@ for (const width of [390, 1440]) {
       await fs.writeFile(
         testInfo.outputPath("evidence.json"),
         JSON.stringify(
-          { route, width, errors, badResources, imageFailures, ...evidence },
+          {
+            route,
+            width,
+            errors,
+            consoleErrors,
+            badResources,
+            imageFailures,
+            ...evidence,
+          },
           null,
           2,
         ),

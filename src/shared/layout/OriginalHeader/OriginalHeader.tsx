@@ -129,7 +129,10 @@ export function OriginalHeader({ pageId, onOpenMaterials }: Props) {
         "main, footer, .footer, #email-popup, .original-skip-link",
       ),
     ).map((element) => ({ element, inert: element.getAttribute("inert") }));
-    background.forEach(({ element }) => element.setAttribute("inert", ""));
+    // WHY: Already-inert regions belong to their existing owner; do not rewrite them.
+    background.forEach(({ element, inert }) => {
+      if (inert === null) element.setAttribute("inert", "");
+    });
     document.body.style.overflow = "hidden";
 
     const focusable = () =>

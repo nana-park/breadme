@@ -113,6 +113,7 @@ describe("mobile controls and nonmodal materials focus", () => {
       fireEvent.click(toggle);
       expect(main).toHaveAttribute("inert");
       expect(popup).toHaveAttribute("inert");
+      expect(footer).toHaveAttribute("inert", "preserved");
       expect(document.body.style.overflow).toBe("hidden");
       focus(toggle);
       fireEvent.keyDown(document, { key: "Tab" });
