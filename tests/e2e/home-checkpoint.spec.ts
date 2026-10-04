@@ -9,7 +9,7 @@ for (const width of [390, 1440]) {
     page.on("pageerror", (error) => errors.push(error.message));
     await page.goto("/");
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-      "Designing Actionable AI",
+      "Making AI agents work for people.",
     );
     await page.evaluate(async () => {
       await document.fonts.ready;

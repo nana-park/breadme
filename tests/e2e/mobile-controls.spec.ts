@@ -6,7 +6,7 @@ test("mobile controls leave the original Hero copy clear and center the hamburge
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-    "Designing Actionable AI",
+    "Making AI agents work for people.",
   );
   await page.evaluate(() => document.fonts.ready);
   const toggle = page.locator("#popupToggle");
@@ -14,7 +14,10 @@ test("mobile controls leave the original Hero copy clear and center the hamburge
     .poll(async () => {
       const popup = await toggle.boundingBox();
       const subtitle = await page
-        .getByText("Helping people follow through:", { exact: true })
+        .getByText(
+          "I turn user needs into AI conversations, agent workflows, and tools for real-world operations.",
+          { exact: true },
+        )
         .boundingBox();
       return popup && subtitle ? subtitle.y - (popup.y + popup.height) : -1;
     })
@@ -129,7 +132,7 @@ test("1023 and 1024 resize transitions keep focus on a visible counterpart witho
   ).toBeFocused();
   await expect(page.locator("main")).not.toHaveAttribute("inert");
   await expect(page.locator("body")).not.toHaveCSS("overflow", "hidden");
-  const outside = page.getByRole("link", { name: "View My Work" });
+  const outside = page.getByRole("link", { name: "View my work" });
   await outside.focus();
   await page.setViewportSize({ width: 1023, height: 900 });
   await expect(outside).toBeFocused();

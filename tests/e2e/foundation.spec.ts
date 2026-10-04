@@ -11,7 +11,7 @@ for (const width of widths) {
     page.on("pageerror", (error) => errors.push(error.message));
     await page.goto("/");
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-      "Designing Actionable AI",
+      "Making AI agents work for people.",
     );
     await expect(
       page.getByRole("heading", { name: "Academic Standing" }),
@@ -50,7 +50,7 @@ for (const width of widths) {
     expect(imageFailures).toEqual([]);
     expect(errors).toEqual([]);
     for (const link of await page
-      .getByRole("link", { name: "View My Work" })
+      .getByRole("link", { name: "View my work" })
       .all())
       await expect(link).toHaveAttribute("href", "/projects.html");
   });

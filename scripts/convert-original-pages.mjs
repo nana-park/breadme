@@ -378,6 +378,11 @@ for (const [sourceFile, componentName] of pageDefinitions) {
     if (topLevel && tag === "svg" && node.getAttribute("width") === "0")
       return "";
     elementCount++;
+    // WHAT: Preserve the reviewed Home-only refinement when regenerating source pages.
+    if (sourceFile === "index.html" && node.id === "home") {
+      imports.add("HomeHero");
+      return `${indent}<HomeHero />`;
+    }
     if (tag === "spline-viewer") {
       imports.add("SplineHero");
       return `${indent}<SplineHero${attributes(node)} />`;
@@ -416,6 +421,8 @@ for (const [sourceFile, componentName] of pageDefinitions) {
     importLines.push(
       `import { ${helpers.join(", ")} } from '@/shared/utils/originalPaths';`,
     );
+  if (imports.has("HomeHero"))
+    importLines.push("import { HomeHero } from '@/pages/home/HomeHero';");
   if (imports.has("SplineHero"))
     importLines.push(
       "import { SplineHero } from '@/shared/ui/SplineHero/SplineHero';",

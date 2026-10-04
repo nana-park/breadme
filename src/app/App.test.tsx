@@ -10,7 +10,7 @@ describe("Original portfolio React migration", () => {
   it("preserves the actual original Home sections and copy", async () => {
     render(<App />);
     expect(await screen.findByRole("heading", { level: 1 })).toHaveTextContent(
-      "Designing Actionable AI",
+      "Making AI agents work for people.",
     );
     expect(
       screen.getByRole("heading", { name: "Academic Standing" }),
@@ -25,7 +25,7 @@ describe("Original portfolio React migration", () => {
       "href",
       "/index.html",
     );
-    expect(screen.getByRole("link", { name: "View My Work" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "View my work" })).toHaveAttribute(
       "href",
       "/projects.html",
     );

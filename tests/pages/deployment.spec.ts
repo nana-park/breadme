@@ -159,7 +159,7 @@ test("unknown files remain true 404s instead of silently rendering Home", async 
     expect((await page.goto(url))?.status()).toBe(404);
     await expect(page.locator("[data-original-page]")).toHaveCount(0);
     await expect(
-      page.getByRole("heading", { name: "Designing Actionable AI" }),
+      page.getByRole("heading", { name: "Making AI agents work for people." }),
     ).toHaveCount(0);
     expect((await page.reload())?.status()).toBe(404);
     await expect(page.locator("[data-original-page]")).toHaveCount(0);

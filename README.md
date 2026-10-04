@@ -2,11 +2,26 @@
 
 기존 [Portfolio](https://github.com/nana-park/Portfolio)의 디자인과 내용을 React로 옮기는 프로젝트입니다. **원본 디자인을 기준으로 합니다.** 처음 만들었던 구조 설명용 화면은 실제 포트폴리오 화면으로 교체했습니다.
 
-- [검토 중인 Draft PR #1](https://github.com/nana-park/breadme/pull/1)
+- [공개 사이트](https://nana-park.github.io/breadme/)
+- [Home 개선 검토 PR #2](https://github.com/nana-park/breadme/pull/2)
 - [기존 공개 포트폴리오](https://nana-park.github.io/Portfolio/)
 - 원본 기준 커밋: `834815915647e4b3fbf9285b88b8001e37b94aa0`
 - 새 게시 주소: https://nana-park.github.io/breadme/ (배포 결과는 Actions와 deployment.json에서 확인)
 - 기존 `Portfolio` 저장소·공개 사이트는 그대로 유지합니다. 이름을 바꾼 것은 이 React 저장소뿐입니다.
+
+## 이번 Home 개선 (검토 중)
+
+공개된 첫 이관본 다음 작업입니다. **이번 PR은 Home만 변경하며 아직 공개 사이트에 반영하지 않았습니다.**
+
+- 사용자 경력 자료를 근거로 AI Product Manager의 실제 역할을 소개합니다. 성과 수치를 새로 만들지 않습니다.
+- 제목: `Making AI agents work for people.`
+- 모바일의 두 버튼을 세로로 배치하고, `View my work` / `Get in touch`처럼 짧게 표시합니다. 기존 Projects / Contact로 이동합니다.
+- 3D는 캔버스 테두리가 아닌 실제로 보이는 오브젝트의 중심을 확인합니다. 원본 Spline 장면·애니메이션·표시 배지는 그대로 유지합니다.
+- Home Hero는 `src/pages/home/HomeHero.tsx`, 문구는 `src/content/site/homeHero.ts`, 스타일은 같은 폴더의 CSS Module에서 수정합니다.
+- About·Projects 등 다른 화면과 Home 아래 경력·학력 섹션은 유지합니다.
+- 320 / 375 / 390 / 430 / 1440px의 전후 캡처, 버튼 줄 수·가림·목적지, 배지 노출과 실제 오브젝트 픽셀 중심을 검수합니다. 정확한 통과 여부는 PR의 최신 Actions 결과를 확인합니다.
+
+현재 공개 커밋은 `4607953bda8b0c0683b4ba09786781f95be861ea`입니다. 첫 이관·공개 검수는 단위77개, 기능48개, 실제 공개 URL34개가 통과했습니다. 이 기록을 이번 Home 수정의 통과 결과로 대신하지 않습니다. 새 병합·게시에는 별도 확인이 필요합니다.
 
 ## 지금 된 것
 
@@ -39,7 +54,7 @@
 - 원본의 미완성 Korean 버튼은 `Coming soon!` 안내를 유지합니다. 영어 페이지를 번역 완료라고 표시하지 않습니다.
 - 원본에서 숨긴 Enjoy 메뉴는 새로 노출하지 않습니다. 기존 `enjoy.html` 주소의 화면은 옮겼습니다.
 - 연결되지 않은 오래된 프로젝트 페이지·백업 파일은 복사하지 않았습니다.
-- 공개 배포와 검수된 변경의 main 병합은 이번에 승인되었습니다. PR 검사를 통과한 뒤 main에 반영합니다.
+- 최초 이관본은 main에 반영해 공개했습니다. 이후의 변경은 검토 브랜치와 PR에서 검수하고, 별도로 확인한 뒤 공개합니다.
 
 ## 내 컴퓨터에서 실행하기
 

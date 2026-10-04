@@ -27,7 +27,7 @@
 - `/`와 `/index.html`은 같은 Home입니다. Enjoy는 경로를 유지하지만 원본처럼 메뉴에서는 숨깁니다.
 - Header는 원본 70px 높이와 1024px 메뉴 경계를 유지하며 모바일 초점·터치·닫기 동작을 보정합니다.
 - MaterialsPopup은 원본 핵심 11개 페이지에만 있습니다. 원본 상세 3개에는 떠 있는 버튼이 없고 Header 자료 링크는 `Coming soon!` 안내를 표시합니다. 자료 전송은 `Coming Soon` 상태입니다. 연결 상태를 메일 기능 완료로 표시하지 않습니다.
-- SplineHero는 Home의 원본 장면과 표시 배지를 유지합니다.
+- SplineHero는 Home의 원본 장면과 표시 배지를 유지합니다. Home 소개·CTA 배치는 Home 전용 `HomeHero`와 CSS Module이 소유하며 다른 페이지로 확대하지 않습니다.
 - Articles는 목록·읽기 화면을 가진 하나의 경로입니다. 영어 본문 18개와 6쪽 목록은 `OriginalArticlesPage`가 관리합니다.
 
 ## 초기 컴포넌트와의 관계

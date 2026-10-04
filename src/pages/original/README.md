@@ -27,6 +27,7 @@
 
 ## 파일 역할
 
+- Home Hero는 `../home/HomeHero.tsx`에서 별도 관리합니다. 나머지 원본 섹션은 유지하며 변환기를 재실행해도 Hero 연결을 보존합니다.
 - `generated/*.tsx`: 원본 HTML 요소를 실제 React JSX로 옮긴 내용. HTML 문자열 주입이나 전체 페이지 iframe이 아닙니다.
 - `generated/*.css`: 원본 페이지의 개별 스타일
 - `OriginalArticlesPage.tsx`: 아티클 목록·페이지 선택·본문·복귀
