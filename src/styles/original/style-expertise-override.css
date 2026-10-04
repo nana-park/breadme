@@ -1,0 +1,51 @@
+/* Force Left Alignment Override */
+.expertise-card,
+.expertise-card * {
+    text-align: left !important;
+}
+
+.expertise-card {
+    justify-content: flex-start !important;
+}
+
+/* All Panels - 1 Row / 4 Columns Layout */
+#certificationsPanel .expertise-card-grid,
+#skillsPanel .expertise-card-grid,
+#coreCompetenciesPanel .expertise-card-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    max-width: 100% !important;
+    gap: 1.25rem !important;
+    align-items: stretch !important;
+}
+
+/* Wider container for skills section */
+#skills .container {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+    width: 100% !important;
+    max-width: 1400px !important;
+}
+
+/* Slightly reduce card padding so content fits better in 4-col layout */
+#skills .expertise-card {
+    padding: 1.75rem !important;
+}
+
+/* Responsive adjustment */
+@media (max-width: 1024px) {
+
+    #certificationsPanel .expertise-card-grid,
+    #skillsPanel .expertise-card-grid,
+    #coreCompetenciesPanel .expertise-card-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (max-width: 768px) {
+
+    #certificationsPanel .expertise-card-grid,
+    #skillsPanel .expertise-card-grid,
+    #coreCompetenciesPanel .expertise-card-grid {
+        grid-template-columns: 1fr !important;
+    }
+}

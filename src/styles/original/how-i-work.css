@@ -1,0 +1,211 @@
+/* Horizontal Accordion Styles */
+.how-i-work-section {
+    padding: 10rem 0;
+    /* Removed background/color to let Tailwind bg-white take over */
+    overflow: hidden;
+}
+
+.how-i-work-section .container {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+    width: 100% !important;
+    max-width: 1400px !important;
+}
+
+.accordion-container {
+    display: flex;
+    flex-direction: row;
+    height: 550px; /* Slightly reduced height for minimal style */
+    width: 100%;
+    margin: 0 auto;
+    gap: 16px; /* Increased gap for cleaner separation */
+}
+
+/* Header Spacing Standardization */
+.how-i-work-title {
+    font-family: var(--font-serif);
+    font-size: 3.5rem;
+    font-weight: 400;
+    color: #ffffff;
+    margin-bottom: 2.5rem;
+    /* Gap A = 2.5rem */
+    line-height: 1.2;
+    text-align: center;
+}
+
+.how-i-work-header p {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+    margin-top: 0;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    /* Gap B = 2.5rem */
+}
+
+.how-i-work-header {
+    margin-bottom: 0;
+}
+
+.accordion-item {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    cursor: pointer;
+    border-radius: 24px;
+    /* Removed solid bg, ready for background-image */
+    background-color: #1a1a1a;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Dark Overlay */
+.accordion-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    transition: background 0.6s ease;
+}
+
+.accordion-item.active::before {
+    background: rgba(0, 0, 0, 0.35); /* Brightens when expanded */
+}
+
+.accordion-item:hover::before {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.accordion-item.active {
+    flex: 3.5;
+    cursor: default;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15); /* Soft shadow */
+}
+
+/* Content Wrapper */
+.accordion-content {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    right: 2rem;
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(20px);
+    /* HIDDEN STATE (Collapsing): Fast fade out, NO delay so it disappears before width shrinks */
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+    /* Prevent interaction when hidden */
+}
+
+.accordion-item.active .accordion-content {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    /* VISIBLE STATE (Expanding): Slower fade in, WITH delay to wait for width expansion */
+    transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
+}
+
+/* Collapsed Title (Vertical) */
+.collapsed-title {
+    position: absolute;
+    bottom: 2rem;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 0 0.5rem;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    font-family: var(--font-sans);
+    font-weight: 500; /* Made slightly lighter */
+    font-size: 0.9rem;
+    line-height: 1.3;
+    letter-spacing: 0.1em; /* Increased tracking */
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.8);
+    z-index: 10;
+    pointer-events: none;
+}
+
+.accordion-item:hover .collapsed-title {
+    color: #ffffff;
+}
+
+.accordion-item.active .collapsed-title {
+    opacity: 0;
+}
+
+/* Content Styling */
+.accordion-content h3 {
+    font-family: var(--font-sans);
+    font-size: 2.5rem; /* Match 40px */
+    margin-bottom: 1rem;
+    font-weight: 500; /* Match font-medium */
+    letter-spacing: -0.02em; /* Match tracking-tight */
+    line-height: 1.1; /* Match leading-[1.1] */
+    color: #ffffff;
+}
+
+.accordion-content h3 em {
+    font-style: italic;
+    font-family: var(--font-serif);
+}
+
+.accordion-content p {
+    font-family: var(--font-sans);
+    font-size: 0.95rem; /* Match text-[15px] */
+    line-height: 1.6;
+    max-width: 600px;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.7); /* Match text-zinc-400 */
+    font-weight: 300; /* Match font-light */
+}
+
+.accordion-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.accordion-tags span {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.15); /* Sleek glass tag */
+    padding: 0.35rem 1rem;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .accordion-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .accordion-item {
+        height: 100px;
+        /* Collapsed height */
+        flex: none;
+        width: 100%;
+    }
+
+    .accordion-item.active {
+        height: 400px;
+        /* Expanded height */
+        flex: none;
+    }
+
+    .collapsed-title {
+        left: 2rem;
+        transform: none;
+        bottom: 50%;
+        transform: translateY(50%);
+    }
+}

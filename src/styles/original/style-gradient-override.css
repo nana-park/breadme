@@ -1,0 +1,135 @@
+/* =========================================
+   Gradient Overlay Override v11 (Deep Darkness + Outline Clipper)
+   ========================================= */
+
+/* -------------------------------------------------------------
+   1. HOW I WORK (Accordion) -  KEEP THE FADE (Unchanged)
+------------------------------------------------------------- */
+.accordion-item,
+.accordion-item.active {
+    border: 0 solid transparent !important;
+    border-width: 0 !important;
+    box-shadow: none !important;
+    outline: none !important;
+    background-color: #1a1a1a !important;
+    position: relative;
+    z-index: 1;
+    overflow: hidden !important;
+
+    /* Clipped Bottom Edge */
+    -webkit-mask-image: linear-gradient(to bottom, black 99%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 99%, transparent 100%);
+}
+
+.accordion-item::after {
+    content: '';
+    display: block !important;
+    position: absolute;
+    bottom: -1px;
+    left: -1px;
+    right: -1px;
+    height: 60%;
+
+    background: linear-gradient(to bottom,
+            transparent 0%,
+            rgba(26, 26, 26, 0.4) 30%,
+            rgba(26, 26, 26, 0.8) 60%,
+            #1a1a1a 90%,
+            #1a1a1a 100%);
+    z-index: 5;
+    pointer-events: none;
+    border-radius: 0 0 20px 20px;
+}
+
+.accordion-content {
+    bottom: 3.5rem !important;
+    z-index: 20 !important;
+    position: absolute;
+    padding-bottom: 0;
+}
+
+.collapsed-title {
+    bottom: 3.5rem !important;
+    z-index: 20 !important;
+}
+
+.accordion-content h3,
+.accordion-content p,
+.accordion-tags {
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+}
+
+
+/* -------------------------------------------------------------
+   2. FEATURED PRODUCTS - DEEPER GRADIENT + OUTLINE CLIPPER
+   User wants More Gradation + No Outline.
+------------------------------------------------------------- */
+.project-card,
+.project-card-link[data-category="research"] .project-card,
+.project-card-link .project-card {
+    /* 1. APPLY PIXEL CLIPPER MASK again */
+    /* This removes the bottom border artifacts without fading the card content */
+    -webkit-mask-image: linear-gradient(to bottom, black 99.5%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 99.5%, transparent 100%);
+
+    background-color: #1a1a1a !important;
+    /* Safety matching background */
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+
+    /* Standard Padding */
+    padding-bottom: 2rem !important;
+    justify-content: flex-end;
+
+    position: relative;
+    overflow: hidden !important;
+}
+
+/* 2. BEEFED UP INTERNAL GRADIENT */
+.project-card::after {
+    content: '';
+    display: block !important;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Increase Height to 85% */
+    height: 85%;
+
+    /* Stronger Gradient: Transparent -> Semi-Dark -> PITCH BLACK */
+    background: linear-gradient(to bottom,
+            transparent 0%,
+            rgba(0, 0, 0, 0.4) 30%,
+            rgba(0, 0, 0, 0.8) 60%,
+            rgba(0, 0, 0, 0.95) 90%,
+            black 100%);
+
+    z-index: 1;
+    pointer-events: none;
+    border-radius: 0 0 20px 20px;
+}
+
+/* Ensure Text is on top */
+.project-card .project-title,
+.project-card .project-link {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 0.5rem !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 1);
+}
+
+.project-card .launching-badge {
+    position: absolute;
+    z-index: 10;
+}
+
+/* Research specific tweaks */
+.project-card-link[data-category="research"] .project-card {
+    padding-bottom: 0 !important;
+}
+
+.project-card-link[data-category="research"] .research-content {
+    padding-bottom: 2.5rem !important;
+    z-index: 2;
+}

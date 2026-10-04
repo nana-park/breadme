@@ -35,3 +35,7 @@ test-results/
 
 # Original visual reference captures
 source-evidence/
+
+# Verified build-time copies of original runtime assets
+/public/original/
+/public/original-external/

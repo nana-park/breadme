@@ -1,0 +1,169 @@
+/* Brand Story Section Styles */
+#brand-story {
+    padding: var(--spacing-xxl) 0;
+    text-align: center;
+    background: #000000;
+    /* Pure black as per ref */
+    color: white;
+}
+
+.brand-story-icon {
+    width: 80px;
+    /* Adjust size */
+    height: auto;
+    margin-bottom: 2rem;
+    animation: float 6s ease-in-out infinite;
+}
+
+.brand-story-title {
+    font-family: var(--font-serif);
+    font-size: 4rem;
+    font-weight: 400;
+    font-style: italic;
+    color: #ffffff;
+    margin-bottom: 2.5rem;
+    line-height: 1.1;
+}
+
+.brand-story-title span {
+    font-style: normal;
+    /* If needed for specific words like "AI" */
+}
+
+/* Specific styling for "AI" or "as a" if they need differentiation?
+   Ref shows: "Designing AI as a daily staple" all Italic except maybe "AI"?
+   Actually ref image shows "Designing AI as a daily staple" all serif italic looking. */
+
+.brand-story-text {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 700px;
+    margin: 0 auto 2.5rem;
+}
+
+.brand-story-btn {
+    background: linear-gradient(to bottom, #333, #111);
+    border: 1px solid #444;
+    color: #fff;
+    padding: 1rem 2rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.brand-story-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 6px 20px rgba(0, 0, 0, 0.7);
+    border-color: #666;
+}
+
+/* Name/Pronunciation Block */
+.brand-identity {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.identity-label {
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #444;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.identity-name {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 2rem;
+}
+
+/* Pronunciation Visual */
+.pronunciation {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    /* Wide gap */
+    position: relative;
+    padding-top: 1rem;
+}
+
+/* The vertical line indicator */
+.pronunciation::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 30px;
+    width: 1px;
+    background: #444;
+}
+
+.phonetic-part {
+    font-family: 'Times New Roman', serif;
+    /* Phonetic look */
+    font-size: 1.5rem;
+    color: #dba32d;
+    /* Gold/Orange highlight color from ref */
+}
+
+.phonetic-part.dim {
+    color: #444;
+    /* Greyed out part */
+}
+
+/* Custom IPA approximation styles */
+.ipa-symbol {
+    font-style: normal;
+}
+
+/* Text Gradient Utilities */
+.text-gradient-gold {
+    background: linear-gradient(135deg, #FDE68A 10%, #F59E0B 50%, #B45309 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: #F59E0B;
+    /* Fallback */
+    display: inline-block;
+    /* Required for gradient on some browsers */
+    padding-right: 0.1em;
+    /* Prevent clipping */
+}
+
+.text-gradient-purple {
+    background: linear-gradient(135deg, #E9D5FF 10%, #A855F7 50%, #6B21A8 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: #9333EA;
+    /* Fallback */
+    display: inline-block;
+    padding-right: 0.1em;
+    /* Prevent clipping */
+}
+
+/* Solid Colors for Phonetics */
+.text-color-orange {
+    color: #F5920B !important;
+}
+
+.text-color-blue {
+    color: #3B82F6 !important;
+    /* Bright Blue */
+    font-weight: 700;
+}

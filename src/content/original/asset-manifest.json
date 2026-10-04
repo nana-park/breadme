@@ -1,0 +1,1513 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "repository": "nana-park/Portfolio",
+    "repositoryUrl": "https://github.com/nana-park/Portfolio",
+    "commit": "834815915647e4b3fbf9285b88b8001e37b94aa0",
+    "license": "No root license file was found in the pinned source checkout; no new license is granted by this manifest."
+  },
+  "destination": "public/original",
+  "assetCount": 147,
+  "totalBytes": 289373612,
+  "assets": [
+    {
+      "path": "Files/Logo/Google-logo.svg",
+      "sha256": "e437356923dbc04eac61344e0bc21f0cb39f7a91f900cb58d1c60c7f205c3f0d",
+      "bytes": 1933,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/Files/Logo/Google-logo.svg"
+    },
+    {
+      "path": "Files/Logo/H&M-logo.svg",
+      "sha256": "fe9e99aec4933eff5293aa3fca538586ce3ab6f98185d528b690169d4eb1df78",
+      "bytes": 2377,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/Files/Logo/H%26M-logo.svg"
+    },
+    {
+      "path": "Files/Logo/Naver Cloud-logo.svg",
+      "sha256": "3387bd9aa7b60402a9ee08cd1e93e26fca5e955cab358ec79834a6318a80377d",
+      "bytes": 2198,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/Files/Logo/Naver%20Cloud-logo.svg"
+    },
+    {
+      "path": "Files/Logo/Naver-logo.svg",
+      "sha256": "d5bd5ac3aa483d29db980ee270217d98dec2b7c1a729eeb7b8ee43536393eead",
+      "bytes": 1818,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/Files/Logo/Naver-logo.svg"
+    },
+    {
+      "path": "Files/Logo/SK Telecom-logo.svg",
+      "sha256": "328886dd022bf1c139973219cce9f7e1af94f4b6bfd7aee44f3f721555e9beb4",
+      "bytes": 100882,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/Files/Logo/SK%20Telecom-logo.svg"
+    },
+    {
+      "path": "assets/video_call_mentor_style.png",
+      "sha256": "a27adc40e9112951010bbad4b62a14ccb2223b40cbe265875274ac03e8d3cc16",
+      "bytes": 624822,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/assets/video_call_mentor_style.png"
+    },
+    {
+      "path": "assets/video_call_student_style.png",
+      "sha256": "c4ceddddbaa86e02676cb9b858d94eacbe02d27b8077d0deaaad969e87e54cb7",
+      "bytes": 642783,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/assets/video_call_student_style.png"
+    },
+    {
+      "path": "award_japan_zoomed.png",
+      "sha256": "98333a247c81e75cb9955c9d521dc455d5e38e292657a9ccf2d1cefe059f1235",
+      "bytes": 675733,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/award_japan_zoomed.png"
+    },
+    {
+      "path": "award_korea_zoomed.png",
+      "sha256": "2e208eff582e4496de40f41715212224e8c8ec7e7448689a428cbc19f00b6318",
+      "bytes": 266033,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/award_korea_zoomed.png"
+    },
+    {
+      "path": "award_ribbon_red_dark.png",
+      "sha256": "912c5c455ddbe0fd820d8a0416cd7d518530a135bb93f137194addda25e7106a",
+      "bytes": 468630,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/award_ribbon_red_dark.png"
+    },
+    {
+      "path": "award_sk_curve_glossy.png",
+      "sha256": "433d973bed147431448a9b154677c8d64fcb3c63d0f1edb1fb5680726c4124fc",
+      "bytes": 324421,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/award_sk_curve_glossy.png"
+    },
+    {
+      "path": "award_star_purple_dark.png",
+      "sha256": "5fd9f27514f48f2627b932b5d172ed796d1423ed154a5b164e85e526f9334f60",
+      "bytes": 444976,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/award_star_purple_dark.png"
+    },
+    {
+      "path": "footprint_hci_2022.jpg",
+      "sha256": "c56f8b9b5407770811d01b6641df8a92fac010a0c936913b17c5d94d4d985b5d",
+      "bytes": 114346,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/footprint_hci_2022.jpg"
+    },
+    {
+      "path": "footprint_mysuni_2023.jpg",
+      "sha256": "027dde0f99afe0f37be7669a6db851d7340e7bdf9dccc7a77277fc86b205710e",
+      "bytes": 150062,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/footprint_mysuni_2023.jpg"
+    },
+    {
+      "path": "footprint_new_1.jpg",
+      "sha256": "fc0e9002b2d7bb8d27d400590dda4ffb5512682837373648a2d8c355f59fa7a8",
+      "bytes": 104668,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/footprint_new_1.jpg"
+    },
+    {
+      "path": "footprint_new_2.jpg",
+      "sha256": "e5f83abd910ebc79d1885cf05495210892b84b0da78ed75c17d903cc88ec7434",
+      "bytes": 225413,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/footprint_new_2.jpg"
+    },
+    {
+      "path": "footprint_new_3.jpg",
+      "sha256": "ca18e32bf58a138d68681367802e6468f007b11feb656fca7cffe1f6785368f2",
+      "bytes": 200495,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/footprint_new_3.jpg"
+    },
+    {
+      "path": "footprint_new_4.jpg",
+      "sha256": "ec286fecc47a2dd155a19d3fffab676388c38d01358d9403d799e22dd90011a3",
+      "bytes": 113919,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/footprint_new_4.jpg"
+    },
+    {
+      "path": "footprint_new_5.jpg",
+      "sha256": "8327bb20b2e960569291cce9d0b4210ab0c2e4ff5881eb92403d007cd5fd1c1b",
+      "bytes": 170529,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/footprint_new_5.jpg"
+    },
+    {
+      "path": "footprint_new_6.jpg",
+      "sha256": "d9e14ddb064fcd83309ed16ebce8896817a8bc98043ef9419fe613b929dee16a",
+      "bytes": 297690,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/footprint_new_6.jpg"
+    },
+    {
+      "path": "footprint_new_7.jpg",
+      "sha256": "79ac9725ef0c38ef6c1e692f2cdb132f046e868976335795ef195b0cf21aa8ab",
+      "bytes": 147029,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/footprint_new_7.jpg"
+    },
+    {
+      "path": "footprint_new_8.jpg",
+      "sha256": "e77b963a515bd59cf3c43a0295a23837a625614c9ed10959340241803928b072",
+      "bytes": 181920,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/footprint_new_8.jpg"
+    },
+    {
+      "path": "footprint_new_9.jpg",
+      "sha256": "b88d72020aca316a217a3c082cbe0963c804904cc545ea24b6880dd102fd31ca",
+      "bytes": 152031,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/footprint_new_9.jpg"
+    },
+    {
+      "path": "footprint_skku_2023.jpg",
+      "sha256": "2139dc712c9ec16cd2d7f26b3f238263db0572d57a6faed6de85ff360ec2f257",
+      "bytes": 237441,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/footprint_skku_2023.jpg"
+    },
+    {
+      "path": "how_work_comm_new_169.png",
+      "sha256": "83ada39b4480a29eab656547064b12a9477adcc9042dc1307e2bda379c2a5ae6",
+      "bytes": 474619,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/how_work_comm_new_169.png"
+    },
+    {
+      "path": "how_work_detect_new_169.png",
+      "sha256": "1d016985a0a28fe7b7cdad118d51e29ec7d56fb90dbb04f9f369e262a0da472e",
+      "bytes": 507404,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/how_work_detect_new_169.png"
+    },
+    {
+      "path": "how_work_efficiency_new_169.png",
+      "sha256": "8659445b4480a77ed8a07cfcf002648f8f99d5afd7a7cc539fffd82affc02afb",
+      "bytes": 490923,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/how_work_efficiency_new_169.png"
+    },
+    {
+      "path": "how_work_story_new_169.png",
+      "sha256": "b36433c22fec270929349feba4679b6f4d09594813ce259e7cc11bb7349c8148",
+      "bytes": 543257,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/how_work_story_new_169.png"
+    },
+    {
+      "path": "images/award.png",
+      "sha256": "69f6d8a895ac8a8f5fcc2f91d2d3e6f29fa7553f597b8e20eae7b4497a0fe796",
+      "bytes": 13891,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/images/award.png"
+    },
+    {
+      "path": "images/hopzie/hopzie_oneclickbuilder_news_SK Newsroom.png",
+      "sha256": "569f086183f2c8612d16bc5fa41ded9e3445e23217e73b2d19298432fd076ad3",
+      "bytes": 1601918,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/images/hopzie/hopzie_oneclickbuilder_news_SK%20Newsroom.png"
+    },
+    {
+      "path": "images/hopzie/hopzie_oneclickbuilder_news_daum news.png",
+      "sha256": "a836d5ea920fb873d048e51a719aa513d8550c1714cb9643f02a0fa82d724e65",
+      "bytes": 1410873,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/images/hopzie/hopzie_oneclickbuilder_news_daum%20news.png"
+    },
+    {
+      "path": "images/hopzie/hopzie_oneclickbuilder_news_venture capital.png",
+      "sha256": "fca3aa70a9baf6cce368a88d6ee13cbf85e097cf0a515933563b9325b4a58ca7",
+      "bytes": 4916,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/images/hopzie/hopzie_oneclickbuilder_news_venture%20capital.png"
+    },
+    {
+      "path": "japan_gov_logo.svg",
+      "sha256": "f6b247d1e064258c4f60d70c81a17d330798e52669c34d342353b231574d8b6c",
+      "bytes": 28350,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/japan_gov_logo.svg"
+    },
+    {
+      "path": "kr_science_logo.svg",
+      "sha256": "9f06924641f0d98cb77e121a2c39a53b9597e266954518a85749efe4527e7bd5",
+      "bytes": 1344,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/kr_science_logo.svg"
+    },
+    {
+      "path": "nahyun_imported/document_source/Projects_Research/(EN)Korea Society of IT Services.pdf",
+      "sha256": "510ca8416d77719b63471911792b71df78dd0e5b9ea6d9f8d8840a63b92ac299",
+      "bytes": 1872558,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/document_source/Projects_Research/%28EN%29Korea%20Society%20of%20IT%20Services.pdf"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Arts/KakaoTalk_20260423_010048901_01.jpg",
+      "sha256": "64692c7023e543c3ffa9151ff0199fa137e23037635a634adf58684a947389f5",
+      "bytes": 535988,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Arts/KakaoTalk_20260423_010048901_01.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/BG.jpg",
+      "sha256": "2dec2630aecd8f8781c75e43e89aefd00da82a0ea644964b7fab2476ce2ae917",
+      "bytes": 4454335,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/BG.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/1.jpg",
+      "sha256": "2774e7b6e287c19f5214cfe55c9d91a37393d3688dd8c9cdac85c4e74c37d8c6",
+      "bytes": 5249826,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/1.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/2.jpg",
+      "sha256": "6ff1358fee085949d3b85a61bb9856916f24e929f1577fa0a0f90d479fca6b98",
+      "bytes": 5939315,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/2.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/3.jpg",
+      "sha256": "f062df574b2e116cad5cad8d8446bf0aea62e76a921c343d2ef60e3f6fb2df50",
+      "bytes": 5537870,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/3.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/4.jpg",
+      "sha256": "a04c67fea893daccb6e09949c7d7df617f3231371774069c565e96ba1c3e96b3",
+      "bytes": 6449541,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/4.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863.jpg",
+      "sha256": "0656c06c3bcd89af1a8cd3930739536d1fe25583917527659e1fd915d60bc17d",
+      "bytes": 1354740,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_02.jpg",
+      "sha256": "52fd7c07ab525d062c4b2030acbb732154b80914fb52f69255d90c8d6bbee50e",
+      "bytes": 6796586,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_02.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_03.jpg",
+      "sha256": "1d05d79eb77a2edf8ef52c784ca5f0c15990ee1de4c91e59d61ec8167a9b71a4",
+      "bytes": 6650624,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_03.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_04.jpg",
+      "sha256": "4f285ddebae68d7346ddd31a7b61582eb38bf6e9f538cc897c02df67d79b3a1a",
+      "bytes": 6432758,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_04.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_05.jpg",
+      "sha256": "95b903bb977bc4973f1aaacdef015ca1dd4738896aa8f511d02fc1c76b1928ef",
+      "bytes": 6300746,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_05.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_06.jpg",
+      "sha256": "b556d8a72509046c978569e16fa479c7d53eb2656b2e10ed100367252c6dd78d",
+      "bytes": 5513425,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_06.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_07.jpg",
+      "sha256": "b5039ed6c3dc3035ef340f65147e763c672088a3ea3ae0bd41f5f03645671767",
+      "bytes": 5893131,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_07.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_08.jpg",
+      "sha256": "0a861f4a6d2066179677c207e3926db9ef3458d17615bc34b5e8ecc7c7907613",
+      "bytes": 7396316,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_08.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_09.jpg",
+      "sha256": "b80d7e8855e89747cd62b0a60bd581ad6a39ef64d2ba5f4dc047935dbee7f5e6",
+      "bytes": 6959644,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_09.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_10.jpg",
+      "sha256": "70c4c71318f158cc51f1bbfc39bcd9517f46c2619c88736d22884e40a0340428",
+      "bytes": 6506808,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_10.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_11.jpg",
+      "sha256": "4d1b970da4aefb1b70bdc422eacbb8b29101016ebc3d72b552e8b217984b87e3",
+      "bytes": 6477140,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_11.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_12.jpg",
+      "sha256": "1fb7c7be94fd0923a95a0f23e23527718bde338a3ea64a2fc1ff4567f1f907e7",
+      "bytes": 2822167,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_12.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_13.jpg",
+      "sha256": "3272bfbd5bd72b16e3eb39eca6914337497441b40ad08aa84eb32ce871187ba4",
+      "bytes": 6614240,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_13.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_18.jpg",
+      "sha256": "c5de98ea419387dce014c27483a620aa808ddd0d31a8ee96470c9b72f9748679",
+      "bytes": 6901196,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_18.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_19.jpg",
+      "sha256": "c5d3bb7a84584e563c616f0ea7a73db2b723c2c7a2dc01f5b0d1319687ab8ddd",
+      "bytes": 5457576,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_19.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_20.jpg",
+      "sha256": "6acc09c1001074e6c886f56faf701c9cca88e050e2e382a82b2d09f59e9d6546",
+      "bytes": 5826273,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_20.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_21.jpg",
+      "sha256": "8ed0585930c41e1421e245a5094a69c0d1222ad6f8802113ef827fde100691fc",
+      "bytes": 5418494,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_21.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_22.jpg",
+      "sha256": "d9b30d1e4554015efe23b65b42bedf4b84368e920cd40ba48a5b0c9a192075aa",
+      "bytes": 5288808,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_22.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_23.jpg",
+      "sha256": "f6c2440b78f0c2de62afb18bdaefff035d40c2c2a9ff7d3c2f48acad7403097d",
+      "bytes": 6160591,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_23.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_24.jpg",
+      "sha256": "ada346209d11d00c8575edef4bbd2edd68ed810f58aa3947b6d86b8f165dc4cd",
+      "bytes": 5690374,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_24.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_26.jpg",
+      "sha256": "d5e7e4343b3db2da0aa956bd9190da37c7a698d5ee03ce1ec7dc3ba6ba1114c1",
+      "bytes": 6187345,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_26.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_29.jpg",
+      "sha256": "a164ef287f93c5a8d983d2f47cfdf0602fff33681186c0035d4dec36fcadef00",
+      "bytes": 546153,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260422_235853863_29.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260423_000013760.jpg",
+      "sha256": "808c5d7c38838d6d246269a836d918d92d9763e78657c303519e7b33aa119925",
+      "bytes": 8075338,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260423_000013760.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260423_000013760_01.jpg",
+      "sha256": "78af106aaf33373509986cf822334ab64b5423c1d01081dd016657493f2cc174",
+      "bytes": 2870818,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260423_000013760_01.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260423_000013760_02.jpg",
+      "sha256": "13514eeffdf94b35858dbc1c36cffe89fc0e657dc911f26c4596018cbd7e0c98",
+      "bytes": 4393975,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260423_000013760_02.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260423_000013760_03.jpg",
+      "sha256": "09b27ec50cfc58bec6c4e1fb33fca81aa227b00ec28097543f8c5a5321b4fcad",
+      "bytes": 1808155,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260423_000013760_03.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260423_000013760_04.jpg",
+      "sha256": "04b5aa38a852ec078461107a4f65d02dc1d5687ec07c38e910e48ab359a4b357",
+      "bytes": 5233224,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260423_000013760_04.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260423_000013760_05.jpg",
+      "sha256": "af533edbf5c79e5bf26ff0ebaf8a79b769dc734ffc93b0c503d771cf100f1379",
+      "bytes": 3300079,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260423_000013760_05.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260423_000013760_06.jpg",
+      "sha256": "25476cbaef8f411be137aefbd1115f9fafc25660d7bd0cc9747df76d31ba61af",
+      "bytes": 1779562,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260423_000013760_06.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260423_000013760_08.jpg",
+      "sha256": "67e9a471c1f7b7584ab7211df1fb377427e0c82753b4f26c3a4b54f75d92ee8a",
+      "bytes": 2940216,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260423_000013760_08.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260423_000013760_10.jpg",
+      "sha256": "13555c7529b98a4cd5226549aa540d76631d745d02eeb05ce07ec4b7b03f759f",
+      "bytes": 3537720,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260423_000013760_10.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260423_000013760_14.jpg",
+      "sha256": "8bd49d37041838024c68fae89169df7ce57a328c62c8ec9871aa8d70f75a9ee0",
+      "bytes": 7207909,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Culinary/KakaoTalk_20260423_000013760_14.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Sports/KakaoTalk_20260423_011157587.jpg",
+      "sha256": "bd11dbf237145b6e4f4e874f5e26f771572e1fe615ee36d759683dd53a17a058",
+      "bytes": 353249,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Sports/KakaoTalk_20260423_011157587.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Sports/KakaoTalk_20260423_011157587_01.jpg",
+      "sha256": "aec9ecd698240dd7fa6ec1b15f78522e58f0f68c30ca4696ef019fc844c4c968",
+      "bytes": 3168086,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Sports/KakaoTalk_20260423_011157587_01.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Travel/Asia/Hongkong-1.jpg",
+      "sha256": "e90f593eaf2617a20c386d9017d0c6b2593508c244fd75ff5f2959a3c2e991bd",
+      "bytes": 886875,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Travel/Asia/Hongkong-1.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Travel/Asia/Indonesia-1.jpg",
+      "sha256": "10824b97250b51bf07c89a18ed07512aec4992c723de1a03fe62bef3b07d2a74",
+      "bytes": 4139611,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Travel/Asia/Indonesia-1.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Travel/Asia/Maleisia-1.jpg",
+      "sha256": "d2c20523b643b1c40df1600820c8af8c0729155b281313cb2716ae2812203007",
+      "bytes": 400551,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Travel/Asia/Maleisia-1.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Travel/Asia/Thai-1.jpg",
+      "sha256": "12edef4de65b0bf24c72b4575485e867b33be5a72b3b425841c25bc2811e810c",
+      "bytes": 2450785,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Travel/Asia/Thai-1.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Travel/Europe/Georgia-1.jpg",
+      "sha256": "3dbc3c2baf4d59bf29ad0acc85668dfb5ea2d3d34d03bce5d7f5e66f0a5c9f0e",
+      "bytes": 1253433,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Travel/Europe/Georgia-1.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Travel/Europe/Georgia-2.jpg",
+      "sha256": "fd25fc4077cb4ea70f5acaceaaab199f5e8c333c609a0f7634cd1070d8428bb9",
+      "bytes": 744614,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Travel/Europe/Georgia-2.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Travel/Korea/Gangneung-1.jpg",
+      "sha256": "f958889a740a72ef7893cbce68cbacf8cf50a4c28d9fa238d77a30c9c2d12c94",
+      "bytes": 953874,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Travel/Korea/Gangneung-1.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Travel/Korea/Gangneung.jpg",
+      "sha256": "ba80534f0bf97869e189cf3ecf36e2bc8106ff7c614652acf9db439ef5f62c11",
+      "bytes": 607306,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Travel/Korea/Gangneung.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Travel/Korea/Jeju-1.jpg",
+      "sha256": "897ebb3e012d70dc867b8b2fe408ddb56083f6ef84f22aca3f6fd7588304fa22",
+      "bytes": 882431,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Travel/Korea/Jeju-1.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Travel/South America/Chile-1.jpg",
+      "sha256": "3a932c0424298a79f3f1e7877971e26d93194304022529a53e8c66e76ec9a948",
+      "bytes": 584754,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Travel/South%20America/Chile-1.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Life/Travel/South America/Peru-1.jpg",
+      "sha256": "86880276d298784a853b1e225b52489c252709873cd6d656e449d5e238df2bc2",
+      "bytes": 1522150,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Life/Travel/South%20America/Peru-1.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/About_Qualified/thumnail.png",
+      "sha256": "76d9e491842ee62f492b40bddfc51294dd36327750260329eedc98f6a0d002f4",
+      "bytes": 1800492,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/About_Qualified/thumnail.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Awards/bg.png",
+      "sha256": "3c10353dd99bbfad7be8aa675b237d9a1d7f1e86842d0e5696e6819e5d914393",
+      "bytes": 911185,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Awards/bg.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Contact/bg.png",
+      "sha256": "837b1ff451ea47aa89122b7eabd5c8cb48af0c935d6272d72d0310b756fe4279",
+      "bytes": 1879317,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Contact/bg.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/HOME/MS.jpg",
+      "sha256": "abc113a335d9592c6dc961931b6959a5aad68570080f3055611596dda0f2a4fa",
+      "bytes": 2091273,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/HOME/MS.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/HOME/Sookmyung.jpg",
+      "sha256": "c19f4d7682c2a7dbd27e6eda7915359e7a7097416561fcf28d54c098ed71d3e2",
+      "bytes": 464353,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/HOME/Sookmyung.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Articles/bg.png",
+      "sha256": "d1b2666c7e05bc7fffe42263f013d747b581845541959708323ef514d744c9b9",
+      "bytes": 1923478,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Articles/bg.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Lectures/Dongguk University-1.png",
+      "sha256": "dce6f9b272e93493993bcd4346688de9c7daf817fcdfd239ecbba1a2805b4672",
+      "bytes": 2033415,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Lectures/Dongguk%20University-1.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Lectures/Dongguk University-2.png",
+      "sha256": "e4dce525f3b086fa413802204aa711aaacfa44dc68768744d1fe0312c6b236e5",
+      "bytes": 1079182,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Lectures/Dongguk%20University-2.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Lectures/Dongguk University-3.png",
+      "sha256": "141f533bf061888042633e70d425c0cf205b10eaeb943abfe9ac9d80371c9330",
+      "bytes": 1567978,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Lectures/Dongguk%20University-3.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Lectures/Dongguk University-4.png",
+      "sha256": "411eb81966cad42ccdbe06049fe96628aeb1829ffed4ee03c1f0526ae021c7ee",
+      "bytes": 1118811,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Lectures/Dongguk%20University-4.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Lectures/Dongguk University-5.png",
+      "sha256": "b6236043a885f26287d586e3106b2612ad01e897eea545a405084ca8f7189fb3",
+      "bytes": 1121194,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Lectures/Dongguk%20University-5.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Lectures/Dongguk University-6.png",
+      "sha256": "26957208147bbe310a20a3164795ad49b7005b169c9a460d277fbeac13be3f4f",
+      "bytes": 1249569,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Lectures/Dongguk%20University-6.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Lectures/Kyonggi University-1.png",
+      "sha256": "b5a5f89396e3044298a282b4a64867417e617b0b565b1e93de346a3f16542df2",
+      "bytes": 398571,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Lectures/Kyonggi%20University-1.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Lectures/Kyonggi University-2.png",
+      "sha256": "1cd041ecaff76d7aa7a4ec8d5777479f1b5047eb97a8ea0957f810384a25537f",
+      "bytes": 710368,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Lectures/Kyonggi%20University-2.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Lectures/Kyonggi University-3.png",
+      "sha256": "b2ddac0913ff1c7385562d93183f7cd4aab73b91bab5df4f20ec3b33739119d0",
+      "bytes": 855284,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Lectures/Kyonggi%20University-3.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Lectures/Kyonggi University-4.png",
+      "sha256": "6547171e235bf8e214546173d0d45e9833e5d11fa1000abd5411c11487f6f148",
+      "bytes": 626919,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Lectures/Kyonggi%20University-4.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Lectures/Kyonggi University-5.png",
+      "sha256": "2b69ee9ee80f7ef5ea1eedbebbf934d7618945e27cd1113e5901636989eb9196",
+      "bytes": 961254,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Lectures/Kyonggi%20University-5.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Lectures/Kyonggi University-6.png",
+      "sha256": "34c944150576771d302e9a620ecd0b7aea08bb202db9fb1ebac07979d69327a5",
+      "bytes": 1008675,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Lectures/Kyonggi%20University-6.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Lectures/Kyonggi University-7.png",
+      "sha256": "45e2d31e6a88d29b3f072db555024d28a1c32425702406306c3948713e6b2443",
+      "bytes": 1432331,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Lectures/Kyonggi%20University-7.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_logo_TOKYU CARD.jpg",
+      "sha256": "814811921b3e0058a962867042c84b5a40c44ca6e9e604b04cb430074a8aa088",
+      "bytes": 53879,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_logo_TOKYU%20CARD.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_logo_ebisol.png",
+      "sha256": "61bce789d24295cf110be101f6e62abd6b1650938e75a80643c5fcb702951974",
+      "bytes": 5317,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_logo_ebisol.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_logo_joshin.png",
+      "sha256": "49d5f7940127a4495e0f6ee87d76ebb0f2bd51864bb1799baf83d33af8c4fdf7",
+      "bytes": 20234,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_logo_joshin.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_logo_miraiya shoten.png",
+      "sha256": "fa3fdc32f9dc6c28110605cc87f8cae41a66aa4b8d3616cc6c3df0972dfceb20",
+      "bytes": 3126,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_logo_miraiya%20shoten.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_logo_saison.png",
+      "sha256": "b78f460a2f3fa5d8d82bda1ce345a605caf303e13dfad62c2494b414cab8b17c",
+      "bytes": 15139,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_logo_saison.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_logo_softBank.png",
+      "sha256": "c00c49a8c05f154d91da558510b289b96d13b7215f20745f3bbbf4ff407cf8dc",
+      "bytes": 93388,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_logo_softBank.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_logo_ut.png",
+      "sha256": "e5c97f443c0e641afb932956c83a4bd156fb31926b607209053d8b458fa8a035",
+      "bytes": 22817,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_logo_ut.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_logo_yamato.png",
+      "sha256": "19bab7f7a40df414c4aad5ae55759fa11a2e37001856cad356b3c2f00db0b067",
+      "bytes": 44430,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_logo_yamato.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_logo_zurich.png",
+      "sha256": "3fe468f26d0519e9222e4997b665dd7d3fe5cfe6fafeaf1db09b40fe5fb33ae5",
+      "bytes": 51574,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_logo_zurich.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_news_ai integration.jpg",
+      "sha256": "a1e3c220b5939f310907fce3a83b0964aeb73b7279996002f69a3ac6ce467e02",
+      "bytes": 153880,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_news_ai%20integration.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_news_ai summit.jpg",
+      "sha256": "df63cc41d81007e9a0ca0204dfda92541ec9f247bad32e36abc92f4cfc28fc94",
+      "bytes": 149092,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_news_ai%20summit.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_news_introduction line works ai call.svg",
+      "sha256": "8bf12caef5225775e5337791f21acec7648e2cddabcc7d19d0f59ff0d2b088e6",
+      "bytes": 37449,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_news_introduction%20line%20works%20ai%20call.svg"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_news_line works ai call voice ivr youtube.jpg",
+      "sha256": "363d37baad60d8353d8b0a7f8cfb469a89b38b87c52d5a50fa78eb56041070e0",
+      "bytes": 63617,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_news_line%20works%20ai%20call%20voice%20ivr%20youtube.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_news_line works ai call youtube.jpg",
+      "sha256": "3b2694981cca4fd30e2bf7c0d93c58adc17c3dea19f510ba6c997209bc9005a6",
+      "bytes": 83607,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_news_line%20works%20ai%20call%20youtube.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_news_line works ai call.jpg",
+      "sha256": "0e30e82707b131817b8b83b41220b3b57c796bcc3c0ac30e889fe019c6441219",
+      "bytes": 48791,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_news_line%20works%20ai%20call.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_news_lwc b2b vision.jpg",
+      "sha256": "577e37e6a53c1607b978ecf76c2012b62a6a81a310889ee92973cc32938afd8c",
+      "bytes": 120655,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_news_lwc%20b2b%20vision.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_news_market leader.jpg",
+      "sha256": "292d40de36a5a3c76f9dd2e7e175cba4b48a824253e27e30b8f7622e4b5e79d7",
+      "bytes": 83106,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/aicall_llmbasedvoiceivr_news_market%20leader.jpg"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/bg.png",
+      "sha256": "e00a0e0d7e75d36e65909a792ed31169323c15359d4e7b212bf67a44c3196f9c",
+      "bytes": 2078007,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/bg.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/hopzie_oneclickbuilder_banner.png",
+      "sha256": "43d12f8be6bcb1af8567ff7c4ca7e31fe7a1a0c0614760e41748ba7ebc09faaf",
+      "bytes": 845975,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/hopzie_oneclickbuilder_banner.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/hopzie_oneclickbuilder_creamy wireless keyboard.png",
+      "sha256": "9b7f193acfa38f5e3cd559b74a066cad943ded0248b9da85d59aed5ef2607840",
+      "bytes": 1433780,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/hopzie_oneclickbuilder_creamy%20wireless%20keyboard.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/hopzie_oneclickbuilder_monitor light bar.png",
+      "sha256": "acff3113ab0123f54ac03b56f287247a6a69dfd2290fdf4b24693e7582cb1017",
+      "bytes": 1669119,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/hopzie_oneclickbuilder_monitor%20light%20bar.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/hopzie_oneclickbuilder_oversized charcoal hoodie.png",
+      "sha256": "ac2422972ea835a1fa764b4ab3f95b17dd4c10277cd73935d50bb57f641a78ee",
+      "bytes": 1404674,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/hopzie_oneclickbuilder_oversized%20charcoal%20hoodie.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/hopzie_oneclickbuilder_profile.png",
+      "sha256": "a43052d31685e4f64dcb66d241eeb2f8e87cef56051b0efbf90845cd49005b44",
+      "bytes": 1187196,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/hopzie_oneclickbuilder_profile.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/hopzie_oneclickbuilder_video thumnail.png",
+      "sha256": "793a27e82ad5f6357305813e7fd40305211f6d3b038b874f968d9f9fd8308069",
+      "bytes": 1940107,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/hopzie_oneclickbuilder_video%20thumnail.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/mentoring_logo_jasoseol.png",
+      "sha256": "d9f8c376040140750b7d5228c8f3fea92e8f65d1cc7054428a77dfb4e3d2cdb6",
+      "bytes": 4390,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/mentoring_logo_jasoseol.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/mentoring_logo_kyonggi.png",
+      "sha256": "61e04046eecc37b1948f548fb47e3f622ccdb402976e5d210ef9d83ec4ec4e9b",
+      "bytes": 174653,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/mentoring_logo_kyonggi.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/mentoring_logo_remember.png",
+      "sha256": "e18e31a6a9d722e8c12a901359487ee167339be4d1f8d6ab6c1faa67085c2057",
+      "bytes": 7124,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/mentoring_logo_remember.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/thumnail_DIVE.png",
+      "sha256": "af89deb07bc55ad95edc6d68aeeefcf6d54726127701605aa5cc6f3c537efa91",
+      "bytes": 2286596,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/thumnail_DIVE.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/thumnail_adot.png",
+      "sha256": "275268757481d945b14d50e8ed10d0e3726f6ecc06b267539e3a5254c0ba31d4",
+      "bytes": 1601037,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/thumnail_adot.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/thumnail_aicall.png",
+      "sha256": "d09455d37e5f52e787073f15a9abea39bafd842531ec5699b691e9c6defa5306",
+      "bytes": 2243482,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/thumnail_aicall.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/thumnail_carecall.png",
+      "sha256": "a78418a7030fa6d7757c05663ec067c910e06c29e3df0fa9db3fa28f0ca6aa00",
+      "bytes": 1836538,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/thumnail_carecall.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/thumnail_console.png",
+      "sha256": "add679d67e699ff4825c4c1a80642e79fc6a5d86601789e2f83d5382eea05350",
+      "bytes": 1675588,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/thumnail_console.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/thumnail_digital transformation.png",
+      "sha256": "ac1d02eb8b15e5c570f4440d5f81fdb020e2c443041ab0b12826ba0c5854fd77",
+      "bytes": 1275706,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/thumnail_digital%20transformation.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/thumnail_hopzie.png",
+      "sha256": "9edfa3e9aa0e2418a2df62e74a57b95a33215ac3d74a553c9bb0f6e529864149",
+      "bytes": 1424294,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/thumnail_hopzie.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/thumnail_just do it.png",
+      "sha256": "18851d1ba3448572aacbc04dca92d254f90592e34d475a7fa154f7745c8858b7",
+      "bytes": 2412315,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/thumnail_just%20do%20it.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/thumnail_mentoring.png",
+      "sha256": "d3e2254aff6da3ae2c3237502748334b21ef98951cabdd30613b902a6390ed85",
+      "bytes": 1662287,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/thumnail_mentoring.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/thumnail_news.png",
+      "sha256": "32023e79f443e6b80767b21142a130ad360264a0b6210ccfe4220ad6674541d6",
+      "bytes": 3266100,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/thumnail_news.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Products/thumnail_nft.png",
+      "sha256": "89544ad67906d6a9f67a2a8621d1ab89211e69914a4ec40113538217252d9208",
+      "bytes": 1391871,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Products/thumnail_nft.png"
+    },
+    {
+      "path": "nahyun_imported/image_source/Projects_Research/bg.png",
+      "sha256": "85f9e3f3f0404536e30adcc90cb813ddae14e5241e95be5dde322d757402181e",
+      "bytes": 2184893,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/image_source/Projects_Research/bg.png"
+    },
+    {
+      "path": "nahyun_imported/video_source/ABOUT_Background.mp4",
+      "sha256": "42d2d985927ab15ba4973e708d8b33683b059c193f46c3df3af3be0b9868d518",
+      "bytes": 8010294,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/nahyun_imported/video_source/ABOUT_Background.mp4"
+    },
+    {
+      "path": "sk_telecom_logo_processed2.png",
+      "sha256": "ef78d36b276f62420ef19686263291de8ac2d6d37656d3b35fa04edee8df6607",
+      "bytes": 4189,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/sk_telecom_logo_processed2.png"
+    },
+    {
+      "path": "skku_logo.svg",
+      "sha256": "d978366b5230f0476e3ba0f7fb2462ce98390c2ba7c1475a9bdefccb5e2e298c",
+      "bytes": 10720,
+      "url": "https://raw.githubusercontent.com/nana-park/Portfolio/834815915647e4b3fbf9285b88b8001e37b94aa0/skku_logo.svg"
+    }
+  ],
+  "missingSourceAssets": [
+    {
+      "path": "og-thumbnail.jpg",
+      "referencedBy": [
+        "index.html",
+        "about.html",
+        "career.html",
+        "qualified.html",
+        "enjoy.html",
+        "projects.html",
+        "research.html",
+        "articles.html",
+        "lectures.html",
+        "awards.html",
+        "contact.html"
+      ],
+      "reason": "Referenced in original OG metadata but absent from the pinned source checkout. No replacement generated."
+    }
+  ],
+  "pendingExternalAssets": [
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Lora:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap",
+      "kind": "font-css",
+      "referencedBy": [
+        "about.html",
+        "articles.html",
+        "awards.html",
+        "career.html",
+        "contact.html",
+        "enjoy.html",
+        "index.html",
+        "lectures.html",
+        "projects.html",
+        "projects/ai-mentoring-agent-detail.html",
+        "projects/hopzie-oneclickbuilder.html",
+        "projects/llm-based-voice-ivr.html",
+        "qualified.html",
+        "research.html"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap",
+      "kind": "font-css",
+      "referencedBy": [
+        "about.html",
+        "articles.html",
+        "awards.html",
+        "career.html",
+        "contact.html",
+        "enjoy.html",
+        "index.html",
+        "lectures.html",
+        "projects.html",
+        "projects/ai-mentoring-agent-detail.html",
+        "projects/hopzie-oneclickbuilder.html",
+        "projects/llm-based-voice-ivr.html",
+        "qualified.html",
+        "research.html"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css",
+      "kind": "font-css",
+      "referencedBy": [
+        "about.html",
+        "articles.html",
+        "awards.html",
+        "career.html",
+        "contact.html",
+        "enjoy.html",
+        "index.html",
+        "lectures.html",
+        "projects.html",
+        "projects/ai-mentoring-agent-detail.html",
+        "projects/hopzie-oneclickbuilder.html",
+        "projects/llm-based-voice-ivr.html",
+        "qualified.html",
+        "research.html"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://cdn.tailwindcss.com",
+      "kind": "script",
+      "referencedBy": [
+        "about.html",
+        "articles.html",
+        "awards.html",
+        "career.html",
+        "contact.html",
+        "enjoy.html",
+        "index.html",
+        "lectures.html",
+        "projects.html",
+        "projects/ai-mentoring-agent-detail.html",
+        "projects/hopzie-oneclickbuilder.html",
+        "projects/llm-based-voice-ivr.html",
+        "qualified.html",
+        "research.html"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js",
+      "kind": "script",
+      "referencedBy": [
+        "index.html"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://prod.spline.design/wLEe3qQhZTm7cvPS/scene.splinecode",
+      "kind": "spline-scene",
+      "referencedBy": [
+        "index.html"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.youtube.com/iframe_api",
+      "kind": "video-api-script",
+      "referencedBy": [
+        "about.html"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2309/20230901192926_nhmznrlk.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2307/20230704160530_zofpgnqh.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2307/20230704160930_ukwgsrww.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2306/20230622182718_nussbfxm.png",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2302/20230201043049_nfvhbaab.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2302/20230201042842_ivnmbgdw.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2302/20230201043815_whphcwlz.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2302/20230201043630_izsenmkn.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2207/20220705215517_wdfnlmbk.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2202/20220227163422_heziezgs.png",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2202/20220227163651_zchwrdas.png",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2202/20220203221318_uvwlspwe.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2202/20220202221107_ptwudiru.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2202/20220202220118_tovxoefw.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2202/20220202220742_swfalnkg.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2202/20220202220622_fgyeslss.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2110/20211001024701_gfkxxryh.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2110/20211001024909_eronoume.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2107/20210701001757_xdqbswod.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2107/20210701212348_xhuppyug.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2105/20210530214729_zepvxpct.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2105/20210530214822_mkypmild.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2105/20210530214417_kxkzwshz.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2105/20210530214457_balxdbdy.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2103/20210330184043_bagyucou.png",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2103/20210330183043_xymffeqv.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2103/20210330182747_achrqwhy.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2103/20210330182151_hkrkkfbd.png",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2103/20210330182359_fpmrqanf.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2103/20210330184220_qxhwvucv.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2102/20210228203247_cqitsvtw.jpeg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2102/20210228205155_cqgglncl.jpeg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2102/20210228205259_zfwmhcbd.jpeg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2102/20210228205708_iqobcyil.jpeg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2012/20201201050507_tbqwrzhm.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2012/20201201050845_xxsaeufb.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2010/20201030110055_pvarcpgl.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2010/20201030110232_oavhhcfs.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2009/20200930174128_qpgdiwzc.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2009/20200930175247_pqkdhdfv.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2009/20200930180221_lsouvfrk.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2009/20200930173717_uwvaxxlh.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2009/20200930173237_rlvmkddb.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2009/20200930172443_sdtrdsdr.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2009/20200930172843_atbhvnko.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2004/20200414154809_hzcrdnsw.jpg",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.artinsight.co.kr/data/tmp/2004/20200414154956_cpivtvgp.png",
+      "kind": "image",
+      "referencedBy": [
+        "articles_data.js"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://www.youtube.com/embed/ma-IFITSs6o?autoplay=1&mute=1&loop=1&playlist=ma-IFITSs6o&controls=1&rel=0&modestbranding=1&enablejsapi=1",
+      "kind": "video-embed",
+      "referencedBy": [
+        "projects/llm-based-voice-ivr.html"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://images.weserv.nl/?url=yt3.googleusercontent.com/_CmZuSRxDpptphlser1tt92IWv-AFF4imlVSijmpMEj-YG-WvnSfzLsdJTA57ooX0PsXfO7BDg=s160-c-k-c0x00ffffff-no-rj",
+      "kind": "image",
+      "referencedBy": [
+        "projects/hopzie-oneclickbuilder.html"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://ui-avatars.com/api/?name=H&background=050505&color=fff",
+      "kind": "fallback-image",
+      "referencedBy": [
+        "projects/hopzie-oneclickbuilder.html"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://images.weserv.nl/?url=yt3.googleusercontent.com/ddGqT9jBzF2JIgMO6XF-wMbrxOJ1BIiBPXjdQ-ySakIJgdxLwExhdpHWRWZTqRfF9e5FeSE8_w=s160-c-k-c0x00ffffff-no-rj",
+      "kind": "image",
+      "referencedBy": [
+        "projects/hopzie-oneclickbuilder.html"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://ui-avatars.com/api/?name=L&background=050505&color=fff",
+      "kind": "fallback-image",
+      "referencedBy": [
+        "projects/hopzie-oneclickbuilder.html"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://images.weserv.nl/?url=yt3.googleusercontent.com/NuFRm1iBv0N3MY_ym0s4S8u-GimwRhzCii4wAuNhXBbLifbW3kFVatJyXq9jZFKMvH3i2n67_g=s160-c-k-c0x00ffffff-no-rj",
+      "kind": "image",
+      "referencedBy": [
+        "projects/hopzie-oneclickbuilder.html"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://ui-avatars.com/api/?name=J&background=050505&color=fff",
+      "kind": "fallback-image",
+      "referencedBy": [
+        "projects/hopzie-oneclickbuilder.html"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://yt3.googleusercontent.com/ytc/AIdro_nexS_B-v-Cok7f6k5TtZrQjMFyaWuu6b7bgjNfxKxYaQ=s160-c-k-c0x00ffffff-no-rj",
+      "kind": "image",
+      "referencedBy": [
+        "projects/hopzie-oneclickbuilder.html"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://ui-avatars.com/api/?name=D&background=050505&color=fff",
+      "kind": "fallback-image",
+      "referencedBy": [
+        "projects/hopzie-oneclickbuilder.html"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://images.weserv.nl/?url=yt3.googleusercontent.com/QFtHRb9kEd516p1fg-S8nTMwIjTdthtdWhA1CQ-MFNGbTzuWh_OKBXiqmQeXQTnPs2liW30E9g=s160-c-k-c0x00ffffff-no-rj",
+      "kind": "image",
+      "referencedBy": [
+        "projects/hopzie-oneclickbuilder.html"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://ui-avatars.com/api/?name=G&background=050505&color=fff",
+      "kind": "fallback-image",
+      "referencedBy": [
+        "projects/hopzie-oneclickbuilder.html"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap",
+      "kind": "font-css",
+      "referencedBy": [
+        "mentoring_agent_mockup.html"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css",
+      "kind": "font-css",
+      "referencedBy": [
+        "mentoring_agent_mockup.html"
+      ],
+      "status": "pending-local-preparation"
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg",
+      "kind": "image",
+      "referencedBy": [
+        "mentoring_agent_mockup.html"
+      ],
+      "status": "pending-local-preparation"
+    }
+  ]
+}

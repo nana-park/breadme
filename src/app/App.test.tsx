@@ -1,85 +1,76 @@
-import { render, screen, within } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import { App } from "./App";
-import { navigation } from "@/config/navigation";
-import { homeContent } from "@/content/site/homeContent";
-import { siteMetadata } from "@/content/site/siteMetadata";
-import { common } from "@/locales/ko/common";
+vi.mock("@/shared/ui/SplineHero/SplineHero", () => ({
+  SplineHero: () => <div data-testid="original-spline" />,
+}));
 
-describe("Home foundation", () => {
-  it("restores a direct fragment only after the React sections exist", () => {
-    window.history.replaceState(null, "", "/#projects");
+describe("Original portfolio React migration", () => {
+  it("preserves the actual original Home sections and copy", async () => {
     render(<App />);
-    expect(HTMLElement.prototype.scrollIntoView).toHaveBeenCalledWith({
-      behavior: "instant",
-      block: "start",
-    });
-    expect(
-      vi.mocked(HTMLElement.prototype.scrollIntoView).mock.contexts.at(-1),
-    ).toBe(document.getElementById("projects"));
-    window.history.replaceState(null, "", "/");
-  });
-
-  it("renders one main heading, clear preview status, and no invented projects", () => {
-    render(<App />);
-    expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);
-    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-      homeContent.hero.title,
+    expect(await screen.findByRole("heading", { level: 1 })).toHaveTextContent(
+      "Designing Actionable AI",
     );
-    expect(screen.getByText(homeContent.preview.label)).toBeVisible();
-    expect(screen.getByText(homeContent.projects.status)).toBeVisible();
     expect(
-      within(screen.getByRole("list")).getAllByRole("listitem"),
-    ).toHaveLength(3);
+      screen.getByRole("heading", { name: "Academic Standing" }),
+    ).toBeInTheDocument();
+    expect(screen.queryByText("구조 미리보기")).not.toBeInTheDocument();
+    expect(screen.getByTestId("original-spline")).toBeInTheDocument();
   });
-
-  it("keeps every navigation destination real and keyboard focusable", () => {
+  it("keeps native original navigation destinations and branding", async () => {
     render(<App />);
-    for (const { href } of navigation) {
-      expect(document.querySelector(href)).toHaveAttribute("tabindex", "-1");
-    }
-    expect(
-      screen.getByRole("link", { name: common.skipToContent }),
-    ).toHaveAttribute("href", "#main-content");
+    await screen.findByRole("heading", { level: 1 });
+    expect(screen.getByRole("link", { name: "breadme home" })).toHaveAttribute(
+      "href",
+      "/index.html",
+    );
+    expect(screen.getByRole("link", { name: "View My Work" })).toHaveAttribute(
+      "href",
+      "/projects.html",
+    );
+    expect(document.documentElement.lang).toBe("en");
   });
-
-  it("opens, closes repeatedly, and returns focus on Escape", async () => {
+  it("opens the mobile menu, supports Escape and restores focus", async () => {
     const user = userEvent.setup();
     render(<App />);
-    const button = screen.getByRole("button", { name: common.menuOpen });
+    const button = screen.getByRole("button", { name: "Open menu" });
     await user.click(button);
     expect(button).toHaveAttribute("aria-expanded", "true");
     await user.keyboard("{Escape}");
     expect(button).toHaveAttribute("aria-expanded", "false");
     expect(button).toHaveFocus();
-    await user.click(button);
-    await user.click(button);
-    expect(button).toHaveAttribute("aria-expanded", "false");
   });
-
-  it("closes navigation and moves focus to the chosen section", async () => {
+  it("keeps the original application-materials UI honestly pending", async () => {
     const user = userEvent.setup();
     render(<App />);
-    await user.click(screen.getByRole("button", { name: common.menuOpen }));
-    await user.click(
-      screen.getByRole("link", {
-        name: common.navigation.projects,
-      }),
-    );
+    await user.click(screen.getByRole("button", { name: "Open Email Popup" }));
     expect(
-      screen.getByRole("button", { name: common.menuOpen }),
-    ).toHaveAttribute("aria-expanded", "false");
-    expect(document.getElementById("projects")).toHaveFocus();
+      screen.getByRole("heading", { name: "Application Materials" }),
+    ).toBeVisible();
+    expect(screen.getByText("Coming Soon")).toBeVisible();
+    expect(
+      screen.getByRole("textbox", { name: "Email address (coming soon)" }),
+    ).toBeDisabled();
+    await user.click(screen.getByRole("button", { name: "Minimize Popup" }));
+    await waitFor(() =>
+      expect(
+        screen.getByRole("button", { name: "Open Email Popup" }),
+      ).toHaveAttribute("aria-expanded", "false"),
+    );
   });
-
-  it("uses the verified original destination instead of broken downloads", () => {
+  it("keeps an accessible skip link without rewriting the original content", () => {
     render(<App />);
-    screen
-      .getAllByRole("link", { name: common.visitOriginal })
-      .forEach((link) =>
-        expect(link).toHaveAttribute("href", siteMetadata.originalPortfolioUrl),
-      );
-    expect(document.querySelector("a[download]")).toBeNull();
+    expect(
+      screen.getByRole("link", { name: "Skip to content" }),
+    ).toHaveAttribute("href", "#main-content");
+    expect(screen.getByRole("main")).toHaveAttribute("tabindex", "-1");
+  });
+  it("does not present an unfinished Korean version as translated", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    await user.click(screen.getByRole("button", { name: "Korean" }));
+    expect(screen.getByRole("dialog", { name: "Coming soon!" })).toBeVisible();
+    expect(document.documentElement.lang).toBe("en");
   });
 });

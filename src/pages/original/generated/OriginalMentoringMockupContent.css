@@ -1,0 +1,101 @@
+/* Original inline style 1: mentoring_agent_mockup.html */
+
+        .original-mentoring-mockup {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --card-radius: 12px;
+            --accent-color: #f1f5ff;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --transition: all 0.2s ease-in-out;
+        }
+
+        .original-mentoring-mockup, .original-mentoring-mockup * { box-sizing: border-box; margin: 0; padding: 0; }
+        .original-mentoring-mockup {
+            font-family: 'Pretendard Variable', Pretendard, sans-serif;
+            background-color: #ffffff;
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            width: 850px; /* Force desktop width */
+            margin: 0 auto;
+            transform-origin: top center;
+        }
+
+        /* Top Navbar */
+        .original-mentoring-mockup .top-nav { display: none !important;
+            position: absolute; top: 0; left: 0; right: 0;
+            padding: 20px 30px; display: flex; justify-content: space-between;
+            align-items: center; z-index: 100;
+        }
+        .original-mentoring-mockup .nav-left, .original-mentoring-mockup .nav-right { display: flex; align-items: center; gap: 20px; }
+        .original-mentoring-mockup .top-link { color: #64748b; font-size: 14px; cursor: pointer; text-decoration: none; transition: color 0.2s; }
+        .original-mentoring-mockup .top-link:hover { color: #0f172a; text-decoration: underline; }
+
+        .original-mentoring-mockup main {
+            padding: 40px 40px 40px; flex-grow: 1; max-width: 1400px;
+            margin: 0 auto; width: 100%; display: flex; flex-direction: column;
+            align-items: center;
+        }
+
+        .original-mentoring-mockup .main-logo-container {
+            display: flex; justify-content: center; align-items: center;
+            margin-bottom: 24px; margin-top: 20px; gap: 16px; cursor: pointer;
+        }
+        .original-mentoring-mockup .main-logo-text { font-size: 72px; font-weight: 800; letter-spacing: -3px; color: #0f172a; margin: 0; }
+
+        .original-mentoring-mockup .header-title { margin-bottom: 40px; text-align: center; width: 100%; display: flex; flex-direction: column; gap: 4px; }
+        .original-mentoring-mockup .header-title h2, .original-mentoring-mockup .header-title p { font-size: 18px; font-weight: 400; color: var(--text-secondary); margin: 0; letter-spacing: -0.3px; }
+
+        /* Category Headers */
+        .original-mentoring-mockup .category-header { display: flex; align-items: center; gap: 16px; width: 100%; }
+        .original-mentoring-mockup .category-title { font-size: 13px; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
+        .original-mentoring-mockup .category-line { flex-grow: 1; height: 1px; background: #e2e8f0; }
+        .original-mentoring-mockup .category-section { display: flex; flex-direction: column; gap: 16px; height: 100%; }
+
+        /* Card Grid */
+        .original-mentoring-mockup .masonry-grid { display: grid; gap: 16px; align-items: stretch; width: 100%; height: 100%; flex-grow: 1; }
+        .original-mentoring-mockup .card {
+            background: var(--card-bg); border-radius: var(--card-radius);
+            padding: 20px 16px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: var(--transition); cursor: pointer; position: relative;
+            display: flex; flex-direction: column; align-items: flex-start; height: 100%;
+        }
+        .original-mentoring-mockup .card:hover { background: #f1f5f9; border-color: #cbd5e1; transform: translateY(-2px); }
+        .original-mentoring-mockup .card-header { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; width: 100%; }
+        .original-mentoring-mockup .card-icon { font-size: 32px; width: 38px; height: 38px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+        .original-mentoring-mockup .card:hover .card-icon { transform: scale(1.1); }
+        .original-mentoring-mockup .card-header-text { display: flex; flex-direction: column; gap: 4px; }
+        .original-mentoring-mockup .card-title { font-size: 16px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.3px; margin: 0; }
+        .original-mentoring-mockup .card-subtitle { font-size: 13px; font-weight: 600; color: #64748b; margin: 0; font-family: Consolas, monospace; }
+        .original-mentoring-mockup .card-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.4; flex-grow: 1; margin-bottom: 16px; }
+
+        .original-mentoring-mockup .run-btn {
+            background: var(--accent-color); color: #5364d8; border: none;
+            border-radius: 100px; font-size: 14px; font-weight: 700; cursor: pointer;
+            width: 100%; padding: 10px; transition: var(--transition); margin-top: auto;
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+        }
+        .original-mentoring-mockup .run-btn:hover { background: #e0e7ff; transform: translateY(-2px); }
+
+        /* Automation Toggle */
+        .original-mentoring-mockup .automation-container {
+            background: #ffffff; border-radius: 16px; padding: 20px 24px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); display: flex; flex-direction: column; gap: 16px;
+        }
+        .original-mentoring-mockup .auto-header { display: flex; justify-content: space-between; align-items: center; }
+        .original-mentoring-mockup .auto-title { font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+        .original-mentoring-mockup .switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+        .original-mentoring-mockup .switch input { opacity: 0; width: 0; height: 0; }
+        .original-mentoring-mockup .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #cbd5e1; transition: .4s; border-radius: 24px; }
+        .original-mentoring-mockup .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+        .original-mentoring-mockup input:checked + .slider { background-color: #81c784; }
+        .original-mentoring-mockup input:checked + .slider:before { transform: translateX(20px); }
+
+
+/* Preserve explicit source inline !important priorities in React. */
+
+
+.original-mentoring-mockup { min-height: 690px; }
+.original-mentoring-mockup-frame { overflow: hidden; }

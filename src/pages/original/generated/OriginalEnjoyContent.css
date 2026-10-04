@@ -1,0 +1,266 @@
+/* Original inline style 1: enjoy.html */
+
+        /* Mobile Menu Override */
+        @media (max-width: 1024px) {
+            .nav-menu.active {
+                display: flex !important;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                height: 100dvh;
+                background: #111111;
+                z-index: 9999;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 3rem;
+                gap: 1rem;
+                overflow-y: auto;
+            }
+
+            .nav-menu.active>div {
+                height: auto !important;
+                /* Override desktop h-full */
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-menu.active .nav-link {
+                display: flex !important;
+                height: auto !important;
+                width: 100% !important;
+                padding: 15px 0;
+                font-size: 16px;
+                font-family: 'Inter', sans-serif;
+                font-weight: 500;
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+                color: #ffffff !important;
+            }
+
+            .nav-menu.active .has-dropdown .invisible {
+                /* Expose submenus clearly on mobile */
+                position: relative !important;
+                display: flex !important;
+                flex-direction: column;
+                top: 0 !important;
+                left: 0 !important;
+                /* Kill desktop left-1/2 */
+                transform: none !important;
+                /* Kill desktop translate-x */
+                opacity: 1 !important;
+                visibility: visible !important;
+                height: auto !important;
+                width: 100% !important;
+                /* Kill desktop w-[200px] */
+                margin-top: 0;
+                gap: 0;
+                background: #1a1a1a !important;
+                padding: 5px 0;
+                border-top: 1px solid #333333;
+                border-bottom: 1px solid #333333;
+            }
+
+            .nav-menu.active .has-dropdown .lnb-link {
+                display: flex !important;
+                color: #aaaaaa !important;
+                /* Override desktop text-white */
+                font-size: 14px;
+                padding: 12px 0;
+                font-weight: 400;
+                width: 100% !important;
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        /* Navbar Scrolled explicitly dark texts on Light Pages */
+        .navbar.force-scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar.force-scrolled .mobile-toggle span {
+            background: #111111 !important;
+        }
+
+        .navbar.force-scrolled .logo,
+        .navbar.force-scrolled .nav-link {
+            color: #111111 !important;
+        }
+
+        /* [Critical Fix] Mega Menu (.gnb-expanded) must strictly override scrolled black texts */
+        .navbar.gnb-expanded .logo {
+            color: #ffffff !important;
+        }
+
+        .navbar.gnb-expanded .nav-link {
+            color: #888888 !important;
+        }
+
+        .navbar.gnb-expanded .nav-link:hover,
+        .navbar.gnb-expanded .nav-link.active,
+        .navbar.gnb-expanded .has-dropdown:hover>.nav-link {
+            color: #d97706 !important;
+        }
+
+        .navbar.gnb-expanded .mobile-toggle span {
+            background: #ffffff !important;
+        }
+
+        /* [Critical Fix] Mobile Menu should always be perfectly dark and not inherit desktop orange active states */
+        .nav-menu.active .nav-link,
+        .nav-menu.active .nav-link.active,
+        .nav-menu.active .nav-link:hover,
+        .nav-menu.active .has-dropdown:hover>.nav-link,
+        .navbar.force-scrolled .nav-menu.active .nav-link {
+            color: #ffffff !important;
+        }
+
+        /* Force Navbar strictly dark if the mobile menu is active */
+        .navbar:has(.nav-menu.active) {
+            background: #111111 !important;
+            border-bottom: 1px solid #333333 !important;
+        }
+
+        .navbar:has(.nav-menu.active) .logo {
+            color: #ffffff !important;
+        }
+
+        .navbar:has(.nav-menu.active) .mobile-toggle span {
+            background: #ffffff !important;
+        }
+
+        /* Hide floating email popup when mobile menu is open */
+        .navbar:has(.nav-menu.active) ~ #email-popup {
+            display: none !important;
+        }
+
+        /* [Critical Fix] Ensure active/hover links stay orange when scrolled (Desktop Only) */
+        @media (min-width: 1025px) {
+
+            .navbar.force-scrolled .nav-link:hover,
+            .navbar.force-scrolled .nav-link.active,
+            .navbar.force-scrolled .has-dropdown:hover>.nav-link {
+                color: #d97706 !important;
+            }
+        }
+
+        /* Article Detail Content Styling */
+        #article-detail-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 2rem auto;
+            display: block;
+        }
+
+        #article-detail-content b,
+        #article-detail-content strong {
+            font-weight: 600;
+            color: #111111;
+        }
+
+        /* Figure and Captions Redesign */
+        #article-detail-content .cheditor-caption-wrapper {
+            text-align: center !important;
+            margin: 2rem 0 !important;
+            display: block !important;
+        }
+
+        #article-detail-content .cheditor-caption {
+            border: none !important;
+            background: transparent !important;
+            background-color: transparent !important;
+            margin: 0 auto !important;
+            padding: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+        }
+
+        #article-detail-content .cheditor-caption img {
+            margin: 0 !important;
+            /* overrides the general img margin */
+            border-radius: 8px !important;
+        }
+
+        #article-detail-content .cheditor-caption-text {
+            margin: 12px 0 0 0 !important;
+            text-align: center !important;
+            font-family: 'Inter', sans-serif !important;
+            font-size: 13px !important;
+            color: #888888 !important;
+            /* Subtle gray for captions */
+            font-style: italic !important;
+            line-height: 1.5 !important;
+            letter-spacing: 0 !important;
+        }
+
+        /* References and Notes */
+        #article-detail-content .article-reference {
+            font-size: 13px !important;
+            color: #888888 !important;
+            text-align: right !important;
+            margin-top: 4px !important;
+            margin-bottom: 4px !important;
+        }
+
+        /* Blockquotes */
+        #article-detail-content blockquote {
+            background: transparent !important;
+            border: none !important;
+            padding: 1.5rem 2.5rem !important;
+            margin: 2rem auto !important;
+            max-width: 90% !important;
+            color: #52525b !important;
+            font-style: italic !important;
+            font-size: 1.05rem !important;
+            line-height: 1.75 !important;
+            text-align: center !important;
+            border-radius: 0 !important;
+        }
+
+        #article-detail-content blockquote p {
+            margin: 0 !important;
+            text-align: center !important;
+        }
+
+        #article-detail-content blockquote p[style*="text-align: right"],
+        #article-detail-content blockquote p[style*="text-align:right"] {
+            text-align: right !important;
+            font-size: 0.85rem !important;
+            color: #888888 !important;
+            margin-top: 0.75rem !important;
+            font-style: normal !important;
+        }
+
+        /* Subheadings */
+        #article-detail-content .article-subheading {
+            margin-top: 5rem !important;
+            /* ~4 lines of spacing above */
+            margin-bottom: 0.25rem !important;
+            /* minimal below */
+            padding-bottom: 0.5rem !important;
+            border-bottom: 1px solid #e5e7eb !important;
+        }
+
+        #article-detail-content .article-subheading span,
+        #article-detail-content .article-subheading b,
+        #article-detail-content .article-subheading strong {
+            font-size: 1.25rem !important;
+            font-weight: 700 !important;
+            color: #111111 !important;
+        }
+
+
+/* Preserve explicit source inline !important priorities in React. */

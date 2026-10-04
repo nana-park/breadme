@@ -1,0 +1,81 @@
+/* Free Trial Banner Styles */
+.free-trial-banner {
+    display: block;
+    width: 100%;
+    background: linear-gradient(90deg, #D97706, #F59E0B, #3B82F6, #9333EA, #D97706);
+    background-size: 200% 100%;
+    padding: 1rem 0;
+    text-decoration: none;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+    transition: filter 0.3s ease;
+    animation: gradientFlow 8s linear infinite;
+}
+
+.free-trial-banner:hover {
+    filter: brightness(1.1);
+}
+
+.banner-track {
+    display: flex;
+    white-space: nowrap;
+    width: max-content;
+    animation: marquee 20s linear infinite;
+}
+
+.banner-item {
+    font-family: 'JetBrains Mono', monospace;
+    /* Tech/Code feel */
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #000000;
+    /* Contrast against bright gradient */
+    text-transform: uppercase;
+    margin-right: 4rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    letter-spacing: 1px;
+}
+
+.banner-arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.banner-arrow::after {
+    content: '→';
+}
+
+.free-trial-banner:hover .banner-arrow {
+    transform: translateX(5px);
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .banner-item {
+        font-size: 1rem;
+        margin-right: 2rem;
+    }
+}
