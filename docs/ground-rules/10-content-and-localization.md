@@ -19,9 +19,9 @@ src/locales/
 └─ en/
 
 src/config/
-├─ navigation.js
-├─ routes.js
-└─ languages.js
+├─ navigation.ts
+├─ routes.ts
+└─ languages.ts
 ```
 
 - `content`: 프로젝트, 경력, 수상과 아티클처럼 사용자에게 보이는 정보
@@ -31,7 +31,7 @@ src/config/
 
 ## 파일 형식
 
-- 짧고 구조화된 콘텐츠: JavaScript 객체
+- 짧고 구조화된 콘텐츠: 타입이 있는 TypeScript 객체
 - 긴 프로젝트 본문과 아티클: 페이지를 개발할 때 Markdown 도입
 - 복잡한 인터랙션과 시각 구성: JSX
 - JSON은 주석을 지원하지 않으므로 기본 콘텐츠 형식으로 사용하지 않음
@@ -40,12 +40,12 @@ src/config/
 
 ```text
 src/content/projects/hopzie/
-├─ metadata.js
-├─ ko.js
-└─ en.js
+├─ metadata.ts
+├─ ko.ts
+└─ en.ts
 ```
 
-`metadata.js`에는 언어와 무관한 ID, slug, 날짜, 링크, 이미지와 공통 공식 명칭을 둡니다. `ko.js`, `en.js`에는 번역되는 제목, 설명, 역할, 성과와 이미지 설명을 둡니다.
+`metadata.ts`에는 언어와 무관한 ID, slug, 날짜, 링크, 이미지와 공통 공식 명칭을 둡니다. `ko.ts`, `en.ts`에는 번역되는 제목, 설명, 역할, 성과와 이미지 설명을 둡니다.
 
 동일 콘텐츠를 언어 파일에 복사하지 않습니다.
 
@@ -92,7 +92,7 @@ src/content/projects/hopzie/
 
 ```text
 src/content/articles/ai-accessibility/
-├─ metadata.js
+├─ metadata.ts
 ├─ ko.md
 └─ en.md
 ```

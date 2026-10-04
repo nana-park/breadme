@@ -35,7 +35,7 @@ Portfolio-React/
 │  │  └─ en/
 │  ├─ config/
 │  ├─ styles/
-│  └─ main.jsx
+│  └─ main.tsx
 └─ .github/
 ```
 
@@ -43,12 +43,12 @@ Portfolio-React/
 
 ```text
 src/pages/home/
-├─ HomePage.jsx
+├─ HomePage.tsx
 ├─ HomePage.module.css
 ├─ README.md
 ├─ sections/
 │  ├─ HeroSection/
-│  │  ├─ HeroSection.jsx
+│  │  ├─ HeroSection.tsx
 │  │  └─ HeroSection.module.css
 │  └─ HistorySection/
 └─ assets/
@@ -65,7 +65,7 @@ src/pages/home/
 
 색상, 간격, Grid, 애니메이션, 라우팅과 상태 처리는 콘텐츠가 아닙니다.
 
-공통 공식 명칭은 `docs/content/shared-terms.md`를 문서 기준으로 삼고, 구현 시 `src/content/shared/terms.js`의 단일 원본으로 관리합니다. 반복 UI 문구는 `src/locales/ko/`, `src/locales/en/`에 둡니다.
+공통 공식 명칭은 `docs/content/shared-terms.md`를 문서 기준으로 삼고, 구현 시 `src/content/shared/terms.ts`의 단일 원본으로 관리합니다. 반복 UI 문구는 `src/locales/ko/`, `src/locales/en/`에 둡니다.
 
 ## 페이지 README 생성 조건
 
@@ -165,3 +165,7 @@ desktop/
 ```
 
 모바일·데스크톱은 별도 코드 복사본으로 관리하지 않고 동일 컴포넌트의 반응형 스타일로 관리합니다.
+
+## 초기 구현의 타입 검사
+
+기본 구조는 TypeScript를 사용합니다. 화면 컴포넌트는 `.tsx`, 데이터와 설정은 `.ts`이며 기존 문서의 JSX/JavaScript 예시도 같은 역할의 TSX/TypeScript에 적용합니다. `npm run typecheck`로 연결 오류를 확인합니다.

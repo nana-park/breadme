@@ -27,3 +27,8 @@ Thumbs.db
 *.tmp
 *.temp
 .cache/
+
+# Browser verification output
+playwright-report/
+test-results/
+*.tsbuildinfo

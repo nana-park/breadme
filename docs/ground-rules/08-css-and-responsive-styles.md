@@ -90,7 +90,7 @@ CSS Module 클래스는 역할 중심 `camelCase`를 사용합니다.
 
 동일 컴포넌트와 동일 버전에서 모바일·태블릿·데스크톱을 처리합니다. 별도 모바일 컴포넌트나 CSS 복사본을 만들지 않습니다.
 
-기본 스타일은 Desktop이며 같은 CSS Module 아래쪽에 Tablet, Mobile 순서로 Override를 둡니다.
+채용 담당자는 데스크톱과 모바일 모두에서 소개 → 프로젝트 → 연락·자료 확인의 같은 목적을 완수할 수 있어야 합니다. CSS 작성 순서는 Desktop 기본 + Tablet, Mobile Override를 유지하지만, 모바일의 정보와 기능을 축소한다는 뜻이 아닙니다. 구체적인 읽기 흐름과 검수 기준은 [반응형 전략](../responsive-strategy.md)을 따릅니다.
 
 ```css
 .heroSection {
