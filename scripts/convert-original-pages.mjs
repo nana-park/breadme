@@ -254,13 +254,18 @@ for (const [sourceFile, componentName] of pageDefinitions) {
     }
     const properties = [];
     const important = [];
+    const importantAssignments = [];
     for (const name of element.style) {
       const value = element.style.getPropertyValue(name);
       properties.push(
         `${json(cssProperty(name))}: ${styleValueExpression(value)}`,
       );
-      if (element.style.getPropertyPriority(name))
+      if (element.style.getPropertyPriority(name)) {
         important.push(`${name}: ${value} !important;`);
+        importantAssignments.push(
+          `element.style.setProperty(${json(name)}, ${styleValueExpression(value)}, "important");`,
+        );
+      }
     }
     if (!properties.length) return [];
     imports.add("CSSProperties");
@@ -268,6 +273,10 @@ for (const [sourceFile, componentName] of pageDefinitions) {
     if (important.length) {
       const id = `${componentName}-${++importantIndex}`;
       result.push(`data-original-style-id=${json(id)}`);
+      // Inline !important outranks ID selectors; a stylesheet attribute rule cannot preserve that priority.
+      result.push(
+        `ref={(element) => { if (element) { ${importantAssignments.join(" ")} } }}`,
+      );
       importantRules.push(
         `[data-original-style-id="${id}"] { ${important.join(" ")} }`,
       );
@@ -422,6 +431,12 @@ for (const [sourceFile, componentName] of pageDefinitions) {
     path.join(outputRoot, `${componentName}.tsx`),
     await format(output, { parser: "typescript", singleQuote: true }),
   );
+  css =
+    css
+      .split("\n")
+      .map((line) => line.trimEnd())
+      .join("\n")
+      .trimEnd() + "\n";
   await fs.writeFile(path.join(outputRoot, `${componentName}.css`), css);
   manifest.push({
     sourceFile,

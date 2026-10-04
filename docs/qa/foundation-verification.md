@@ -1,4 +1,8 @@
-# React 기본 구조 검수 기록
+# React 기본 구조 검수 기록 — 역사 자료
+
+이 문서는 원본 충실 이관 **이전** Home 구조 미리보기의 검사 결과를 보존합니다. 기록된 6개 단위·11개 브라우저 검사, 767↔768px 메뉴 전환, 한국어 안내 화면과 접근성 결과는 아래 초기 기능 커밋에만 적용됩니다. 현재 14개 페이지·원본 스타일·1024px Header·67개 단위·48개 브라우저 검사의 완료 근거로 사용하지 않습니다.
+
+현재 결과는 [원본 이관 검수 기록](original-migration-verification.md)과 [디자인 비교](../../design-qa.md)에서 확인합니다. 이후 구현 변경 때문에 이 문서를 최신 상태로 덮어쓰지 않습니다.
 
 검수일: 2026-10-04 (UTC). 범위: Home 구조 미리보기, 공통 컴포넌트와 개발 도구.
 
@@ -7,7 +11,7 @@
 **기본 구조 검수 통과.** GitHub-hosted Ubuntu의 Chromium에서 7개 화면 너비와 주요 조작을 검사했습니다. 최종 기능 코드 `b915a0570879e5523a9765cd126d3759ba461d0b`의 컴포넌트 테스트 6개와 브라우저 테스트 11개가 재시도 없이 통과했습니다. 실제 포트폴리오 전체 완성·실기기 검수·최종 디자인 승인을 의미하지 않습니다.
 
 - [성공한 기능 검수 실행](https://github.com/nana-park/portfolio-react/actions/runs/37193737534)
-- [화면 캡처와 HTML 검사 보고서](https://github.com/nana-park/portfolio-react/actions/runs/37193737534/artifacts/11299793099): 7일 보관. 만료 후 로컬 `npm run test:e2e` 또는 후속 PR CI로 다시 생성
+- [화면 캡처와 HTML 검사 보고서](https://github.com/nana-park/portfolio-react/actions/runs/37193737534/artifacts/11299793099): 7일 보관. 만료 후 당시 기능 커밋의 별도 체크아웃에서 검사를 재현해야 함. 현재 브랜치의 검사는 원본 이관 화면을 대상으로 하므로 이 역사 캡처와 다름
 - [Draft PR #1](https://github.com/nana-park/portfolio-react/pull/1): 문서 기록을 포함한 최신 커밋의 checks는 여기서 확인
 
 ## 결과 구분

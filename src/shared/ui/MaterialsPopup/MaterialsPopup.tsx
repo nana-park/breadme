@@ -45,7 +45,24 @@ export function MaterialsPopup({ isOpen, onToggle, onClose }: Props) {
                 rect.bottom > 70 &&
                 rect.top < window.innerHeight,
             );
-          const toggleRect = toggle.current?.getBoundingClientRect();
+          // WHY: The toggle animates from scale(0), so its visual rect can be empty
+          // during first paint. Collide against its untransformed resting footprint.
+          const button = toggle.current;
+          const rootFontSize =
+            Number.parseFloat(
+              getComputedStyle(document.documentElement).fontSize,
+            ) || 16;
+          const baselineBottom = window.innerHeight - 2 * rootFontSize;
+          const baselineRight = popup.getBoundingClientRect().right;
+          const toggleRect =
+            button && button.offsetWidth > 0 && button.offsetHeight > 0
+              ? {
+                  top: baselineBottom - button.offsetHeight,
+                  bottom: baselineBottom,
+                  left: baselineRight - button.offsetWidth,
+                  right: baselineRight,
+                }
+              : null;
           const gap = 16;
           if (
             toggleRect &&

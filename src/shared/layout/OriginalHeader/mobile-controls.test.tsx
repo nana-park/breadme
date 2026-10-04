@@ -301,9 +301,17 @@ describe("mobile controls and nonmodal materials focus", () => {
   it("lifts only the minimized mobile control above nearby Hero copy and retains footer docking", () => {
     let ctaTop = 758;
     let footerTop = 4000;
+    for (const dimension of ["offsetWidth", "offsetHeight"] as const) {
+      vi.spyOn(HTMLElement.prototype, dimension, "get").mockImplementation(
+        function (this: HTMLElement) {
+          return this.id === "popupToggle" ? 56 : 0;
+        },
+      );
+    }
     vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockImplementation(
       function (this: HTMLElement) {
         if (this.id === "popupToggle") return rect(756, 318, 56, 56);
+        if (this.id === "email-popup") return rect(812, 16, 358, 0);
         if (this.dataset.testid === "hero-cta")
           return rect(ctaTop, 170, 200, 62);
         if (this.dataset.testid === "subtitle")
@@ -334,15 +342,41 @@ describe("mobile controls and nonmodal materials focus", () => {
     expect(popup.style.bottom).toBe("auto");
   });
 
+  it("clears the Hero immediately while the floating toggle is initially scaled to zero", () => {
+    for (const dimension of ["offsetWidth", "offsetHeight"] as const) {
+      vi.spyOn(HTMLElement.prototype, dimension, "get").mockImplementation(
+        function (this: HTMLElement) {
+          return this.id === "popupToggle" ? 56 : 0;
+        },
+      );
+    }
+    vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockImplementation(
+      function (this: HTMLElement) {
+        if (this.id === "popupToggle") return rect(0, 0, 0, 0);
+        if (this.id === "email-popup") return rect(812, 16, 358, 0);
+        if (this.dataset.testid === "hero-cta") return rect(758, 170, 200, 62);
+        if (this.dataset.testid === "subtitle") return rect(737, 70, 260, 27);
+        if (this.classList.contains("footer")) return rect(4000);
+        return rect(0, 0, 0, 0);
+      },
+    );
+    render(<Harness />);
+    expect(
+      document.querySelector<HTMLElement>("#email-popup")!.style.bottom,
+    ).toBe("123px");
+  });
+
   it.each([
     "llm-based-voice-ivr",
     "hopzie-oneclickbuilder",
     "ai-mentoring-agent-detail",
-  ])("preserves PROJECTS active state for %s", (pageId) => {
+  ])("preserves source neutral navigation on detail %s", (pageId) => {
     render(<Harness pageId={pageId} />);
-    expect(screen.getByRole("link", { name: "PROJECTS" })).toHaveAttribute(
-      "aria-current",
-      "page",
+    expect(screen.getByRole("link", { name: "PROJECTS" })).not.toHaveClass(
+      "active",
     );
+    expect(
+      screen.getByRole("link", { name: "PROJECTS" }).parentElement,
+    ).toHaveAttribute("data-current-group", "true");
   });
 });

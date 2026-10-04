@@ -7,6 +7,11 @@ import { OriginalPage } from "@/pages/original/OriginalPage";
 
 export function App() {
   const pageId = resolveOriginalPage();
+  const isProjectDetail = [
+    "llm-based-voice-ivr",
+    "hopzie-oneclickbuilder",
+    "ai-mentoring-agent-detail",
+  ].includes(pageId);
   const [isMaterialsOpen, setIsMaterialsOpen] = useState(false);
   const closeMaterials = useCallback(() => setIsMaterialsOpen(false), []);
   const showPending = useCallback(() => window.alert("Coming soon!"), []);
@@ -60,17 +65,21 @@ export function App() {
       </svg>
       <OriginalHeader
         pageId={pageId}
-        onOpenMaterials={() => setIsMaterialsOpen(true)}
+        onOpenMaterials={
+          isProjectDetail ? showPending : () => setIsMaterialsOpen(true)
+        }
       />
       <main id="main-content" tabIndex={-1}>
         <OriginalPage pageId={pageId} />
       </main>
       <OriginalFooter onPending={showPending} />
-      <MaterialsPopup
-        isOpen={isMaterialsOpen}
-        onToggle={() => setIsMaterialsOpen((open) => !open)}
-        onClose={closeMaterials}
-      />
+      {!isProjectDetail && (
+        <MaterialsPopup
+          isOpen={isMaterialsOpen}
+          onToggle={() => setIsMaterialsOpen((open) => !open)}
+          onClose={closeMaterials}
+        />
+      )}
     </>
   );
 }

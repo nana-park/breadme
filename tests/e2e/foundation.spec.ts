@@ -1,5 +1,8 @@
 import { expect, test } from "@playwright/test";
 
+// Real Spline rendering and full-page captures use software GPU in GitHub CI.
+test.setTimeout(90_000);
+
 const widths = [320, 390, 767, 768, 1024, 1025, 1440];
 for (const width of widths) {
   test(`original Home rendering at ${width}px`, async ({ page }, testInfo) => {

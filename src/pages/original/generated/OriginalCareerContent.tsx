@@ -1133,6 +1133,15 @@ export function OriginalCareerContent() {
         id={'testimonials'}
         style={{ backgroundColor: 'rgb(255, 255, 255)' } as CSSProperties}
         data-original-style-id="OriginalCareerContent-1"
+        ref={(element) => {
+          if (element) {
+            element.style.setProperty(
+              'background-color',
+              'rgb(255, 255, 255)',
+              'important',
+            );
+          }
+        }}
       >
         {'\n        '}
         <div

@@ -24,6 +24,16 @@ export function OriginalAwardsContent() {
           } as CSSProperties
         }
         data-original-style-id="OriginalAwardsContent-1"
+        ref={(element) => {
+          if (element) {
+            element.style.setProperty(
+              'background-color',
+              'rgb(243, 241, 235)',
+              'important',
+            );
+            element.style.setProperty('padding-top', '70px', 'important');
+          }
+        }}
       >
         {'\n        '}
         <div className={'w-full relative mb-16 lg:mb-20 overflow-hidden'}>

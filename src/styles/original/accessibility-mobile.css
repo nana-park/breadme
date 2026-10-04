@@ -20,6 +20,9 @@
 }
 @media (max-width: 767px) {
   body { min-width: 0; }
+  /* Source Enjoy tabs extend to 460px on a 390px viewport; keep every filter reachable in its own row. */
+  #life-tabs { overflow-x: auto; max-width: 100%; padding-bottom: 4px; }
+  #life-tabs .life-filter-btn { flex-shrink: 0; min-width: 44px; min-height: 44px; padding-inline: 8px; }
   #home { min-height: 844px; height: 100svh; }
   #home spline-viewer { width: 100vw !important; height: 58svh !important; top: 48% !important; }
   #home > div:last-child { bottom: 1.5rem !important; }

@@ -70,7 +70,7 @@ export function OriginalHeader({ pageId, onOpenMaterials }: Props) {
               )
             : active === menuButton.current
               ? (navMenu.current?.querySelector<HTMLElement>(
-                  ".nav-link[aria-current='page']",
+                  "[data-current-group='true'] > .nav-link",
                 ) ?? navMenu.current?.querySelector<HTMLElement>(".nav-link"))
               : parentLink;
           replacement?.focus();
@@ -190,7 +190,7 @@ export function OriginalHeader({ pageId, onOpenMaterials }: Props) {
   return (
     <nav
       ref={nav}
-      className={`navbar ${isScrolled ? "scrolled" : ""} ${openGroup ? "gnb-expanded" : ""} ${openGroup === "ABOUT" ? "original-about-open" : ""} ${forceClosed ? "nav-force-close" : ""}`}
+      className={`navbar ${["projects", "articles"].includes(pageId) ? "force-scrolled" : ""} ${isScrolled ? "scrolled" : ""} ${openGroup ? "gnb-expanded" : ""} ${openGroup === "ABOUT" ? "original-about-open" : ""} ${forceClosed ? "nav-force-close" : ""}`}
       id="navbar"
       aria-label="Main navigation"
       onMouseLeave={() => setOpenGroup(null)}
@@ -218,18 +218,26 @@ export function OriginalHeader({ pageId, onOpenMaterials }: Props) {
           {originalNavigation.map((item) => {
             const hasChildren = "children" in item;
             const isActive =
-              item.path === `${pageId === "home" ? "index" : pageId}.html` ||
+              !["research", "lectures"].includes(pageId) &&
+              (item.path === `${pageId === "home" ? "index" : pageId}.html` ||
+                (hasChildren &&
+                  item.children.some(
+                    (child) => child.path === `${pageId}.html`,
+                  )));
+            const isCurrentGroup =
+              isActive ||
               (item.label === "PROJECTS" &&
                 [
+                  "research",
+                  "lectures",
                   "llm-based-voice-ivr",
                   "hopzie-oneclickbuilder",
                   "ai-mentoring-agent-detail",
-                ].includes(pageId)) ||
-              (hasChildren &&
-                item.children.some((child) => child.path === `${pageId}.html`));
+                ].includes(pageId));
             return (
               <div
                 key={item.label}
+                data-current-group={isCurrentGroup || undefined}
                 data-nav-group={item.label}
                 className={
                   hasChildren

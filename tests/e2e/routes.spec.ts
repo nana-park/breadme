@@ -52,6 +52,13 @@ for (const width of [390, 1440]) {
         "data-original-page",
         expectedPage,
       );
+      if (route.startsWith("projects/"))
+        await expect(page.locator("#email-popup")).toHaveCount(0);
+      if (route === "awards.html")
+        await expect(page.locator("#awards")).toHaveCSS(
+          "background-color",
+          "rgb(243, 241, 235)",
+        );
       // Original standalone pages retain their h1/h2 source hierarchy.
       await expect(page.locator("main h1, main h2").first()).toBeVisible();
       await page.evaluate(async () => {
@@ -139,10 +146,19 @@ test("source interactions remain usable across actual routes", async ({
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/qualified.html");
   const tabs = page.locator('[role="tab"]');
-  if (await tabs.count()) {
-    await tabs.last().click();
-    await expect(tabs.last()).toHaveAttribute("aria-selected", "true");
-  }
+  await expect(tabs).toHaveCount(4);
+  await tabs.last().click();
+  await expect(tabs.last()).toHaveAttribute("aria-selected", "true");
+  await page.goto("/enjoy.html");
+  const filter = page.locator("#life-tabs .life-filter-btn").last();
+  await filter.click();
+  await expect(filter).toHaveAttribute("aria-pressed", "true");
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(
+    390,
+  );
+  await expect(
+    page.locator(`#gallery-${await filter.getAttribute("data-target")}`),
+  ).toBeVisible();
   await page.goto("/projects.html");
   const first = page.locator("details").first();
   await first.locator("summary").click();

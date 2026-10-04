@@ -1,5 +1,7 @@
 import { test, expect } from "@playwright/test";
 import fs from "node:fs/promises";
+// Capturing the animated source scene takes longer on software-rendered CI.
+test.setTimeout(90_000);
 for (const width of [390, 1440]) {
   test(`Home visual checkpoint ${width}`, async ({ page }, testInfo) => {
     await page.setViewportSize({ width, height: width === 390 ? 844 : 900 });
