@@ -1,14 +1,26 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 type Props = { isOpen: boolean; onToggle: () => void; onClose: () => void };
 export function MaterialsPopup({ isOpen, onToggle, onClose }: Props) {
   const root = useRef<HTMLDivElement>(null);
   const toggle = useRef<HTMLButtonElement>(null);
+  const minimize = useRef<HTMLButtonElement>(null);
+  const wasOpen = useRef(false);
+  useLayoutEffect(() => {
+    // WHY: Focus after the new state is rendered, never on the scaled-away toggle.
+    if (!root.current?.closest("[inert]")) {
+      if (isOpen) minimize.current?.focus();
+      else if (wasOpen.current) toggle.current?.focus();
+    }
+    wasOpen.current = isOpen;
+  }, [isOpen]);
   useEffect(() => {
     const updatePosition = () => {
       const popup = root.current,
         footer = document.querySelector<HTMLElement>(".footer");
-      if (!popup || !footer) return;
-      const footerTop = footer.getBoundingClientRect().top + window.scrollY;
+      if (!popup) return;
+      const footerTop = footer
+        ? footer.getBoundingClientRect().top + window.scrollY
+        : Infinity;
       if (window.scrollY + window.innerHeight >= footerTop + 32) {
         popup.style.position = "absolute";
         popup.style.top = `${footerTop - popup.offsetHeight - 32}px`;
@@ -17,12 +29,59 @@ export function MaterialsPopup({ isOpen, onToggle, onClose }: Props) {
         popup.style.position = "fixed";
         popup.style.top = "auto";
         popup.style.bottom = "2rem";
+        if (!isOpen && window.innerWidth < 768) {
+          const hero = document.querySelector<HTMLElement>(
+            "[data-original-page='home'] #home",
+          );
+          const cta = hero?.lastElementChild;
+          const links = Array.from(
+            cta?.querySelectorAll<HTMLElement>("a") ?? [],
+          );
+          const visibleLinks = links
+            .map((link) => link.getBoundingClientRect())
+            .filter(
+              (rect) =>
+                rect.width > 0 &&
+                rect.bottom > 70 &&
+                rect.top < window.innerHeight,
+            );
+          const toggleRect = toggle.current?.getBoundingClientRect();
+          const gap = 16;
+          if (
+            toggleRect &&
+            visibleLinks.some(
+              (rect) =>
+                rect.left < toggleRect.right + gap &&
+                rect.right > toggleRect.left - gap &&
+                rect.bottom > toggleRect.top - gap &&
+                rect.top < toggleRect.bottom + gap,
+            )
+          ) {
+            const subtitle = cta?.previousElementSibling
+              ?.querySelector("p")
+              ?.getBoundingClientRect();
+            const contentTop = Math.min(
+              ...visibleLinks.map((rect) => rect.top),
+              subtitle && subtitle.height > 0 && subtitle.bottom > 70
+                ? subtitle.top
+                : Infinity,
+            );
+            // WHY: Move only the floating control into the existing gap above Hero copy.
+            // Measuring the source text/buttons preserves their exact layout and adapts to wrapping.
+            popup.style.bottom = `${window.innerHeight - contentTop + gap}px`;
+          }
+        }
       }
     };
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape" && isOpen) {
+      if (
+        event.key === "Escape" &&
+        isOpen &&
+        !event.defaultPrevented &&
+        !root.current?.closest("[inert]")
+      ) {
+        event.preventDefault();
         onClose();
-        toggle.current?.focus();
       }
     };
     window.addEventListener("scroll", updatePosition, { passive: true });
@@ -30,7 +89,17 @@ export function MaterialsPopup({ isOpen, onToggle, onClose }: Props) {
     document.addEventListener("keydown", onKey);
     updatePosition();
     const timer = window.setTimeout(updatePosition, 400);
+    // The Home page loads lazily; remeasure when its content and fonts arrive.
+    const observer = new MutationObserver(updatePosition);
+    const main = document.querySelector("main");
+    if (main) observer.observe(main, { childList: true, subtree: true });
+    let mounted = true;
+    void document.fonts?.ready.then(() => {
+      if (mounted) updatePosition();
+    });
     return () => {
+      mounted = false;
+      observer.disconnect();
       window.removeEventListener("scroll", updatePosition);
       window.removeEventListener("resize", updatePosition);
       document.removeEventListener("keydown", onKey);
@@ -57,6 +126,8 @@ export function MaterialsPopup({ isOpen, onToggle, onClose }: Props) {
         aria-label="Open Email Popup"
         aria-expanded={isOpen}
         aria-controls="materials-content"
+        tabIndex={isOpen ? -1 : undefined}
+        aria-hidden={isOpen || undefined}
         onClick={onToggle}
       >
         <svg
@@ -79,6 +150,7 @@ export function MaterialsPopup({ isOpen, onToggle, onClose }: Props) {
             Application Materials
           </h3>
           <button
+            ref={minimize}
             className="popup-minimize"
             id="popupMinimize"
             aria-label="Minimize Popup"

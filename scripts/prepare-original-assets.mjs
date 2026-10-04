@@ -196,7 +196,7 @@ export async function main(args = process.argv.slice(2)) {
     throw new Error(`${errors.length} original asset(s) could not be verified. Build preparation is incomplete.`);
   }
   console.log(checkOnly ? 'All original asset checksums match.' : 'All original assets are ready in public/original.');
-  if (manifest.pendingExternalAssets?.length) console.log(`${manifest.pendingExternalAssets.length} external resources are listed separately as pending; this script does not fetch or hotlink them.`);
+  if (manifest.pendingExternalAssets?.length) console.log(`${manifest.pendingExternalAssets.length} external source references are handled by prepare-external-assets.mjs; this script does not fetch or hotlink them.`);
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

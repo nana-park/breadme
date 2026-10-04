@@ -1,3 +1,4 @@
+import { useOriginalDetailInteractions } from "@/shared/hooks/useOriginalDetailInteractions";
 import originalUtilities from "@/styles/original/tailwind.generated.css?raw";
 import mobileAccessibility from "@/styles/original/accessibility-mobile.css?raw";
 import { lazy, Suspense, useLayoutEffect, useRef } from "react";
@@ -63,8 +64,8 @@ const pages = {
   },
   articles: {
     component: lazy(() =>
-      import("./generated/OriginalArticlesContent").then((module) => ({
-        default: module.OriginalArticlesContent,
+      import("./OriginalArticlesPage").then((module) => ({
+        default: module.OriginalArticlesPage,
       })),
     ),
     css: "OriginalArticlesContent",
@@ -127,6 +128,7 @@ const pageCss = import.meta.glob<string>("./generated/*.css", {
 function MountedOriginalPage({ pageId }: { pageId: OriginalPageId }) {
   const root = useRef<HTMLDivElement>(null);
   useOriginalPageInteractions(pageId, root);
+  useOriginalDetailInteractions(pageId, root);
   useLayoutEffect(() => {
     const hash = window.location.hash.slice(1);
     if (hash && !hash.includes("?"))

@@ -4,7 +4,7 @@ import fs from 'node:fs/promises';
 const root = 'https://nana-park.github.io/Portfolio/';
 const width = Number(process.env.CAPTURE_WIDTH || 1440);
 const height = width === 390 ? 844 : 900;
-const pages = ['index', 'about', 'career', 'qualified', 'enjoy', 'projects', 'research', 'articles', 'lectures', 'awards', 'contact'];
+const pages = process.env.CAPTURE_PAGES?.split(',') || ['index', 'about', 'career', 'qualified', 'enjoy', 'projects', 'research', 'articles', 'lectures', 'awards', 'contact'];
 const directory = `source-evidence/${width}`;
 await fs.mkdir(directory, { recursive: true });
 const browser = await chromium.launch();

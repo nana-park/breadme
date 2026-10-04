@@ -1,47 +1,193 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { originalNavigation } from "@/content/original/navigation";
 import { originalHref } from "@/shared/utils/originalPaths";
 
 type Props = { pageId: string; onOpenMaterials: () => void };
+const DESKTOP_BREAKPOINT = 1024;
+
+function isAvailable(element: HTMLElement) {
+  if (element.closest("[hidden], [inert]")) return false;
+  for (
+    let node: HTMLElement | null = element;
+    node;
+    node = node.parentElement
+  ) {
+    const style = window.getComputedStyle(node);
+    if (style.display === "none" || style.visibility === "hidden") return false;
+  }
+  return true;
+}
+
 export function OriginalHeader({ pageId, onOpenMaterials }: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openGroup, setOpenGroup] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [forceClosed, setForceClosed] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
   const nav = useRef<HTMLElement>(null);
+  const navMenu = useRef<HTMLDivElement>(null);
+  const desktopMaterials = useRef<HTMLDivElement>(null);
+  const wasMenuOpen = useRef(false);
   useEffect(() => {
+    let wasMobile = window.innerWidth < DESKTOP_BREAKPOINT;
+    let lastHeaderFocus: HTMLElement | null = null;
+    const trackFocus = (event: FocusEvent) => {
+      lastHeaderFocus =
+        event.target instanceof HTMLElement &&
+        nav.current?.contains(event.target)
+          ? event.target
+          : null;
+    };
     const handleScroll = () => setIsScrolled(window.scrollY > 100);
     const handleResize = () => {
-      if (window.innerWidth >= 1024) setIsMenuOpen(false);
-    };
-    const handleKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setIsMenuOpen(false);
-        setOpenGroup(null);
-        menuButton.current?.focus();
+      const isMobile = window.innerWidth < DESKTOP_BREAKPOINT;
+      if (isMobile === wasMobile) return;
+      wasMobile = isMobile;
+      const active =
+        document.activeElement instanceof HTMLElement &&
+        document.activeElement !== document.body
+          ? document.activeElement
+          : lastHeaderFocus;
+      setIsMenuOpen(false);
+      setOpenGroup(null);
+      setForceClosed(false);
+      // WHY: A breakpoint can hide the currently focused control before React rerenders.
+      if (active && nav.current?.contains(active)) {
+        if (
+          isMobile &&
+          (navMenu.current?.contains(active) ||
+            desktopMaterials.current?.contains(active))
+        ) {
+          menuButton.current?.focus();
+        } else if (!isMobile) {
+          const materialsAction = active.dataset.materialsAction;
+          const parentLink = active
+            .closest("[data-nav-group]")
+            ?.querySelector<HTMLElement>(".nav-link");
+          const replacement = materialsAction
+            ? desktopMaterials.current?.querySelector<HTMLElement>(
+                `[data-materials-action="${materialsAction}"]`,
+              )
+            : active === menuButton.current
+              ? (navMenu.current?.querySelector<HTMLElement>(
+                  ".nav-link[aria-current='page']",
+                ) ?? navMenu.current?.querySelector<HTMLElement>(".nav-link"))
+              : parentLink;
+          replacement?.focus();
+          setOpenGroup(null);
+        }
       }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleResize);
-    document.addEventListener("keydown", handleKey);
+    document.addEventListener("focusin", trackFocus);
     handleScroll();
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
-      document.removeEventListener("keydown", handleKey);
+      document.removeEventListener("focusin", trackFocus);
     };
   }, []);
   useEffect(() => {
-    const previous = document.body.style.overflow;
-    if (isMenuOpen) document.body.style.overflow = "hidden";
+    const handleKey = (event: KeyboardEvent) => {
+      if (
+        event.key !== "Escape" ||
+        event.defaultPrevented ||
+        (!isMenuOpen && !openGroup)
+      )
+        return;
+      event.preventDefault();
+      if (isMenuOpen) setIsMenuOpen(false);
+      if (openGroup && window.innerWidth >= DESKTOP_BREAKPOINT) {
+        nav.current
+          ?.querySelector<HTMLElement>(
+            `[data-nav-group="${openGroup}"] > .nav-link`,
+          )
+          ?.focus();
+      }
+      setOpenGroup(null);
+      setForceClosed(window.innerWidth >= DESKTOP_BREAKPOINT);
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [isMenuOpen, openGroup]);
+  useLayoutEffect(() => {
+    const restoreFocus = wasMenuOpen.current && !isMenuOpen;
+    wasMenuOpen.current = isMenuOpen;
+    if (!isMenuOpen || window.innerWidth >= DESKTOP_BREAKPOINT) {
+      // WHY: React restores selection during commit, so return focus after cleanup/render.
+      if (restoreFocus && window.innerWidth < DESKTOP_BREAKPOINT)
+        menuButton.current?.focus();
+      return;
+    }
+    const button = menuButton.current;
+    const previousOverflow = document.body.style.getPropertyValue("overflow");
+    const previousPriority =
+      document.body.style.getPropertyPriority("overflow");
+    const background = Array.from(
+      document.querySelectorAll<HTMLElement>(
+        "main, footer, .footer, #email-popup, .original-skip-link",
+      ),
+    ).map((element) => ({ element, inert: element.getAttribute("inert") }));
+    background.forEach(({ element }) => element.setAttribute("inert", ""));
+    document.body.style.overflow = "hidden";
+
+    const focusable = () =>
+      Array.from(
+        nav.current?.querySelectorAll<HTMLElement>(
+          "a[href], button:not(:disabled), [tabindex='0']",
+        ) ?? [],
+      ).filter(
+        (element) =>
+          !desktopMaterials.current?.contains(element) && isAvailable(element),
+      );
+    const containFocus = (event: FocusEvent) => {
+      if (!nav.current?.contains(event.target as Node)) button?.focus();
+    };
+    const trapTab = (event: KeyboardEvent) => {
+      if (event.key !== "Tab") return;
+      const controls = focusable();
+      const first = controls[0];
+      const last = controls.at(-1);
+      if (
+        event.shiftKey &&
+        (document.activeElement === first ||
+          !nav.current?.contains(document.activeElement))
+      ) {
+        event.preventDefault();
+        last?.focus();
+      } else if (
+        !event.shiftKey &&
+        (document.activeElement === last ||
+          !nav.current?.contains(document.activeElement))
+      ) {
+        event.preventDefault();
+        first?.focus();
+      }
+    };
+    document.addEventListener("keydown", trapTab);
+    document.addEventListener("focusin", containFocus);
+    if (!nav.current?.contains(document.activeElement)) button?.focus();
     return () => {
-      document.body.style.overflow = previous;
+      document.removeEventListener("keydown", trapTab);
+      document.removeEventListener("focusin", containFocus);
+      background.forEach(({ element, inert }) => {
+        if (inert === null) element.removeAttribute("inert");
+        else element.setAttribute("inert", inert);
+      });
+      if (previousOverflow)
+        document.body.style.setProperty(
+          "overflow",
+          previousOverflow,
+          previousPriority,
+        );
+      else document.body.style.removeProperty("overflow");
     };
   }, [isMenuOpen]);
   return (
     <nav
       ref={nav}
-      className={`navbar ${isScrolled ? "scrolled" : ""} ${openGroup ? "gnb-expanded" : ""} ${openGroup === "ABOUT" ? "original-about-open" : ""}`}
+      className={`navbar ${isScrolled ? "scrolled" : ""} ${openGroup ? "gnb-expanded" : ""} ${openGroup === "ABOUT" ? "original-about-open" : ""} ${forceClosed ? "nav-force-close" : ""}`}
       id="navbar"
       aria-label="Main navigation"
       onMouseLeave={() => setOpenGroup(null)}
@@ -62,6 +208,7 @@ export function OriginalHeader({ pageId, onOpenMaterials }: Props) {
           </a>
         </div>
         <div
+          ref={navMenu}
           className={`nav-menu hidden lg:flex justify-center gap-12 flex-shrink-0 shrink-0 h-full ${isMenuOpen ? "active" : ""}`}
           id="navMenu"
         >
@@ -69,20 +216,33 @@ export function OriginalHeader({ pageId, onOpenMaterials }: Props) {
             const hasChildren = "children" in item;
             const isActive =
               item.path === `${pageId === "home" ? "index" : pageId}.html` ||
+              (item.label === "PROJECTS" &&
+                [
+                  "llm-based-voice-ivr",
+                  "hopzie-oneclickbuilder",
+                  "ai-mentoring-agent-detail",
+                ].includes(pageId)) ||
               (hasChildren &&
                 item.children.some((child) => child.path === `${pageId}.html`));
             return (
               <div
                 key={item.label}
+                data-nav-group={item.label}
                 className={
                   hasChildren
                     ? `group has-dropdown ${"about" in item ? "about-dropdown" : ""} h-full flex items-center relative ${openGroup === item.label ? "original-menu-expanded" : ""}`
                     : "flex items-center h-full"
                 }
-                onMouseEnter={() =>
-                  setOpenGroup(hasChildren ? item.label : null)
-                }
-                onFocus={() => setOpenGroup(hasChildren ? item.label : null)}
+                onMouseEnter={() => {
+                  setForceClosed(false);
+                  if (window.innerWidth >= DESKTOP_BREAKPOINT)
+                    setOpenGroup(hasChildren ? item.label : null);
+                }}
+                onFocus={() => {
+                  setForceClosed(false);
+                  if (window.innerWidth >= DESKTOP_BREAKPOINT)
+                    setOpenGroup(hasChildren ? item.label : null);
+                }}
               >
                 <a
                   href={originalHref(item.path)}
@@ -111,6 +271,8 @@ export function OriginalHeader({ pageId, onOpenMaterials }: Props) {
           })}
           <div className="original-mobile-materials">
             <button
+              type="button"
+              data-materials-action="resume"
               onClick={() => {
                 setIsMenuOpen(false);
                 onOpenMaterials();
@@ -119,6 +281,8 @@ export function OriginalHeader({ pageId, onOpenMaterials }: Props) {
               Resume
             </button>
             <button
+              type="button"
+              data-materials-action="portfolio"
               onClick={() => {
                 setIsMenuOpen(false);
                 onOpenMaterials();
@@ -129,9 +293,10 @@ export function OriginalHeader({ pageId, onOpenMaterials }: Props) {
           </div>
         </div>
         <div className="flex-1 flex justify-end items-center gap-3">
-          <div className="hidden lg:flex gap-3">
+          <div ref={desktopMaterials} className="hidden lg:flex gap-3">
             <button
               type="button"
+              data-materials-action="resume"
               onClick={onOpenMaterials}
               className="px-3 py-1.5 text-[0.7rem] font-bold bg-[#f2f2f2] hover:bg-[#e5e5e5] text-black rounded transition-colors uppercase tracking-wider"
             >
@@ -139,6 +304,7 @@ export function OriginalHeader({ pageId, onOpenMaterials }: Props) {
             </button>
             <button
               type="button"
+              data-materials-action="portfolio"
               onClick={onOpenMaterials}
               className="px-3 py-1.5 text-[0.7rem] font-bold bg-[#222222] hover:bg-black text-white rounded transition-colors uppercase tracking-wider"
             >
@@ -147,12 +313,16 @@ export function OriginalHeader({ pageId, onOpenMaterials }: Props) {
           </div>
           <button
             ref={menuButton}
+            type="button"
             className={`mobile-toggle lg:hidden ml-4 ${isMenuOpen ? "active" : ""}`}
             id="mobileToggle"
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMenuOpen}
             aria-controls="navMenu"
-            onClick={() => setIsMenuOpen((open) => !open)}
+            onClick={() => {
+              setForceClosed(false);
+              setIsMenuOpen((open) => !open);
+            }}
           >
             <span />
             <span />

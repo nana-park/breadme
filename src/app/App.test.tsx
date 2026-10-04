@@ -69,8 +69,9 @@ describe("Original portfolio React migration", () => {
   it("does not present an unfinished Korean version as translated", async () => {
     const user = userEvent.setup();
     render(<App />);
+    const alert = vi.spyOn(window, "alert").mockImplementation(() => {});
     await user.click(screen.getByRole("button", { name: "Korean" }));
-    expect(screen.getByRole("dialog", { name: "Coming soon!" })).toBeVisible();
+    expect(alert).toHaveBeenCalledWith("Coming soon!");
     expect(document.documentElement.lang).toBe("en");
   });
 });

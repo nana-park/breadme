@@ -15,7 +15,8 @@
   .nav-menu.active .lnb-link { min-height: 44px; }
   .nav-menu.active .original-mobile-materials { display: flex; flex-direction: row; justify-content: center; gap: 16px; color: white; }
   .original-mobile-materials button { min-height: 44px; padding: 8px; }
-  #mobileToggle { min-height: 44px; min-width: 44px; align-items: center; }
+  #mobileToggle { display: flex; flex-direction: column; gap: 4px; min-height: 44px; min-width: 44px; align-items: center; justify-content: center; }
+  #mobileToggle span { width: 25px; height: 2px; background: var(--color-text-dark); }
 }
 @media (max-width: 767px) {
   body { min-width: 0; }

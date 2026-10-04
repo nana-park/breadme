@@ -8,13 +8,22 @@ import { OriginalPage } from "@/pages/original/OriginalPage";
 export function App() {
   const pageId = resolveOriginalPage();
   const [isMaterialsOpen, setIsMaterialsOpen] = useState(false);
-  const [pendingMessage, setPendingMessage] = useState(false);
   const closeMaterials = useCallback(() => setIsMaterialsOpen(false), []);
-  const showPending = useCallback(() => setPendingMessage(true), []);
+  const showPending = useCallback(() => window.alert("Coming soon!"), []);
   useEffect(() => {
     document.documentElement.lang = "en";
     document.title = "Nahyun Park";
-  }, []);
+    if (
+      [
+        "llm-based-voice-ivr",
+        "hopzie-oneclickbuilder",
+        "ai-mentoring-agent-detail",
+      ].includes(pageId)
+    ) {
+      document.body.className =
+        "bg-white text-zinc-900 font-sans antialiased selection:bg-zinc-200 selection:text-zinc-900";
+    }
+  }, [pageId]);
   return (
     <>
       <a className="original-skip-link" href="#main-content">
@@ -62,30 +71,6 @@ export function App() {
         onToggle={() => setIsMaterialsOpen((open) => !open)}
         onClose={closeMaterials}
       />
-      {pendingMessage && (
-        <div
-          className="original-pending-overlay"
-          role="presentation"
-          onClick={() => setPendingMessage(false)}
-        >
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="pending-title"
-            className="original-pending-dialog"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <h2 id="pending-title">Coming soon!</h2>
-            <button
-              autoFocus
-              type="button"
-              onClick={() => setPendingMessage(false)}
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
     </>
   );
 }

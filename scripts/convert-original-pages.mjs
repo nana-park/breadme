@@ -4,6 +4,7 @@
  * raw HTML injection, or a full-page iframe. Re-run only against the audited source.
  */
 import fs from "node:fs/promises";
+import { execFileSync } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { JSDOM } from "jsdom";
@@ -17,6 +18,16 @@ const projectRoot = path.resolve(
 const sourceRoot = path.resolve(
   process.argv[2] ?? path.join(projectRoot, "../portfolio-reference"),
 );
+const pinnedSourceCommit = "834815915647e4b3fbf9285b88b8001e37b94aa0";
+const actualSourceCommit = execFileSync(
+  "git",
+  ["-C", sourceRoot, "rev-parse", "HEAD"],
+  { encoding: "utf8" },
+).trim();
+if (actualSourceCommit !== pinnedSourceCommit)
+  throw new Error(
+    `Expected original source ${pinnedSourceCommit}, received ${actualSourceCommit}. Review and update the pin before regenerating.`,
+  );
 const outputRoot = path.join(projectRoot, "src/pages/original/generated");
 const pageDefinitions = [
   ["index.html", "OriginalHomeContent"],
@@ -35,6 +46,15 @@ const pageDefinitions = [
   ["projects/ai-mentoring-agent-detail.html", "OriginalMentoringContent"],
   ["mentoring_agent_mockup.html", "OriginalMentoringMockupContent"],
 ];
+execFileSync("git", [
+  "-C",
+  sourceRoot,
+  "diff",
+  "--quiet",
+  pinnedSourceCommit,
+  "--",
+  ...pageDefinitions.map(([file]) => file),
+]);
 const voidTags = new Set([
   "area",
   "base",
@@ -421,5 +441,5 @@ for (const [sourceFile, componentName] of pageDefinitions) {
 }
 await fs.writeFile(
   path.join(outputRoot, "conversion-manifest.json"),
-  `${JSON.stringify({ sourceRoot, sourceCommit: "8348159", pages: manifest }, null, 2)}\n`,
+  `${JSON.stringify({ sourceRepository: "https://github.com/nana-park/Portfolio", sourceCommit: actualSourceCommit, pages: manifest }, null, 2)}\n`,
 );
