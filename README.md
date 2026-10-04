@@ -15,6 +15,7 @@
 
 - 사용자 경력 자료를 근거로 AI Product Manager의 실제 역할을 소개합니다. 성과 수치를 새로 만들지 않습니다.
 - 제목: `Designing AI Product Experiences Across Markets`
+- 모바일에서는 **헤드라인만 왼쪽 정렬**합니다. 이름·직무·과거 경력·버튼과 데스크톱 정렬은 그대로입니다.
 - 모바일의 두 버튼을 세로로 배치하고, `View my work` / `Get in touch`처럼 짧게 표시합니다. 기존 Projects / Contact로 이동합니다.
 - 사용자가 선택한 **텍스트 중심 첫 화면**으로 바꿉니다. Home에서는 3D 컴포넌트를 렌더링하지 않으며, 3D는 남기고 배지만 숨기는 방식이 아닙니다.
 - Home Hero는 `src/pages/home/HomeHero.tsx`, 문구는 `src/content/site/homeHero.ts`, 스타일은 같은 폴더의 CSS Module에서 수정합니다.

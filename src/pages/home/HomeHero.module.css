@@ -111,6 +111,7 @@
     letter-spacing: 0.14em;
   }
   .title {
+    text-align: left;
     max-width: 380px;
     margin-inline: auto;
     font-size: clamp(32px, 8.8vw, 40px);

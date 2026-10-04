@@ -94,6 +94,7 @@ async function measureHome(page: Page) {
         glyphBounds,
         clippingAncestors,
         lines: lineTops.length,
+        textAlign: style.textAlign,
         fontSize: Number.parseFloat(style.fontSize),
         lineHeight: Number.parseFloat(style.lineHeight),
         fontWeight: Number.parseFloat(style.fontWeight),
@@ -291,6 +292,9 @@ for (const width of widths) {
     expect(heading.fontSize).toBeGreaterThanOrEqual(32);
     expect(heading.fontSize).toBeGreaterThan(proof.fontSize * 1.5);
     expect(heading.fontWeight).toBeGreaterThanOrEqual(500);
+    expect(heading.textAlign).toBe(width < 768 ? "left" : "center");
+    expect(eyebrow.textAlign).toBe("center");
+    expect(proof.textAlign).toBe("center");
     expect(proof.fontSize).toBeGreaterThanOrEqual(12);
     expect(eyebrow.fontSize).toBeGreaterThanOrEqual(10);
     for (const text of metrics.texts) {
