@@ -47,7 +47,9 @@ Header, Footer, Container, SectionTitle, ActionLink. 다른 페이지는 아직 
 - 320 / 390 / 767 / 768 / 1024 / 1025 / 1440px
 - 키보드, Escape, 반복 열기·닫기, 메뉴 선택, 경계 폭 전환
 - 앵커 직접 진입, 새로고침, 뒤로·앞으로 이동
-- 200% 글자 확대, 가로 넘침, 터치 영역, reduced motion
+- 200% 루트 글꼴 확대, 가로 넘침, 터치 영역·tap 에뮬레이션, reduced motion
 - 콘솔 오류와 자동 접근성 검사
+
+GitHub-hosted Chromium의 브라우저 검사 11개와 컴포넌트 검사 6개가 통과했습니다. 초기 앵커 복원과 화면 경계의 포커스 경합도 발견·수정 후 재검사했습니다.
 
 실행 결과와 한계는 [검수 기록](../../../docs/qa/foundation-verification.md)에 별도로 기록합니다.

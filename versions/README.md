@@ -3,7 +3,9 @@
 ## 현재 상태
 
 - 현재 작업 버전: `v0.1.0` 준비 중 (출시되지 않음)
-- 현재 완료 범위: 설계 검토 + 반응형 React 기본 구조
+- 현재 완료 범위: 설계 검토 + 반응형 React 기본 구조 + 기능 코드 자체 검수
+- 검수 결과: 로컬 코드·타입·빌드, 컴포넌트 6개, GitHub-hosted 브라우저 11개 통과
+- 검토 링크: [Draft PR #1](https://github.com/nana-park/portfolio-react/pull/1)
 - 다음 목표: Home 콘텐츠 이관과 최종 디자인 확인
 - 작업 브랜치: `feature/responsive-react-foundation`
 - 기준 브랜치: `docs/collaboration-ground-rules` (`4b07328`)

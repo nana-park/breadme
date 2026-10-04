@@ -16,8 +16,14 @@
 - [Home][All Viewports][KO] 본문 바로가기, 키보드 메뉴와 실제 앵커 이동
 - [Home][All Viewports][EN] 기존 breadme 브랜드와 영어 Hero 원문 연결 (영어 UI 전체 지원 아님)
 - [Home][All Viewports][KO] 이관 전 상태와 기존 포트폴리오 링크를 명확히 표시
-- [Home][All Viewports] 컴포넌트 테스트, 7개 폭 브라우저·접근성 검사와 PR CI 구성
+- [Home][All Viewports] 컴포넌트 테스트 6개, 7개 폭을 포함한 브라우저·접근성·터치 검사 11개와 PR CI 구성
 - [Docs] 반응형 HR 탐색 전략, 설계 검토, 쉬운 README와 검수 기록
+
+### Fixed
+
+- [Home][Mobile] 320px에서 앵커 새로고침·직접 진입 위치 복원
+- [Home][Mobile][Tablet] 767↔768px 메뉴 전환 시 키보드 포커스 보존
+- [Home][KO][All Viewports] 한국어 단어 중간 줄바꿈 완화
 
 ### Changed
 

@@ -76,7 +76,9 @@ npm run test:e2e
 
 Linux에서 브라우저 시스템 의존성이 없다면 `npx playwright install --with-deps chromium`을 사용합니다. 이미 설치된 Chromium을 사용하는 검수 환경은 `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH`에 실행 파일 경로를 지정할 수 있습니다. 일반 사용자는 설정할 필요 없습니다.
 
-검사 상세와 **통과 / 미실행 구분**은 [이번 검수 기록](docs/qa/foundation-verification.md)에 있습니다.
+2026-10-04 자체 검수: 코드·타입·빌드와 컴포넌트 테스트 6개, GitHub CI의 브라우저 테스트 11개가 통과했습니다. 320–1440px의 7개 폭과 키보드·터치·글꼴 확대를 확인했습니다. 로컬 브라우저 실행은 환경 제한으로 막혀 GitHub-hosted Chromium에서 검사했습니다.
+
+검사 상세와 **통과 / 미실행 구분**은 [이번 검수 기록](docs/qa/foundation-verification.md)에 있습니다. [Draft PR #1](https://github.com/nana-park/portfolio-react/pull/1)에서 최신 커밋의 CI 결과를 볼 수 있습니다.
 
 ## 어디를 고치면 되나요?
 
