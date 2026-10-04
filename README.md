@@ -5,7 +5,7 @@
 - [검토 중인 Draft PR #1](https://github.com/nana-park/breadme/pull/1)
 - [기존 공개 포트폴리오](https://nana-park.github.io/Portfolio/)
 - 원본 기준 커밋: `834815915647e4b3fbf9285b88b8001e37b94aa0`
-- 새 게시 주소: https://nana-park.github.io/breadme/ (React 첫 배포 검증 진행 중)
+- 새 게시 주소: https://nana-park.github.io/breadme/ (배포 결과는 Actions와 deployment.json에서 확인)
 - 기존 `Portfolio` 저장소·공개 사이트는 그대로 유지합니다. 이름을 바꾼 것은 이 React 저장소뿐입니다.
 
 ## 지금 된 것
@@ -116,7 +116,7 @@ src/
 
 ## 브랜치와 공개 상태
 
-최신 협업 규칙을 보존하려고 `docs/collaboration-ground-rules`에서 `feature/responsive-react-foundation`을 만들었습니다. Draft PR 대상도 문서 브랜치이며 main이나 운영 사이트가 자동으로 바뀌지 않습니다.
+최신 협업 규칙을 보존하려고 `docs/collaboration-ground-rules`에서 `feature/responsive-react-foundation`을 만들었습니다. 처음에는 문서 브랜치를 대상으로 검토했고, 공개·main 병합 승인 후 PR 대상을 main으로 전환합니다. 문서와 코드의 기존 이력은 일반 merge로 보존합니다.
 
 이번에는 사용자가 검수한 변경을 main에 합치고 main에서만 게시하는 방식을 승인했습니다. 기존 문서·기능 이력을 보존하는 merge commit을 사용하며, PR 검사를 통과한 변경만 main에 반영합니다.
 

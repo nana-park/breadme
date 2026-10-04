@@ -7,16 +7,16 @@
 - 원본 기준: `nana-park/Portfolio@834815915647e4b3fbf9285b88b8001e37b94aa0`
 - Articles: 영어 본문 18개·6쪽 목록·읽기와 복귀 구현
 - 파일 준비: 원본 147개 + 외부 211개 SHA-256 검증, 첫 준비 약 302 MiB
-- 로컬 검수: lint·typecheck·단위 테스트 68개·build 통과
+- 로컬 검수: lint·typecheck·단위 테스트 77개·build 통과
 - 전체 브라우저 검수: 48개 구성, 2801632 전체 통과. 마지막 커밋 결과는 [현재 이관 검수 기록](../docs/qa/original-migration-verification.md)에 기록
-- 검토 링크: [Draft PR #1](https://github.com/nana-park/breadme/pull/1)
-- 다음 목표: 검토 결과를 바탕으로 beta 통합과 별도 공개 승인 검토
+- 검토 링크: [PR #1](https://github.com/nana-park/breadme/pull/1)
+- 다음 목표: main 통합 후 /breadme/ 실제 게시 결과 검증
 - 작업 브랜치: `feature/responsive-react-foundation`
 - 기준 브랜치: `docs/collaboration-ground-rules` (`4b07328`)
-- Draft PR 대상: `docs/collaboration-ground-rules` (기존 문서 이력 보존)
-- 사용자 확인 상태: 원본 스타일 이관 방향에 따라 작업 중. 최종 공개 승인·별도 main 승인은 완료되지 않음
-- main 반영 가능 여부: 불가. 전체 검수와 별도 main 승인 전
-- 배포 상태: 미배포. 기존 HTML 사이트 유지
+- PR 대상: `main` (공개 및 main 통합 승인 후 전환, 기존 문서 이력 보존)
+- 사용자 확인 상태: 2026-10-04 원본 이관 검수 후 공개와 main 통합 승인됨
+- main 반영 조건: PR 검사 통과 후 이력을 보존하는 merge
+- 배포 방식: main에서만 GitHub Pages /breadme/ 게시. 기존 HTML 사이트 유지
 
 위 검수 수치는 2026-10-04 문서 갱신 시점의 상태입니다. 정확한 최신 커밋과 CI 결과는 [PR checks](https://github.com/nana-park/breadme/pull/1/checks), 세부 확인 범위는 아래 검수 문서에서 확인합니다. 이전 Home 뼈대의 6개 단위·11개 브라우저 성공을 현재 전체 이관의 결과로 사용하지 않습니다.
 
@@ -25,7 +25,7 @@
 - 자료 요청 백엔드와 이력서·포트폴리오 자동 메일 전송은 비활성 상태
 - 원본의 Korean 버튼은 `Coming soon!` 안내 유지, 번역 완료 아님
 - 실제 기기·다른 브라우저·스크린리더·브라우저 자체 줌의 종합 검수 미완료
-- beta/main 병합과 공개 배포는 별도 절차
+- 실제 게시 커밋은 https://nana-park.github.io/breadme/deployment.json 에서 확인
 
 ## 문서
 

@@ -87,12 +87,18 @@ test("Home → Projects → nested detail keeps the base through refresh and Bac
     .click();
   await expect(page).toHaveURL(deployedUrl("projects.html"));
   await assertPageIdentity(page, "projects");
-  await page
-    .locator(
-      `main a[href="${deployment.pathname}projects/llm-based-voice-ivr.html"]`,
-    )
-    .first()
-    .click();
+  const voiceIvrSelector = `a[href="${deployment.pathname}projects/llm-based-voice-ivr.html"]`;
+  // WHY: The first global match belongs to permanently hidden archived cards.
+  // Follow the visible LINE WORKS disclosure, as a visitor does, before its link.
+  const voiceIvrProject = page.locator("main details:visible").filter({
+    has: page.locator(voiceIvrSelector),
+  });
+  await expect(voiceIvrProject).toHaveCount(1);
+  await voiceIvrProject.locator(":scope > summary").click();
+  await expect(voiceIvrProject).toHaveAttribute("open", "");
+  const voiceIvrLink = voiceIvrProject.locator(voiceIvrSelector);
+  await expect(voiceIvrLink).toBeVisible();
+  await voiceIvrLink.click();
   await expect(page).toHaveURL(
     deployedUrl("projects/llm-based-voice-ivr.html"),
   );
