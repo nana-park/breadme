@@ -17,6 +17,9 @@ export function HomePage() {
         className={styles.hero}
       >
         <div className={styles.heroContent}>
+          <p className={styles.personName} lang="en">
+            {homeContent.name}
+          </p>
           <p className={styles.role} lang="en">
             {homeContent.hero.role}
           </p>

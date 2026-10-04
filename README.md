@@ -43,7 +43,7 @@
 
 ## 내 컴퓨터에서 실행하기
 
-Node.js 24 LTS와 npm이 필요합니다. `.nvmrc`는 사용할 Node 버전을 표시하는 파일입니다. 저장소를 내려받은 `portfolio-react` 폴더에서 터미널을 열고 실행하세요.
+Node.js 24 LTS(24.15.0 이상)와 npm이 필요합니다. `.nvmrc`는 사용할 Node 버전을 표시하는 파일입니다. 저장소를 내려받은 `portfolio-react` 폴더에서 터미널을 열고 실행하세요.
 
 ```bash
 npm ci

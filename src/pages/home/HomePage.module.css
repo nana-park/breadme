@@ -8,6 +8,11 @@
 .heroContent {
   min-width: 0;
 }
+.personName {
+  font-size: var(--type-small);
+  font-weight: 600;
+  margin-block-end: var(--space-3);
+}
 .role {
   color: var(--color-muted);
   font-size: var(--type-small);
