@@ -2,7 +2,8 @@
   box-sizing: border-box;
 }
 html {
-  scroll-behavior: smooth;
+  /* WHY: Immediate anchors avoid interrupted smooth-scroll/history restoration races. */
+  scroll-behavior: auto;
   scroll-padding-top: 1rem;
 }
 body {

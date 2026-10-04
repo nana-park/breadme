@@ -55,6 +55,8 @@ for (const width of widths) {
     await expect(page.locator("#projects")).toBeFocused();
     await page.reload();
     await expect(page.locator("#projects")).toBeInViewport();
+    await page.goto("/#contact");
+    await expect(page.locator("#contact")).toBeInViewport();
     for (const link of await page.locator('a[href^="#"]').all()) {
       const href = await link.getAttribute("href");
       expect(await page.locator(href!).count()).toBe(1);

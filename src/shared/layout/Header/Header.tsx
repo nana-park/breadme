@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { navigation } from "@/config/navigation";
 import { homeContent } from "@/content/site/homeContent";
 import { common } from "@/locales/ko/common";
@@ -10,17 +10,20 @@ export function Header() {
   const menuButton = useRef<HTMLButtonElement>(null);
   const navigationRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
+  const lastFocusedControl = useRef<HTMLElement | null>(null);
+
+  useLayoutEffect(() => {
     const desktop = window.matchMedia("(min-width: 768px)");
     const handleResize = () => {
-      // WHY: A focused desktop link would otherwise disappear when resizing to mobile.
-      if (desktop.matches && document.activeElement === menuButton.current) {
+      // WHY: CSS can blur a newly hidden control before the media-query event runs.
+      const focused =
+        document.activeElement === document.body
+          ? lastFocusedControl.current
+          : document.activeElement;
+      if (desktop.matches && focused === menuButton.current) {
         navigationRef.current?.querySelector<HTMLAnchorElement>("a")?.focus();
       }
-      if (
-        !desktop.matches &&
-        navigationRef.current?.contains(document.activeElement)
-      ) {
+      if (!desktop.matches && navigationRef.current?.contains(focused)) {
         menuButton.current?.focus();
       }
       setIsMenuOpen(false);
@@ -62,7 +65,21 @@ export function Header() {
   return (
     <header className={styles.header}>
       <Container>
-        <div className={styles.headerContent}>
+        <div
+          className={styles.headerContent}
+          onFocusCapture={(event) => {
+            lastFocusedControl.current = event.target;
+          }}
+          onBlurCapture={(event) => {
+            // Keep only a focus loss caused by a control becoming display:none.
+            if (
+              event.relatedTarget ||
+              event.target.getClientRects().length > 0
+            ) {
+              lastFocusedControl.current = null;
+            }
+          }}
+        >
           <a
             className={styles.brand}
             href="#overview"

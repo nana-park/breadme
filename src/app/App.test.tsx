@@ -1,6 +1,6 @@
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { App } from "./App";
 import { navigation } from "@/config/navigation";
 import { homeContent } from "@/content/site/homeContent";
@@ -8,6 +8,19 @@ import { siteMetadata } from "@/content/site/siteMetadata";
 import { common } from "@/locales/ko/common";
 
 describe("Home foundation", () => {
+  it("restores a direct fragment only after the React sections exist", () => {
+    window.history.replaceState(null, "", "/#projects");
+    render(<App />);
+    expect(HTMLElement.prototype.scrollIntoView).toHaveBeenCalledWith({
+      behavior: "instant",
+      block: "start",
+    });
+    expect(
+      vi.mocked(HTMLElement.prototype.scrollIntoView).mock.contexts.at(-1),
+    ).toBe(document.getElementById("projects"));
+    window.history.replaceState(null, "", "/");
+  });
+
   it("renders one main heading, clear preview status, and no invented projects", () => {
     render(<App />);
     expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);
