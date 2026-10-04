@@ -2,33 +2,64 @@
 
 ## 공통 원칙
 
+- 기술 이름은 영어로 작성합니다. 화면에 표시되는 콘텐츠는 한국어와 영어를 자유롭게 사용합니다.
 - 이름만 보고 역할과 내용을 예상할 수 있어야 합니다.
+- 색상, 위치와 크기보다 제품과 화면에서 맡는 역할을 표현합니다.
 - `final`, `new`, `temp`, `copy`, 날짜만 붙인 이름은 사용하지 않습니다.
-- 같은 종류의 파일은 같은 규칙을 적용합니다.
-- 약어는 널리 이해되는 경우에만 사용합니다.
+- 버전은 파일명이 아니라 Git에서 관리합니다.
 
-## 폴더 이름
+```text
+권장: FeaturedProjectCard
+비권장: LargeOrangeCard
+
+권장: SectionTitle
+비권장: LeftPurpleTitle
+```
+
+## 구조·페이지·라우트 폴더
 
 영문 소문자 `kebab-case`를 사용합니다.
 
 ```text
+pages/
 home/
-project-gallery/
+project-detail/
+design-system/
 ground-rules/
 ```
 
-## React 컴포넌트
+## 컴포넌트 폴더와 파일
 
-파일명과 컴포넌트 이름 모두 `PascalCase`를 사용하며 서로 일치시킵니다.
+컴포넌트 폴더, JSX 파일과 컴포넌트 이름은 동일한 `PascalCase`를 사용합니다.
 
 ```text
-Header.jsx              → function Header()
-ProjectCard.jsx         → function ProjectCard()
-HomePage.jsx            → function HomePage()
-HeroSection.jsx         → function HeroSection()
+HeroSection/
+├─ HeroSection.jsx
+└─ HeroSection.module.css
+
+ProjectCard/
+├─ ProjectCard.jsx
+└─ ProjectCard.module.css
+```
+
+```text
+Header.jsx       → function Header()
+HomePage.jsx     → function HomePage()
+HeroSection.jsx  → function HeroSection()
 ```
 
 하나의 컴포넌트 파일은 기본적으로 하나의 대표 컴포넌트를 내보냅니다.
+
+## 페이지와 섹션
+
+```text
+HomePage.jsx
+ProjectsPage.jsx
+HeroSection.jsx
+FeaturedProjectsSection.jsx
+```
+
+기획 문서, 페이지 README, 라우트와 컴포넌트에서 같은 화면 용어를 사용합니다.
 
 ## Hook
 
@@ -40,7 +71,7 @@ useScrollPosition.js
 useOutsideClick.js
 ```
 
-## 일반 JavaScript와 데이터
+## 일반 JavaScript와 콘텐츠
 
 역할이 드러나는 `camelCase`를 사용합니다.
 
@@ -48,19 +79,12 @@ useOutsideClick.js
 formatDate.js
 projectData.js
 articleCategories.js
-```
-
-여러 상수만 보관하는 파일은 용도를 명확히 표현합니다.
-
-```text
-routes.js
-designTokens.js
 socialLinks.js
 ```
 
-## CSS
+## CSS 파일
 
-전역 역할 파일은 영문 소문자 `kebab-case`를 사용합니다.
+전역 스타일 파일은 영문 소문자 `kebab-case`를 사용합니다.
 
 ```text
 design-tokens.css
@@ -68,31 +92,18 @@ typography.css
 globals.css
 ```
 
-컴포넌트 전용 CSS는 컴포넌트와 동일한 `PascalCase` 이름을 사용합니다.
+컴포넌트 스타일은 컴포넌트와 동일한 `PascalCase` 이름에 `.module.css`를 붙입니다.
 
 ```text
 ProjectCard.jsx
-ProjectCard.css
+ProjectCard.module.css
 ```
 
-CSS 클래스는 `kebab-case`를 사용하고 의미 기반으로 작성합니다.
-
-```css
-.project-card {}
-.project-card__title {}
-.project-card--featured {}
-```
-
-색상이나 위치만 설명하는 이름은 피합니다.
-
-```text
-권장: project-card__title
-비권장: orange-text, left-box
-```
+CSS 클래스 규칙과 스타일 격리 방식은 [`08-css-and-responsive-styles.md`](08-css-and-responsive-styles.md)를 따릅니다.
 
 ## 이미지와 영상
 
-모든 에셋 파일은 영문 소문자 `kebab-case`를 사용합니다.
+모든 에셋은 영문 소문자 `kebab-case`를 사용합니다.
 
 ```text
 home-hero-team.webp
@@ -107,7 +118,7 @@ article-ai-accessibility-cover.webp
 [영역]-[콘텐츠]-[용도].[확장자]
 ```
 
-반응형 또는 크기 변형이 실제로 필요하면 마지막에 규격을 붙입니다.
+실제로 다른 에셋이 필요할 때만 화면 또는 크기 정보를 붙입니다.
 
 ```text
 home-hero-team-mobile.webp
@@ -135,7 +146,7 @@ README.md
 02-directory-structure.md
 ```
 
-## Boolean과 이벤트 이름
+## Boolean과 이벤트
 
 Boolean 값은 상태를 질문처럼 읽을 수 있게 작성합니다.
 
@@ -153,3 +164,13 @@ handleMenuOpen
 handleProjectSelect
 handleFormSubmit
 ```
+
+## 이름 검토 시점
+
+페이지 완료 검토에서 다음을 확인합니다.
+
+- 파일명, 폴더명과 컴포넌트 이름 일치
+- 기획 문서와 코드 용어 일치
+- 오래된 이름이 import에 남아 있지 않음
+- 동일 역할을 서로 다른 이름으로 부르지 않음
+- 외형만 설명하거나 임시 상태를 나타내는 이름이 없음

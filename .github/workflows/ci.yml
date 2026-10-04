@@ -1,0 +1,58 @@
+name: Foundation checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npx playwright install --with-deps chromium
+      - name: Capture Home and mobile gallery before aggregate browser checks
+        run: |
+          npx playwright test tests/e2e/home-checkpoint.spec.ts --workers=1 --retries=0 --output=checkpoint-results
+          npx playwright test tests/e2e/routes.spec.ts --grep "route smoke 390 enjoy.html" --workers=1 --retries=0 --output=checkpoint-results/enjoy
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: home-checkpoint
+          path: checkpoint-results/
+          retention-days: 7
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: always()
+        with:
+          name: route-mobile-evidence
+          path: test-results/routes-route-smoke-390-*/
+          retention-days: 7
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: always()
+        with:
+          name: route-desktop-evidence
+          path: test-results/routes-route-smoke-1440-*/
+          retention-days: 7
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: always()
+        with:
+          name: browser-verification
+          path: |
+            playwright-report/
+            test-results/
+            !test-results/routes-route-smoke-*/
+          retention-days: 7

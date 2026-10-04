@@ -1,0 +1,24 @@
+.footer {
+  border-top: 1px solid var(--color-border);
+  padding-block: var(--space-6);
+}
+.footerContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  color: var(--color-muted);
+  font-size: var(--type-small);
+}
+.footerContent a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--control-size);
+  color: var(--color-ink);
+}
+@media (max-width: 767px) {
+  .footerContent {
+    align-items: start;
+    flex-direction: column;
+  }
+}

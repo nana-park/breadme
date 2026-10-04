@@ -1,0 +1,29 @@
+.actionLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  min-height: var(--control-size);
+  padding: var(--space-3) var(--space-5);
+  border: 1px solid var(--color-ink);
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  text-decoration: none;
+}
+.primary {
+  color: var(--color-surface);
+  background: var(--color-ink);
+}
+.secondary {
+  color: var(--color-ink);
+  background: transparent;
+}
+.actionLink:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+@media (max-width: 767px) {
+  .actionLink {
+    width: 100%;
+  }
+}

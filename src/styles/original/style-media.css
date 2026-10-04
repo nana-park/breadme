@@ -1,0 +1,237 @@
+/* ===========================
+   Media / Speaking Section (Side-by-Side Layout)
+   =========================== */
+
+.media-section {
+    padding: 10rem 0;
+    background-color: #000000;
+    color: #ffffff;
+    /* Reset text align center since we use grid now, but wrapper handles it */
+    position: relative;
+    overflow: hidden;
+}
+
+.media-container {
+    max-width: 1400px;
+    /* Increased from 1000px to accommodate side-by-side */
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+}
+
+/* New Grid Layout Structure -> 2-Column Desktop */
+.media-layout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    /* Wide gap prevents text overlapping video */
+    align-items: center;
+    /* Vertically center content */
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Left Column Styling */
+.media-text-col {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    min-width: 0;
+    /* Prevents text overflow */
+}
+
+/* Updated Typography to match .projects-title */
+.media-title {
+    font-family: var(--font-sans) !important;
+    font-size: 3.5rem !important;
+    /* STRICTLY 3.5rem to match other sections */
+    font-weight: 600 !important;
+    line-height: 1.15 !important;
+    color: #ffffff !important;
+    letter-spacing: -0.01em !important;
+    text-align: left !important;
+    margin-bottom: 1.5rem !important;
+    display: block !important;
+    /* white-space: nowrap removed to prevent clipping in 2-col */
+}
+
+.media-title span {
+    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif !important;
+    font-style: italic !important;
+    font-weight: 600 !important;
+}
+
+/* Subtitle Styling */
+.media-subtitle {
+    display: block !important;
+    font-family: var(--font-sans) !important;
+    font-size: 1.05rem !important;
+    font-weight: 300 !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    line-height: 1.6 !important;
+    margin-top: 0 !important;
+    text-align: left !important;
+    margin-bottom: 2.5rem !important;
+    max-width: 90%;
+    /* Slight padding before gap */
+}
+
+/* View More */
+.media-actions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+/* Right Column */
+.media-video-col {
+    min-width: 0;
+    /* Prevents flex/grid blowouts */
+}
+
+/* Video Wrapper */
+.video-wrapper {
+    position: relative;
+    border-radius: 32px;
+    overflow: hidden;
+    width: 100% !important;
+    margin: 0;
+
+    aspect-ratio: 16 / 9;
+    background: #111;
+    cursor: pointer;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.08);
+    /* Dark mode premium shadow */
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        box-shadow 0.4s ease;
+    display: block;
+    text-decoration: none;
+}
+
+.video-wrapper:hover {
+    transform: scale(1.02) translateY(-4px);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8),
+        0 0 0 1px rgba(255, 255, 255, 0.15),
+        0 0 40px rgba(217, 119, 6, 0.1);
+    /* Subtle amber glow on hover */
+}
+
+/* Existing Button/Video styles preserved */
+.video-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.video-wrapper:hover .video-thumbnail {
+    opacity: 0.6;
+}
+
+.play-btn-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.play-icon {
+    width: 32px;
+    height: 32px;
+    fill: white;
+    margin-left: 4px;
+}
+
+.video-wrapper:hover .play-btn-overlay {
+    transform: translate(-50%, -50%) scale(1.1);
+    background: #ffffff;
+    border-color: #ffffff;
+}
+
+.video-wrapper:hover .play-icon {
+    fill: #000000;
+}
+
+.view-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    padding: 0.875rem 2rem;
+    border-radius: 100px;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.view-more-btn:hover {
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.arrow-icon {
+    transition: transform 0.3s ease;
+}
+
+.view-more-btn:hover .arrow-icon {
+    transform: translateX(4px);
+}
+
+
+/* Mobile Responsive */
+@media (max-width: 968px) {
+    .media-section {
+        padding: 6rem 0;
+    }
+
+    .media-layout-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .media-text-col {
+        align-items: center;
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .media-title {
+        font-size: 2.5rem !important;
+        /* Scales down exactly like .projects-title */
+        text-align: center !important;
+        margin-bottom: 1.25rem !important;
+    }
+
+    .media-subtitle {
+        text-align: center !important;
+        max-width: 100%;
+    }
+
+    .media-actions {
+        justify-content: center;
+    }
+
+    .video-wrapper {
+        border-radius: 20px;
+    }
+}

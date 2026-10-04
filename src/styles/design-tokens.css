@@ -1,0 +1,41 @@
+/* WHAT: Shared, provisional foundation tokens; final visual direction is still reviewable. */
+:root {
+  --color-page: #ffffff;
+  --color-surface: #f8f8f8;
+  --color-ink: #111111;
+  --color-muted: #52525b;
+  --color-border: #d4d4d8;
+  --color-accent: #d97706;
+  --color-focus: #145dcc;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --page-gutter: 3rem;
+  --content-width: 75rem;
+  --reading-width: 42rem;
+  --section-space: 5rem;
+  --control-size: 2.75rem;
+  --type-small: 0.875rem;
+  --type-body-large: 1.25rem;
+  --type-heading: clamp(1.75rem, 1.2rem + 1.8vw, 2.5rem);
+  --type-hero: clamp(2.75rem, 1.5rem + 3.8vw, 5rem);
+  --radius-small: 0.5rem;
+  --radius-card: 1rem;
+  --radius-pill: 999px;
+}
+@media (max-width: 1024px) {
+  :root {
+    --page-gutter: 2rem;
+    --section-space: 4rem;
+  }
+}
+@media (max-width: 767px) {
+  :root {
+    --page-gutter: 1.25rem;
+    --section-space: 3rem;
+  }
+}

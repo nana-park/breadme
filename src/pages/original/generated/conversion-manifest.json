@@ -1,0 +1,182 @@
+{
+  "sourceRepository": "https://github.com/nana-park/Portfolio",
+  "sourceCommit": "834815915647e4b3fbf9285b88b8001e37b94aa0",
+  "pages": [
+    {
+      "sourceFile": "index.html",
+      "componentName": "OriginalHomeContent",
+      "sectionIds": [
+        "home",
+        "partners",
+        "footprint",
+        "history",
+        "history-2",
+        "vision"
+      ],
+      "elementCount": 259,
+      "textCount": 523,
+      "inlineStyleBlocks": 4,
+      "importantRules": 0
+    },
+    {
+      "sourceFile": "about.html",
+      "componentName": "OriginalAboutContent",
+      "sectionIds": [
+        "about",
+        "media"
+      ],
+      "elementCount": 53,
+      "textCount": 119,
+      "inlineStyleBlocks": 1,
+      "importantRules": 0
+    },
+    {
+      "sourceFile": "career.html",
+      "componentName": "OriginalCareerContent",
+      "sectionIds": [
+        "about",
+        "history",
+        "history-2",
+        "testimonials"
+      ],
+      "elementCount": 181,
+      "textCount": 361,
+      "inlineStyleBlocks": 2,
+      "importantRules": 1
+    },
+    {
+      "sourceFile": "qualified.html",
+      "componentName": "OriginalQualifiedContent",
+      "sectionIds": [
+        "about",
+        "toolkit-grid",
+        "certifications-runway",
+        "how-work"
+      ],
+      "elementCount": 245,
+      "textCount": 477,
+      "inlineStyleBlocks": 1,
+      "importantRules": 0
+    },
+    {
+      "sourceFile": "enjoy.html",
+      "componentName": "OriginalEnjoyContent",
+      "sectionIds": [
+        "enjoy"
+      ],
+      "elementCount": 237,
+      "textCount": 430,
+      "inlineStyleBlocks": 1,
+      "importantRules": 0
+    },
+    {
+      "sourceFile": "projects.html",
+      "componentName": "OriginalProjectsContent",
+      "sectionIds": [
+        "projects"
+      ],
+      "elementCount": 753,
+      "textCount": 1467,
+      "inlineStyleBlocks": 1,
+      "importantRules": 0
+    },
+    {
+      "sourceFile": "research.html",
+      "componentName": "OriginalResearchContent",
+      "sectionIds": [
+        "research"
+      ],
+      "elementCount": 71,
+      "textCount": 141,
+      "inlineStyleBlocks": 1,
+      "importantRules": 0
+    },
+    {
+      "sourceFile": "articles.html",
+      "componentName": "OriginalArticlesContent",
+      "sectionIds": [
+        "articles",
+        "article-detail"
+      ],
+      "elementCount": 28,
+      "textCount": 70,
+      "inlineStyleBlocks": 1,
+      "importantRules": 0
+    },
+    {
+      "sourceFile": "lectures.html",
+      "componentName": "OriginalLecturesContent",
+      "sectionIds": [
+        "lectures"
+      ],
+      "elementCount": 83,
+      "textCount": 168,
+      "inlineStyleBlocks": 1,
+      "importantRules": 0
+    },
+    {
+      "sourceFile": "awards.html",
+      "componentName": "OriginalAwardsContent",
+      "sectionIds": [
+        "awards"
+      ],
+      "elementCount": 220,
+      "textCount": 342,
+      "inlineStyleBlocks": 1,
+      "importantRules": 1
+    },
+    {
+      "sourceFile": "contact.html",
+      "componentName": "OriginalContactContent",
+      "sectionIds": [
+        "contact"
+      ],
+      "elementCount": 87,
+      "textCount": 185,
+      "inlineStyleBlocks": 1,
+      "importantRules": 0
+    },
+    {
+      "sourceFile": "projects/llm-based-voice-ivr.html",
+      "componentName": "OriginalVoiceIvrContent",
+      "sectionIds": [
+        "llm-based-voice-ivr"
+      ],
+      "elementCount": 890,
+      "textCount": 1624,
+      "inlineStyleBlocks": 9,
+      "importantRules": 0
+    },
+    {
+      "sourceFile": "projects/hopzie-oneclickbuilder.html",
+      "componentName": "OriginalHopzieContent",
+      "sectionIds": [
+        "hopzie-oneclickbuilder"
+      ],
+      "elementCount": 671,
+      "textCount": 1242,
+      "inlineStyleBlocks": 6,
+      "importantRules": 0
+    },
+    {
+      "sourceFile": "projects/ai-mentoring-agent-detail.html",
+      "componentName": "OriginalMentoringContent",
+      "sectionIds": [
+        "ai-mentoring-agent-detail"
+      ],
+      "elementCount": 609,
+      "textCount": 1012,
+      "inlineStyleBlocks": 6,
+      "importantRules": 0
+    },
+    {
+      "sourceFile": "mentoring_agent_mockup.html",
+      "componentName": "OriginalMentoringMockupContent",
+      "sectionIds": [],
+      "elementCount": 95,
+      "textCount": 156,
+      "inlineStyleBlocks": 1,
+      "importantRules": 0
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+/* Contact Section Styles - Legacy Overrides Removed */
+#contact {
+    position: relative;
+    z-index: 10;
+}
+
+/* Ensure content is above the overlay */
+#contact .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* 3-Column Grid for Contact Cards (Centered & Tightened) */
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1.5rem auto 0;
+    /* Centered and tightened margin */
+    text-align: left;
+    width: 100%;
+    max-width: 900px;
+    /* Limits horizontal scatter */
+}
+
+@media (max-width: 768px) {
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Contact Card Styling (2/3 Resized) */
+.contact-card {
+    background: #111111;
+    border: 1px solid #333;
+    border-radius: 4px;
+    padding: 1.3rem;
+    /* Reduced from 2rem */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 170px;
+    /* Reduced from 250px */
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    border-color: #555;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Labels (DOMAIN, LOCATION, CONTACT) */
+.contact-card-label {
+    font-family: var(--font-sans, sans-serif);
+    font-size: 0.7rem;
+    /* Slightly smaller */
+    font-weight: 700;
+    color: #666;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    /* Reduced from 1.5rem */
+}
+
+/* Content Text */
+.contact-card-content {
+    font-family: var(--font-sans, sans-serif);
+    font-size: 0.95rem;
+    /* Slightly smaller */
+    color: #fff;
+    line-height: 1.4;
+    margin-bottom: 1.25rem;
+    /* Reduced from 2rem */
+    flex-grow: 1;
+}
+
+/* Buttons inside cards */
+.contact-card-btn {
+    display: inline-block;
+    background: #222;
+    color: #ccc;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.75rem 1.25rem;
+    text-decoration: none;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    width: fit-content;
+}
+
+.contact-card-btn:hover {
+    background: #333;
+    color: #fff;
+    border-color: #666;
+}
+
+/* Specific Layout Adjustments */
+.contact-links-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Standardized Typography Match with Expertise (Skills) */
+#contact .section-title {
+    font-family: var(--font-serif, serif);
+    font-size: 3.5rem;
+    font-weight: 400;
+    font-style: normal;
+    color: #ffffff !important;
+    margin-bottom: 0.25rem;
+    line-height: 1.2;
+    text-transform: none;
+    text-align: center;
+    letter-spacing: normal;
+}
+
+#contact .section-title em {
+    font-style: italic;
+    color: #ffffff !important;
+}
+
+#contact .section-subtitle {
+    font-family: var(--font-sans, sans-serif);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: #ffffff !important;
+    opacity: 1.0 !important;
+    margin: 3rem auto 3rem;
+    font-weight: 300;
+    max-width: 600px;
+    text-align: center;
+    display: block;
+}
+
+/* Email Button (matching reference design) */
+.contact-email-btn {
+    background: #ffffff;
+    border: 2px solid #ffffff;
+    color: #111111;
+    padding: 1rem 2rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    margin: 0 auto 2rem;
+    /* Reduced from 4rem to tighten spacing */
+    display: block;
+}
+
+.contact-email-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.9);
+}

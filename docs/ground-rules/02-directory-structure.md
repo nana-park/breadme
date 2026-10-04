@@ -2,102 +2,155 @@
 
 ## 기본 원칙
 
-- 환경별로 소스 폴더를 복제하지 않습니다.
-- 공통 UI, 페이지, 기능, 데이터, 스타일과 에셋의 역할을 분리합니다.
-- 특정 페이지에서만 사용하는 코드는 해당 페이지 가까이에 둡니다.
-- 두 곳 이상에서 실제로 재사용할 때 공통 영역으로 이동합니다.
+- 페이지 전용 코드는 해당 페이지 가까이에 둡니다.
+- 여러 페이지에서 재사용하는 코드만 `shared/`에 둡니다.
+- 콘텐츠는 레이아웃 코드와 분리합니다.
+- 환경과 버전은 폴더 복사가 아니라 Git으로 관리합니다.
+- 긴 import는 `@/` 별칭으로 줄입니다.
 
 ## 목표 구조
 
 ```text
 Portfolio-React/
 ├─ docs/
-│  └─ ground-rules/
+│  ├─ ground-rules/
+│  └─ design-system/
+├─ versions/
 ├─ public/
 │  ├─ favicon/
-│  ├─ fonts/
-│  └─ static/
+│  ├─ social/
+│  └─ downloads/
 ├─ src/
 │  ├─ app/
-│  │  ├─ App.jsx
-│  │  ├─ router.jsx
-│  │  └─ providers.jsx
-│  ├─ assets/
-│  │  ├─ icons/
-│  │  ├─ images/
-│  │  └─ videos/
-│  ├─ components/
-│  │  ├─ layout/
-│  │  └─ ui/
-│  ├─ data/
-│  ├─ features/
-│  ├─ hooks/
 │  ├─ pages/
+│  ├─ shared/
+│  │  ├─ layout/
+│  │  ├─ ui/
+│  │  ├─ assets/
+│  │  ├─ hooks/
+│  │  └─ utils/
+│  ├─ content/
+│  ├─ locales/
+│  │  ├─ ko/
+│  │  └─ en/
+│  ├─ config/
 │  ├─ styles/
-│  │  ├─ reset.css
-│  │  ├─ tokens.css
-│  │  ├─ typography.css
-│  │  ├─ animations.css
-│  │  └─ globals.css
-│  ├─ utils/
-│  └─ main.jsx
-├─ .gitignore
-├─ index.html
-├─ package.json
-└─ vite.config.js
+│  └─ main.tsx
+└─ .github/
 ```
 
-## 영역별 역할
-
-### `docs/`
-
-개발 및 운영 규칙과 설계 결정을 보관합니다. 실제 화면에서 불러오는 콘텐츠는 두지 않습니다.
-
-### `public/`
-
-빌드 과정에서 변환할 필요 없이 주소가 그대로 유지되어야 하는 파일을 둡니다. 파비콘, 공유 이미지, 정적 다운로드 파일 등이 대상입니다.
-
-### `src/assets/`
-
-컴포넌트에서 import하여 사용하는 이미지, 아이콘과 영상을 둡니다.
-
-### `src/components/ui/`
-
-Button, Tag, SectionTitle처럼 여러 화면에서 재사용하는 작은 UI를 둡니다.
-
-### `src/components/layout/`
-
-Header, Navigation, Footer, Container처럼 페이지 구조를 구성하는 공통 컴포넌트를 둡니다.
-
-### `src/pages/`
-
-라우트 단위의 화면을 둡니다. Home 전용 섹션은 다음처럼 Home 페이지 안에서 관리합니다.
+## 페이지 구조
 
 ```text
 src/pages/home/
-├─ HomePage.jsx
-├─ HomePage.css
-└─ sections/
-   ├─ HeroSection.jsx
-   ├─ HistorySection.jsx
-   └─ VisionSection.jsx
+├─ HomePage.tsx
+├─ HomePage.module.css
+├─ README.md
+├─ sections/
+│  ├─ HeroSection/
+│  │  ├─ HeroSection.tsx
+│  │  └─ HeroSection.module.css
+│  └─ HistorySection/
+└─ assets/
 ```
 
-### `src/features/`
+- 페이지 폴더의 섹션 순서는 실제 화면 순서와 맞춥니다.
+- 페이지 전용 컴포넌트, CSS Module과 이미지는 페이지 폴더에 둡니다.
+- 공통 코드를 페이지에 복사하지 않고 import하여 조립합니다.
+- 공통 컴포넌트 내부 스타일을 페이지 CSS Module에 복사하거나 외부에서 직접 덮어쓰지 않습니다.
 
-여러 컴포넌트와 상태, 데이터 처리가 함께 필요한 독립 기능을 둡니다. 예: article-filter, project-gallery, contact-form.
+## 콘텐츠
 
-### `src/data/`
+기획자가 확인하거나 자주 바꿀 수 있는 이름, 소개 문구, 프로젝트 설명, 역할, 기간, 성과, 태그, 링크, 연락처와 버튼 문구는 `src/content/`에 둡니다.
 
-프로젝트, 경력, 아티클처럼 코드와 분리된 구조화 콘텐츠를 둡니다.
+색상, 간격, Grid, 애니메이션, 라우팅과 상태 처리는 콘텐츠가 아닙니다.
 
-### `src/styles/`
+공통 공식 명칭은 `docs/content/shared-terms.md`를 문서 기준으로 삼고, 구현 시 `src/content/shared/terms.ts`의 단일 원본으로 관리합니다. 반복 UI 문구는 `src/locales/ko/`, `src/locales/en/`에 둡니다.
 
-사이트 전체 디자인 토큰과 전역 스타일만 둡니다. 페이지 전용 스타일을 전역 파일에 계속 추가하지 않습니다.
+## 페이지 README 생성 조건
+
+다음 중 하나라도 해당하면 페이지 README를 만듭니다.
+
+- 주요 섹션이 두 개 이상
+- 별도 콘텐츠 데이터가 있음
+- 디자인 예외가 있음
+- 사용자 인터랙션이 있음
+- 공통 컴포넌트를 사용하거나 제공함
+- 기획 결정의 이유를 기록해야 함
+- 구체적인 확장 계획이 생김
+
+단순한 페이지는 README 없이 시작할 수 있으며, 조건이 생기는 시점에 추가합니다. 빈 README를 미리 만들지 않습니다.
+
+README에는 페이지 목적, 섹션 순서, 관련 콘텐츠, 공통 컴포넌트, 디자인 예외와 확인할 상태를 기록합니다.
+
+## README 업데이트 기준
+
+다음 변경과 같은 PR에서 README도 업데이트합니다.
+
+- 섹션 추가·삭제·순서 변경
+- 페이지 목적, 라우트 또는 핵심 사용자 흐름 변경
+- 콘텐츠 원본 위치 변경
+- 디자인 예외 추가·삭제
+- 공통 컴포넌트 적용 상태 변경
+
+오탈자, 단순 이미지 교체, 작은 간격 수정에는 README 변경이 필요하지 않습니다.
+
+## 공통화 판단
+
+공통 코드를 복사하지 않습니다. 페이지 전용 컴포넌트가 공통 Button, Container와 SectionTitle을 import하여 조립합니다.
+
+### 공통화 후보 기준
+
+다음 질문을 기준으로 판단합니다.
+
+1. 역할과 의미가 같은가?
+2. 상태와 동작이 같은가?
+3. 차이가 디자인 토큰 또는 명확한 variant로 설명되는가?
+4. 변경될 때 여러 페이지가 함께 바뀌는가?
+5. 공통화 때문에 페이지별 Boolean prop이 계속 늘어나지 않는가?
+
+개발 도중과 일반 PR에서는 공통화 후보를 찾거나 기록하지 않습니다. 현재 페이지 구현에 집중합니다.
+
+공통 컴포넌트를 직접 변경한 PR만 영향받는 페이지를 대상으로 회귀 테스트합니다. 이는 공통화 검토가 아니라 기존 화면 보호를 위한 테스트입니다.
+
+## 공통화 검토 시점
+
+### 페이지 완료 점검
+
+페이지를 완료 버전으로 표시하기 전에 약 15분 동안 현재 페이지와 이미 완료된 모든 페이지를 처음부터 비교합니다.
+
+- 역할과 의미가 유사한 컴포넌트 전체 탐색
+- 전체 공통화, variant, 공통 뼈대, 로직만 공유, 토큰만 공유 또는 별도 유지 중 하나를 결정
+- 지나치게 복잡하거나 중복된 컴포넌트 확인
+- 페이지 README 필요 여부와 최신 상태
+- 콘텐츠와 레이아웃 분리
+- 공통 컴포넌트 적용표 갱신
+
+기술적 공통화로 화면 변화가 없으면 개발자가 진행하고 보고할 수 있습니다. 디자인 통일이나 사용자에게 보이는 변화는 후보를 묶어 사용자에게 확인합니다.
+
+큰 리팩터링이 발견되면 페이지 작업에 섞지 않고 별도 브랜치로 분리합니다.
+
+### `beta → main` 점검
+
+최대 30분 동안 최종 상태만 확인합니다.
+
+- 주요 페이지 README가 현재 화면과 일치하는지 확인
+- 공통 컴포넌트 적용표 전체 확인
+- 미결정 후보, `적용 대기`와 `디자인 예외` 확인
+- 공개를 막지 않는 개선은 다음 버전으로 이관
+
+## 공통 컴포넌트 적용 상태
+
+- `적용`: 공통 컴포넌트 사용
+- `적용 대기`: 대상이지만 아직 마이그레이션하지 않음
+- `디자인 예외`: 의도적으로 다르며 이유와 재검토 조건이 있음
+- `해당 없음`: 역할 자체가 다름
+
+외형이나 기능 변화가 없는 리팩터링은 개발자가 진행하고 보고할 수 있습니다. 사용자에게 보이는 변화가 있으면 적용 전 확인합니다.
+
+현황은 [`docs/design-system/component-adoption.md`](../design-system/component-adoption.md)에서 관리합니다.
 
 ## 금지 구조
-
-다음과 같은 중복 폴더는 만들지 않습니다.
 
 ```text
 stage/
@@ -107,6 +160,12 @@ backup/
 final/
 final-new/
 real-final/
+mobile/
+desktop/
 ```
 
-환경과 버전은 Git 브랜치, 커밋과 태그로 구분합니다.
+모바일·데스크톱은 별도 코드 복사본으로 관리하지 않고 동일 컴포넌트의 반응형 스타일로 관리합니다.
+
+## 초기 구현의 타입 검사
+
+기본 구조는 TypeScript를 사용합니다. 화면 컴포넌트는 `.tsx`, 데이터와 설정은 `.ts`이며 기존 문서의 JSX/JavaScript 예시도 같은 역할의 TSX/TypeScript에 적용합니다. `npm run typecheck`로 연결 오류를 확인합니다.

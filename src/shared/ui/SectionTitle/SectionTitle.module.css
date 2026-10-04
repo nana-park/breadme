@@ -1,0 +1,19 @@
+.sectionTitle {
+  max-width: var(--reading-width);
+}
+.eyebrow {
+  margin-block-end: var(--space-4);
+  font-size: var(--type-small);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+.sectionTitle h2 {
+  margin-block-end: var(--space-4);
+  font-size: var(--type-heading);
+  line-height: 1.25;
+  letter-spacing: -0.04em;
+}
+.description {
+  color: var(--color-muted);
+  line-height: 1.75;
+}

@@ -1,0 +1,42 @@
+/* Scoped fixes preserve the original desktop composition; only input access and mobile overflow change. */
+.original-skip-link { position: fixed; top: -100px; left: 16px; padding: 12px 20px; background: #111; color: white; z-index: 10001; }
+.original-skip-link:focus { top: 8px; }
+:focus-visible { outline: 2px solid #d97706; outline-offset: 4px; }
+.original-mobile-materials { display: none; }
+.original-menu-expanded > .original-submenu { opacity: 1; visibility: visible; }
+.navbar.gnb-expanded .mega-backdrop { height: 160px; opacity: 1; visibility: visible; }
+.navbar.original-about-open .mega-backdrop { height: 120px; }
+.popup-content[hidden] { display: none; }
+@media (max-width: 1023px) {
+  .nav-menu.active { display: flex; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; height: calc(100dvh - 70px); background: #111; z-index: 9999; align-items: center; justify-content: flex-start; padding: 24px 20px 48px; gap: 12px; overflow-y: auto; }
+  .nav-menu.active > div { height: auto; width: 100%; display: flex; flex-direction: column; align-items: center; }
+  .nav-menu.active .nav-link { color: white; min-height: 44px; justify-content: center; }
+  .nav-menu.active .original-submenu { position: static; opacity: 1; visibility: visible; transform: none; width: 100%; height: auto; gap: 0; padding: 0; }
+  .nav-menu.active .lnb-link { min-height: 44px; }
+  .nav-menu.active .original-mobile-materials { display: flex; flex-direction: row; justify-content: center; gap: 16px; color: white; }
+  .original-mobile-materials button { min-height: 44px; padding: 8px; }
+  #mobileToggle { display: flex; flex-direction: column; gap: 4px; min-height: 44px; min-width: 44px; align-items: center; justify-content: center; }
+  #mobileToggle span { width: 25px; height: 2px; background: var(--color-text-dark); }
+}
+@media (max-width: 767px) {
+  body { min-width: 0; }
+  /* Source Enjoy tabs extend to 460px on a 390px viewport; keep every filter reachable in its own row. */
+  #life-tabs { overflow-x: auto; max-width: 100%; padding-bottom: 4px; }
+  #life-tabs .life-filter-btn { flex: 0 0 auto; white-space: nowrap; min-width: 44px; min-height: 44px; padding-inline: 8px; }
+  #home { min-height: 844px; height: 100svh; }
+  #home spline-viewer { width: 100vw !important; height: 58svh !important; top: 48% !important; }
+  #home > div:last-child { bottom: 1.5rem !important; }
+  #home > div:last-child > div { gap: 12px; padding: 0 20px; }
+  #home > div:last-child a { min-height: 44px; text-align: center; }
+  #email-popup { right: 1rem !important; }
+  #email-popup:not(.minimized) { max-width: calc(100vw - 2rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .logo-track, .footprint-gallery-track { animation-play-state: paused !important; }
+  .animate-slide-up { animation: none; opacity: 1; transform: none; }
+  *, *::before, *::after { scroll-behavior: auto !important; }
+}
+.original-pending-overlay { position: fixed; inset: 0; z-index: 10002; background: #0008; display: grid; place-items: center; padding: 24px; }
+.original-pending-dialog { background: white; color: #111; padding: 32px; border-radius: 16px; max-width: 360px; width: 100%; text-align: center; }
+.original-pending-dialog h2 { font-size: 24px; font-weight: 700; }
+.original-pending-dialog button { padding: 12px 24px; margin-top: 24px; background: #111; color: #fff; border-radius: 999px; }

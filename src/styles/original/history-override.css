@@ -1,0 +1,88 @@
+/* ===========================
+   Timeline Visibility & Custom Interactions (RunwayML Style)
+   =========================== */
+
+/* Tailwind Visibility Classes logic (Required for JS filter function) */
+.item-hidden {
+    display: none !important;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.item-visible {
+    display: flex !important;
+    animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Sidebar Nav Buttons Styling */
+.filter-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0.875rem 1.25rem;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #a1a1aa;
+    background-color: transparent;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.filter-btn:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+    color: #ffffff;
+}
+
+/* Active State for the clicked pill */
+.filter-btn.active {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+/* Arrow SVG Animation */
+.filter-btn svg {
+    width: 16px;
+    height: 16px;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover svg {
+    opacity: 0.5;
+    transform: translateX(0);
+}
+
+.filter-btn.active svg {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Card Subtle Hover Effect */
+.history-card {
+    background-color: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.history-card:hover {
+    background-color: #151515;
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+}
