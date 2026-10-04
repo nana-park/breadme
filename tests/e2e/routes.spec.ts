@@ -24,6 +24,14 @@ for (const width of [390, 1440]) {
       await page.setViewportSize({ width, height: width === 390 ? 844 : 900 });
       const errors: string[] = [],
         badResources: string[] = [];
+      const consoleErrors: Array<{ text: string; url: string }> = [];
+      page.on("console", (message) => {
+        if (message.type() === "error")
+          consoleErrors.push({
+            text: message.text(),
+            url: message.location().url,
+          });
+      });
       page.on("pageerror", (error) => errors.push(error.message));
       page.on("response", (response) => {
         if (
@@ -33,7 +41,19 @@ for (const width of [390, 1440]) {
           badResources.push(`${response.status()} ${response.url()}`);
       });
       await page.goto(`/${route}`);
-      await expect(page.locator("main h1").first()).toBeVisible();
+      const expectedPage =
+        route === "index.html"
+          ? "home"
+          : route
+              .split("/")
+              .at(-1)!
+              .replace(/\.html$/, "");
+      await expect(page.locator("[data-original-page]")).toHaveAttribute(
+        "data-original-page",
+        expectedPage,
+      );
+      // Original standalone pages retain their h1/h2 source hierarchy.
+      await expect(page.locator("main h1, main h2").first()).toBeVisible();
       await page.evaluate(async () => {
         await document.fonts.ready;
       });
@@ -61,7 +81,7 @@ for (const width of [390, 1440]) {
           height: innerHeight,
           scrollWidth: document.documentElement.scrollWidth,
         },
-        title: document.querySelector("main h1")?.textContent?.trim(),
+        title: document.querySelector("main h1, main h2")?.textContent?.trim(),
         localLinks: Array.from(
           document.querySelectorAll<HTMLAnchorElement>("a[href]"),
         )
@@ -89,6 +109,11 @@ for (const width of [390, 1440]) {
         animations: "disabled",
       });
       expect(errors).toEqual([]);
+      expect(
+        consoleErrors.filter((entry) =>
+          entry.url.startsWith("http://127.0.0.1:4173/"),
+        ),
+      ).toEqual([]);
       expect(badResources).toEqual([]);
       expect(imageFailures).toEqual([]);
       expect(evidence.viewport.scrollWidth).toBeLessThanOrEqual(width);
