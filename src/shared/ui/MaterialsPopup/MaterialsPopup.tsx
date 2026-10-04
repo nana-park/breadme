@@ -1,6 +1,19 @@
-import { useEffect, useLayoutEffect, useRef } from "react";
-type Props = { isOpen: boolean; onToggle: () => void; onClose: () => void };
-export function MaterialsPopup({ isOpen, onToggle, onClose }: Props) {
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+type Props = {
+  isOpen: boolean;
+  onToggle: () => void;
+  onClose: () => void;
+  hideMinimizedDuringHomeHero?: boolean;
+};
+export function MaterialsPopup({
+  isOpen,
+  onToggle,
+  onClose,
+  hideMinimizedDuringHomeHero = false,
+}: Props) {
+  const [homeHeroVisible, setHomeHeroVisible] = useState(false);
+  const hideMinimized =
+    hideMinimizedDuringHomeHero && homeHeroVisible && !isOpen;
   const root = useRef<HTMLDivElement>(null);
   const toggle = useRef<HTMLButtonElement>(null);
   const minimize = useRef<HTMLButtonElement>(null);
@@ -9,15 +22,34 @@ export function MaterialsPopup({ isOpen, onToggle, onClose }: Props) {
     // WHY: Focus after the new state is rendered, never on the scaled-away toggle.
     if (!root.current?.closest("[inert]")) {
       if (isOpen) minimize.current?.focus();
-      else if (wasOpen.current) toggle.current?.focus();
+      else if (wasOpen.current) {
+        if (hideMinimized)
+          document.querySelector<HTMLElement>("#navbar .logo")?.focus();
+        else toggle.current?.focus();
+      }
     }
     wasOpen.current = isOpen;
-  }, [isOpen]);
+  }, [isOpen, hideMinimized]);
   useEffect(() => {
     const updatePosition = () => {
       const popup = root.current,
         footer = document.querySelector<HTMLElement>(".footer");
       if (!popup) return;
+      if (hideMinimizedDuringHomeHero) {
+        const hero = document.querySelector<HTMLElement>(
+          "[data-original-page='home'] #home",
+        );
+        const rect = hero?.getBoundingClientRect();
+        const visible =
+          window.innerWidth < 768 &&
+          !!rect &&
+          rect.bottom > 70 &&
+          rect.top < window.innerHeight;
+        setHomeHeroVisible(visible);
+        // WHY: A resize/scroll must not strand keyboard focus on a hidden entry.
+        if (visible && !isOpen && document.activeElement === toggle.current)
+          document.querySelector<HTMLElement>("#navbar .logo")?.focus();
+      }
       const footerTop = footer
         ? footer.getBoundingClientRect().top + window.scrollY
         : Infinity;
@@ -29,7 +61,11 @@ export function MaterialsPopup({ isOpen, onToggle, onClose }: Props) {
         popup.style.position = "fixed";
         popup.style.top = "auto";
         popup.style.bottom = "2rem";
-        if (!isOpen && window.innerWidth < 768) {
+        if (
+          !hideMinimizedDuringHomeHero &&
+          !isOpen &&
+          window.innerWidth < 768
+        ) {
           const hero = document.querySelector<HTMLElement>(
             "[data-original-page='home'] #home",
           );
@@ -122,7 +158,7 @@ export function MaterialsPopup({ isOpen, onToggle, onClose }: Props) {
       document.removeEventListener("keydown", onKey);
       window.clearTimeout(timer);
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, hideMinimizedDuringHomeHero]);
   return (
     <div
       ref={root}
@@ -134,6 +170,10 @@ export function MaterialsPopup({ isOpen, onToggle, onClose }: Props) {
         bottom: "2rem",
         right: "2rem",
         transform: "none",
+        // Home only: the Header still opens materials; the duplicate floating
+        // entry returns after the Hero, without covering the artwork or its badge.
+        visibility: hideMinimized ? "hidden" : "visible",
+        pointerEvents: hideMinimized ? "none" : undefined,
       }}
     >
       <button

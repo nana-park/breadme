@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import fs from "node:fs/promises";
-// Capturing the animated source scene takes longer on software-rendered CI.
+// Capture the approved text-led Home without requiring a WebGL runtime.
 test.setTimeout(90_000);
 for (const width of [390, 1440]) {
   test(`Home visual checkpoint ${width}`, async ({ page }, testInfo) => {
@@ -9,17 +9,14 @@ for (const width of [390, 1440]) {
     page.on("pageerror", (error) => errors.push(error.message));
     await page.goto("/");
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-      "Making AI agents work for people.",
+      "Designing AI Product Experiences Across Markets",
     );
     await page.evaluate(async () => {
       await document.fonts.ready;
     });
-    const splineReady = await page
-      .locator("spline-viewer canvas")
-      .waitFor({ state: "visible", timeout: 20000 })
-      .then(() => true)
-      .catch(() => false);
-    await page.waitForTimeout(1500);
+    await expect(page.locator("#home spline-viewer, #home canvas")).toHaveCount(
+      0,
+    );
     await page.screenshot({
       path: testInfo.outputPath(`react-home-${width}-top.png`),
       animations: "disabled",
@@ -33,7 +30,7 @@ for (const width of [390, 1440]) {
       testInfo.outputPath(`react-home-${width}.json`),
       JSON.stringify(
         {
-          splineReady,
+          textLed: true,
           errors,
           metrics: await page.evaluate(() => ({
             width: innerWidth,
@@ -60,7 +57,6 @@ for (const width of [390, 1440]) {
         2,
       ),
     );
-    expect(splineReady).toBe(true);
     expect(errors).toEqual([]);
   });
 }

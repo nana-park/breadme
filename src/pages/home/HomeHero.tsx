@@ -1,10 +1,9 @@
 import { homeHero } from "@/content/site/homeHero";
-import { SplineHero } from "@/shared/ui/SplineHero/SplineHero";
 import { originalHref } from "@/shared/utils/originalPaths";
 import styles from "./HomeHero.module.css";
 
 /** WHAT: The revised Home introduction, isolated from the other source pages.
- * WHY: Keep the original artwork and identity while making the role and next step clear.
+ * WHY: Keep the original identity while making the role and next step clear.
  */
 export function HomeHero() {
   return (
@@ -15,28 +14,9 @@ export function HomeHero() {
           {homeHero.title}
         </h1>
       </div>
-      <div className={styles.artworkStage} data-home-artwork>
-        <SplineHero
-          className={styles.artwork}
-          style={{
-            position: "relative",
-            left: "auto",
-            top: "auto",
-            transform: "translateX(var(--home-artwork-offset, 0px))",
-            width: "var(--home-artwork-width, 100%)",
-            height: "100%",
-          }}
-        />
-      </div>
       <div className={styles.description} data-home-description>
         <p className={styles.summary}>{homeHero.description}</p>
-        <p className={styles.experience}>
-          <span>{homeHero.experience}</span>
-          <span className={styles.separator} aria-hidden="true">
-            ·
-          </span>
-          <span>{homeHero.launchExperience}</span>
-        </p>
+        <p className={styles.experience}>{homeHero.experience}</p>
       </div>
       <div className={styles.actions} data-home-actions>
         <a

@@ -8,7 +8,7 @@
 
 | URL | 내용 |
 | --- | --- |
-| `/`, `/index.html` | 원본 Hero·Spline·파트너·발자취·경력·학력·CTA |
+| `/`, `/index.html` | 선택된 텍스트 Hero·원본 파트너·발자취·경력·학력·CTA |
 | `/about.html` | 소개·배경 영상·미디어 |
 | `/career.html` | 경력·학력·추천 |
 | `/qualified.html` | 역량·인증 4개 탭·업무 원칙 |

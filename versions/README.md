@@ -2,7 +2,8 @@
 
 ## 현재 상태
 
-- 현재 작업 버전: `v0.1.0` 준비 중 (출시되지 않음)
+- 최초 React 이관본: main `4607953` 공개 완료
+- 현재 작업: Home 텍스트 중심 소개·모바일 CTA 개선, PR #2 검토 중 (아직 공개 반영 안 됨)
 - 현재 구현 범위: 원본 디자인·콘텐츠의 React 이관, 핵심 11개 화면 + 연결된 상세 3개
 - 원본 기준: `nana-park/Portfolio@834815915647e4b3fbf9285b88b8001e37b94aa0`
 - Articles: 영어 본문 18개·6쪽 목록·읽기와 복귀 구현
@@ -10,11 +11,11 @@
 - 로컬 검수: lint·typecheck·단위 테스트 77개·build 통과
 - 전체 브라우저 검수: 48개 구성, 2801632 전체 통과. 마지막 커밋 결과는 [현재 이관 검수 기록](../docs/qa/original-migration-verification.md)에 기록
 - 검토 링크: [PR #1](https://github.com/nana-park/breadme/pull/1)
-- 다음 목표: main 통합 후 /breadme/ 실제 게시 결과 검증
-- 작업 브랜치: `feature/responsive-react-foundation`
-- 기준 브랜치: `docs/collaboration-ground-rules` (`4b07328`)
+- 다음 목표: Home 5폭 화면·동작 검수 후 별도 공개 확인
+- 작업 브랜치: `feature/home-mobile-branding`
+- 현재 기준: 공개된 main `4607953` (기존 문서·기능 이력 보존)
 - PR 대상: `main` (공개 및 main 통합 승인 후 전환, 기존 문서 이력 보존)
-- 사용자 확인 상태: 2026-10-04 원본 이관 검수 후 공개와 main 통합 승인됨
+- 사용자 확인 상태: 2026-10-04 최초 이관 공개 완료. 이후 Home의 텍스트 중심·Across Markets 문구·글자 위계 수정 선택됨. 이번 PR의 main 병합·추가 공개는 별도 확인 필요
 - main 반영 조건: PR 검사 통과 후 이력을 보존하는 merge
 - 배포 방식: main에서만 GitHub Pages /breadme/ 게시. 기존 HTML 사이트 유지
 

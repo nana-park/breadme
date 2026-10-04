@@ -75,6 +75,7 @@ export function App() {
       <OriginalFooter onPending={showPending} />
       {!isProjectDetail && (
         <MaterialsPopup
+          hideMinimizedDuringHomeHero={pageId === "home"}
           isOpen={isMaterialsOpen}
           onToggle={() => setIsMaterialsOpen((open) => !open)}
           onClose={closeMaterials}

@@ -2,11 +2,10 @@
 // Wording is proposed for review; this does not change project facts elsewhere.
 export const homeHero = {
   eyebrow: "NAHYUN PARK · AI PRODUCT MANAGER",
-  title: "Making AI agents work for people.",
+  title: "Designing AI Product Experiences Across Markets",
   description:
-    "I turn user needs into AI conversations, agent workflows, and tools for real-world operations.",
+    "Grounded in psychology and Human–AI Interaction, I shape conversational AI and agent workflows around user needs—from product planning to launches in Korea and Japan.",
   experience: "Previously at NAVER Cloud · SK Telecom",
-  launchExperience: "Korea–Japan launch experience",
   workLabel: "View my work",
   contactLabel: "Get in touch",
 } as const;
