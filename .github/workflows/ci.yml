@@ -50,9 +50,16 @@ jobs:
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: always()
         with:
+          name: mobile-scroll-evidence
+          path: test-results/mobile-scroll-snap-*/
+          retention-days: 7
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: always()
+        with:
           name: browser-verification
           path: |
             playwright-report/
             test-results/
             !test-results/routes-route-smoke-*/
+            !test-results/mobile-scroll-snap-*/
           retention-days: 7

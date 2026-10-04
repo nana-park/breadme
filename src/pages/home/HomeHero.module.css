@@ -103,7 +103,7 @@
 @media (max-width: 767px) {
   .hero {
     min-height: 0;
-    padding: 114px 20px 56px;
+    padding: 114px 20px var(--home-mobile-section-space, 40px);
   }
   .introduction {
     max-width: 380px;

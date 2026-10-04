@@ -374,6 +374,8 @@ for (const [sourceFile, componentName] of pageDefinitions) {
     const tag = node.localName;
     if (ignoredTags.has(tag) || sharedIds.has(node.id) || tag === "footer")
       return "";
+    if (sourceFile === "index.html" && node.id === "partners")
+      node.style.padding = "var(--home-mobile-section-space, 5rem) 0 5rem";
     const topLevel = node.parentElement === document.body;
     if (topLevel && tag === "svg" && node.getAttribute("width") === "0")
       return "";

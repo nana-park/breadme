@@ -1,0 +1,38 @@
+/* A zero-height page-start boundary prevents initial-load jumps to a padded
+ * inner chapter. It adds no visible content, forced viewport or extra scrollbox. */
+[data-mobile-snap-entry] {
+  display: block;
+  height: 0;
+}
+
+@media (max-width: 767px) {
+  html[data-mobile-scroll-snap] {
+    --home-mobile-section-space: 40px;
+    scroll-snap-type: y proximity;
+    scroll-padding-block-start: 70px;
+  }
+  html[data-mobile-scroll-snap] body {
+    /* Same horizontal clipping, without an accidental intermediate scrollbox. */
+    overflow-x: clip;
+  }
+  [data-mobile-snap-section],
+  [data-mobile-snap-entry] {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+  }
+  [data-mobile-snap-flow] {
+    /* DESIGN-EXCEPTION DE-001: About's original inline overflow:hidden otherwise
+     * captures its child snap points. clip preserves its decorative boundary. */
+    overflow: clip !important;
+  }
+  html[data-mobile-scroll-snap]:has(.nav-menu.active) {
+    scroll-snap-type: none;
+  }
+}
+
+@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+  html[data-mobile-scroll-snap] {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+  }
+}

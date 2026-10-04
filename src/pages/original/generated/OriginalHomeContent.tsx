@@ -37,7 +37,7 @@ export function OriginalHomeContent() {
             paddingRight: '0px',
             paddingBottom: '5rem',
             paddingLeft: '0px',
-            padding: '5rem 0px',
+            padding: 'var(--home-mobile-section-space, 5rem) 0 5rem',
             overflow: 'hidden',
           } as CSSProperties
         }
