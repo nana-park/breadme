@@ -1,11 +1,12 @@
-# Portfolio React
+# breadme
 
 기존 [Portfolio](https://github.com/nana-park/Portfolio)의 디자인과 내용을 React로 옮기는 프로젝트입니다. **원본 디자인을 기준으로 합니다.** 처음 만들었던 구조 설명용 화면은 실제 포트폴리오 화면으로 교체했습니다.
 
-- [검토 중인 Draft PR #1](https://github.com/nana-park/portfolio-react/pull/1)
+- [검토 중인 Draft PR #1](https://github.com/nana-park/breadme/pull/1)
 - [기존 공개 포트폴리오](https://nana-park.github.io/Portfolio/)
 - 원본 기준 커밋: `834815915647e4b3fbf9285b88b8001e37b94aa0`
-- 병합·배포 전 작업입니다. 기존 공개 사이트는 그대로 유지합니다.
+- 새 게시 주소: https://nana-park.github.io/breadme/ (React 첫 배포 검증 진행 중)
+- 기존 `Portfolio` 저장소·공개 사이트는 그대로 유지합니다. 이름을 바꾼 것은 이 React 저장소뿐입니다.
 
 ## 지금 된 것
 
@@ -38,7 +39,7 @@
 - 원본의 미완성 Korean 버튼은 `Coming soon!` 안내를 유지합니다. 영어 페이지를 번역 완료라고 표시하지 않습니다.
 - 원본에서 숨긴 Enjoy 메뉴는 새로 노출하지 않습니다. 기존 `enjoy.html` 주소의 화면은 옮겼습니다.
 - 연결되지 않은 오래된 프로젝트 페이지·백업 파일은 복사하지 않았습니다.
-- 최종 공개 승인·beta/main 병합·배포는 별도입니다.
+- 공개 배포와 검수된 변경의 main 병합은 이번에 승인되었습니다. PR 검사를 통과한 뒤 main에 반영합니다.
 
 ## 내 컴퓨터에서 실행하기
 
@@ -77,6 +78,8 @@ npm run dev
 | `npm run preview` | 빌드 결과를 로컬에서 열기 |
 | `npm run check` | lint → typecheck → test → build |
 | `npm run test:e2e` | 실제 Chromium으로 화면·이동·조작 검사 |
+| `VITE_BASE_PATH=/breadme/ npm run test:pages` | 배포 빌드 후 14개 HTML·폰트·원본 파일 검사 |
+| `npx playwright test --config=playwright.pages.config.ts` | 실제 정적 서버의 /breadme/ 경로 브라우저 검사 |
 
 첫 브라우저 검사 전에는 `npx playwright install chromium`을 실행하세요. Linux에 시스템 의존성이 없으면 `npx playwright install --with-deps chromium`이 필요할 수 있습니다. 브라우저 검사 전에 `npm run build`를 실행합니다.
 
@@ -107,7 +110,7 @@ src/
 
 원본과 React의 14개 페이지를 390px·1440px에서 비교했습니다. Home은 320/390/767/768/1024/1025/1440px에서도 확인했습니다. 단위 검사 68개와 브라우저 검사 48개로 화면·이동·조작을 검수했고, 발견한 Awards 배경·Enjoy 필터·자료 버튼 겹침 등을 수정했습니다. 정확한 검사 커밋과 후속 기록은 아래 문서를 기준으로 합니다.
 
-최신 전체 경로·모바일 조작·시각 검수의 **통과 / 미검수 구분**은 [이관 검수 기록](docs/qa/original-migration-verification.md)과 [디자인 비교](design-qa.md)에 기록합니다. [PR checks](https://github.com/nana-park/portfolio-react/pull/1/checks)에서 정확한 마지막 커밋의 결과를 볼 수 있습니다.
+최신 전체 경로·모바일 조작·시각 검수의 **통과 / 미검수 구분**은 [이관 검수 기록](docs/qa/original-migration-verification.md)과 [디자인 비교](design-qa.md)에 기록합니다. [PR checks](https://github.com/nana-park/breadme/pull/1/checks)에서 정확한 마지막 커밋의 결과를 볼 수 있습니다.
 
 로컬 Chromium 실행은 작업환경의 OS socket 제한, 클라우드 브라우저의 localhost 접근은 보안 제한으로 막혔습니다. 사용자 컴퓨터 설정을 풀지 않고 GitHub-hosted Chromium에서 실제 렌더링·스크린샷·조작을 검수합니다.
 
@@ -115,9 +118,13 @@ src/
 
 최신 협업 규칙을 보존하려고 `docs/collaboration-ground-rules`에서 `feature/responsive-react-foundation`을 만들었습니다. Draft PR 대상도 문서 브랜치이며 main이나 운영 사이트가 자동으로 바뀌지 않습니다.
 
-향후 문서·기능 검토 → beta 통합과 전체 검수 → 사용자의 별도 main 승인 → main 반영 → 별도 배포 순서입니다.
+이번에는 사용자가 검수한 변경을 main에 합치고 main에서만 게시하는 방식을 승인했습니다. 기존 문서·기능 이력을 보존하는 merge commit을 사용하며, PR 검사를 통과한 변경만 main에 반영합니다.
 
-실제 호스팅을 정할 때는 VITE_BASE_PATH와 기존 `.html` 주소 직접 진입 처리를 함께 설정해야 합니다. 이번 브라우저 검수는 Vite preview의 경로 처리를 사용했으며, 운영 호스팅은 아직 구성하지 않았습니다.
+GitHub Pages용 빌드는 `VITE_BASE_PATH=/breadme/ npm run build`입니다. 14개 `.html` 파일을 실제로 만들어 중첩 상세 페이지에 직접 들어가거나 새로고침해도 개발 서버의 우회 없이 열리도록 했습니다. `VITE_BASE_PATH=/breadme/ npm run test:pages`로 배포 파일과 원본 자산을 검사합니다.
+
+배포는 `main`에 검토한 커밋을 반영할 때만 실행됩니다. 작업 브랜치·PR은 자동 게시하지 않으며 다른 브랜치의 배포 권한도 추가하지 않습니다. `.github/workflows/deploy-pages.yml`은 빌드와 34개 배포 경로 검사 후 게시하고, 실제 공개 주소에서 같은 검사를 다시 실행합니다. 별도 PAT나 서버 계정은 쓰지 않습니다. 공개된 정확한 커밋은 `deployment.json`에서 확인합니다.
+
+GitHub Pages의 기존 main 허용 규칙을 유지합니다. 기존 `/Portfolio/`의 삭제·이동 안내·리디렉션은 아직 적용하지 않습니다.
 
 ## 문서
 

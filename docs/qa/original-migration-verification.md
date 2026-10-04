@@ -8,7 +8,7 @@
 - 원본 에셋 147개와 외부 211개 SHA-256·길이 검증. 깨끗한 GitHub CI 캐시에서도 준비 성공
 - Home 390px·1440px 원본/React 캡처 비교: desktop 글꼴·크기·위치 일치, Hero 아래 원본과 픽셀 차이 0
 - `f9dbd2f` 후속 Home 캡처에서 모바일 자료 버튼의 CTA 가림과 햄버거 세로 정렬 수정 확인
-- [2801632 전체 CI](https://github.com/nana-park/portfolio-react/actions/runs/37200832738): 단위 68개·브라우저 48개 모두 통과, 실패·재시도 없음
+- [2801632 전체 CI](https://github.com/nana-park/breadme/actions/runs/37200832738): 단위 68개·브라우저 48개 모두 통과, 실패·재시도 없음
 - 전체 14개 경로 × 390/1440px에서 로컬 이미지·리소스 오류·앱 실행 오류·경로 연결·문서 가로 넘침 검사 통과
 - Enjoy 390px의 원본 460px 넘침을 독립 가로 스크롤로 보정. 마지막 bb248b6에서 긴 필터 라벨 겹침도 수정하고 집중 검사·실제 캡처 재확인
 - Awards 배경 우선순위, 상세 3개 자료 UI, 페이지별 nav 상태를 원본과 재대조하여 복원 확인
@@ -30,7 +30,7 @@
 
 이전 실행에서 원본 Spline을 소프트웨어로 그리는 Home 검사들이 30초 전체 테스트 예산을 넘었습니다. 기능 단언은 유지하고 해당 흐름의 실행 예산을 조정했습니다. 네트워크 미디어를 반복 복제하는 trace는 끄고 화면·JSON·오류 보고서를 남깁니다. 이것은 실제 기기 성능 측정 결과가 아닙니다.
 
-[정확한 최신 커밋의 PR checks](https://github.com/nana-park/portfolio-react/pull/1/checks) / [원본 대조 기록](../../design-qa.md)
+[정확한 최신 커밋의 PR checks](https://github.com/nana-park/breadme/pull/1/checks) / [원본 대조 기록](../../design-qa.md)
 
 ## 아직 검수하지 않은 범위
 

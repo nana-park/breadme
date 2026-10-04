@@ -20,8 +20,18 @@
       "@testing-library/jest-dom",
       "node"
     ],
-    "paths": { "@/*": ["./src/*"] },
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "tsBuildInfoFile": "./node_modules/.cache/tsconfig.tsbuildinfo"
   },
-  "include": ["src", "tests", "vite.config.ts", "playwright.config.ts"]
+  "include": [
+    "src",
+    "tests",
+    "vite.config.ts",
+    "playwright.config.ts",
+    "playwright.pages.config.ts",
+    "vitest.pages.config.ts",
+    "scripts/*.ts"
+  ]
 }

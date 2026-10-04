@@ -10,9 +10,9 @@
 
 **기본 구조 검수 통과.** GitHub-hosted Ubuntu의 Chromium에서 7개 화면 너비와 주요 조작을 검사했습니다. 최종 기능 코드 `b915a0570879e5523a9765cd126d3759ba461d0b`의 컴포넌트 테스트 6개와 브라우저 테스트 11개가 재시도 없이 통과했습니다. 실제 포트폴리오 전체 완성·실기기 검수·최종 디자인 승인을 의미하지 않습니다.
 
-- [성공한 기능 검수 실행](https://github.com/nana-park/portfolio-react/actions/runs/37193737534)
-- [화면 캡처와 HTML 검사 보고서](https://github.com/nana-park/portfolio-react/actions/runs/37193737534/artifacts/11299793099): 7일 보관. 만료 후 당시 기능 커밋의 별도 체크아웃에서 검사를 재현해야 함. 현재 브랜치의 검사는 원본 이관 화면을 대상으로 하므로 이 역사 캡처와 다름
-- [Draft PR #1](https://github.com/nana-park/portfolio-react/pull/1): 문서 기록을 포함한 최신 커밋의 checks는 여기서 확인
+- [성공한 기능 검수 실행](https://github.com/nana-park/breadme/actions/runs/37193737534)
+- [화면 캡처와 HTML 검사 보고서](https://github.com/nana-park/breadme/actions/runs/37193737534/artifacts/11299793099): 7일 보관. 만료 후 당시 기능 커밋의 별도 체크아웃에서 검사를 재현해야 함. 현재 브랜치의 검사는 원본 이관 화면을 대상으로 하므로 이 역사 캡처와 다름
+- [Draft PR #1](https://github.com/nana-park/breadme/pull/1): 문서 기록을 포함한 최신 커밋의 checks는 여기서 확인
 
 ## 결과 구분
 

@@ -5,12 +5,12 @@ final result: passed
 ## 비교 기준과 증거
 
 - 원본: `nana-park/Portfolio@834815915647e4b3fbf9285b88b8001e37b94aa0`
-- 원본 화면: [Original portfolio evidence](https://github.com/nana-park/portfolio-react/actions/workflows/source-reference.yml)의 source-evidence-390/1440. 내부 경로 `{width}/{route}-top.png`, `{width}/{route}-full.png`
-- 1차 전체 비교: [d31179b 검수 실행](https://github.com/nana-park/portfolio-react/actions/runs/37199826863)의 route-mobile-evidence, route-desktop-evidence. 각 `routes-route-smoke-*` 폴더의 evidence.json으로 경로를 확인하고 page-top.png/page-full.png 대조
+- 원본 화면: [Original portfolio evidence](https://github.com/nana-park/breadme/actions/workflows/source-reference.yml)의 source-evidence-390/1440. 내부 경로 `{width}/{route}-top.png`, `{width}/{route}-full.png`
+- 1차 전체 비교: [d31179b 검수 실행](https://github.com/nana-park/breadme/actions/runs/37199826863)의 route-mobile-evidence, route-desktop-evidence. 각 `routes-route-smoke-*` 폴더의 evidence.json으로 경로를 확인하고 page-top.png/page-full.png 대조
 - 상태: 각 경로의 기본 화면, 전체 스크롤 후 최상단 복귀. 같은 CSS viewport 390×844, 1440×900, deviceScaleFactor 1. 밀도 변환 없이 실제 픽셀 나란히 비교
 - Home 추가 너비: 320, 767, 768, 1024, 1025px. Articles와 메뉴·자료창의 상태 캡처는 browser-verification에 포함
 
-- 수정 후 증거: [2801632 전체 검수](https://github.com/nana-park/portfolio-react/actions/runs/37200832738)의 전체 경로 캡처, [bb248b6 마지막 Enjoy 검수](https://github.com/nana-park/portfolio-react/actions/runs/37201520985)의 home-checkpoint/enjoy 캡처
+- 수정 후 증거: [2801632 전체 검수](https://github.com/nana-park/breadme/actions/runs/37200832738)의 전체 경로 캡처, [bb248b6 마지막 Enjoy 검수](https://github.com/nana-park/breadme/actions/runs/37201520985)의 home-checkpoint/enjoy 캡처
 - 원본 핵심 11개 캡처 실행: `37194577666`, 상세 3개 캡처 실행: `37198862977`
 
 ## 확인한 다섯 표면
@@ -36,7 +36,7 @@ final result: passed
 
 ## 브라우저 검사와 남은 한계
 
-2801632의 단위 68개·브라우저 48개가 모두 통과했습니다. bb248b6에서 마지막 Enjoy 라벨 보정과 글자 내부 폭 검사를 추가했고, 해당 화면 재캡처·집중 검사가 통과했습니다. 마지막 커밋의 전체 회귀 결과는 [PR checks](https://github.com/nana-park/portfolio-react/pull/1/checks)에 연결됩니다.
+2801632의 단위 68개·브라우저 48개가 모두 통과했습니다. bb248b6에서 마지막 Enjoy 라벨 보정과 글자 내부 폭 검사를 추가했고, 해당 화면 재캡처·집중 검사가 통과했습니다. 마지막 커밋의 전체 회귀 결과는 [PR checks](https://github.com/nana-park/breadme/pull/1/checks)에 연결됩니다.
 
 이 보고서의 원본 이관 범위에는 남은 P0/P1/P2 시각 차단점이 없습니다. Awards 카드의 미세한 래스터 경계 차이는 문구·색·크기·배치 변형이 없어 비차단으로 분류했습니다. 원본에도 있던 일부 모바일 제목 말줄임과 떠 있는 메일 버튼의 본문 겹침까지 모두 재설계한 것은 아닙니다.
 
