@@ -52,6 +52,30 @@ async function measureHome(page: Page) {
         if (!lineTops.some((top) => Math.abs(top - fragment.y) <= 2))
           lineTops.push(fragment.y);
       const style = getComputedStyle(element);
+      const clippingAncestors = [];
+      for (
+        let ancestor: Element | null = element;
+        ancestor;
+        ancestor = ancestor.parentElement
+      ) {
+        const overflow = getComputedStyle(ancestor).overflowY;
+        if (/(hidden|clip|auto|scroll)/.test(overflow))
+          clippingAncestors.push({ box: box(ancestor), tag: ancestor.tagName });
+      }
+      const glyphBounds = fragments.length
+        ? {
+            x: Math.min(...fragments.map((line) => line.x)),
+            y: Math.min(...fragments.map((line) => line.y)),
+            right: Math.max(...fragments.map((line) => line.right)),
+            bottom: Math.max(...fragments.map((line) => line.bottom)),
+            width:
+              Math.max(...fragments.map((line) => line.right)) -
+              Math.min(...fragments.map((line) => line.x)),
+            height:
+              Math.max(...fragments.map((line) => line.bottom)) -
+              Math.min(...fragments.map((line) => line.y)),
+          }
+        : box(element);
       const rgb = style.color
         .match(/[\d.]+/g)!
         .slice(0, 3)
@@ -67,6 +91,8 @@ async function measureHome(page: Page) {
         text: element.textContent?.replace(/\s+/g, " ").trim(),
         box: box(element),
         fragments,
+        glyphBounds,
+        clippingAncestors,
         lines: lineTops.length,
         fontSize: Number.parseFloat(style.fontSize),
         lineHeight: Number.parseFloat(style.lineHeight),
@@ -284,16 +310,28 @@ for (const width of widths) {
         expect(line.right).toBeLessThanOrEqual(
           Math.min(width, text.box.right + 1),
         );
-        // Font glyph bounds can exceed the CSS line box by a few pixels.
-        expect(line.y).toBeGreaterThanOrEqual(text.box.y - 4);
-        expect(line.bottom).toBeLessThanOrEqual(text.box.bottom + 4);
+        // WHAT: Verify actual clipping, not an arbitrary font-metric allowance.
+        // WHY: At 80.64px the Inter Range rectangle extends 6px above its tight
+        // CSS line box while the fully visible ink has ample surrounding space.
+        expect(line.y).toBeGreaterThanOrEqual(metrics.hero.y);
+        expect(line.bottom).toBeLessThanOrEqual(metrics.hero.bottom);
+        for (const ancestor of text.clippingAncestors) {
+          expect(
+            line.y,
+            `${ancestor.tag}: glyphs are not vertically clipped`,
+          ).toBeGreaterThanOrEqual(ancestor.box.y - 1);
+          expect(
+            line.bottom,
+            `${ancestor.tag}: glyphs are not vertically clipped`,
+          ).toBeLessThanOrEqual(ancestor.box.bottom + 1);
+        }
       }
     }
     for (let index = 1; index < metrics.texts.length; index += 1)
       noOverlap(
-        metrics.texts[index - 1].box,
-        metrics.texts[index].box,
-        "Hero text blocks do not overlap",
+        metrics.texts[index - 1].glyphBounds,
+        metrics.texts[index].glyphBounds,
+        "Actual Hero text glyph regions do not overlap",
       );
     expect(metrics.ctas).toHaveLength(2);
     expect(metrics.ctas.map((cta) => cta.href)).toEqual([
@@ -319,7 +357,11 @@ for (const width of widths) {
         expect(line.bottom).toBeLessThanOrEqual(cta.box.bottom + 1);
       }
       for (const text of metrics.texts)
-        noOverlap(cta.box, text.box, "CTA clears every Hero text block");
+        noOverlap(
+          cta.box,
+          text.glyphBounds,
+          "CTA clears every Hero glyph region",
+        );
     }
     noOverlap(
       metrics.ctas[0].box,
