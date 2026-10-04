@@ -59,6 +59,17 @@ for (const width of [390, 1440]) {
           "background-color",
           "rgb(243, 241, 235)",
         );
+      if (route === "enjoy.html" && width === 390) {
+        expect(
+          await page
+            .locator("#life-tabs button")
+            .evaluateAll((buttons) =>
+              buttons.every(
+                (button) => button.scrollWidth <= button.clientWidth + 1,
+              ),
+            ),
+        ).toBe(true);
+      }
       // Original standalone pages retain their h1/h2 source hierarchy.
       await expect(page.locator("main h1, main h2").first()).toBeVisible();
       await page.evaluate(async () => {
