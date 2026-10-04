@@ -8,7 +8,7 @@
 
 | URL | 내용 |
 | --- | --- |
-| `/`, `/index.html` | 원본 Hero·Spline·파트너·발자취·경력·학력·CTA |
+| `/`, `/index.html` | 선택된 텍스트 Hero·원본 파트너·발자취·경력·학력·CTA |
 | `/about.html` | 소개·배경 영상·미디어 |
 | `/career.html` | 경력·학력·추천 |
 | `/qualified.html` | 역량·인증 4개 탭·업무 원칙 |
@@ -27,6 +27,7 @@
 
 ## 파일 역할
 
+- Home Hero는 `../home/HomeHero.tsx`에서 별도 관리합니다. 나머지 원본 섹션은 유지하며 변환기를 재실행해도 Hero 연결을 보존합니다.
 - `generated/*.tsx`: 원본 HTML 요소를 실제 React JSX로 옮긴 내용. HTML 문자열 주입이나 전체 페이지 iframe이 아닙니다.
 - `generated/*.css`: 원본 페이지의 개별 스타일
 - `OriginalArticlesPage.tsx`: 아티클 목록·페이지 선택·본문·복귀
@@ -50,3 +51,9 @@
 ## 자체 검수
 
 Home 7개 폭, 전체 14개 경로의 390px/1440px, 원본·React 비교, 링크·이미지·콘솔·키보드·터치·상태 전환을 확인합니다. 결과는 [이관 검수 기록](../../../docs/qa/original-migration-verification.md)에 구분해 기록합니다.
+
+## 모바일 구간 스크롤
+
+모바일(767px 이하)에서 14개 경로의 큰 구획에 native proximity snap을 적용합니다. 타깃 선택은 `src/config/mobileScrollSnap.ts`에 모았고 원본 레이아웃 요소에 표지만 붙입니다. 원본 내용을 화면 높이에 맞춰 자르거나 터치·휠을 가로채지 않습니다. Articles는 읽기 화면이 새로 나타날 때 타깃을 갱신하고, 글 전체를 하나의 긴 읽기 구간으로 유지합니다. 데스크톱·가로 캐러셀은 기존 동작입니다.
+
+About와 Awards의 장식용 바깥 `overflow:hidden`만 모바일에서 `clip`으로 바꿉니다. 같은 시각적 잘림을 유지하되 구간 스냅이 중간 스크롤 상자에 막히지 않게 하는 호환 보정입니다(DE-001). 내부 데모·미디어·표·캐러셀의 overflow는 바꾸지 않습니다.

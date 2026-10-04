@@ -6,19 +6,21 @@ test("mobile controls leave the original Hero copy clear and center the hamburge
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-    "Designing Actionable AI",
+    "Designing AI Product Experiences Across Markets",
   );
   await page.evaluate(() => document.fonts.ready);
   const toggle = page.locator("#popupToggle");
-  await expect
-    .poll(async () => {
-      const popup = await toggle.boundingBox();
-      const subtitle = await page
-        .getByText("Helping people follow through:", { exact: true })
-        .boundingBox();
-      return popup && subtitle ? subtitle.y - (popup.y + popup.height) : -1;
-    })
-    .toBeGreaterThanOrEqual(15);
+  await expect(toggle).toBeHidden();
+  await page.locator("#mobileToggle").click();
+  await page
+    .locator(".original-mobile-materials [data-materials-action='resume']")
+    .click();
+  await expect(
+    page.getByRole("button", { name: "Minimize Popup" }),
+  ).toBeFocused();
+  await page.keyboard.press("Escape");
+  await expect(page.getByRole("link", { name: "breadme home" })).toBeFocused();
+  await expect(toggle).toBeHidden();
   const hamburger = await page.locator("#mobileToggle").boundingBox();
   const firstLine = await page
     .locator("#mobileToggle span")
@@ -36,7 +38,14 @@ test("mobile controls leave the original Hero copy clear and center the hamburge
     path: testInfo.outputPath("mobile-controls-390-hero.png"),
     animations: "disabled",
   });
-  await page.evaluate(() => window.scrollTo(0, 900));
+  await page.evaluate(() =>
+    window.scrollTo(
+      0,
+      document.querySelector("#home")!.getBoundingClientRect().bottom +
+        window.scrollY,
+    ),
+  );
+  await expect(toggle).toBeVisible();
   await expect(page.locator("#email-popup")).toHaveCSS("position", "fixed");
   await expect(page.locator("#email-popup")).toHaveCSS("bottom", "32px");
   await page.locator("footer").scrollIntoViewIfNeeded();
@@ -129,7 +138,7 @@ test("1023 and 1024 resize transitions keep focus on a visible counterpart witho
   ).toBeFocused();
   await expect(page.locator("main")).not.toHaveAttribute("inert");
   await expect(page.locator("body")).not.toHaveCSS("overflow", "hidden");
-  const outside = page.getByRole("link", { name: "View My Work" });
+  const outside = page.getByRole("link", { name: "View my work" });
   await outside.focus();
   await page.setViewportSize({ width: 1023, height: 900 });
   await expect(outside).toBeFocused();
@@ -170,6 +179,15 @@ test("materials remain nonmodal and disabled with reliable focus on open and clo
     if (!["GET", "HEAD"].includes(request.method())) writes.push(request.url());
   });
   const toggle = page.locator("#popupToggle");
+  await expect(toggle).toBeHidden();
+  await page.evaluate(() =>
+    window.scrollTo(
+      0,
+      document.querySelector("#home")!.getBoundingClientRect().bottom +
+        window.scrollY,
+    ),
+  );
+  await expect(toggle).toBeVisible();
   for (const escape of [false, true, false]) {
     await toggle.click();
     const minimize = page.getByRole("button", { name: "Minimize Popup" });

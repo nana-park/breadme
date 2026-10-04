@@ -49,12 +49,11 @@ for (const route of Object.values(originalRoutePaths)) {
 }
 
 let fontReferences = 0;
-let compiledJavaScript = "";
-for (const file of await readdir(path.join(output, "assets"))) {
+const compiledAssets = await readdir(path.join(output, "assets"));
+for (const file of compiledAssets) {
   if (!/\.(?:css|js)$/.test(file)) continue;
   const text = await readFile(path.join(output, "assets", file), "utf8");
-  if (file.endsWith(".js")) compiledJavaScript += text;
-  // Includes the Spline attribution's inline CSS in its JavaScript chunk.
+  // Includes local CSS URLs contained in compiled JavaScript.
   for (const match of text.matchAll(
     /url\(\s*(?:"([^"]*)"|'([^']*)'|([^\s)]+))\s*\)/g,
   )) {
@@ -65,14 +64,12 @@ for (const file of await readdir(path.join(output, "assets"))) {
   }
 }
 assert.ok(fontReferences > 0, "No local font URLs were verified.");
-for (const asset of ["scene.splinecode", "icon-favicon.png"]) {
-  const url = `${base}original-external/spline/${asset}`;
-  assert.ok(
-    compiledJavaScript.includes(url),
-    `Spline asset has the wrong base: ${asset}`,
-  );
-  await verifyLocalUrl(url, `${origin}${base}`);
-}
+// The approved text-led Home does not import or render Spline. The original
+// cached assets remain hash-verified below; unused files are not a runtime.
+assert.ok(
+  !compiledAssets.some((file) => file.startsWith("spline-viewer-")),
+  "Text-led Home must not emit an unused Spline runtime chunk.",
+);
 
 type Asset = { path: string; sha256: string; bytes: number };
 type ExternalAsset = {
@@ -116,5 +113,5 @@ for (const asset of assets) {
 }
 assert.ok((await stat(path.join(output, ".nojekyll"))).isFile());
 console.log(
-  `Static build verified at ${base}: ${Object.keys(originalRoutePaths).length} HTML entries, ${checkedUrls.size} unique local HTML/CSS/Spline URLs, ${fontReferences} font references, ${assets.length} byte-verified assets.`,
+  `Static build verified at ${base}: ${Object.keys(originalRoutePaths).length} HTML entries, ${checkedUrls.size} unique local HTML/CSS URLs, ${fontReferences} font references, ${assets.length} byte-verified assets.`,
 );

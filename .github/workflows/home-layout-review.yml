@@ -1,0 +1,40 @@
+name: Home mobile layout review
+on:
+  pull_request:
+    paths:
+      - .github/workflows/home-layout-review.yml
+      - tests/e2e/home-layout.spec.ts
+      - src/pages/original/generated/OriginalHomeContent.tsx
+      - src/pages/home/**
+      - src/content/site/homeHero.ts
+      - src/shared/ui/SplineHero/**
+      - src/styles/original/**
+permissions:
+  contents: read
+jobs:
+  home-layout:
+    if: github.head_ref == 'feature/home-mobile-branding'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      HOME_BASELINE_URL: https://nana-park.github.io/breadme/
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test tests/e2e/home-layout.spec.ts --workers=1 --retries=0
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: always()
+        with:
+          name: home-layout-review
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7

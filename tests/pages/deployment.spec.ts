@@ -29,37 +29,16 @@ for (const [pageId, route] of Object.entries(originalRoutePaths)) {
     await assertLocalLinks(page);
 
     if (pageId === "home") {
-      await expect(page.locator("spline-viewer")).toHaveAttribute(
-        "url",
-        `${deployment.pathname}original-external/spline/scene.splinecode`,
-      );
-      await expect(page.locator("spline-viewer canvas")).toBeVisible({
-        timeout: 30_000,
-      });
-      // WHY: Preserve the original visible attribution while verifying its local icon.
-      await expect(page.locator("spline-viewer #logo")).toBeVisible();
-      await expect(page.locator("spline-viewer #logo")).toHaveAttribute(
-        "href",
-        /^https:\/\/spline\.design\//,
-      );
+      await expect(
+        page.locator("#home spline-viewer, #home canvas"),
+      ).toHaveCount(0);
       expect(
-        audit.responses.some(
+        audit.responses.filter(
           (resource) =>
-            resource.url ===
-              deployedUrl("original-external/spline/scene.splinecode") &&
-            resource.status === 200,
+            resource.url.includes("/spline/") ||
+            resource.url.includes("spline-viewer"),
         ),
-      ).toBe(true);
-      await expect
-        .poll(() =>
-          audit.responses.some(
-            (resource) =>
-              resource.url ===
-                deployedUrl("original-external/spline/icon-favicon.png") &&
-              resource.status === 200,
-          ),
-        )
-        .toBe(true);
+      ).toEqual([]);
     }
     if (pageId === "home" || pageId === "llm-based-voice-ivr") {
       await page.evaluate(() => window.scrollTo(0, 0));
@@ -159,7 +138,9 @@ test("unknown files remain true 404s instead of silently rendering Home", async 
     expect((await page.goto(url))?.status()).toBe(404);
     await expect(page.locator("[data-original-page]")).toHaveCount(0);
     await expect(
-      page.getByRole("heading", { name: "Designing Actionable AI" }),
+      page.getByRole("heading", {
+        name: "Designing AI Product Experiences Across Markets",
+      }),
     ).toHaveCount(0);
     expect((await page.reload())?.status()).toBe(404);
     await expect(page.locator("[data-original-page]")).toHaveCount(0);

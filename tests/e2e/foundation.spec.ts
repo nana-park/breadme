@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-// Real Spline rendering and full-page captures use software GPU in GitHub CI.
+// Full-page captures and media below the text-led Hero run on GitHub CI.
 test.setTimeout(90_000);
 
 const widths = [320, 390, 767, 768, 1024, 1025, 1440];
@@ -11,7 +11,7 @@ for (const width of widths) {
     page.on("pageerror", (error) => errors.push(error.message));
     await page.goto("/");
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-      "Designing Actionable AI",
+      "Designing AI Product Experiences Across Markets",
     );
     await expect(
       page.getByRole("heading", { name: "Academic Standing" }),
@@ -19,9 +19,9 @@ for (const width of widths) {
     await page.evaluate(async () => {
       await document.fonts.ready;
     });
-    await expect(page.locator("spline-viewer canvas")).toBeVisible({
-      timeout: 30000,
-    });
+    await expect(page.locator("#home spline-viewer, #home canvas")).toHaveCount(
+      0,
+    );
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= innerWidth,
@@ -50,7 +50,7 @@ for (const width of widths) {
     expect(imageFailures).toEqual([]);
     expect(errors).toEqual([]);
     for (const link of await page
-      .getByRole("link", { name: "View My Work" })
+      .getByRole("link", { name: "View my work" })
       .all())
       await expect(link).toHaveAttribute("href", "/projects.html");
   });
@@ -68,16 +68,21 @@ test("mobile menu and honest materials state", async ({ page }, testInfo) => {
   await page.keyboard.press("Escape");
   await expect(menu).toHaveAttribute("aria-expanded", "false");
   await expect(menu).toBeFocused();
-  await page.getByRole("button", { name: "Open Email Popup" }).click();
+  await expect(page.locator("#popupToggle")).toBeHidden();
+  await menu.click();
+  await page
+    .locator(".original-mobile-materials [data-materials-action='resume']")
+    .click();
   await expect(page.getByText("Coming Soon", { exact: true })).toBeVisible();
   await expect(
     page.getByRole("textbox", { name: "Email address (coming soon)" }),
   ).toBeDisabled();
   await page.screenshot({ path: testInfo.outputPath("materials-pending.png") });
   await page.getByRole("button", { name: "Minimize Popup" }).click();
-  await expect(
-    page.getByRole("button", { name: "Open Email Popup" }),
-  ).toHaveAttribute("aria-expanded", "false");
+  await expect(page.locator("#popupToggle")).toHaveAttribute(
+    "aria-expanded",
+    "false",
+  );
 });
 
 test("Home career controls keep the original second-panel content", async ({

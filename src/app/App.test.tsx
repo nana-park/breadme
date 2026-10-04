@@ -7,16 +7,25 @@ vi.mock("@/shared/ui/SplineHero/SplineHero", () => ({
 }));
 
 describe("Original portfolio React migration", () => {
-  it("preserves the actual original Home sections and copy", async () => {
+  it("renders the approved text-led Hero and preserves original Home sections", async () => {
     render(<App />);
     expect(await screen.findByRole("heading", { level: 1 })).toHaveTextContent(
-      "Designing Actionable AI",
+      "Designing AI Product Experiences Across Markets",
     );
     expect(
       screen.getByRole("heading", { name: "Academic Standing" }),
     ).toBeInTheDocument();
     expect(screen.queryByText("구조 미리보기")).not.toBeInTheDocument();
-    expect(screen.getByTestId("original-spline")).toBeInTheDocument();
+    expect(screen.queryByTestId("original-spline")).not.toBeInTheDocument();
+    expect(
+      screen.getByText("Previously at NAVER Cloud · SK Telecom"),
+    ).toBeVisible();
+    expect(
+      screen.queryByText(/Grounded in psychology and Human–AI Interaction/),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByText("Helping people follow through:"),
+    ).not.toBeInTheDocument();
   });
   it("keeps native original navigation destinations and branding", async () => {
     render(<App />);
@@ -25,7 +34,7 @@ describe("Original portfolio React migration", () => {
       "href",
       "/index.html",
     );
-    expect(screen.getByRole("link", { name: "View My Work" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "View my work" })).toHaveAttribute(
       "href",
       "/projects.html",
     );

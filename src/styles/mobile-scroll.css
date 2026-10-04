@@ -1,0 +1,51 @@
+/* A zero-height page-start boundary prevents initial-load jumps to a padded
+ * inner chapter. It adds no visible content, forced viewport or extra scrollbox. */
+[data-mobile-snap-entry] {
+  display: block;
+  height: 0;
+}
+
+@media (max-width: 767px) {
+  html[data-mobile-scroll-snap] {
+    --home-mobile-section-space: 40px;
+    scroll-snap-type: y proximity;
+    scroll-padding-block-start: 70px;
+  }
+  html[data-mobile-scroll-snap] body {
+    /* Same horizontal clipping, without an accidental intermediate scrollbox. */
+    overflow-x: clip;
+  }
+  [data-mobile-snap-section],
+  [data-mobile-snap-entry] {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+  }
+  [data-mobile-snap-flow] {
+    /* DESIGN-EXCEPTION DE-001: About's original inline overflow:hidden otherwise
+     * captures its child snap points. clip preserves its decorative boundary. */
+    overflow: clip !important;
+    display: flow-root; /* Preserve hidden's original block formatting context. */
+  }
+  /* DE-001: In a mobile one-column grid the old sticky explanatory note
+   * covers its next product panel once document scrolling is correctly active.
+   * Keep those notes in reading order; desktop sticky positioning is untouched. */
+  :is(
+      [data-original-page="llm-based-voice-ivr"],
+      [data-original-page="hopzie-oneclickbuilder"],
+      [data-original-page="ai-mentoring-agent-detail"]
+    )
+    .concept-note {
+    position: static !important;
+    top: auto !important;
+  }
+  html[data-mobile-scroll-snap]:has(.nav-menu.active) {
+    scroll-snap-type: none;
+  }
+}
+
+@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+  html[data-mobile-scroll-snap] {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+  }
+}

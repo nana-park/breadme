@@ -1,4 +1,5 @@
 import { useOriginalDetailInteractions } from "@/shared/hooks/useOriginalDetailInteractions";
+import { useMobileScrollSnap } from "@/shared/hooks/useMobileScrollSnap";
 import originalUtilities from "@/styles/original/tailwind.generated.css?raw";
 import mobileAccessibility from "@/styles/original/accessibility-mobile.css?raw";
 import { lazy, Suspense, useLayoutEffect, useRef } from "react";
@@ -129,6 +130,7 @@ function MountedOriginalPage({ pageId }: { pageId: OriginalPageId }) {
   const root = useRef<HTMLDivElement>(null);
   useOriginalPageInteractions(pageId, root);
   useOriginalDetailInteractions(pageId, root);
+  useMobileScrollSnap(pageId, root);
   useLayoutEffect(() => {
     const hash = window.location.hash.slice(1);
     if (hash && !hash.includes("?"))
@@ -150,6 +152,7 @@ function MountedOriginalPage({ pageId }: { pageId: OriginalPageId }) {
       {/* WHY: Source CDN utilities are inserted after its authored page CSS. */}
       <style>{originalUtilities}</style>
       <style>{mobileAccessibility}</style>
+      <div data-mobile-snap-entry aria-hidden="true" />
       <Page />
     </div>
   );
