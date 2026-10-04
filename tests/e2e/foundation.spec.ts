@@ -164,3 +164,21 @@ test("breakpoint changes and Back never leave focus on a hidden menu control", a
   await expect(toggle).toHaveAttribute("aria-expanded", "false");
   await expect(toggle).toBeFocused();
 });
+
+test.describe("touch navigation", () => {
+  test.use({ hasTouch: true, viewport: { width: 390, height: 844 } });
+  test("mobile visitors can open the menu and reach the next section by touch", async ({
+    page,
+  }, testInfo) => {
+    await page.goto("/");
+    await page.getByRole("button", { name: "메뉴 열기" }).tap();
+    await expect(page.getByRole("navigation")).toBeVisible();
+    await page.screenshot({
+      path: testInfo.outputPath("mobile-menu-open.png"),
+    });
+    await page.getByRole("link", { name: "프로젝트", exact: true }).tap();
+    await expect(page).toHaveURL(/#projects$/);
+    await expect(page.getByRole("navigation")).toBeHidden();
+    await expect(page.locator("#projects")).toBeFocused();
+  });
+});

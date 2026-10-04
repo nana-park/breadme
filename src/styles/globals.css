@@ -15,6 +15,7 @@ body {
     Inter, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui,
     sans-serif;
   line-height: 1.6;
+  word-break: keep-all;
   overflow-wrap: anywhere;
 }
 h1,
