@@ -24,6 +24,19 @@
     /* DESIGN-EXCEPTION DE-001: About's original inline overflow:hidden otherwise
      * captures its child snap points. clip preserves its decorative boundary. */
     overflow: clip !important;
+    display: flow-root; /* Preserve hidden's original block formatting context. */
+  }
+  /* DE-001: In a mobile one-column grid the old sticky explanatory note
+   * covers its next product panel once document scrolling is correctly active.
+   * Keep those notes in reading order; desktop sticky positioning is untouched. */
+  :is(
+      [data-original-page="llm-based-voice-ivr"],
+      [data-original-page="hopzie-oneclickbuilder"],
+      [data-original-page="ai-mentoring-agent-detail"]
+    )
+    .concept-note {
+    position: static !important;
+    top: auto !important;
   }
   html[data-mobile-scroll-snap]:has(.nav-menu.active) {
     scroll-snap-type: none;

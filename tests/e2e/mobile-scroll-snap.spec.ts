@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import fs from "node:fs/promises";
 import type { Locator, Page, TestInfo } from "@playwright/test";
 import {
   originalPageIds,
@@ -119,8 +120,13 @@ async function attachEvidence(
   label: string,
   data?: unknown,
 ) {
+  const geometryPath = testInfo.outputPath(`${label}.json`);
+  await fs.writeFile(
+    geometryPath,
+    JSON.stringify(data ?? (await geometry(page)), null, 2),
+  );
   await testInfo.attach(`${label}-geometry`, {
-    body: Buffer.from(JSON.stringify(data ?? (await geometry(page)), null, 2)),
+    path: geometryPath,
     contentType: "application/json",
   });
   const path = testInfo.outputPath(`${label}.png`);
@@ -429,16 +435,21 @@ test("expanded project content remains reachable before and after disclosure col
   await page.setViewportSize(MOBILE);
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await openRoute(page, "projects");
-  const disclosure = page
-    .locator("details")
-    .filter({
-      has: page.locator("summary", {
-        hasText: /^\s*NAVER CareCall\s+Senior Care AI Call-bot/,
-      }),
-    });
+  const disclosure = page.locator("details").filter({
+    has: page.locator("summary", {
+      hasText: /^\s*NAVER CareCall\s+Senior Care AI Call-bot/,
+    }),
+  });
   const summary = disclosure.locator("summary");
   await summary.click();
   await expect(disclosure).toHaveAttribute("open", "");
+  const nestedList = disclosure
+    .locator('[class~="group/list"]')
+    .filter({ hasText: "Conversation Infrastructure" });
+  const nestedToggle = nestedList.getByRole("button");
+  await expect(nestedToggle).toHaveAccessibleName("View projects");
+  await nestedToggle.click();
+  await expect(nestedToggle).toHaveAttribute("aria-expanded", "true");
   const tail = disclosure.getByText(
     "From Complex Flows to Simple Conversations",
     { exact: true },

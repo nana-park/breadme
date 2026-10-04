@@ -14,7 +14,7 @@
 
 | ID | 상태 | 페이지 | 화면 | 기본 규칙 | 승인된 예외 | 이유 | 재검토 조건 | 코드 위치 | 적용 버전 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| DE-001 | Active | About, Awards | 767px 이하 | 일반적으로 !important 사용 안 함 | 기존 장식용 바깥 overflow만 clip으로 지정 | 원본 inline hidden이 하위 스냅 지점을 가로막는 중간 스크롤 상자를 만들기 때문 | 원본 inline 스타일을 구조적으로 정리하거나 스냅을 제거할 때 | src/styles/mobile-scroll.css | PR #2 |
+| DE-001 | Active | About, Awards, 상세3개 | 767px 이하 | 일반적으로 !important 사용 안 함 | 장식용 바깥 overflow를 clip+flow-root로 지정, 모바일 단일 열의 설명은 static으로 지정 | 원본 inline hidden의 중간 스크롤 상자를 제거하고, 그 결과 활성화된 모바일 sticky 설명이 아래 내용을 덮는 것을 방지 | 원본 inline 스타일을 구조적으로 정리하거나 스냅을 제거할 때 | src/styles/mobile-scroll.css | PR #2 |
 
 ## 기록 원칙
 
