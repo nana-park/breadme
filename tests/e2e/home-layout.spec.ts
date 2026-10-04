@@ -293,8 +293,15 @@ for (const width of widths) {
     expect(heading.fontSize).toBeGreaterThan(proof.fontSize * 1.5);
     expect(heading.fontWeight).toBeGreaterThanOrEqual(500);
     expect(heading.textAlign).toBe(width < 768 ? "left" : "center");
-    expect(eyebrow.textAlign).toBe("center");
-    expect(proof.textAlign).toBe("center");
+    expect(eyebrow.textAlign).toBe(width < 768 ? "left" : "center");
+    expect(proof.textAlign).toBe(width < 768 ? "left" : "center");
+    if (width < 768) {
+      for (const text of [eyebrow, proof])
+        expect(
+          Math.abs(text.glyphBounds.x - heading.glyphBounds.x),
+          "All three mobile text blocks share the same left starting edge",
+        ).toBeLessThanOrEqual(1);
+    }
     expect(proof.fontSize).toBeGreaterThanOrEqual(12);
     expect(eyebrow.fontSize).toBeGreaterThanOrEqual(10);
     for (const text of metrics.texts) {
