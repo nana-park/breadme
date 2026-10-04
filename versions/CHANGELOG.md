@@ -44,7 +44,7 @@
 #### 검수와 공개 상태
 
 - 로컬 lint·typecheck·단위 테스트 68개·build 통과
-- 통합 브라우저 검사 48개는 문서 갱신 시점에 진행 중. 최종 결과는 [이관 검수 기록](../docs/qa/original-migration-verification.md)과 정확한 커밋의 PR checks에서 확인
+- 통합 브라우저 검사 48개는 2801632에서 모두 통과. 마지막 Enjoy 보정과 후속 커밋의 결과는 [이관 검수 기록](../docs/qa/original-migration-verification.md)과 정확한 커밋의 PR checks에서 확인
 - 원본 대조와 실제 기기·보조 기술 확인 범위를 구분. 초기 구조 검수 성공을 전체 이관 성공으로 확대하지 않음
 - Draft PR 검토 중이며 beta/main 병합·배포·최종 공개 승인은 별도
 

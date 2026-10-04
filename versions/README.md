@@ -8,9 +8,9 @@
 - Articles: 영어 본문 18개·6쪽 목록·읽기와 복귀 구현
 - 파일 준비: 원본 147개 + 외부 211개 SHA-256 검증, 첫 준비 약 302 MiB
 - 로컬 검수: lint·typecheck·단위 테스트 68개·build 통과
-- 전체 브라우저 검수: 48개 진행 중. 완료·통과 여부는 [현재 이관 검수 기록](../docs/qa/original-migration-verification.md)에 기록
+- 전체 브라우저 검수: 48개 구성, 2801632 전체 통과. 마지막 커밋 결과는 [현재 이관 검수 기록](../docs/qa/original-migration-verification.md)에 기록
 - 검토 링크: [Draft PR #1](https://github.com/nana-park/portfolio-react/pull/1)
-- 다음 목표: 통합 브라우저·원본 대조 검수를 마치고 남은 차이와 확인 범위 정리
+- 다음 목표: 검토 결과를 바탕으로 beta 통합과 별도 공개 승인 검토
 - 작업 브랜치: `feature/responsive-react-foundation`
 - 기준 브랜치: `docs/collaboration-ground-rules` (`4b07328`)
 - Draft PR 대상: `docs/collaboration-ground-rules` (기존 문서 이력 보존)
