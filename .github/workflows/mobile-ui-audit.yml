@@ -1,0 +1,64 @@
+name: Mobile UI readability
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  mobile-ui:
+    if: github.head_ref == 'feature/mobile-ui-readability' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      MOBILE_UI_CAPTURE_ONLY: '1'
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: node scripts/prepare-desktop-unchanged.mjs
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test --config=playwright.mobile-ui.config.ts
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: always()
+        with:
+          name: mobile-ui-evidence
+          path: |
+            test-results/mobile-ui/
+            !test-results/mobile-ui/**/attachments/
+          retention-days: 7
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: always()
+        with:
+          name: mobile-ui-report
+          path: playwright-report/mobile-ui/
+          retention-days: 7
+      - name: Observe the same Voice IVR cases on unchanged main
+        if: ${{ !cancelled() }}
+        continue-on-error: true
+        run: npx playwright test --config=playwright.provider-baseline.config.ts
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: always()
+        with:
+          name: provider-baseline-evidence
+          path: |
+            test-results/provider-baseline/
+            playwright-report/provider-baseline/
+          retention-days: 7
+      - run: npx playwright test --config=playwright.desktop-unchanged.config.ts
+        if: ${{ !cancelled() }}
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: always()
+        with:
+          name: desktop-unchanged-evidence
+          path: |
+            test-results/desktop-unchanged/
+            playwright-report/desktop-unchanged/
+          retention-days: 7

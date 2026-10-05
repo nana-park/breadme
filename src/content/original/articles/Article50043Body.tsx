@@ -84,7 +84,12 @@ export function Article50043Body() {
             src={assetUrl(
               "https://www.artinsight.co.kr/data/tmp/2009/20200930173717_uwvaxxlh.jpg",
             )}
-            style={{ width: "660px", height: "441px" } as CSSProperties}
+            style={
+              {
+                width: "660px",
+                height: "var(--article-image-height, 441px)",
+              } as CSSProperties
+            }
           />{" "}
           <figcaption
             className="cheditor-caption-text"
@@ -183,7 +188,12 @@ export function Article50043Body() {
             src={assetUrl(
               "https://www.artinsight.co.kr/data/tmp/2009/20200930173237_rlvmkddb.jpg",
             )}
-            style={{ width: "640px", height: "445px" } as CSSProperties}
+            style={
+              {
+                width: "640px",
+                height: "var(--article-image-height, 445px)",
+              } as CSSProperties
+            }
           />{" "}
           <figcaption
             className="cheditor-caption-text"
@@ -237,7 +247,12 @@ export function Article50043Body() {
           src={assetUrl(
             "https://www.artinsight.co.kr/data/tmp/2009/20200930172443_sdtrdsdr.jpg",
           )}
-          style={{ width: "659px", height: "293px" } as CSSProperties}
+          style={
+            {
+              width: "659px",
+              height: "var(--article-image-height, 293px)",
+            } as CSSProperties
+          }
         />
       </p>{" "}
       <p className="MsoNormal">
@@ -302,7 +317,12 @@ export function Article50043Body() {
             src={assetUrl(
               "https://www.artinsight.co.kr/data/tmp/2009/20200930172843_atbhvnko.jpg",
             )}
-            style={{ width: "660px", height: "495px" } as CSSProperties}
+            style={
+              {
+                width: "660px",
+                height: "var(--article-image-height, 495px)",
+              } as CSSProperties
+            }
           />{" "}
           <figcaption
             className="cheditor-caption-text"

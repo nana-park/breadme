@@ -6,22 +6,22 @@
 
 ## 실행 중인 공통 컴포넌트
 
-| 페이지 | OriginalHeader | OriginalFooter | MaterialsPopup | SplineHero |
-| --- | --- | --- | --- | --- |
-| Home | 적용 | 적용 | 적용 | 현재 렌더링 안 함 |
-| About | 적용 | 적용 | 적용 | 해당 없음 |
-| Career | 적용 | 적용 | 적용 | 해당 없음 |
-| Qualified | 적용 | 적용 | 적용 | 해당 없음 |
-| Enjoy | 적용 | 적용 | 적용 | 해당 없음 |
-| Projects | 적용 | 적용 | 적용 | 해당 없음 |
-| Research | 적용 | 적용 | 적용 | 해당 없음 |
-| Articles | 적용 | 적용 | 적용 | 해당 없음 |
-| Lectures | 적용 | 적용 | 적용 | 해당 없음 |
-| Awards | 적용 | 적용 | 적용 | 해당 없음 |
-| Contact | 적용 | 적용 | 적용 | 해당 없음 |
-| Voice IVR 상세 | 적용 | 적용 | 원본에 없음 | 해당 없음 |
-| Hopzie 상세 | 적용 | 적용 | 원본에 없음 | 해당 없음 |
-| AI Mentoring 상세 | 적용 | 적용 | 원본에 없음 | 해당 없음 |
+| 페이지            | OriginalHeader | OriginalFooter | MaterialsPopup | SplineHero        |
+| ----------------- | -------------- | -------------- | -------------- | ----------------- |
+| Home              | 적용           | 적용           | 적용           | 현재 렌더링 안 함 |
+| About             | 적용           | 적용           | 적용           | 해당 없음         |
+| Career            | 적용           | 적용           | 적용           | 해당 없음         |
+| Qualified         | 적용           | 적용           | 적용           | 해당 없음         |
+| Enjoy             | 적용           | 적용           | 적용           | 해당 없음         |
+| Projects          | 적용           | 적용           | 적용           | 해당 없음         |
+| Research          | 적용           | 적용           | 적용           | 해당 없음         |
+| Articles          | 적용           | 적용           | 적용           | 해당 없음         |
+| Lectures          | 적용           | 적용           | 적용           | 해당 없음         |
+| Awards            | 적용           | 적용           | 적용           | 해당 없음         |
+| Contact           | 적용           | 적용           | 적용           | 해당 없음         |
+| Voice IVR 상세    | 적용           | 적용           | 원본에 없음    | 해당 없음         |
+| Hopzie 상세       | 적용           | 적용           | 원본에 없음    | 해당 없음         |
+| AI Mentoring 상세 | 적용           | 적용           | 원본에 없음    | 해당 없음         |
 
 - `App`이 Header·본문·Footer·MaterialsPopup을 조립하고 `OriginalPage`가 14개 페이지를 선택합니다.
 - `/`와 `/index.html`은 같은 Home입니다. Enjoy는 경로를 유지하지만 원본처럼 메뉴에서는 숨깁니다.
@@ -29,6 +29,8 @@
 - MaterialsPopup은 원본 핵심 11개 페이지에만 있습니다. 원본 상세 3개에는 떠 있는 버튼이 없고 Header 자료 링크는 `Coming soon!` 안내를 표시합니다. 자료 전송은 `Coming Soon` 상태입니다. 연결 상태를 메일 기능 완료로 표시하지 않습니다.
 - Home은 사용자 선택에 따라 텍스트 중심 `HomeHero`와 CSS Module을 사용합니다. `SplineHero`는 Home에서 렌더링하지 않으며 원본 이관 파일은 보존합니다. 다른 페이지로 새 Hero 스타일을 확대하지 않습니다.
 - Articles는 목록·읽기 화면을 가진 하나의 경로입니다. 영어 본문 18개와 6쪽 목록은 `OriginalArticlesPage`가 관리합니다.
+- 모바일 가독성 보정(PR #3)은 `OriginalPage.module.css`의 명시적 `data-reading-role`과 Header/Footer/MaterialsPopup의 자체 CSS Module에서 관리합니다. 생성 페이지의 역할 표식은 변환기에도 반영합니다. 새 모바일 전용 페이지나 복제된 콘텐츠는 만들지 않습니다.
+- Footer의 기존 CSS 중요 선언은 컴포넌트가 767px 이하에서 설정하는 CSS 변수로 제어하며 기존 fallback은 그대로입니다. 새 CSS Module에 `!important`를 추가하지 않습니다. 콘텐츠용 보정은 767px 이하, 메뉴용 보정은 기존 1023px 이하 범위입니다.
 
 ## 초기 컴포넌트와의 관계
 
@@ -49,3 +51,7 @@
 Header·Footer·자료 UI를 바꾸면 14개 경로가 영향 범위입니다. 390px·1440px 경로 검사, Home의 7개 너비, 1023↔1024px 메뉴 상태·초점 전환을 확인합니다. 실제 통과 여부는 [현재 이관 검수 기록](../qa/original-migration-verification.md)에 남깁니다.
 
 공통 컴포넌트·경로·콘텐츠 위치가 바뀌면 이 표와 [페이지 README](../../src/pages/original/README.md)를 함께 갱신합니다. `적용 대기`는 실제 구현 화면에서 계획된 미이관 항목에만 사용합니다.
+
+## PR #3 모바일 자료 진입
+
+767px 이하에서는 본문을 가리는 중복 원형 바로가기를 숨기고 공통 메뉴의 Resume/Portfolio PDF 항목을 사용합니다. Home도 동일합니다. Coming Soon 패널과 비활성 자료 요청은 유지합니다. 768px 이상 표시와 Desktop 구성은 변경하지 않습니다.

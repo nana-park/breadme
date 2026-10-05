@@ -64,7 +64,12 @@ export function Article54170Body() {
             src={assetUrl(
               "https://www.artinsight.co.kr/data/tmp/2105/20210530214729_zepvxpct.jpg",
             )}
-            style={{ width: "660px", height: "325px" } as CSSProperties}
+            style={
+              {
+                width: "660px",
+                height: "var(--article-image-height, 325px)",
+              } as CSSProperties
+            }
           />{" "}
           <figcaption
             className="cheditor-caption-text"
@@ -165,7 +170,12 @@ export function Article54170Body() {
             src={assetUrl(
               "https://www.artinsight.co.kr/data/tmp/2105/20210530214822_mkypmild.jpg",
             )}
-            style={{ width: "660px", height: "441px" } as CSSProperties}
+            style={
+              {
+                width: "660px",
+                height: "var(--article-image-height, 441px)",
+              } as CSSProperties
+            }
           />{" "}
           <figcaption
             className="cheditor-caption-text"
@@ -270,7 +280,12 @@ export function Article54170Body() {
           src={assetUrl(
             "https://www.artinsight.co.kr/data/tmp/2105/20210530214417_kxkzwshz.jpg",
           )}
-          style={{ width: "660px", height: "493px" } as CSSProperties}
+          style={
+            {
+              width: "660px",
+              height: "var(--article-image-height, 493px)",
+            } as CSSProperties
+          }
         />
       </p>{" "}
       <p>
@@ -346,7 +361,12 @@ export function Article54170Body() {
             src={assetUrl(
               "https://www.artinsight.co.kr/data/tmp/2105/20210530214457_balxdbdy.jpg",
             )}
-            style={{ width: "660px", height: "399px" } as CSSProperties}
+            style={
+              {
+                width: "660px",
+                height: "var(--article-image-height, 399px)",
+              } as CSSProperties
+            }
           />{" "}
           <figcaption
             className="cheditor-caption-text"

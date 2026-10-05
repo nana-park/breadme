@@ -94,7 +94,12 @@ export function Article51061Body() {
               "https://www.artinsight.co.kr/data/tmp/2012/20201201050507_tbqwrzhm.jpg",
             )}
             alt={"iStock_81484743_MEDIUM.jpg"}
-            style={{ width: "660px", height: "293px" } as CSSProperties}
+            style={
+              {
+                width: "660px",
+                height: "var(--article-image-height, 293px)",
+              } as CSSProperties
+            }
           />
           {"\n      "}
           <figcaption
@@ -227,7 +232,12 @@ export function Article51061Body() {
               "https://www.artinsight.co.kr/data/tmp/2012/20201201050845_xxsaeufb.jpg",
             )}
             alt={"techrepublic.jpg"}
-            style={{ width: "600px", height: "400px" } as CSSProperties}
+            style={
+              {
+                width: "600px",
+                height: "var(--article-image-height, 400px)",
+              } as CSSProperties
+            }
           />
           {"\n      "}
           <figcaption

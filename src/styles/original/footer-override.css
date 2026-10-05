@@ -7,19 +7,19 @@
 }
 
 .footer-columns {
-    gap: 4rem !important;
+    gap: var(--footer-columns-gap, 4rem) !important;
     margin-bottom: 2rem !important;
     justify-content: flex-start !important;
 }
 
 .footer-col h4 {
-    font-size: 0.9rem !important;
-    margin-bottom: 1rem !important;
+    font-size: var(--footer-heading-size, 0.9rem) !important;
+    margin-bottom: var(--footer-heading-margin, 1rem) !important;
     opacity: 0.9 !important;
 }
 
 .footer-links li {
-    margin-bottom: 0.75rem !important;
+    margin-bottom: var(--footer-link-margin, 0.75rem) !important;
 }
 
 .footer-socials-col {

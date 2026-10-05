@@ -100,7 +100,12 @@ export function Article58119Body() {
             src={assetUrl(
               "https://www.artinsight.co.kr/data/tmp/2202/20220203221318_uvwlspwe.jpg",
             )}
-            style={{ width: "660px", height: "369px" } as CSSProperties}
+            style={
+              {
+                width: "660px",
+                height: "var(--article-image-height, 369px)",
+              } as CSSProperties
+            }
           />{" "}
           <figcaption
             className="cheditor-caption-text"
@@ -191,7 +196,12 @@ export function Article58119Body() {
             src={assetUrl(
               "https://www.artinsight.co.kr/data/tmp/2202/20220202221107_ptwudiru.jpg",
             )}
-            style={{ width: "660px", height: "355px" } as CSSProperties}
+            style={
+              {
+                width: "660px",
+                height: "var(--article-image-height, 355px)",
+              } as CSSProperties
+            }
           />{" "}
           <figcaption
             className="cheditor-caption-text"
@@ -269,7 +279,12 @@ export function Article58119Body() {
           src={assetUrl(
             "https://www.artinsight.co.kr/data/tmp/2202/20220202220118_tovxoefw.jpg",
           )}
-          style={{ width: "660px", height: "388px" } as CSSProperties}
+          style={
+            {
+              width: "660px",
+              height: "var(--article-image-height, 388px)",
+            } as CSSProperties
+          }
         />
       </p>{" "}
       <p>
@@ -299,7 +314,12 @@ export function Article58119Body() {
           src={assetUrl(
             "https://www.artinsight.co.kr/data/tmp/2202/20220202220742_swfalnkg.jpg",
           )}
-          style={{ width: "660px", height: "236px" } as CSSProperties}
+          style={
+            {
+              width: "660px",
+              height: "var(--article-image-height, 236px)",
+            } as CSSProperties
+          }
         />
       </p>{" "}
       <p style={{ textAlign: "center" } as CSSProperties}>
@@ -308,7 +328,12 @@ export function Article58119Body() {
           src={assetUrl(
             "https://www.artinsight.co.kr/data/tmp/2202/20220202220622_fgyeslss.jpg",
           )}
-          style={{ width: "660px", height: "254px" } as CSSProperties}
+          style={
+            {
+              width: "660px",
+              height: "var(--article-image-height, 254px)",
+            } as CSSProperties
+          }
         />
       </p>{" "}
       <p>

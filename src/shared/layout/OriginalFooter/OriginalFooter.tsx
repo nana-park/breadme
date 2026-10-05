@@ -1,7 +1,12 @@
+import styles from "./OriginalFooter.module.css";
+
 type Props = { onPending: () => void };
 export function OriginalFooter({ onPending }: Props) {
   return (
-    <footer className="footer" data-mobile-snap-section="footer">
+    <footer
+      className={`footer ${styles.footer}`}
+      data-mobile-snap-section="footer"
+    >
       <div className="container footer-content">
         <div className="footer-columns">
           <div className="footer-col">

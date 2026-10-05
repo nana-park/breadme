@@ -31,7 +31,12 @@ export function Article66504Body() {
           src={assetUrl(
             "https://www.artinsight.co.kr/data/tmp/2309/20230901192926_nhmznrlk.jpg",
           )}
-          style={{ width: "660px", height: "557px" } as CSSProperties}
+          style={
+            {
+              width: "660px",
+              height: "var(--article-image-height, 557px)",
+            } as CSSProperties
+          }
         />
       </p>{" "}
       <p style={{ textAlign: "center" } as CSSProperties}>

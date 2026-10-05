@@ -55,6 +55,7 @@ export function OriginalCareerContent() {
                 'font-sans tracking-tight text-zinc-900 text-[32px] md:text-[44px] leading-[1.1] font-normal mb-4 text-center'
               }
               style={{ wordBreak: 'keep-all' } as CSSProperties}
+              data-reading-role={'landing-title'}
             >
               {
                 '\n                    Building AI products for real-world impact.\n                '
@@ -65,6 +66,7 @@ export function OriginalCareerContent() {
               className={
                 'font-sans text-zinc-600 text-[14px] md:text-[15px] leading-[1.7] max-w-[800px] mx-auto font-normal mb-0 text-center'
               }
+              data-reading-role={'landing-copy'}
             >
               {
                 '\n                    Grounded in Psychology and AI, with 4 years of AI Product Management.\n                '
@@ -201,6 +203,7 @@ export function OriginalCareerContent() {
                   className={
                     'font-sans text-[#a1a1aa] text-[13px] md:text-[14px] leading-[1.6] max-w-[95%] font-light mb-8 transition-opacity duration-300'
                   }
+                  data-reading-role={'career-copy'}
                 >
                   {
                     '\n                            Bridging the gap between human psychology and engineering to design optimal AI\n                            experiences.'
@@ -1190,19 +1193,28 @@ export function OriginalCareerContent() {
             id={'testimonialsContainer'}
           >
             {'\n                '}
-            <div className={'testimonial-card card-gradient-1'}>
+            <div
+              className={'testimonial-card card-gradient-1'}
+              data-reading-role={'testimonial-card'}
+            >
               {'\n                    '}
               <div className={'card-stars'}>{'★★★★★'}</div>
               {'\n                    '}
-              <p className={'card-quote'}>
+              <p className={'card-quote'} data-reading-role={'card-quote'}>
                 {
                   '"Nahyun-san finally made the Korea-Japan collaboration happen. Her drive and\n                        quality shocked us - and yes, all of us Japanese teammates think we should learn from her."'
                 }
               </p>
               {'\n                    '}
-              <div className={'card-signature'}>
+              <div
+                className={'card-signature'}
+                data-reading-role={'card-signature'}
+              >
                 {'J'}
-                <span className={'card-author-title'}>
+                <span
+                  className={'card-author-title'}
+                  data-reading-role={'card-author-title'}
+                >
                   {'Product Lead'}
                   <br />
                   {'LINE WORKS Japan'}
@@ -1212,19 +1224,28 @@ export function OriginalCareerContent() {
               {'\n                '}
             </div>
             {'\n                '}
-            <div className={'testimonial-card card-gradient-2 active'}>
+            <div
+              className={'testimonial-card card-gradient-2 active'}
+              data-reading-role={'testimonial-card'}
+            >
               {'\n                    '}
               <div className={'card-stars'}>{'★★★★★'}</div>
               {'\n                    '}
-              <p className={'card-quote'}>
+              <p className={'card-quote'} data-reading-role={'card-quote'}>
                 {
                   '"Things were stuck between engineering and planning, but her positive energy\n                        and communication helped reset the relationship and move the work forward.'
                 }
               </p>
               {'\n                    '}
-              <div className={'card-signature'}>
+              <div
+                className={'card-signature'}
+                data-reading-role={'card-signature'}
+              >
                 {'P'}
-                <span className={'card-author-title'}>
+                <span
+                  className={'card-author-title'}
+                  data-reading-role={'card-author-title'}
+                >
                   {'Lead Product Manager'}
                   <br />
                   {'Naver\n                            Cloud'}
@@ -1233,19 +1254,28 @@ export function OriginalCareerContent() {
               {'\n                '}
             </div>
             {'\n                '}
-            <div className={'testimonial-card card-gradient-3'}>
+            <div
+              className={'testimonial-card card-gradient-3'}
+              data-reading-role={'testimonial-card'}
+            >
               {'\n                    '}
               <div className={'card-stars'}>{'★★★★★'}</div>
               {'\n                    '}
-              <p className={'card-quote'}>
+              <p className={'card-quote'} data-reading-role={'card-quote'}>
                 {
                   "\"Working with her reduces alignment cost. Decisions happen faster because\n                        everyone understands the 'why.'"
                 }
               </p>
               {'\n                    '}
-              <div className={'card-signature'}>
+              <div
+                className={'card-signature'}
+                data-reading-role={'card-signature'}
+              >
                 {'O'}
-                <span className={'card-author-title'}>
+                <span
+                  className={'card-author-title'}
+                  data-reading-role={'card-author-title'}
+                >
                   {'AI Development'}
                   <br />
                   {'Naver Cloud'}
@@ -1255,19 +1285,28 @@ export function OriginalCareerContent() {
               {'\n                '}
             </div>
             {'\n                '}
-            <div className={'testimonial-card card-gradient-5'}>
+            <div
+              className={'testimonial-card card-gradient-5'}
+              data-reading-role={'testimonial-card'}
+            >
               {'\n                    '}
               <div className={'card-stars'}>{'★★★★★'}</div>
               {'\n                    '}
-              <p className={'card-quote'}>
+              <p className={'card-quote'} data-reading-role={'card-quote'}>
                 {
                   '"From kickoff to delivery, her thoughtful comments helped organize what was\n                        needed and turn it into real outcomes."'
                 }
               </p>
               {'\n                    '}
-              <div className={'card-signature'}>
+              <div
+                className={'card-signature'}
+                data-reading-role={'card-signature'}
+              >
                 {'H'}
-                <span className={'card-author-title'}>
+                <span
+                  className={'card-author-title'}
+                  data-reading-role={'card-author-title'}
+                >
                   {'Researcher'}
                   <br />
                   {'External Partner'}
@@ -1277,19 +1316,28 @@ export function OriginalCareerContent() {
               {'\n                '}
             </div>
             {'\n                '}
-            <div className={'testimonial-card card-gradient-6'}>
+            <div
+              className={'testimonial-card card-gradient-6'}
+              data-reading-role={'testimonial-card'}
+            >
               {'\n                    '}
               <div className={'card-stars'}>{'★★★★★'}</div>
               {'\n                    '}
-              <p className={'card-quote'}>
+              <p className={'card-quote'} data-reading-role={'card-quote'}>
                 {
                   '"She doesn\'t wait for work. She finds it - and makes sure everyone knows."'
                 }
               </p>
               {'\n                    '}
-              <div className={'card-signature'}>
+              <div
+                className={'card-signature'}
+                data-reading-role={'card-signature'}
+              >
                 {'L'}
-                <span className={'card-author-title'}>
+                <span
+                  className={'card-author-title'}
+                  data-reading-role={'card-author-title'}
+                >
                   {'Senior Product Manager'}
                   <br />
                   {'SK\n                            Telecom'}
@@ -1298,19 +1346,28 @@ export function OriginalCareerContent() {
               {'\n                '}
             </div>
             {'\n                '}
-            <div className={'testimonial-card card-gradient-4'}>
+            <div
+              className={'testimonial-card card-gradient-4'}
+              data-reading-role={'testimonial-card'}
+            >
               {'\n                    '}
               <div className={'card-stars'}>{'★★★★★'}</div>
               {'\n                    '}
-              <p className={'card-quote'}>
+              <p className={'card-quote'} data-reading-role={'card-quote'}>
                 {
                   "\"Her only weaknesses? She doesn't drink, doesn't like coffee, and doesn't\n                        smoke.\""
                 }
               </p>
               {'\n                    '}
-              <div className={'card-signature'}>
+              <div
+                className={'card-signature'}
+                data-reading-role={'card-signature'}
+              >
                 {'K'}
-                <span className={'card-author-title'}>
+                <span
+                  className={'card-author-title'}
+                  data-reading-role={'card-author-title'}
+                >
                   {
                     'Director of AI Solution\n                            Planning'
                   }

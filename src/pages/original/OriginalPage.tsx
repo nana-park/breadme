@@ -5,6 +5,7 @@ import mobileAccessibility from "@/styles/original/accessibility-mobile.css?raw"
 import { lazy, Suspense, useLayoutEffect, useRef } from "react";
 import type { OriginalPageId } from "@/config/originalRoutes";
 import { useOriginalPageInteractions } from "@/shared/hooks/useOriginalPageInteractions";
+import styles from "./OriginalPage.module.css";
 
 const pages = {
   home: {
@@ -140,6 +141,7 @@ function MountedOriginalPage({ pageId }: { pageId: OriginalPageId }) {
   return (
     <div
       ref={root}
+      className={styles.page}
       data-original-page={pageId}
       onSubmitCapture={(event) => event.preventDefault()}
     >

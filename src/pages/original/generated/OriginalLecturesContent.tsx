@@ -30,6 +30,7 @@ export function OriginalLecturesContent() {
               className={
                 'font-sans tracking-tight text-zinc-900 text-[32px] md:text-[44px] leading-[1.1] font-normal mb-4'
               }
+              data-reading-role={'landing-title'}
             >
               {'\n                    Exchanging insights and experiences'}
               <br />
@@ -40,6 +41,7 @@ export function OriginalLecturesContent() {
               className={
                 'font-sans text-zinc-600 text-[14px] md:text-[15px] font-normal'
               }
+              data-reading-role={'landing-copy'}
             >
               {
                 '\n                    Lectures, workshops, and speaking engagements.\n                '
@@ -204,6 +206,7 @@ export function OriginalLecturesContent() {
                 className={
                   'w-full lg:w-7/12 flex flex-col justify-center overflow-hidden'
                 }
+                data-reading-role={'lecture-content'}
               >
                 {'\n                        '}
                 <h3
@@ -212,6 +215,7 @@ export function OriginalLecturesContent() {
                     'text-[20px] md:text-[22px] font-medium text-zinc-900 tracking-tight leading-[1.3] mb-1.5 truncate w-full'
                   }
                   title={'Job Bootcamp: AI Voice App Track'}
+                  data-reading-role={'lecture-copy'}
                 >
                   {'Job Bootcamp: AI Voice App Track'}
                 </h3>
@@ -220,6 +224,7 @@ export function OriginalLecturesContent() {
                   className={
                     'font-sans text-[12px] font-medium text-zinc-500 mb-6 flex items-center gap-2'
                   }
+                  data-reading-role={'lecture-meta'}
                 >
                   {'\n                            '}
                   <span className={'text-[#D97706]'}>
@@ -236,6 +241,7 @@ export function OriginalLecturesContent() {
                   className={
                     'font-sans text-[12px] md:text-[13px] text-zinc-600 leading-[1.5] max-w-lg grid grid-cols-[85px_1fr] md:grid-cols-[90px_1fr] gap-y-1 gap-x-2'
                   }
+                  data-reading-role={'lecture-facts'}
                 >
                   {'\n                            '}
                   <div className={'font-semibold text-zinc-800'}>
@@ -247,6 +253,7 @@ export function OriginalLecturesContent() {
                     title={
                       'Hands-on AI voice service bootcamp for aspiring product managers.'
                     }
+                    data-reading-role={'lecture-copy'}
                   >
                     {
                       'Hands-on AI\n                                voice service bootcamp for aspiring product managers.'
@@ -260,6 +267,7 @@ export function OriginalLecturesContent() {
                   <div
                     className={'truncate'}
                     title={'University Students & Job Seekers'}
+                    data-reading-role={'lecture-copy'}
                   >
                     {
                       'University Students\n                                & Job Seekers'
@@ -271,6 +279,7 @@ export function OriginalLecturesContent() {
                   <div
                     className={'truncate'}
                     title={'Conversational UX · AI Workflow · Service Planning'}
+                    data-reading-role={'lecture-copy'}
                   >
                     {
                       '\n                                Conversational UX · AI Workflow · Service Planning'
@@ -284,6 +293,7 @@ export function OriginalLecturesContent() {
                   <div
                     className={'truncate'}
                     title={'GPT-Based Prototyping & Voice Simulation'}
+                    data-reading-role={'lecture-copy'}
                   >
                     {
                       'GPT-Based\n                                Prototyping & Voice Simulation'
@@ -301,6 +311,7 @@ export function OriginalLecturesContent() {
                     title={
                       'AI Call Scenarios, Flow Design & Service Documentation'
                     }
+                    data-reading-role={'lecture-copy'}
                   >
                     {'AI Call Scenarios, Flow Design & Service Documentation'}
                   </div>
@@ -499,6 +510,7 @@ export function OriginalLecturesContent() {
                 className={
                   'w-full lg:w-7/12 flex flex-col justify-center overflow-hidden'
                 }
+                data-reading-role={'lecture-content'}
               >
                 {'\n                        '}
                 <h3
@@ -507,6 +519,7 @@ export function OriginalLecturesContent() {
                     'text-[20px] md:text-[22px] font-medium text-zinc-900 tracking-tight leading-[1.3] mb-1.5 truncate w-full'
                   }
                   title={'AI Interaction Expert Special Lecture'}
+                  data-reading-role={'lecture-copy'}
                 >
                   {'AI Interaction Expert Special Lecture'}
                 </h3>
@@ -515,6 +528,7 @@ export function OriginalLecturesContent() {
                   className={
                     'font-sans text-[12px] font-medium text-zinc-500 mb-6 flex items-center gap-2'
                   }
+                  data-reading-role={'lecture-meta'}
                 >
                   {'\n                            '}
                   <span className={'text-[#D97706]'}>
@@ -531,6 +545,7 @@ export function OriginalLecturesContent() {
                   className={
                     'font-sans text-[12px] md:text-[13px] text-zinc-600 leading-[1.5] max-w-lg grid grid-cols-[85px_1fr] md:grid-cols-[90px_1fr] gap-y-1 gap-x-2'
                   }
+                  data-reading-role={'lecture-facts'}
                 >
                   {'\n                            '}
                   <div className={'font-semibold text-zinc-800'}>{'Theme'}</div>
@@ -538,6 +553,7 @@ export function OriginalLecturesContent() {
                   <div
                     className={'truncate'}
                     title={'Rethinking AI Literacy & Inclusive AI Design'}
+                    data-reading-role={'lecture-copy'}
                   >
                     {
                       'Rethinking AI\n                                Literacy & Inclusive AI Design'
@@ -551,6 +567,7 @@ export function OriginalLecturesContent() {
                   <div
                     className={'truncate'}
                     title={'Undeclared Major Students'}
+                    data-reading-role={'lecture-copy'}
                   >
                     {'Undeclared Major Students'}
                   </div>
@@ -562,6 +579,7 @@ export function OriginalLecturesContent() {
                     title={
                       'ESG · Accessibility · Voice Interaction · Human-Centered AI'
                     }
+                    data-reading-role={'lecture-copy'}
                   >
                     {
                       '\n                                ESG · Accessibility · Voice Interaction · Human-Centered AI'
@@ -577,6 +595,7 @@ export function OriginalLecturesContent() {
                     title={
                       'NAVER CareCall · AI Voice UX · Elderly-Centered Interaction'
                     }
+                    data-reading-role={'lecture-copy'}
                   >
                     {
                       '\n                                NAVER CareCall · AI Voice UX · Elderly-Centered Interaction'
@@ -592,6 +611,7 @@ export function OriginalLecturesContent() {
                     title={
                       'Technology should adapt to people - not the other way around.'
                     }
+                    data-reading-role={'lecture-copy'}
                   >
                     {
                       '\n                                Technology should adapt to people - not the other way around.'

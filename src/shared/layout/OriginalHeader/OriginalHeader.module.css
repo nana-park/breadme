@@ -1,0 +1,18 @@
+/* WHAT: The shared mobile menu owns its reading sizes on every route.
+ * WHY: Detail pages inherit a 0.65rem desktop label while landing pages inject
+ * a different mobile rule. Keep the existing route colors and desktop layout. */
+@media (max-width: 1023px) {
+  .navigation :global(.nav-menu.active) .primaryLink {
+    font-size: 1rem;
+    line-height: 1.5;
+    min-height: var(--control-size, 2.75rem);
+    width: 100%;
+    padding-block: 0.625rem;
+  }
+
+  .navigation :global(.nav-menu.active) :global(.lnb-link).secondaryLink {
+    font-size: var(--type-small, 0.875rem);
+    line-height: 1.5;
+    min-height: var(--control-size, 2.75rem);
+  }
+}

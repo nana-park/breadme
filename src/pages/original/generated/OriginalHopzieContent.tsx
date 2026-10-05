@@ -70,6 +70,7 @@ export function OriginalHopzieContent() {
                   'font-sans text-zinc-900 text-[32px] md:text-[40px] lg:text-[48px] leading-[1.1] tracking-tight font-medium mb-6'
                 }
                 style={{ wordBreak: 'keep-all' } as CSSProperties}
+                data-reading-role={'landing-title'}
               >
                 {'One-click Creator Commerce Builder'}
               </h1>
@@ -78,6 +79,7 @@ export function OriginalHopzieContent() {
                 className={
                   'text-[18px] md:text-[20px] lg:text-[22px] text-zinc-500 leading-[1.4] font-light mb-12'
                 }
+                data-reading-role={'landing-copy'}
               >
                 {
                   '\n                        AI-assisted creator commerce system for frictionless creating journeys.\n                    '
@@ -94,6 +96,7 @@ export function OriginalHopzieContent() {
                   className={
                     'text-[14px] md:text-[15px] text-zinc-600 leading-[1.6] font-sans'
                   }
+                  data-reading-role={'director-copy'}
                 >
                   {'\n                            '}
                   <strong className={'text-zinc-900 font-semibold'}>

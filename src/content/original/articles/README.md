@@ -16,6 +16,8 @@ Korean article bodies were not migrated into the active interface. The source's 
 
 The parent `OriginalPage` retains the original `OriginalArticlesContent.css` styles. Tailwind class names and inline values intentionally match the audited source, including the mobile layout. This is an original-design preservation exception; generic foundation components must not replace these layouts without a separate design decision.
 
+Mobile readability correction (PR #3): all 47 inline image heights now use `var(--article-image-height, original-px-height)`. The parent page sets that variable to `auto` only at 767px and below, preventing proportional width shrinkage from vertically stretching the original photos. Desktop retains each exact original height fallback. Image URLs, alt text, article copy and source metadata are unchanged. The minimized materials shortcut is hidden during mobile article reading; the shared menu retains materials access.
+
 Four malformed source HTML tag names (`brave`, `sherlock`, `mbc`, `talk`) were converted to inline spans with `data-original-inline-tag`. Their browser-visible text, nesting, and inline rendering remain intact; missing source text was not invented. External new-tab links add `rel="noopener noreferrer"`. Images use downloaded local assets through the shared manifest helper.
 
 ## Verification

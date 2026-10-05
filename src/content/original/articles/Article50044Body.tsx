@@ -26,7 +26,12 @@ export function Article50044Body() {
           src={assetUrl(
             "https://www.artinsight.co.kr/data/tmp/2009/20200930174128_qpgdiwzc.jpg",
           )}
-          style={{ width: "620px", height: "504px" } as CSSProperties}
+          style={
+            {
+              width: "620px",
+              height: "var(--article-image-height, 504px)",
+            } as CSSProperties
+          }
         />{" "}
       </p>{" "}
       <p>
@@ -117,7 +122,12 @@ export function Article50044Body() {
             src={assetUrl(
               "https://www.artinsight.co.kr/data/tmp/2009/20200930175247_pqkdhdfv.jpg",
             )}
-            style={{ width: "660px", height: "880px" } as CSSProperties}
+            style={
+              {
+                width: "660px",
+                height: "var(--article-image-height, 880px)",
+              } as CSSProperties
+            }
           />{" "}
           <figcaption
             className="cheditor-caption-text"
@@ -220,7 +230,12 @@ export function Article50044Body() {
               src={assetUrl(
                 "https://www.artinsight.co.kr/data/tmp/2009/20200930180221_lsouvfrk.jpg",
               )}
-              style={{ width: "660px", height: "372px" } as CSSProperties}
+              style={
+                {
+                  width: "660px",
+                  height: "var(--article-image-height, 372px)",
+                } as CSSProperties
+              }
             />{" "}
             <figcaption
               className="cheditor-caption-text"

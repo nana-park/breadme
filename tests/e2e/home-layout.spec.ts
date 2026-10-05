@@ -226,7 +226,7 @@ async function verifyMobileControls(page: Page, testInfo: TestInfo) {
   ).toBeFocused();
   await expect(page.locator("#materials-content")).toBeVisible();
   await page.keyboard.press("Escape");
-  await expect(page.getByRole("link", { name: "breadme home" })).toBeFocused();
+  await expect(toggle).toBeFocused();
   await expect(popup).toBeHidden();
   await page.evaluate(() =>
     window.scrollTo(
@@ -234,7 +234,7 @@ async function verifyMobileControls(page: Page, testInfo: TestInfo) {
       document.querySelector("#home")!.getBoundingClientRect().bottom + scrollY,
     ),
   );
-  await expect(popup).toBeVisible();
+  await expect(popup).toBeHidden();
   await page.evaluate(() => window.scrollTo(0, 0));
   await expect(popup).toBeHidden();
 }

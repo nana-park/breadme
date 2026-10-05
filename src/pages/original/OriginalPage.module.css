@@ -1,0 +1,229 @@
+/* WHAT: Readable text roles shared by the migrated pages on small screens.
+ * WHY: Target actual editorial text, never miniature product demos or every p.
+ * The root + role specificity wins source utilities without new !important. */
+@media (max-width: 767px) {
+  .page {
+    /* Source body images keep exact desktop inline heights as fallbacks. */
+    --article-image-height: auto;
+  }
+
+  .page [data-reading-role="landing-title"] {
+    font-size: clamp(1.875rem, 8.2vw, 2.25rem);
+    line-height: 1.18;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+  }
+
+  .page [data-reading-role="landing-copy"],
+  .page [data-reading-role="director-copy"],
+  .page [data-reading-role="career-copy"] {
+    font-size: 1rem;
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+  }
+
+  .page [data-reading-role="landing-categories"] {
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    letter-spacing: 0.06em;
+  }
+
+  /* Expanded text sets the panel height; background media remains decorative. */
+  .page [data-reading-role="contact-hero"] {
+    height: auto;
+    min-height: 350px;
+    padding-block: 4rem;
+  }
+  .page [data-reading-role="video-hero"] {
+    height: auto;
+    min-height: max(600px, 75svh);
+    max-height: none;
+    padding-block: 5rem;
+  }
+  .page [data-reading-role="photo-hero"] {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: auto;
+    min-height: 500px;
+  }
+  .page [data-reading-role="photo-copy"] {
+    position: relative;
+    padding-top: 5rem;
+    padding-bottom: 1rem;
+  }
+  .page [data-reading-role="photo-credit"] {
+    position: relative;
+    align-self: flex-end;
+    max-width: 100%;
+    padding-left: 1rem;
+  }
+  .page [data-reading-role="photo-credit"] svg {
+    flex: none;
+  }
+
+  .page [data-reading-role="testimonial-card"] {
+    height: auto;
+    min-height: 350px;
+    aspect-ratio: auto;
+    padding: 2rem 1.5rem;
+    gap: 1rem;
+  }
+  .page [data-reading-role="card-quote"] {
+    height: auto;
+    flex: 1;
+    margin-bottom: 0;
+  }
+  .page [data-reading-role="card-signature"] {
+    margin-top: 0;
+  }
+  .page [data-reading-role="card-author-title"] {
+    font-size: 0.8125rem;
+    line-height: 1.5;
+  }
+
+  .page [data-reading-role="lecture-content"] {
+    min-width: 0;
+    overflow: visible;
+  }
+
+  .page [data-reading-role="lecture-copy"] {
+    white-space: normal;
+    text-overflow: clip;
+    overflow: visible;
+    overflow-wrap: anywhere;
+  }
+
+  .page [data-reading-role="lecture-meta"] {
+    flex-wrap: wrap;
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .page [data-reading-role="lecture-facts"] {
+    grid-template-columns: minmax(4.75rem, 0.35fr) minmax(0, 1fr);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    row-gap: 0.625rem;
+    overflow-wrap: anywhere;
+  }
+
+  /* The existing Voice IVR case link is a single-line title + action in both
+   * project lists. At phone widths its action fell beyond the clipped body. */
+  .page[data-original-page="projects"]
+    a[href$="projects/llm-based-voice-ivr.html"] {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    min-width: 0;
+  }
+  .page[data-original-page="projects"]
+    a[href$="projects/llm-based-voice-ivr.html"]
+    > :first-child {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  .page[data-original-page="projects"]
+    a[href$="projects/llm-based-voice-ivr.html"]
+    > :last-child {
+    margin-left: 0;
+    min-height: 44px;
+    font-size: 0.875rem;
+  }
+
+  /* The black title previously crossed the artwork's dark metal/shadow. Keep
+   * the same art and brand background, with the title in its own reading row. */
+  .page [data-reading-role="artwork-caption"] {
+    position: static;
+    padding: 1.5rem 1rem;
+    background: #f3f1eb;
+  }
+
+  .page [data-reading-role="artwork-media"] {
+    height: clamp(24rem, 100vw, 30rem);
+  }
+
+  /* Three phonetic parts must fit the actual content width. The original fixed
+   * 100px columns plus 4rem gaps pushed BREAD outside the clipped section. */
+  .page [data-reading-role="identity-diagram-container"] {
+    width: 100%;
+  }
+  .page [data-reading-role="identity-derivation-row"] {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    width: 100%;
+    padding-inline: 1rem;
+    gap: 0.75rem;
+  }
+  .page [data-reading-role="identity-translation-group"] {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+  .page [data-reading-role="identity-phonetic-part"] {
+    width: auto;
+    min-width: 0;
+  }
+  .page [data-reading-role="identity-meaning-text"] {
+    font-size: clamp(1.25rem, 6vw, 1.75rem);
+    overflow-wrap: anywhere;
+  }
+  .page [data-reading-role="identity-floating-text"] {
+    font-size: 0.625rem;
+    line-height: 1.4;
+  }
+  .page [data-reading-role="identity-decorator-slash"]:first-child {
+    left: 0;
+  }
+  .page [data-reading-role="identity-decorator-slash"]:nth-child(2) {
+    right: 0;
+  }
+
+  .page [data-reading-role="archive-excerpt"] {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+  }
+
+  .page [data-reading-role="archive-date"] {
+    font-size: 0.8125rem;
+  }
+
+  .page [data-reading-role="archive-action"] {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    white-space: normal;
+  }
+
+  .page [data-reading-role="archive-pagination"] {
+    flex-wrap: wrap;
+  }
+
+  .page [data-reading-role="article-body"] {
+    overflow-wrap: anywhere;
+  }
+  .page [data-reading-role="article-actions"] {
+    flex-wrap: wrap;
+  }
+
+  .page [data-reading-role="archive-pagination"] button {
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 359px) {
+  .page [data-reading-role="lecture-facts"] {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0.25rem;
+  }
+  .page [data-reading-role="lecture-facts"] > :nth-child(2n) {
+    margin-bottom: 0.75rem;
+  }
+}

@@ -3214,14 +3214,15 @@ section {
     color: rgba(0, 0, 0, 0.6) !important;
 }
 @media (max-width: 768px) {
-    .footer-columns { display: grid !important; grid-template-columns: 1.6fr 1.4fr 1.2fr 1.8fr !important; gap: 0.25rem !important; width: 100% !important; }
+    /* WHY: The shared footer sets phone-only hooks; fallbacks preserve the source at 768px. */
+    .footer-columns { display: grid !important; grid-template-columns: var(--footer-mobile-columns, 1.6fr 1.4fr 1.2fr 1.8fr) !important; gap: 0.25rem !important; width: 100% !important; }
     .footer-col { min-width: 0; }
     .footer-col h4 { font-size: 11px !important; margin-bottom: 8px !important; white-space: nowrap; }
-    .footer-links a { font-size: 10px !important; white-space: normal; line-height: 1.4; word-break: keep-all; }
+    .footer-links a { font-size: var(--footer-mobile-link-size, 10px) !important; white-space: normal; line-height: 1.4; word-break: keep-all; }
     .footer-socials-col { display: flex; gap: 6px; flex-wrap: wrap; }
     .social-icon { padding: 0 !important; }
-    .social-icon svg { width: 18px !important; height: 18px !important; padding: 2px !important; }
-    .lang-btn { font-size: 11px !important; padding: 0.25rem 0.6rem !important; gap: 0.3rem !important; }
+    .social-icon svg { width: var(--footer-mobile-icon-size, 18px) !important; height: var(--footer-mobile-icon-size, 18px) !important; padding: var(--footer-mobile-icon-padding, 2px) !important; }
+    .lang-btn { font-size: var(--footer-mobile-language-size, 11px) !important; padding: var(--footer-mobile-language-padding, 0.25rem 0.6rem) !important; gap: 0.3rem !important; }
     .lang-dot { width: 6px !important; height: 6px !important; }
 }
 

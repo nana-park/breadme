@@ -32,6 +32,7 @@ export function OriginalProjectsContent() {
                 'font-sans text-zinc-900 text-[36px] md:text-[48px] lg:text-[56px] leading-[1.1] tracking-tight font-medium max-w-[1000px] mx-auto mb-6'
               }
               style={{ wordBreak: 'keep-all' } as CSSProperties}
+              data-reading-role={'landing-title'}
             >
               {
                 '\n                    Designing AI that feels human through merging psychology and engineering.\n                '
@@ -42,6 +43,7 @@ export function OriginalProjectsContent() {
               className={
                 'font-sans text-zinc-600 text-[16px] md:text-[18px] font-normal leading-[1.6]'
               }
+              data-reading-role={'landing-copy'}
             >
               {
                 '\n                    Building AI-powered systems that shape motivation, trust, and human behavior.\n                '
@@ -69,6 +71,7 @@ export function OriginalProjectsContent() {
                 'font-sans text-zinc-500 text-[15px] md:text-[16px] font-normal leading-[1.6] max-w-[800px] mx-auto mt-12 md:mt-16 px-4 text-center'
               }
               style={{ wordBreak: 'keep-all' } as CSSProperties}
+              data-reading-role={'landing-copy'}
             >
               {
                 '\n                    Collaborating with industry leaders in Korea, China, Japan, and Vietnam'

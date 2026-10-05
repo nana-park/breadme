@@ -38,7 +38,10 @@ export function OriginalAwardsContent() {
         {'\n        '}
         <div className={'w-full relative mb-16 lg:mb-20 overflow-hidden'}>
           {'\n            '}
-          <div className={'w-full h-[650px]'}>
+          <div
+            className={'w-full h-[650px]'}
+            data-reading-role={'artwork-media'}
+          >
             {'\n                '}
             <img
               src={assetUrl('nahyun_imported/image_source/Awards/bg.png')}
@@ -52,12 +55,14 @@ export function OriginalAwardsContent() {
             className={
               'absolute inset-x-0 bottom-8 md:bottom-16 flex flex-col items-center text-center px-4'
             }
+            data-reading-role={'artwork-caption'}
           >
             {'\n                '}
             <h2
               className={
                 'font-sans text-[#1a1a1a] text-[36px] md:text-[48px] lg:text-[56px] leading-[1.1] tracking-tight font-normal drop-shadow-sm'
               }
+              data-reading-role={'landing-title'}
             >
               {'\n                    Awards within AI'}
             </h2>
