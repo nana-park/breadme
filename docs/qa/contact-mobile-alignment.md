@@ -11,7 +11,7 @@
 - 사진·오버레이·원문·패널 세로 높이·하단 콘텐츠·소셜 링크·Coming Soon·구간 스냅 보존
 - 768px 이상 Contact, Home, GNB, Awards의 스타일·마크업 변경 없음
 
-위 To-be 수치는 소스의 기대값입니다. 실제 브라우저 측정 완료 여부는 아래 검사 결과로 구분합니다. Home의 사용하지 않는 17px summary 클래스는 기준으로 쓰지 않습니다.
+위 To-be 수치는 아래 candidate의 Chromium computed-style 검사로 확인했습니다. Home의 사용하지 않는 17px summary 클래스는 기준으로 쓰지 않습니다.
 
 ## 재현할 검사
 
@@ -23,8 +23,22 @@
 ## 캡처·실행 상태
 
 - As-is: [main의 Mobile UI readability 실행](https://github.com/nana-park/breadme/actions/runs/37388746068), artifact `mobile-ui-evidence`의 `contact--w390--top.png`와 JSON. 실제 390×844 캡처와 측정값을 확인함
-- To-be: 로컬 renderer 권한 제한 때문에 아직 미캡처. 기존 CI에서 candidate 커밋을 실행한 뒤 PNG와 JSON을 확인할 예정
+- To-be: [Foundation checks 실행](https://github.com/nana-park/breadme/actions/runs/37390867369), head `dc47f8feb7d73343b2c20ec807e648ec3add10e6`, PR merge ref `b22c96d5896be09b24a4ec5833220a342d0726d4`. [browser-verification artifact](https://github.com/nana-park/breadme/actions/runs/37390867369/artifacts/11381157130)의 Contact 집중 PNG·JSON을 확인함
+- CI: 단위 97개, 기본 브라우저 90개(새 Contact 7개 포함) 통과. [Production paths](https://github.com/nana-park/breadme/actions/runs/37390867303)의 산출물 14개·브라우저 34개 통과. 별도 Mobile UI readability workflow는 이번 브랜치에서 skipped이며 통과로 세지 않음
+- 직접 본 화면: 320/390/767px Contact, 390px Home 기준, 320px 합성 200% 글자 확대. 사진과 하단 카드 유지, 좌측 텍스트, 겹침/잘림 없이 콘텐츠 높이로 확대되는 것을 확인함
+- 768×900, 1440×900: 앞선 main `70d3554`의 실제 baseline PNG와 candidate PNG를 RGB 픽셀로 대조. 두 크기 모두 변경 픽셀 0. 이 결과는 Contact 첫 viewport에 한정하며 전체 본문이나 모든 페이지로 확대하지 않음
 - 로컬 검사: Node 24.19.0 / npm 11.9.0에서 `npm run check` 통과(lint·typecheck·단위 97개·production build). 새 Playwright 7개 case discovery 통과. 실제 브라우저 실행 성공을 뜻하지 않음
 - 공개 상태: 작업 브랜치/PR 검수 범위. main 병합·배포는 별도 승인 대상
 
-실제 iOS/Android·Safari·native 200% zoom은 미검수입니다. 소스의 모바일 media query 범위와 tablet/desktop 계약 검사 성공을 전체 화면 exact-pixel 동등성 완료로 확대하지 않습니다.
+## 실제 Home / Contact 일치 값
+
+| 화면 폭 | 텍스트 왼쪽 x | 텍스트 폭 | 제목 크기 / 줄 높이 | 본문 크기 / 줄 높이 | Hero 좌우 패딩 |
+| --- | --- | --- | --- | --- | --- |
+| 320 | 20 | 280 | 32 / 35.2 | 13 / 20.8 | 20 / 20 |
+| 390 | 20 | 350 | 34.32 / 37.752 | 13 / 20.8 | 20 / 20 |
+| 430 | 25 | 380 | 37.84 / 41.624 | 13 / 20.8 | 20 / 20 |
+| 767 | 193.5 | 380 | 40 / 44 | 13 / 20.8 | 20 / 20 |
+
+모든 값은 CSS px입니다. 두 페이지의 제목·본문은 모두 `text-align: left`이며, 작은 화면에서 실제 glyph와 문서 폭 넘침이 없었습니다. 380px 한도에 도달한 뒤에는 읽기 열 자체가 가운데 놓이는 Home 동작을 그대로 따릅니다.
+
+실제 iOS/Android·Safari·native 200% zoom은 미검수입니다. 사진 배경 위 텍스트의 전체 대비 접근성 인증을 이번 작은 정렬 작업으로 선언하지 않습니다. 이후 이 QA 기록만 갱신한 커밋은 runtime diff가 없는지 구분하고 최신 PR 검사를 다시 확인합니다.
