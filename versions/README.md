@@ -1,46 +1,45 @@
 # Version Hub
 
-## 현재 상태
+[← README](../README.md) · [변경 이력](CHANGELOG.md) · [개선 목록](../docs/backlog.md) · [검수 기준](../docs/qa/README.md)
 
-- 최초 React 이관본: main `4607953` 공개 완료
-- 현재 작업: 모바일 UI·글자 크기·잘림 검수와 수정, [Draft PR #3](https://github.com/nana-park/breadme/pull/3). Home PR #2는 main `4f026a3`에 반영되었습니다.
-- 현재 구현 범위: 원본 디자인·콘텐츠의 React 이관, 핵심 11개 화면 + 연결된 상세 3개
-- 원본 기준: `nana-park/Portfolio@834815915647e4b3fbf9285b88b8001e37b94aa0`
-- Articles: 영어 본문 18개·6쪽 목록·읽기와 복귀 구현
-- 파일 준비: 원본 147개 + 외부 211개 SHA-256 검증, 첫 준비 약 302 MiB
-- 로컬 검수: lint·typecheck·단위 테스트 77개·build 통과
-- 전체 브라우저 검수: 48개 구성, 2801632 전체 통과. 마지막 커밋 결과는 [현재 이관 검수 기록](../docs/qa/original-migration-verification.md)에 기록
-- 검토 링크: [PR #1](https://github.com/nana-park/breadme/pull/1)
-- 다음 목표: 14개 경로·18개 Articles의 모바일 수정 전후와 768/1440px 비교 검수 후 별도 공개 확인
-- 작업 브랜치: `feature/mobile-ui-readability`
-- 현재 기준: 공개된 main `4f026a3` (기존 문서·기능 이력 보존)
-- PR 대상: `main` (공개 및 main 통합 승인 후 전환, 기존 문서 이력 보존)
-- 사용자 확인 상태: 2026-10-04 최초 이관 공개 완료. 이후 Home의 텍스트 중심·Across Markets 문구·글자 위계 수정 선택됨. 이번 PR의 main 병합·추가 공개는 별도 확인 필요
-- main 반영 조건: PR 검사 통과 후 이력을 보존하는 merge
-- 배포 방식: main에서만 GitHub Pages /breadme/ 게시. 기존 HTML 사이트 유지
+## 확인한 코드·공개 상태
 
-위 검수 수치는 2026-10-04 문서 갱신 시점의 상태입니다. 정확한 최신 커밋과 CI 결과는 [PR checks](https://github.com/nana-park/breadme/pull/1/checks), 세부 확인 범위는 아래 검수 문서에서 확인합니다. 이전 Home 뼈대의 6개 단위·11개 브라우저 성공을 현재 전체 이관의 결과로 사용하지 않습니다.
+마지막 상태 확인: **2026-10-05 UTC**, 문서 기반 정리 시점. 이 표는 시점이 고정된 기록이며 이후 변경은 GitHub와 공개 revision을 다시 확인합니다.
 
-## 아직 준비 중인 기능
+| 구분 | 확인한 값·근거 |
+| --- | --- |
+| main | [`3738e4620bb495ecfcd7ef589c91c2049ce0153a`](https://github.com/nana-park/breadme/commit/3738e4620bb495ecfcd7ef589c91c2049ce0153a) |
+| 최초 React 이관 | [PR #1](https://github.com/nana-park/breadme/pull/1), 2026-10-04 병합 `4607953` |
+| 텍스트 중심 Home·모바일 스크롤 | [PR #2](https://github.com/nana-park/breadme/pull/2), 2026-10-04 병합 `4f026a3` |
+| 모바일 UI·가독성 | [PR #3](https://github.com/nana-park/breadme/pull/3), 2026-10-05 병합 `b666b34` |
+| Home 파트너 문구 공백 | [PR #4](https://github.com/nana-park/breadme/pull/4), 2026-10-05 병합 `3738e46` |
+| 같은 main의 CI | [Foundation checks 성공](https://github.com/nana-park/breadme/actions/runs/37278044636) |
+| 같은 main의 게시·게시 후 검사 | [Publish breadme 성공](https://github.com/nana-park/breadme/actions/runs/37278044595). 워크플로의 `verify-live`는 공개 revision과 경로를 검사함 |
+| 공개 URL·정확한 revision | [breadme](https://nana-park.github.io/breadme/) · [deployment.json](https://nana-park.github.io/breadme/deployment.json) |
 
-- 자료 요청 백엔드와 이력서·포트폴리오 자동 메일 전송은 비활성 상태
-- 원본의 Korean 버튼은 `Coming soon!` 안내 유지, 번역 완료 아님
-- 실제 기기·다른 브라우저·스크린리더·브라우저 자체 줌의 종합 검수 미완료
-- 실제 게시 커밋은 https://nana-park.github.io/breadme/deployment.json 에서 확인
+위 공개 상태는 GitHub API의 exact-SHA 워크플로 결과로 재확인했습니다. 이번 문서 작업에서 새 브라우저 시각 검수를 완료한 것은 아닙니다. 게시 후 검사의 성공을 모든 화면·실기기·전체 접근성 검사 통과로 확대하지 않습니다.
 
-## 문서
+이전 README가 PR #3을 Draft로 표시한 것은 오래된 작업 상태였습니다. **PR #3의 병합 사실과 과거 strict desktop 검사의 미해결 차이는 서로 다른 정보**입니다. [당시 모바일/데스크톱 결과](../docs/qa/mobile-ui-review.md)를 그대로 보존합니다.
 
-- [현재 구현과 실행 방법](../README.md)
-- [원본 이관 페이지 구성](../src/pages/original/README.md)
-- [현재 반응형 전략](../docs/responsive-strategy.md)
-- [현재 이관 검수 기록](../docs/qa/original-migration-verification.md)
-- [원본 디자인 비교](../design-qa.md)
-- [초기 설계 검토: 역사 기록](../docs/design-review.md)
-- [초기 구조 검수: 역사 기록](../docs/qa/foundation-verification.md)
-- [버전 규칙](VERSIONING.md)
-- [전체 변경 이력](CHANGELOG.md)
-- [상세 릴리스 기록](releases/README.md)
+## 이번 변경의 상태
 
-`beta`는 작업 시작 시 없었습니다. 현재 Draft PR은 검토 단위를 만들기 위한 것이며 `feature → beta → 별도 승인 → main` 원칙이나 공개 승인을 대신하지 않습니다.
+- 목적: 지속 개선용 제품·페이지/행동·디자인·아키텍처·운영·QA·backlog 문서 기반 정리
+- 작업 브랜치: `docs/product-maintenance-foundation`
+- 상태: 문서 검토용. 런타임·콘텐츠·의존성·배포 설정 변경 없음
+- main 병합·추가 공개: 이번 작업에 포함하지 않음. 명시적인 별도 승인이 필요함
+- 제품 결정: [backlog 결정 대기](../docs/backlog.md#제품-소유자가-결정할-것)에 제안으로 구분. 문서 추가가 해당 기능의 구현 승인은 아님
 
-PR 자동 양식은 [`.github/pull_request_template.md`](../.github/pull_request_template.md)에 있습니다. 공식 공개 기록은 GitHub Releases에서 관리합니다.
+## 유지되는 제한
+
+- Resume/Portfolio PDF 자동 전송·요청 백엔드는 없음. Korean UI는 Coming Soon
+- Contact 본문의 일부 조작은 이관된 표시에 동작이 연결되지 않음. [행동 목록](../docs/product/routes-and-content.md)에서 Header·본문·Footer를 구분
+- 실제 기기·Safari·Firefox·스크린리더·브라우저 자체 확대의 종합 검수는 완료로 선언하지 않음
+- 원본 스타일 보존 계층과 초기 목표 구조의 공존, 과거 픽셀 차이·외부 임베드 오류는 [개선 목록](../docs/backlog.md)에서 추적
+
+## 상태 갱신 규칙
+
+실제 공개 후에는 이 허브에서 main SHA·배포 revision·검사 URL만 갱신하고, 사용자에게 보이는 변경은 [CHANGELOG](CHANGELOG.md)에 남깁니다. 날짜·커밋 없는 `현재 모두 통과` 표기를 사용하지 않습니다. 과거 QA 보고서는 고정된 증거입니다.
+
+현재 배포는 `.github/workflows/deploy-pages.yml`의 main push로만 실행됩니다. `beta` 통합 브랜치는 이 확인 시점에 없으며, 문서에 적힌 목표 흐름과 실제 운영을 혼동하지 않습니다. 향후 브랜치/승인 정책을 바꾸려면 [저장소·브랜치 규칙](../docs/ground-rules/01-repository-and-branching.md)을 함께 검토합니다.
+
+[버전 번호 규칙](VERSIONING.md) · [상세 릴리스 기록](releases/README.md). `package.json`의 `0.1.0`은 패키지 버전이며, GitHub Pages 게시 또는 GitHub Release/태그 존재와 같은 의미가 아닙니다.

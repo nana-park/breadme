@@ -1,8 +1,10 @@
 # 모바일 전체 UI 검수: As-is / To-be
 
-[← 프로젝트 README](../../README.md) · [TC·재현 절차](mobile-ui-test-cases.md) · [Draft PR #3](https://github.com/nana-park/breadme/pull/3)
+> 역사 기록: 아래 기준 커밋·후보 화면·실패 수치는 PR #3 작성 당시의 증거입니다. PR #3은 2026-10-05 병합됐지만 이 보고서의 실패/미검수를 소급해 통과로 바꾸지 않습니다. 현재 상태는 [버전 허브](../../versions/README.md), 다음 검수 기준은 [QA 안내](README.md)를 확인합니다.
 
-작은 글자, 말줄임, 그림 왜곡, 화면 밖 링크와 떠 있는 버튼의 가림을 수정했습니다. **아래 오른쪽 화면은 검토용 후보이며 공개 사이트는 main `4f026a3`입니다.** Resume/Portfolio PDF의 Coming Soon 상태는 유지합니다.
+[← 프로젝트 README](../../README.md) · [TC·재현 절차](mobile-ui-test-cases.md) · [PR #3 이력](https://github.com/nana-park/breadme/pull/3)
+
+작은 글자, 말줄임, 그림 왜곡, 화면 밖 링크와 떠 있는 버튼의 가림을 수정했습니다. **아래 오른쪽 화면은 당시 검토용 후보이며 비교 당시 공개 사이트는 main `4f026a3`이었습니다.** Resume/Portfolio PDF의 Coming Soon 상태는 유지합니다.
 
 ## 먼저 볼 것
 

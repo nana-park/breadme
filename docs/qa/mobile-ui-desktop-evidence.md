@@ -1,5 +1,7 @@
 # 웹 픽셀 비교 전체 기록
 
+> 역사 기록: 아래 기준 커밋·후보 화면·실패 수치는 PR #3 작성 당시의 증거입니다. PR #3은 2026-10-05 병합됐지만 이 보고서의 실패/미검수를 소급해 통과로 바꾸지 않습니다. 현재 상태는 [버전 허브](../../versions/README.md), 다음 검수 기준은 [QA 안내](README.md)를 확인합니다.
+
 [← As-is / To-be 검토](mobile-ui-review.md)
 
 기준 main `4f026a3dd816c11bb1a4718379e2ba9d6f7527af`, 후보 `93af4a5feb6a9168bd9dba1037ab82ae50ddf9e6`.

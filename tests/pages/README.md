@@ -1,6 +1,6 @@
 # GitHub Pages path checks
 
-This suite is separate from the existing 48 source/interaction E2E checks. It
+This suite is separate from the source/interaction E2E checks. It
 checks the production `/breadme/` base, real static HTML entries, and deployed
 resources rather than repeating the full interaction suite.
 
@@ -36,8 +36,8 @@ The suite currently discovers **34 tests**: 17 cases at both 390×844 and
 - All 14 route files: direct HTTP 200, correct page identity, refresh, images,
   loaded local fonts/CSS, responsive overflow, and internal-link base
 - Home and Voice IVR detail: top and full-page screenshots at both widths
-- Home: real local Spline scene, visible canvas, visible attribution, and local
-  attribution icon
+- Home: approved text-led heading, preserved role, no Spline viewer, and no
+  `.splinecode` or Spline viewer runtime request
 - Home → Projects → nested Voice IVR detail: navigation, refresh, and browser Back
 - Articles: direct hash-detail load, refresh, return to archive, and browser Back
 - Unknown top-level and nested files: HTTP 404 and no false Home page; a missing
@@ -55,8 +55,8 @@ App-origin write attempts fail the suite. Blocked external writes are recorded
 separately as `blockedExternalWrites` in the JSON evidence; preserved YouTube
 telemetry attempts do not count as app deployment failures. External responses
 are not mocked. External console output is retained, while app-origin resource
-failures and all uncaught runtime errors remain failures. No Spline branding is
-hidden.
+failures and all uncaught runtime errors remain failures. The text-led Home
+does not render Spline; archived assets are still hash-verified by static checks.
 
 Reports: `playwright-report/pages/` and `test-results/pages/`. Traces stay off to
 avoid duplicating the large original media in each failure report.
