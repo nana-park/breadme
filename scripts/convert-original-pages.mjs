@@ -473,6 +473,21 @@ for (const [sourceFile, componentName] of pageDefinitions) {
         )
       )
         return "";
+      // WHAT: Keep the Home partner caption's word boundary when its break hides.
+      // WHY: A hidden <br> renders no separating whitespace below the sm breakpoint.
+      const next = node.nextSibling;
+      if (
+        sourceFile === "index.html" &&
+        node.parentElement?.closest("#partners") &&
+        next?.nodeType === 1 &&
+        next.localName === "br" &&
+        next.classList.contains("hidden") &&
+        next.classList.contains("sm:block") &&
+        next.nextSibling?.nodeType === 3 &&
+        /\S$/.test(node.textContent) &&
+        /^\S/.test(next.nextSibling.textContent)
+      )
+        node.textContent += " ";
       textCount++;
       return `${indent}{${json(node.textContent)}}`;
     }

@@ -40,6 +40,15 @@ describe("Original portfolio React migration", () => {
     );
     expect(document.documentElement.lang).toBe("en");
   });
+  it("keeps Home partner-caption words separated when the responsive break is hidden", async () => {
+    render(<App />);
+    const caption = await screen.findByText(/Experience & collaboration with/);
+    // WHY: A hidden responsive <br> contributes no whitespace to the mobile copy.
+    expect(caption).toHaveTextContent(
+      /^Experience & collaboration with industry leading organizations:$/,
+    );
+    expect(caption.querySelector("br")).toHaveClass("hidden", "sm:block");
+  });
   it("opens the mobile menu, supports Escape and restores focus", async () => {
     const user = userEvent.setup();
     render(<App />);

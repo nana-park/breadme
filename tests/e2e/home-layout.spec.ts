@@ -391,6 +391,23 @@ for (const width of widths) {
         ).toBeLessThanOrEqual(1);
       await verifyMobileControls(page, testInfo);
     }
+    // WHAT: Guard the reviewed partner-caption word boundary at every Home width.
+    // WHY: A hidden <br> needs a literal separator; desktop retains its line break.
+    const partnerCaption = page.locator("#partners p");
+    await partnerCaption.scrollIntoViewIfNeeded();
+    await expect(partnerCaption).toBeVisible();
+    await expect(partnerCaption).toBeInViewport();
+    await expect(partnerCaption).toHaveText(
+      "Experience & collaboration with industry leading organizations:",
+      { useInnerText: true },
+    );
+    await expect(partnerCaption.locator("br")).toHaveCSS(
+      "display",
+      width < 640 ? "none" : "block",
+    );
+    const renderedCaption = await partnerCaption.innerText();
+    if (width < 640) expect(renderedCaption).toContain("with industry");
+    else expect(renderedCaption).toMatch(/with[ \t]*\n+industry/);
     expect(errors, "Branch runtime errors").toEqual([]);
   });
 }
