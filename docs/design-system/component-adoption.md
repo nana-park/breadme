@@ -51,3 +51,7 @@
 Header·Footer·자료 UI를 바꾸면 14개 경로가 영향 범위입니다. 390px·1440px 경로 검사, Home의 7개 너비, 1023↔1024px 메뉴 상태·초점 전환을 확인합니다. 실제 통과 여부는 [현재 이관 검수 기록](../qa/original-migration-verification.md)에 남깁니다.
 
 공통 컴포넌트·경로·콘텐츠 위치가 바뀌면 이 표와 [페이지 README](../../src/pages/original/README.md)를 함께 갱신합니다. `적용 대기`는 실제 구현 화면에서 계획된 미이관 항목에만 사용합니다.
+
+## PR #3 모바일 자료 진입
+
+767px 이하에서는 본문을 가리는 중복 원형 바로가기를 숨기고 공통 메뉴의 Resume/Portfolio PDF 항목을 사용합니다. Home도 동일합니다. Coming Soon 패널과 비활성 자료 요청은 유지합니다. 768px 이상 표시와 Desktop 구성은 변경하지 않습니다.

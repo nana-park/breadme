@@ -13,6 +13,9 @@ const baselineURL = "http://127.0.0.1:4174/";
 const candidateURL = "http://127.0.0.1:4173/";
 const widths = [768, 1440] as const;
 const dynamicMedia = "video, iframe, canvas, spline-viewer";
+// This player bootstrap is deliberately blocked with the excluded iframe pixels.
+// Unexpected external scripts and every failed local render asset still fail.
+const excludedMediaScripts = new Set(["https://www.youtube.com/iframe_api"]);
 const screenshotStyle = `${dynamicMedia} { visibility: hidden !important; }
   *, *::before, *::after { caret-color: transparent !important; }`;
 const candidateCommit = execFileSync("git", ["rev-parse", "HEAD"], {
@@ -79,6 +82,11 @@ async function preparePage(page: Page, url: string, width: number) {
   });
   page.on("requestfailed", (request) => {
     if (
+      blockedExternal.includes(request.url()) &&
+      excludedMediaScripts.has(request.url())
+    )
+      return;
+    if (
       ["image", "font", "stylesheet", "script"].includes(request.resourceType())
     ) {
       failedAssets.push(`${request.failure()?.errorText} ${request.url()}`);
@@ -88,13 +96,13 @@ async function preparePage(page: Page, url: string, width: number) {
   expect(response?.ok(), "Each reference and candidate route must load").toBe(
     true,
   );
-  await expect(page.locator("main")).toBeVisible();
+  // The mentoring demo contains its own nested main; select the app landmark.
+  await expect(page.locator("#main-content")).toBeVisible();
   await expect(page.locator("main h1, main h2").first()).toBeVisible();
   // Keep actual typography, images, layout, and viewport unchanged. Motion only is
   // disabled; the same fixed clock, random seed, and local assets serve both builds.
   await page.addStyleTag({
-    content:
-      "*, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }",
+    content: `${screenshotStyle}\n*, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }`,
   });
   await page.evaluate(() =>
     document.querySelectorAll("video").forEach((video) => {
@@ -260,6 +268,7 @@ async function comparePixels(page: Page, reference: Buffer, candidate: Buffer) {
           dimensionsMatch: false,
           changedPixels: -1,
           totalPixels: 0,
+          changedPoints: [],
           diff: null,
         };
       }
@@ -268,13 +277,29 @@ async function comparePixels(page: Page, reference: Buffer, candidate: Buffer) {
         before.canvas.height,
       );
       let changedPixels = 0;
+      const changedPoints: Array<{
+        x: number;
+        y: number;
+        before: number[];
+        after: number[];
+      }> = [];
       for (let index = 0; index < before.pixels.data.length; index += 4) {
         const changed = [0, 1, 2, 3].some(
           (channel) =>
             before.pixels.data[index + channel] !==
             after.pixels.data[index + channel],
         );
-        if (changed) changedPixels += 1;
+        if (changed) {
+          changedPixels += 1;
+          if (changedPoints.length < 20) {
+            changedPoints.push({
+              x: (index / 4) % before.canvas.width,
+              y: Math.floor(index / 4 / before.canvas.width),
+              before: Array.from(before.pixels.data.slice(index, index + 4)),
+              after: Array.from(after.pixels.data.slice(index, index + 4)),
+            });
+          }
+        }
         diff.data[index] = changed ? 255 : after.pixels.data[index];
         diff.data[index + 1] = changed ? 0 : after.pixels.data[index + 1];
         diff.data[index + 2] = changed ? 255 : after.pixels.data[index + 2];
@@ -284,6 +309,7 @@ async function comparePixels(page: Page, reference: Buffer, candidate: Buffer) {
       return {
         dimensionsMatch: true,
         changedPixels,
+        changedPoints,
         totalPixels: before.canvas.width * before.canvas.height,
         diff: changedPixels
           ? before.canvas.toDataURL("image/png").split(",")[1]
@@ -306,6 +332,70 @@ async function save(
   const path = testInfo.outputPath(name);
   await writeFile(path, body);
   await testInfo.attach(name, { path, contentType });
+}
+
+// WHAT: Require two consecutive, exact RGBA-identical captures of each foreground
+// page before comparing builds. Like Playwright's screenshot settling, this waits
+// for raster stability rather than accepting a small number of changed pixels.
+// WHY: The first CI run differed only at 2–5 rounded-border edge pixels on five
+// captures. Matching geometry alone cannot establish renderer nondeterminism.
+async function stableScreenshot(
+  page: Page,
+  comparison: Page,
+  testInfo: TestInfo,
+  name: string,
+) {
+  await page.bringToFront();
+  let previous: Buffer | undefined;
+  const attempts: Array<Record<string, unknown>> = [];
+  for (let attempt = 1; attempt <= 4; attempt += 1) {
+    await page.evaluate(
+      () =>
+        new Promise<void>((resolve) =>
+          requestAnimationFrame(() => requestAnimationFrame(() => resolve())),
+        ),
+    );
+    const current = await page.screenshot({
+      fullPage: false,
+      animations: "disabled",
+      caret: "hide",
+    });
+    if (previous) {
+      const { diff, ...pixels } = await comparePixels(
+        comparison,
+        previous,
+        current,
+      );
+      attempts.push({ attempt, ...pixels });
+      if (diff) {
+        await save(
+          testInfo,
+          `${name}--settling-${attempt - 1}.png`,
+          previous,
+          "image/png",
+        );
+        await save(
+          testInfo,
+          `${name}--settling-${attempt}-diff.png`,
+          Buffer.from(diff, "base64"),
+          "image/png",
+        );
+      }
+      if (pixels.dimensionsMatch && pixels.changedPixels === 0) {
+        return { image: current, attempts };
+      }
+    }
+    previous = current;
+  }
+  await save(
+    testInfo,
+    `${name}--unstable.json`,
+    JSON.stringify(attempts, null, 2),
+    "application/json",
+  );
+  throw new Error(
+    `${name}: no two consecutive exact screenshots matched in four captures; renderer stability is unverified.`,
+  );
 }
 
 for (const width of widths) {
@@ -357,22 +447,28 @@ for (const width of widths) {
                 top,
                 "The footer must be wholly inside this captured viewport",
               ).toBeGreaterThanOrEqual(0);
-              expect(top + height).toBeLessThanOrEqual(900);
+              // scrollHeight/scrollY are integer CSS pixels, but DOMRects retain
+              // fractions. Immutable main itself ends at 900.06–900.44 here.
+              // Compare the rounded CSSOM boundary, not an invented pixel allowance;
+              // screenshot equivalence still requires every decoded pixel to match.
+              expect(Math.round(top + height)).toBeLessThanOrEqual(900);
             }
           }
-          const reference = await baseline.screenshot({
-            fullPage: false,
-            animations: "disabled",
-            caret: "hide",
-            style: screenshotStyle,
-          });
-          const candidate = await page.screenshot({
-            fullPage: false,
-            animations: "disabled",
-            caret: "hide",
-            style: screenshotStyle,
-          });
           const caseId = `${route}--w${width}--${position}`;
+          const referenceCapture = await stableScreenshot(
+            baseline,
+            comparison,
+            testInfo,
+            `${caseId}--main`,
+          );
+          const candidateCapture = await stableScreenshot(
+            page,
+            comparison,
+            testInfo,
+            `${caseId}--candidate`,
+          );
+          const reference = referenceCapture.image;
+          const candidate = candidateCapture.image;
           await save(testInfo, `${caseId}--main.png`, reference, "image/png");
           await save(
             testInfo,
@@ -392,11 +488,60 @@ for (const width of widths) {
               Buffer.from(diff, "base64"),
               "image/png",
             );
+          // A fresh immutable-main page diagnoses baseline-only raster variability.
+          // This is evidence only: it never substitutes a more convenient reference,
+          // masks a region, or changes the cross-build zero-pixel acceptance gate.
+          let baselineRepeat: Record<string, unknown> | undefined;
+          if (pixels.changedPixels !== 0 || !pixels.dimensionsMatch) {
+            const repeat = await context.newPage();
+            try {
+              const readiness = await preparePage(
+                repeat,
+                new URL(path, baselineURL).href,
+                width,
+              );
+              const state = await settleViewport(repeat, position === "footer");
+              const capture = await stableScreenshot(
+                repeat,
+                comparison,
+                testInfo,
+                `${caseId}--main-repeat`,
+              );
+              await save(
+                testInfo,
+                `${caseId}--main-repeat.png`,
+                capture.image,
+                "image/png",
+              );
+              const { diff: repeatedDiff, ...repeatPixels } =
+                await comparePixels(comparison, reference, capture.image);
+              if (repeatedDiff)
+                await save(
+                  testInfo,
+                  `${caseId}--main-self-diff.png`,
+                  Buffer.from(repeatedDiff, "base64"),
+                  "image/png",
+                );
+              baselineRepeat = {
+                readiness,
+                state,
+                attempts: capture.attempts,
+                pixels: repeatPixels,
+              };
+            } finally {
+              await repeat.close();
+            }
+          }
           const result = {
             caseId,
             pixels,
             before: beforeState,
             after: afterState,
+            rasterStability: {
+              reference: referenceCapture.attempts,
+              candidate: candidateCapture.attempts,
+            },
+            baselineRepeat,
             referencePngSha256: createHash("sha256")
               .update(reference)
               .digest("hex"),
@@ -451,7 +596,7 @@ for (const width of widths) {
             coverage:
               "Top viewport and complete footer viewport only; no full-page or interaction-state equivalence claim.",
             deterministicTreatment:
-              "Same Chromium run/DPR 1/UTC/en-US/light; local pinned assets and loaded web fonts; fixed Date and seeded Math.random; reduced motion, animations and transitions disabled; video paused; video/iframe/canvas/spline pixels hidden while boxes and overlays remain; external network blocked.",
+              "Same Chromium run/DPR 1/UTC/en-US/light; local pinned assets and loaded web fonts; fixed Date and seeded Math.random; reduced motion, animations and transitions disabled; video paused; video/iframe/canvas/spline pixels persistently hidden while boxes and overlays remain; external network blocked (the excluded YouTube player bootstrap is an expected abort); foreground captures must be consecutively pixel-identical; persistent cross-build differences remain failures and trigger a diagnostic fresh immutable-main capture.",
             readiness: { before, after },
             results,
           },

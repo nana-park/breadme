@@ -249,7 +249,7 @@ async function checkMenu(page: Page, testInfo: TestInfo, caseId: string) {
   assertReadable(primary, "menu primary labels", 16);
   assertReadable(secondary, "menu secondary labels", 14);
   expect(scrollBox.scrollHeight).toBeGreaterThan(scrollBox.height);
-  await expect(page.locator("main")).toHaveAttribute("inert");
+  await expect(page.locator("#main-content")).toHaveAttribute("inert");
   const popup = page.locator("#email-popup");
   if (await popup.count()) {
     await expect(popup).toHaveAttribute("inert");
@@ -277,7 +277,8 @@ async function checkMenu(page: Page, testInfo: TestInfo, caseId: string) {
   await page.keyboard.press("Escape");
   await expect(toggle).toHaveAttribute("aria-expanded", "false");
   await expect(toggle).toBeFocused();
-  await expect(page.locator("main")).not.toHaveAttribute("inert");
+  await expect(page.locator("#main-content")).not.toHaveAttribute("inert");
+  if (await popup.count()) await expect(popup).toBeHidden();
 }
 
 async function checkFooter(page: Page, testInfo: TestInfo, caseId: string) {
@@ -346,6 +347,12 @@ for (const pageId of originalPageIds) {
       await test.step(`${width}px`, async () => {
         await page.setViewportSize({ width, height: 844 });
         const readiness = await settleFirstScreen(page);
+        const minimizedMaterials = page.locator("#email-popup.minimized");
+        if (await minimizedMaterials.count())
+          await expect(
+            minimizedMaterials,
+            "The mobile shortcut must not cover editorial text",
+          ).toBeHidden();
         const title = await inspectText(
           page.locator(
             pageId === "home"

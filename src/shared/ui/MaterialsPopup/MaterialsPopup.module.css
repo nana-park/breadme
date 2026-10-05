@@ -7,9 +7,10 @@
 }
 
 @media (max-width: 767px) {
-  /* Reading already has materials access through the shared menu. A floating
-   * shortcut otherwise covers the last words of narrow article paragraphs. */
-  :global(body:has(#article-detail)) .popup:global(.minimized) {
+  /* WHAT: Keep phone-sized reading surfaces free of the duplicate shortcut.
+   * WHY: It covers words and controls on multiple routes. Resume and Portfolio
+   * PDF remain available through the shared menu; the open panel is unchanged. */
+  .popup:global(.minimized) {
     display: none;
   }
 }

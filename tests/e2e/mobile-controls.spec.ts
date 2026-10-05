@@ -19,7 +19,7 @@ test("mobile controls leave the original Hero copy clear and center the hamburge
     page.getByRole("button", { name: "Minimize Popup" }),
   ).toBeFocused();
   await page.keyboard.press("Escape");
-  await expect(page.getByRole("link", { name: "breadme home" })).toBeFocused();
+  await expect(page.locator("#mobileToggle")).toBeFocused();
   await expect(toggle).toBeHidden();
   const hamburger = await page.locator("#mobileToggle").boundingBox();
   const firstLine = await page
@@ -45,11 +45,19 @@ test("mobile controls leave the original Hero copy clear and center the hamburge
         window.scrollY,
     ),
   );
-  await expect(toggle).toBeVisible();
+  await expect(toggle).toBeHidden();
   await expect(page.locator("#email-popup")).toHaveCSS("position", "fixed");
   await expect(page.locator("#email-popup")).toHaveCSS("bottom", "32px");
   await page.locator("footer").scrollIntoViewIfNeeded();
   await expect(page.locator("#email-popup")).toHaveCSS("position", "absolute");
+  await expect(toggle).toBeHidden();
+  // The duplicate shortcut remains available at the unchanged tablet boundary.
+  await page.setViewportSize({ width: 768, height: 900 });
+  await expect(toggle).toBeVisible();
+  await toggle.focus();
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(toggle).toBeHidden();
+  await expect(page.locator("#mobileToggle")).toBeFocused();
 });
 
 test("mobile menu contains keyboard focus and restores inert and scroll after repeated dismissal", async ({
@@ -187,9 +195,17 @@ test("materials remain nonmodal and disabled with reliable focus on open and clo
         window.scrollY,
     ),
   );
-  await expect(toggle).toBeVisible();
-  for (const escape of [false, true, false]) {
-    await toggle.click();
+  await expect(toggle).toBeHidden();
+  const menuToggle = page.locator("#mobileToggle");
+  for (const [action, escape] of [
+    ["resume", false],
+    ["portfolio", true],
+    ["resume", false],
+  ] as const) {
+    await menuToggle.click();
+    await page
+      .locator(`.original-mobile-materials [data-materials-action='${action}']`)
+      .click();
     const minimize = page.getByRole("button", { name: "Minimize Popup" });
     await expect(minimize).toBeFocused();
     await expect(toggle).toHaveAttribute("tabindex", "-1");
@@ -201,7 +217,8 @@ test("materials remain nonmodal and disabled with reliable focus on open and clo
     await expect(page.locator("main")).not.toHaveAttribute("inert");
     if (escape) await page.keyboard.press("Escape");
     else await minimize.click();
-    await expect(toggle).toBeFocused();
+    await expect(menuToggle).toBeFocused();
+    await expect(toggle).toBeHidden();
     await expect(toggle).toHaveAttribute("aria-expanded", "false");
     await expect(page.locator("#materials-content")).toBeHidden();
   }
@@ -214,6 +231,15 @@ test("materials remain nonmodal and disabled with reliable focus on open and clo
   ).toBeFocused();
   await expect(page.locator("#email-popup")).not.toHaveAttribute("inert");
   await expect(page.locator("main")).not.toHaveAttribute("inert");
+  await page.keyboard.press("Escape");
+  await expect(menuToggle).toBeFocused();
+  await expect(toggle).toBeHidden();
+  await page.setViewportSize({ width: 768, height: 900 });
+  await expect(toggle).toBeVisible();
+  await toggle.click();
+  await expect(
+    page.getByRole("button", { name: "Minimize Popup" }),
+  ).toBeFocused();
   await page.keyboard.press("Escape");
   await expect(toggle).toBeFocused();
   expect(writes).toEqual([]);

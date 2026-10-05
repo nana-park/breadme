@@ -24,12 +24,7 @@ export function MaterialsPopup({
     if (!root.current?.closest("[inert]")) {
       if (isOpen) minimize.current?.focus();
       else if (wasOpen.current) {
-        if (hideMinimized)
-          document.querySelector<HTMLElement>("#navbar .logo")?.focus();
-        else if (
-          window.innerWidth < 768 &&
-          document.querySelector("#article-detail")
-        )
+        if (window.innerWidth < 768)
           document.querySelector<HTMLElement>("#mobileToggle")?.focus();
         else toggle.current?.focus();
       }
@@ -45,11 +40,10 @@ export function MaterialsPopup({
       const popup = root.current,
         footer = document.querySelector<HTMLElement>(".footer");
       if (!popup) return;
-      // A resize can hide the reading shortcut without an open/close render.
+      // A resize can hide the mobile shortcut without an open/close render.
       if (
         !isOpen &&
         window.innerWidth < 768 &&
-        document.querySelector("#article-detail") &&
         (document.activeElement === toggle.current ||
           (document.activeElement === document.body && shortcutHadFocus))
       )
@@ -191,8 +185,8 @@ export function MaterialsPopup({
         bottom: "2rem",
         right: "2rem",
         transform: "none",
-        // Home only: the Header still opens materials; the duplicate floating
-        // entry returns after the Hero, without covering the artwork or its badge.
+        // Preserve the original Home positioning state. The component's mobile
+        // CSS hides the duplicate shortcut throughout every phone-sized page.
         visibility: hideMinimized ? "hidden" : "visible",
         pointerEvents: hideMinimized ? "none" : undefined,
       }}

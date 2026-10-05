@@ -7,9 +7,11 @@ import { MaterialsPopup } from "@/shared/ui/MaterialsPopup/MaterialsPopup";
 function Harness({
   showHeader = true,
   pageId = "home",
+  hideMinimizedDuringHomeHero = false,
 }: {
   showHeader?: boolean;
   pageId?: string;
+  hideMinimizedDuringHomeHero?: boolean;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const close = useCallback(() => setIsOpen(false), []);
@@ -46,6 +48,7 @@ function Harness({
         <button>Footer control</button>
       </footer>
       <MaterialsPopup
+        hideMinimizedDuringHomeHero={hideMinimizedDuringHomeHero}
         isOpen={isOpen}
         onToggle={() => setIsOpen((open) => !open)}
         onClose={close}
@@ -78,6 +81,15 @@ function rect(top: number, left = 0, width = 100, height = 44) {
     y: top,
     toJSON: () => ({}),
   } as DOMRect;
+}
+
+function openMobileMaterials(action: "resume" | "portfolio" = "resume") {
+  fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
+  fireEvent.click(
+    document.querySelector(
+      `.original-mobile-materials [data-materials-action='${action}']`,
+    )!,
+  );
 }
 
 beforeEach(() => {
@@ -212,62 +224,71 @@ describe("mobile controls and nonmodal materials focus", () => {
     expect(document.querySelector("#navbar")).toHaveClass("nav-force-close");
   });
 
-  it("focuses the visible minimize control and restores the toggle after every close without network", () => {
-    const fetch = vi.spyOn(window, "fetch").mockResolvedValue(new Response());
-    render(
-      <StrictMode>
-        <Harness />
-      </StrictMode>,
-    );
-    const toggle = screen.getByRole("button", { name: "Open Email Popup" });
-    for (const closeWithEscape of [false, true, false]) {
-      fireEvent.click(toggle);
-      const minimize = screen.getByRole("button", { name: "Minimize Popup" });
-      expect(minimize).toHaveFocus();
-      expect(toggle).toHaveAttribute("tabindex", "-1");
-      expect(toggle).toHaveAttribute("aria-hidden", "true");
-      expect(
-        screen.getByRole("textbox", { name: "Email address (coming soon)" }),
-      ).toBeDisabled();
-      expect(
-        screen.getByRole("button", { name: /Receive breadme package/ }),
-      ).toBeDisabled();
-      expect(screen.getByRole("main")).not.toHaveAttribute("inert");
-      if (closeWithEscape) fireEvent.keyDown(document, { key: "Escape" });
-      else fireEvent.click(minimize);
-      expect(toggle).toHaveFocus();
-      expect(toggle).not.toHaveAttribute("aria-hidden");
-      expect(toggle).not.toHaveAttribute("tabindex");
-      expect(document.querySelector("#materials-content")).toHaveAttribute(
-        "hidden",
+  it.each([390, 767, 768, 1440])(
+    "restores a visible materials entry after every close at %spx without network",
+    (width) => {
+      resize(width);
+      const fetch = vi.spyOn(window, "fetch").mockResolvedValue(new Response());
+      render(
+        <StrictMode>
+          <Harness />
+        </StrictMode>,
       );
-    }
-    expect(fetch).not.toHaveBeenCalled();
-  });
+      const toggle = screen.getByRole("button", { name: "Open Email Popup" });
+      for (const closeWithEscape of [false, true, false]) {
+        if (width < 768) openMobileMaterials();
+        else fireEvent.click(toggle);
+        const minimize = screen.getByRole("button", { name: "Minimize Popup" });
+        expect(minimize).toHaveFocus();
+        expect(toggle).toHaveAttribute("tabindex", "-1");
+        expect(toggle).toHaveAttribute("aria-hidden", "true");
+        expect(
+          screen.getByRole("textbox", { name: "Email address (coming soon)" }),
+        ).toBeDisabled();
+        expect(
+          screen.getByRole("button", { name: /Receive breadme package/ }),
+        ).toBeDisabled();
+        expect(screen.getByRole("main")).not.toHaveAttribute("inert");
+        if (closeWithEscape) fireEvent.keyDown(document, { key: "Escape" });
+        else fireEvent.click(minimize);
+        expect(
+          width < 768
+            ? screen.getByRole("button", { name: "Open menu" })
+            : toggle,
+        ).toHaveFocus();
+        expect(toggle).not.toHaveAttribute("aria-hidden");
+        expect(toggle).not.toHaveAttribute("tabindex");
+        expect(document.querySelector("#materials-content")).toHaveAttribute(
+          "hidden",
+        );
+      }
+      expect(fetch).not.toHaveBeenCalled();
+    },
+  );
 
-  it("hands focus from the mobile menu to the materials popup after removing inert", () => {
-    render(<Harness />);
-    fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
-    fireEvent.click(
-      document.querySelector(".original-mobile-materials button")!,
-    );
-    expect(
-      screen.getByRole("button", { name: "Minimize Popup" }),
-    ).toHaveFocus();
-    expect(document.querySelector("#email-popup")).not.toHaveAttribute("inert");
-    expect(screen.getByRole("main")).not.toHaveAttribute("inert");
-    fireEvent.keyDown(document, { key: "Escape" });
-    expect(
-      screen.getByRole("button", { name: "Open Email Popup" }),
-    ).toHaveFocus();
-  });
+  it.each(["resume", "portfolio"] as const)(
+    "hands %s focus from the mobile menu to materials after removing inert",
+    (action) => {
+      render(<Harness />);
+      openMobileMaterials(action);
+      expect(
+        screen.getByRole("button", { name: "Minimize Popup" }),
+      ).toHaveFocus();
+      expect(document.querySelector("#email-popup")).not.toHaveAttribute(
+        "inert",
+      );
+      expect(screen.getByRole("main")).not.toHaveAttribute("inert");
+      fireEvent.keyDown(document, { key: "Escape" });
+      expect(screen.getByRole("button", { name: "Open menu" })).toHaveFocus();
+    },
+  );
 
   it("does not dismiss or focus the inert popup behind an open mobile menu", () => {
     render(<Harness />);
     const popupToggle = screen.getByRole("button", {
       name: "Open Email Popup",
     });
-    fireEvent.click(popupToggle);
+    openMobileMaterials();
     const menuToggle = screen.getByRole("button", { name: "Open menu" });
     fireEvent.click(menuToggle);
     fireEvent.keyDown(document, { key: "Escape" });
@@ -275,7 +296,7 @@ describe("mobile controls and nonmodal materials focus", () => {
     expect(popupToggle).toHaveAttribute("aria-expanded", "true");
     expect(document.querySelector("#email-popup")).not.toHaveAttribute("inert");
     fireEvent.keyDown(document, { key: "Escape" });
-    expect(popupToggle).toHaveFocus();
+    expect(menuToggle).toHaveFocus();
     expect(popupToggle).toHaveAttribute("aria-expanded", "false");
   });
 
@@ -298,72 +319,82 @@ describe("mobile controls and nonmodal materials focus", () => {
     }
   });
 
-  it("lifts only the minimized mobile control above nearby Hero copy and retains footer docking", () => {
-    let ctaTop = 758;
+  it("retains open-panel footer docking and closes to the mobile menu", () => {
     let footerTop = 4000;
-    for (const dimension of ["offsetWidth", "offsetHeight"] as const) {
-      vi.spyOn(HTMLElement.prototype, dimension, "get").mockImplementation(
-        function (this: HTMLElement) {
-          return this.id === "popupToggle" ? 56 : 0;
-        },
-      );
-    }
+    vi.spyOn(HTMLElement.prototype, "offsetHeight", "get").mockImplementation(
+      function (this: HTMLElement) {
+        return this.id === "email-popup" ? 280 : 0;
+      },
+    );
     vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockImplementation(
       function (this: HTMLElement) {
-        if (this.id === "popupToggle") return rect(756, 318, 56, 56);
-        if (this.id === "email-popup") return rect(812, 16, 358, 0);
-        if (this.dataset.testid === "hero-cta")
-          return rect(ctaTop, 170, 200, 62);
-        if (this.dataset.testid === "subtitle")
-          return rect(ctaTop - 21, 70, 260, 27);
         if (this.classList.contains("footer")) return rect(footerTop);
         return rect(0, 0, 0, 0);
       },
     );
     render(<Harness />);
+    openMobileMaterials();
     const popup = document.querySelector<HTMLElement>("#email-popup")!;
-    expect(popup.style.bottom).toBe("123px");
-    ctaTop = 200;
-    fireEvent.scroll(window);
+    expect(popup.style.position).toBe("fixed");
     expect(popup.style.bottom).toBe("2rem");
-    ctaTop = 758;
-    resize(1440);
-    expect(popup.style.bottom).toBe("2rem");
-    resize(390);
-    expect(popup.style.bottom).toBe("123px");
-    fireEvent.click(screen.getByRole("button", { name: "Open Email Popup" }));
-    expect(popup.style.bottom).toBe("2rem");
-    fireEvent.click(screen.getByRole("button", { name: "Minimize Popup" }));
-    expect(popup.style.bottom).toBe("123px");
     footerTop = 500;
     fireEvent.scroll(window);
     expect(popup.style.position).toBe("absolute");
-    expect(popup.style.top).toBe("468px");
+    expect(popup.style.top).toBe("188px");
     expect(popup.style.bottom).toBe("auto");
+    fireEvent.click(screen.getByRole("button", { name: "Minimize Popup" }));
+    expect(screen.getByRole("button", { name: "Open menu" })).toHaveFocus();
+    expect(popup).toHaveClass("minimized");
+    expect(document.querySelector("#materials-content")).toHaveAttribute(
+      "hidden",
+    );
   });
 
-  it("clears the Hero immediately while the floating toggle is initially scaled to zero", () => {
-    for (const dimension of ["offsetWidth", "offsetHeight"] as const) {
-      vi.spyOn(HTMLElement.prototype, dimension, "get").mockImplementation(
-        function (this: HTMLElement) {
-          return this.id === "popupToggle" ? 56 : 0;
-        },
-      );
-    }
+  it.each(["home", "projects", "articles"])(
+    "restores shortcut focus after a 768-to-390 resize on %s without stealing other focus",
+    (pageId) => {
+      resize(768);
+      render(<Harness pageId={pageId} />);
+      const shortcut = screen.getByRole("button", { name: "Open Email Popup" });
+      const menuToggle = screen.getByRole("button", { name: "Open menu" });
+      focus(shortcut);
+      // Browsers may blur display:none controls before the resize handler runs.
+      act(() => shortcut.blur());
+      expect(document.body).toHaveFocus();
+      resize(390);
+      expect(menuToggle).toHaveFocus();
+      resize(768);
+      focus(shortcut);
+      resize(767);
+      expect(menuToggle).toHaveFocus();
+      const outside = screen.getByRole("button", { name: "Outside control" });
+      focus(outside);
+      resize(768);
+      resize(390);
+      expect(outside).toHaveFocus();
+    },
+  );
+
+  it("returns Home materials focus to the menu both within and after its Hero", () => {
+    let heroTop = 0;
     vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockImplementation(
       function (this: HTMLElement) {
-        if (this.id === "popupToggle") return rect(0, 0, 0, 0);
-        if (this.id === "email-popup") return rect(812, 16, 358, 0);
-        if (this.dataset.testid === "hero-cta") return rect(758, 170, 200, 62);
-        if (this.dataset.testid === "subtitle") return rect(737, 70, 260, 27);
+        if (this.id === "home") return rect(heroTop, 0, 390, 844);
         if (this.classList.contains("footer")) return rect(4000);
         return rect(0, 0, 0, 0);
       },
     );
-    render(<Harness />);
-    expect(
-      document.querySelector<HTMLElement>("#email-popup")!.style.bottom,
-    ).toBe("123px");
+    render(<Harness hideMinimizedDuringHomeHero />);
+    for (const top of [0, -900]) {
+      heroTop = top;
+      fireEvent.scroll(window);
+      openMobileMaterials();
+      expect(
+        screen.getByRole("button", { name: "Minimize Popup" }),
+      ).toHaveFocus();
+      fireEvent.keyDown(document, { key: "Escape" });
+      expect(screen.getByRole("button", { name: "Open menu" })).toHaveFocus();
+    }
   });
 
   it.each([

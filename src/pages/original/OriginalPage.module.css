@@ -108,6 +108,31 @@
     overflow-wrap: anywhere;
   }
 
+  /* The existing Voice IVR case link is a single-line title + action in both
+   * project lists. At phone widths its action fell beyond the clipped body. */
+  .page[data-original-page="projects"]
+    a[href$="projects/llm-based-voice-ivr.html"] {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    min-width: 0;
+  }
+  .page[data-original-page="projects"]
+    a[href$="projects/llm-based-voice-ivr.html"]
+    > :first-child {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  .page[data-original-page="projects"]
+    a[href$="projects/llm-based-voice-ivr.html"]
+    > :last-child {
+    margin-left: 0;
+    min-height: 44px;
+    font-size: 0.875rem;
+  }
+
   /* The black title previously crossed the artwork's dark metal/shadow. Keep
    * the same art and brand background, with the title in its own reading row. */
   .page [data-reading-role="artwork-caption"] {
