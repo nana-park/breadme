@@ -9,7 +9,7 @@ Nahyun Park의 AI Product Manager 포트폴리오입니다. 기존 [Portfolio](h
 | 궁금한 것 | 먼저 읽을 문서 |
 | --- | --- |
 | 누구에게 어떤 가치를 주는가? 무엇이 아직 가설인가? | [제품 목적·사용자·핵심 여정](docs/product/overview.md) |
-| 어떤 페이지와 행동이 있고 어디를 고치는가? | [IA·페이지/행동·콘텐츠 원본](docs/product/routes-and-content.md) |
+| 어떤 페이지와 행동이 있고 어디를 고치는가? | [사이트 구조(IA) 및 페이지 명세](docs/product/routes-and-content.md) |
 | 글자·간격·컴포넌트·반응형의 실제 기준은? | [디자인 시스템 안내](docs/design-system/README.md) |
 | 코드와 데이터가 어떻게 연결되는가? | [현재 아키텍처](docs/engineering/architecture.md) |
 | 실행·검사·배포·장애 복구는 어떻게 하는가? | [운영 안내](docs/engineering/runbook.md) |

@@ -9,7 +9,7 @@
 | 정보 | 단일 기준 | 관련 설명 |
 | --- | --- | --- |
 | 실행·의존성 버전·스크립트 | `package.json`, `package-lock.json`, `.nvmrc` | [운영 안내](engineering/runbook.md) |
-| 페이지 ID·배포 HTML 경로 | `src/config/originalRoutes.ts` | [페이지/행동 목록](product/routes-and-content.md) |
+| 페이지 ID·배포 HTML 경로 | `src/config/originalRoutes.ts` | [사이트 구조(IA) 및 페이지 명세](product/routes-and-content.md) |
 | 현재 문구·콘텐츠·링크 | 행동 목록의 소스 파일 지도 | 제품 문서는 목적·검증 상태를 설명하며 전체 문구를 복제하지 않음 |
 | 디자인의 실제 값·연결 | 사용 중인 CSS/컴포넌트 | [디자인 안내](design-system/README.md), [적용표](design-system/component-adoption.md) |
 | 작업/병합 권한·예외 절차 | [Ground Rules](ground-rules/README.md) + 해당 작업의 명시적 승인 | 새 문서가 승인 범위를 넓히지 않음 |

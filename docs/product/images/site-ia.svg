@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1784" viewBox="0 0 1800 1784" role="img" aria-labelledby="title description">
+<title id="title">breadme 사이트 구조 (IA)</title>
+<desc id="description">Header 상위 메뉴는 HOME, ABOUT, PROJECTS, AWARDS, CONTACT다. ABOUT 하위에는 breadme, Career, Qualified가 있고 PROJECTS 하위에는 Products, Research, Articles, Lectures가 있다. ABOUT와 breadme, PROJECTS와 Products는 각각 같은 페이지를 연다. 메뉴의 고유 페이지는 10개다. Projects 본문은 LLM-based Voice IVR, Hopzie, Mentor AI 상세 3개로 연결되고 Lectures 본문도 같은 Mentor AI 상세로 연결된다. Articles는 6쪽의 목록과 18개 해시 읽기 상태를 가진 한 페이지다. Enjoy는 메뉴에 노출되지 않지만 직접 주소로 접근할 수 있다. 총 고유 HTML 페이지는 14개다. Header의 자료 조작과 Footer는 페이지 계층 및 페이지 수에서 제외된다.</desc>
+<defs>
+<marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#3B7894"/></marker>
+<marker id="arrow-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#19847E"/></marker>
+<style>text {font-family: 'Noto Sans CJK KR', 'Noto Sans KR', sans-serif;} .path {font-family: 'DejaVu Sans Mono', monospace;} </style>
+</defs>
+<!-- Source: src/content/original/navigation.ts; src/config/originalRoutes.ts; src/pages/original/OriginalArticlesPage.tsx; generated OriginalProjectsContent.tsx and OriginalLecturesContent.tsx. Baseline main 3738e46, 2026-10-05. Paths are app-relative; deployment base is /breadme/. -->
+<rect x="0" y="0" width="1800" height="1784" rx="0" fill="#F3F6F8"/>
+<text id="text-0" x="64" y="40" font-size="15" font-weight="700" fill="#526B78" text-anchor="start">INFORMATION ARCHITECTURE</text>
+<text id="text-1" x="64" y="94" font-size="42" font-weight="750" fill="#17313E" text-anchor="start">breadme 사이트 구조 (IA)</text>
+<text id="text-2" x="66" y="130" font-size="20" font-weight="400" fill="#526B78" text-anchor="start">현재 메뉴, 본문 상세, 페이지 내부 상태를 구분한 구조도</text>
+<rect x="1194" y="35" width="542" height="96" rx="16" fill="#FFFFFF" stroke="#D8E2E8" stroke-width="1.5"/>
+<text id="text-3" x="1465" y="73" font-size="24" font-weight="700" fill="#214B5B" text-anchor="middle">14개의 고유 HTML 페이지</text>
+<text id="text-4" x="1465" y="109" font-size="20" font-weight="500" fill="#526B78" text-anchor="middle">메뉴 10 + 프로젝트 상세 3 + Enjoy 1</text>
+<rect x="40" y="160" width="1720" height="728" rx="22" fill="#FFFFFF" stroke="#D8E2E8" stroke-width="1.5"/>
+<rect x="64" y="184" width="39" height="36" rx="10" fill="#EDF5F8"/>
+<text id="text-5" x="83.5" y="209" font-size="18" font-weight="700" fill="#214B5B" text-anchor="middle">01</text>
+<text id="text-6" x="118" y="211" font-size="26" font-weight="700" fill="#17313E" text-anchor="start">Header 메뉴 구조</text>
+<text id="text-7" x="1736" y="209" font-size="18" font-weight="400" fill="#526B78" text-anchor="end">실선: 메뉴 계층  ·  데스크톱 / 모바일 공통</text>
+<rect x="760" y="235" width="280" height="54" rx="27" fill="#EDF5F8" stroke="#D8E2E8" stroke-width="1.5"/>
+<text id="text-8" x="900" y="271" font-size="27" font-weight="700" fill="#214B5B" text-anchor="middle">breadme</text>
+<path d="M 900 289 V 309 M 222 309 H 1578" fill="none" stroke="#9BAFBB" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 222 309 V 330" fill="none" stroke="#9BAFBB" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 561 309 V 330" fill="none" stroke="#9BAFBB" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 900 309 V 330" fill="none" stroke="#9BAFBB" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 1239 309 V 330" fill="none" stroke="#9BAFBB" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 1578 309 V 330" fill="none" stroke="#9BAFBB" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="64" y="330" width="316" height="96" rx="14" fill="#214B5B"/>
+<text id="text-9" x="86" y="370" font-size="24" font-weight="700" fill="#FFFFFF" text-anchor="start">HOME</text>
+<text id="text-10" x="86" y="405" font-size="18" font-weight="400" fill="#DCEBF1" text-anchor="start" class="path">/index.html</text>
+<rect x="403" y="330" width="316" height="96" rx="14" fill="#214B5B"/>
+<text id="text-11" x="425" y="370" font-size="24" font-weight="700" fill="#FFFFFF" text-anchor="start">ABOUT</text>
+<text id="text-12" x="425" y="405" font-size="18" font-weight="400" fill="#DCEBF1" text-anchor="start" class="path">/about.html</text>
+<rect x="742" y="330" width="316" height="96" rx="14" fill="#214B5B"/>
+<text id="text-13" x="764" y="370" font-size="24" font-weight="700" fill="#FFFFFF" text-anchor="start">PROJECTS</text>
+<text id="text-14" x="764" y="405" font-size="18" font-weight="400" fill="#DCEBF1" text-anchor="start" class="path">/projects.html</text>
+<rect x="1081" y="330" width="316" height="96" rx="14" fill="#214B5B"/>
+<text id="text-15" x="1103" y="370" font-size="24" font-weight="700" fill="#FFFFFF" text-anchor="start">AWARDS</text>
+<text id="text-16" x="1103" y="405" font-size="18" font-weight="400" fill="#DCEBF1" text-anchor="start" class="path">/awards.html</text>
+<rect x="1420" y="330" width="316" height="96" rx="14" fill="#214B5B"/>
+<text id="text-17" x="1442" y="370" font-size="24" font-weight="700" fill="#FFFFFF" text-anchor="start">CONTACT</text>
+<text id="text-18" x="1442" y="405" font-size="18" font-weight="400" fill="#DCEBF1" text-anchor="start" class="path">/contact.html</text>
+<path d="M 561 426 V 446 H 407 V 698" fill="none" stroke="#9BAFBB" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 900 426 V 446 H 746 V 796" fill="none" stroke="#9BAFBB" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 407 502 H 427" fill="none" stroke="#9BAFBB" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 407 600 H 427" fill="none" stroke="#9BAFBB" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 407 698 H 427" fill="none" stroke="#9BAFBB" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 746 502 H 766" fill="none" stroke="#9BAFBB" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 746 600 H 766" fill="none" stroke="#9BAFBB" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 746 698 H 766" fill="none" stroke="#9BAFBB" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 746 796 H 766" fill="none" stroke="#9BAFBB" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="427" y="462" width="292" height="80" rx="12" fill="#EDF5F8" stroke="#D8E2E8" stroke-width="1.5"/>
+<text id="text-19" x="447" y="495" font-size="22" font-weight="650" fill="#17313E" text-anchor="start">breadme</text>
+<text id="text-20" x="699" y="493" font-size="15" font-weight="500" fill="#526B78" text-anchor="end">상위와 동일</text>
+<text id="text-21" x="447" y="524" font-size="18" font-weight="400" fill="#526B78" text-anchor="start" class="path">/about.html</text>
+<rect x="427" y="560" width="292" height="80" rx="12" fill="#EDF5F8" stroke="#D8E2E8" stroke-width="1.5"/>
+<text id="text-22" x="447" y="593" font-size="22" font-weight="650" fill="#17313E" text-anchor="start">Career</text>
+<text id="text-23" x="447" y="622" font-size="18" font-weight="400" fill="#526B78" text-anchor="start" class="path">/career.html</text>
+<rect x="427" y="658" width="292" height="80" rx="12" fill="#EDF5F8" stroke="#D8E2E8" stroke-width="1.5"/>
+<text id="text-24" x="447" y="691" font-size="22" font-weight="650" fill="#17313E" text-anchor="start">Qualified</text>
+<text id="text-25" x="447" y="720" font-size="18" font-weight="400" fill="#526B78" text-anchor="start" class="path">/qualified.html</text>
+<rect x="766" y="462" width="292" height="80" rx="12" fill="#EDF5F8" stroke="#D8E2E8" stroke-width="1.5"/>
+<text id="text-26" x="786" y="495" font-size="22" font-weight="650" fill="#17313E" text-anchor="start">Products</text>
+<text id="text-27" x="1038" y="493" font-size="15" font-weight="500" fill="#526B78" text-anchor="end">상위와 동일</text>
+<text id="text-28" x="786" y="524" font-size="18" font-weight="400" fill="#526B78" text-anchor="start" class="path">/projects.html</text>
+<rect x="766" y="560" width="292" height="80" rx="12" fill="#EDF5F8" stroke="#D8E2E8" stroke-width="1.5"/>
+<text id="text-29" x="786" y="593" font-size="22" font-weight="650" fill="#17313E" text-anchor="start">Research</text>
+<text id="text-30" x="786" y="622" font-size="18" font-weight="400" fill="#526B78" text-anchor="start" class="path">/research.html</text>
+<rect x="766" y="658" width="292" height="80" rx="12" fill="#EDF5F8" stroke="#D8E2E8" stroke-width="1.5"/>
+<text id="text-31" x="786" y="691" font-size="22" font-weight="650" fill="#17313E" text-anchor="start">Articles</text>
+<text id="text-32" x="786" y="720" font-size="18" font-weight="400" fill="#526B78" text-anchor="start" class="path">/articles.html</text>
+<rect x="766" y="756" width="292" height="80" rx="12" fill="#EDF5F8" stroke="#D8E2E8" stroke-width="1.5"/>
+<text id="text-33" x="786" y="789" font-size="22" font-weight="650" fill="#17313E" text-anchor="start">Lectures</text>
+<text id="text-34" x="786" y="818" font-size="18" font-weight="400" fill="#526B78" text-anchor="start" class="path">/lectures.html</text>
+<text id="text-35" x="64" y="462" font-size="18" font-weight="400" fill="#526B78" text-anchor="start">/ 와 /index.html은 같은 Home</text>
+<rect x="64" y="596" width="305" height="164" rx="14" fill="#F7F9FA"/>
+<text id="text-36" x="86" y="630" font-size="21" font-weight="650" fill="#17313E" text-anchor="start">페이지 수 집계</text>
+<text id="text-37" x="86" y="670" font-size="19" font-weight="500" fill="#526B78" text-anchor="start">ABOUT = breadme</text>
+<text id="text-38" x="86" y="700" font-size="19" font-weight="500" fill="#526B78" text-anchor="start">PROJECTS = Products</text>
+<text id="text-39" x="86" y="735" font-size="18" font-weight="400" fill="#526B78" text-anchor="start">같은 주소는 한 번만 셉니다.</text>
+<text id="text-40" x="64" y="855" font-size="19" font-weight="500" fill="#526B78" text-anchor="start">상위 메뉴 5개 · 메뉴로 이동하는 고유 페이지 10개</text>
+<rect x="40" y="912" width="1720" height="482" rx="22" fill="#FFFFFF" stroke="#D8E2E8" stroke-width="1.5"/>
+<rect x="64" y="936" width="39" height="36" rx="10" fill="#EDF5F8"/>
+<text id="text-41" x="83.5" y="961" font-size="18" font-weight="700" fill="#214B5B" text-anchor="middle">02</text>
+<text id="text-42" x="118" y="963" font-size="26" font-weight="700" fill="#17313E" text-anchor="start">본문에서 연결되는 상세와 읽기 상태</text>
+<text id="text-43" x="1736" y="961" font-size="18" font-weight="400" fill="#526B78" text-anchor="end">화살표: 본문 링크 이동 / 상태 전환</text>
+<text id="text-44" x="64" y="1006" font-size="22" font-weight="700" fill="#3B7894" text-anchor="start">프로젝트 상세 3개</text>
+<text id="text-45" x="416" y="1006" font-size="18" font-weight="400" fill="#526B78" text-anchor="start">Header의 추가 하위 메뉴가 아닙니다.</text>
+<rect x="64" y="1057" width="220" height="94" rx="12" fill="#EDF5F8" stroke="#D8E2E8" stroke-width="1.5"/>
+<text id="text-46" x="83" y="1093" font-size="22" font-weight="650" fill="#17313E" text-anchor="start">Projects 본문</text>
+<text id="text-47" x="83" y="1125" font-size="17" font-weight="400" fill="#526B78" text-anchor="start" class="path">/projects.html</text>
+<rect x="64" y="1241" width="220" height="94" rx="12" fill="#EDF5F8" stroke="#D8E2E8" stroke-width="1.5"/>
+<text id="text-48" x="83" y="1277" font-size="22" font-weight="650" fill="#17313E" text-anchor="start">Lectures 본문</text>
+<text id="text-49" x="83" y="1309" font-size="17" font-weight="400" fill="#526B78" text-anchor="start" class="path">/lectures.html</text>
+<path d="M 284 1104 H 341 M 341 1069 V 1281" fill="none" stroke="#3B7894" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 341 1069 H 414" fill="none" stroke="#3B7894" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-blue)"/>
+<path d="M 341 1175 H 414" fill="none" stroke="#3B7894" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-blue)"/>
+<path d="M 341 1281 H 414" fill="none" stroke="#3B7894" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-blue)"/>
+<rect x="416" y="1022" width="618" height="94" rx="12" fill="#FFFFFF" stroke="#A9C5D1" stroke-width="1.5"/>
+<rect x="416" y="1022" width="6" height="94" rx="3" fill="#3B7894"/>
+<text id="text-50" x="440" y="1059" font-size="23" font-weight="650" fill="#17313E" text-anchor="start">LLM-based Voice IVR</text>
+<text id="text-51" x="440" y="1093" font-size="18" font-weight="400" fill="#526B78" text-anchor="start" class="path">/projects/llm-based-voice-ivr.html</text>
+<rect x="416" y="1128" width="618" height="94" rx="12" fill="#FFFFFF" stroke="#A9C5D1" stroke-width="1.5"/>
+<rect x="416" y="1128" width="6" height="94" rx="3" fill="#3B7894"/>
+<text id="text-52" x="440" y="1165" font-size="23" font-weight="650" fill="#17313E" text-anchor="start">Hopzie</text>
+<text id="text-53" x="440" y="1199" font-size="18" font-weight="400" fill="#526B78" text-anchor="start" class="path">/projects/hopzie-oneclickbuilder.html</text>
+<rect x="416" y="1234" width="618" height="94" rx="12" fill="#FFFFFF" stroke="#A9C5D1" stroke-width="1.5"/>
+<rect x="416" y="1234" width="6" height="94" rx="3" fill="#3B7894"/>
+<text id="text-54" x="440" y="1271" font-size="23" font-weight="650" fill="#17313E" text-anchor="start">Mentor AI Operation System</text>
+<text id="text-55" x="440" y="1305" font-size="18" font-weight="400" fill="#526B78" text-anchor="start" class="path">/projects/ai-mentoring-agent-detail.html</text>
+<path d="M 284 1288 H 310 V 1306 H 414" fill="none" stroke="#19847E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)" stroke-dasharray="7 6"/>
+<text id="text-56" x="64" y="1366" font-size="18" font-weight="400" fill="#526B78" text-anchor="start">점선: Lectures의 View Workflow Detail도 같은 Mentor AI 상세로 이동</text>
+<rect x="1080" y="989" width="656" height="353" rx="14" fill="#F7FAFB" stroke="#D8E2E8" stroke-width="1.5"/>
+<text id="text-57" x="1104" y="1024" font-size="22" font-weight="700" fill="#3B7894" text-anchor="start">Articles 내부 상태</text>
+<rect x="1104" y="1042" width="608" height="77" rx="10" fill="#FFFFFF" stroke="#D8E2E8" stroke-width="1.5"/>
+<text id="text-58" x="1125" y="1073" font-size="21" font-weight="650" fill="#17313E" text-anchor="start">목록 · 6쪽 / 총 18개 글</text>
+<text id="text-59" x="1125" y="1101" font-size="18" font-weight="400" fill="#526B78" text-anchor="start" class="path">/articles.html</text>
+<path d="M 1240 1121 V 1169" fill="none" stroke="#3B7894" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-blue)"/>
+<text id="text-60" x="1258" y="1151" font-size="16" font-weight="500" fill="#526B78" text-anchor="start">Read Article</text>
+<path d="M 1550 1169 V 1121" fill="none" stroke="#19847E" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)"/>
+<text id="text-61" x="1569" y="1151" font-size="16" font-weight="500" fill="#526B78" text-anchor="start">Back to List</text>
+<rect x="1104" y="1173" width="608" height="111" rx="10" fill="#EAF6F3" stroke="#BDDBD4" stroke-width="1.5"/>
+<text id="text-62" x="1125" y="1205" font-size="21" font-weight="650" fill="#17313E" text-anchor="start">글 읽기 · 18개 해시 상태</text>
+<text id="text-63" x="1125" y="1240" font-size="17" font-weight="400" fill="#526B78" text-anchor="start" class="path">/articles.html#article-detail?id=&lt;ID&gt;</text>
+<text id="text-64" x="1125" y="1270" font-size="18" font-weight="400" fill="#526B78" text-anchor="start">별도 HTML 페이지 18개가 아닙니다.</text>
+<text id="text-65" x="1104" y="1320" font-size="18" font-weight="500" fill="#526B78" text-anchor="start">Articles는 전체 14개 중 1개 페이지로 집계</text>
+<rect x="40" y="1418" width="1720" height="264" rx="22" fill="#FFFFFF" stroke="#D8E2E8" stroke-width="1.5"/>
+<rect x="64" y="1442" width="39" height="36" rx="10" fill="#EDF5F8"/>
+<text id="text-66" x="83.5" y="1467" font-size="18" font-weight="700" fill="#214B5B" text-anchor="middle">03</text>
+<text id="text-67" x="118" y="1469" font-size="26" font-weight="700" fill="#17313E" text-anchor="start">메뉴에 없는 페이지와 공통 UI</text>
+<text id="text-68" x="1736" y="1467" font-size="18" font-weight="400" fill="#526B78" text-anchor="end">페이지 계층 밖의 항목은 별도로 구분</text>
+<rect x="64" y="1495" width="650" height="160" rx="14" fill="#FCF6E9" stroke="#E7D8B5" stroke-width="1.5"/>
+<text id="text-69" x="88" y="1536" font-size="24" font-weight="700" fill="#17313E" text-anchor="start">Enjoy</text>
+<text id="text-70" x="88" y="1572" font-size="20" font-weight="400" fill="#526B78" text-anchor="start" class="path">/enjoy.html</text>
+<text id="text-71" x="88" y="1610" font-size="21" font-weight="500" fill="#17313E" text-anchor="start">메뉴에는 미노출 · 직접 주소 접근 가능</text>
+<text id="text-72" x="88" y="1639" font-size="18" font-weight="400" fill="#526B78" text-anchor="start">공개 경로 1개로 집계합니다.</text>
+<rect x="742" y="1495" width="994" height="160" rx="14" fill="#F7F9FA" stroke="#D8E2E8" stroke-width="1.5"/>
+<text id="text-73" x="766" y="1536" font-size="23" font-weight="650" fill="#17313E" text-anchor="start">공통 UI · 페이지 수에서 제외</text>
+<text id="text-74" x="766" y="1574" font-size="20" font-weight="400" fill="#526B78" text-anchor="start">Header   Resume / Portfolio PDF → 자료 패널 또는 Coming Soon</text>
+<text id="text-75" x="766" y="1612" font-size="20" font-weight="400" fill="#526B78" text-anchor="start">Footer     외부 연락 링크 · 언어 표시 · 준비 중 항목</text>
+<text id="text-76" x="766" y="1642" font-size="17" font-weight="400" fill="#526B78" text-anchor="start">기본 페이지는 자료 패널, 프로젝트 상세는 Coming soon! 안내를 엽니다.</text>
+<text id="text-77" x="64" y="1727" font-size="18" font-weight="400" fill="#526B78" text-anchor="start">경로는 앱 기준입니다. 실제 배포 주소에는 /breadme/가 앞에 붙습니다.</text>
+<text id="text-78" x="1736" y="1727" font-size="17" font-weight="400" fill="#526B78" text-anchor="end">기준: main 3738e46 · 2026-10-05 · 소스 정적 검토</text>
+<text id="text-79" x="64" y="1758" font-size="16" font-weight="400" fill="#526B78" text-anchor="start">Source: originalNavigation · originalRoutePaths · Projects / Lectures 본문 · OriginalArticlesPage</text>
+</svg>

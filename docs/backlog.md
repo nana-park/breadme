@@ -1,6 +1,6 @@
 # 다음 개선 순서와 완료 조건
 
-[← README](../README.md) · [제품/가설](product/overview.md) · [페이지와 행동](product/routes-and-content.md) · [QA 기준](qa/README.md)
+[← README](../README.md) · [제품/가설](product/overview.md) · [사이트 구조(IA) 및 페이지 명세](product/routes-and-content.md) · [QA 기준](qa/README.md)
 
 기준: `3738e46`, 2026-10-05 소스·기존 QA 기록 점검. **아래 우선순위는 제안이며 구현 약속·일정·공개 승인이 아닙니다.** 이번 PR은 문서만 정리합니다. 사람이 확인한 새 사용성 연구나 새 전수 브라우저 검사 결과로 읽지 않습니다.
 

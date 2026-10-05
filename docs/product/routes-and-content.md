@@ -1,4 +1,57 @@
-# 라우트와 콘텐츠
+# 사이트 구조(IA) 및 페이지 명세
+
+이 문서는 **사이트 구조(IA) → 페이지별 목적·동작 → 콘텐츠 편집 원본** 순서로 읽는다. 먼저 방문자가 보는 메뉴와 실제 페이지의 연결을 확인하고, 아래 명세에서 주소·CTA 상태·수정 파일을 찾는다.
+
+## 한눈에 보는 현재 사이트 구조(IA)
+
+![breadme 사이트 구조(IA): Header의 5개 상위 메뉴와 10개 고유 페이지, 본문 링크로 여는 프로젝트 상세 3개, Articles의 18개 해시 읽기 상태, 메뉴 미노출 Enjoy를 구분한 도식](images/site-ia.png)
+
+[큰 PNG로 보기](images/site-ia.png) · [편집 원본 SVG](images/site-ia.svg)
+
+그림은 아래 소스 기준의 현재 구조다. 메뉴·라우트가 바뀌면 SVG와 PNG를 함께 갱신하고 아래 텍스트 구조·페이지 명세도 대조한다. SVG는 편집 원본, PNG는 글꼴/앱 환경에 관계없이 읽기 위한 표시본이다.
+
+### Header 메뉴: 방문자가 보는 탐색 구조
+
+아래는 현재 Header의 메뉴 이름과 순서다. ABOUT와 PROJECTS는 상위 메뉴 자체에도 연결 주소가 있으며, 각각 첫 하위 항목과 같은 페이지를 연다. 데스크톱/모바일은 같은 메뉴 정보를 사용한다.
+
+```text
+breadme
+├─ HOME → Home /index.html (루트 /와 동일)
+├─ ABOUT → About /about.html
+│  ├─ breadme → About /about.html (상위 메뉴와 같은 페이지)
+│  ├─ Career → /career.html
+│  └─ Qualified → /qualified.html
+├─ PROJECTS → Projects /projects.html
+│  ├─ Products → Projects /projects.html (상위 메뉴와 같은 페이지)
+│  ├─ Research → /research.html
+│  ├─ Articles → /articles.html
+│  └─ Lectures → /lectures.html
+├─ AWARDS → /awards.html
+└─ CONTACT → /contact.html
+```
+
+### 본문에서 연결되는 상세와 메뉴에 없는 페이지
+
+다음 항목은 Header의 추가 하위 메뉴가 아니다. 각 본문 링크로 들어가는 상세, Articles 안의 읽기 상태, 직접 주소로만 노출되는 페이지를 구분한다.
+
+```text
+Projects 본문
+├─ LLM-based Voice IVR → /projects/llm-based-voice-ivr.html
+├─ Hopzie → /projects/hopzie-oneclickbuilder.html
+└─ Mentor AI → /projects/ai-mentoring-agent-detail.html
+   └─ Lectures 본문의 View Workflow Detail에서도 같은 상세로 연결
+
+Articles 본문
+└─ 영어 글 18개 → /articles.html#article-detail?id=<ID>
+   └─ 목록 6쪽의 읽기/복귀 상태이며, 별도 HTML 페이지 18개가 아님
+
+Header 메뉴 미노출
+└─ Enjoy → /enjoy.html (직접 주소 접근 가능, 비공개 페이지가 아님)
+```
+
+- **페이지 수:** Header에서 가는 고유 페이지 10개 + 프로젝트 상세 3개 + Enjoy 1개 = 14개. 같은 페이지를 여는 상위/하위 메뉴, Articles 읽기 상태는 중복 집계하지 않는다.
+- **별도 행동:** Header의 Resume/Portfolio PDF는 메뉴 페이지가 아니라 자료 패널 또는 Coming Soon 안내를 여는 조작이다. Footer의 외부 연락 링크·언어/준비 중 항목도 [공통 진입과 미완성 CTA](#2-공통-진입과-미완성-cta)에서 별도로 명세한다.
+- **읽는 순서:** [14개 페이지 명세](#1-현재-라우트-총-14개) → [공통 CTA 상태](#2-공통-진입과-미완성-cta) → [편집 원본](#4-무엇을-어디서-고치는가). 구조가 바뀌면 실제 메뉴/라우트 설정과 이 그림을 같은 PR에서 갱신한다.
 
 ## 기준
 
