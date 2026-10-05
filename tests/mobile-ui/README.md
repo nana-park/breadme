@@ -1,28 +1,66 @@
-# Mobile UI baseline capture
+# Mobile UI evidence capture
 
-This evidence-only harness captures all 14 routes from `src/config/originalRoutes.ts` at 320, 360, 375, 390, 430, 767, 768, and 1440 CSS pixels. It makes 14 route navigations and 112 named viewport steps. Resizing reuses the loaded route to keep large-media detail pages inexpensive; these observations do not prove fresh-navigation or interaction behavior.
+This bounded diagnostic harness captures the 14 routes from `src/config/originalRoutes.ts` and all 18 article identities from the source-fidelity fixtures. It adds reading, menu, and text-enlargement states without changing normal e2e gates or screenshot baselines. A green run means capture and existing navigation contracts succeeded, **not that visual QA passed**.
 
-Run after the production build, using the authorized CI browser renderer:
+## Run
+
+Build first, then run using the authorized CI browser renderer:
 
 ```sh
 MOBILE_UI_CAPTURE_ONLY=1 npx playwright test --config=playwright.mobile-ui.config.ts
 ```
 
-List cases without launching a browser:
+List cases without starting a server or browser:
 
 ```sh
 npx playwright test --config=playwright.mobile-ui.config.ts --list
 ```
 
-The preview server uses port 4173. `MOBILE_UI_BASE_URL` optionally selects a built deployment (include its trailing slash). `MOBILE_UI_CAPTURE_ONLY=1` is the default and only accepted mode until screenshot review establishes precise regression assertions.
+The preview server uses port 4173. `MOBILE_UI_BASE_URL` optionally selects a built deployment; include its trailing slash. `MOBILE_UI_CAPTURE_ONLY=1` is the default and only accepted mode until screenshot review establishes precise visual regression assertions. Do not treat a browser that could not launch as a tested environment.
 
-## Evidence
+## Coverage
 
-- `test-results/mobile-ui/`: top viewport PNGs at 320, 390, 430, 768, 1440; geometry JSON at every width; one short route summary.
-- `playwright-report/mobile-ui/`: independent HTML report with named screenshot/JSON attachments.
-- Case IDs: `<route>--w<width>--top`.
-- Actual computed heading and body fonts, element boxes, rendered text-node Range fragments and grouped line rectangles, clipping ancestors and their client boxes, touch-control dimensions, document overflow, and individual overflow candidates.
-- Text outside the top viewport is retained when laid out and marked `inViewport: false`. Hidden/inert text is excluded. Range evidence is bounded to 2,000 rendered text nodes and reports truncation explicitly. Body samples cap at 150; overflow candidates cap at 250.
-- Readiness records awaited fonts, decoded first-screen images, and four stable animation frames, with bounded image/layout waits. There is no `networkidle` dependency or fixed settling sleep. Fonts await the real font-ready promise inside the overall test timeout.
+- `mobile-baseline.spec.ts`: 14 fresh route loads, each resized to 320, 360, 375, 390, 430, 767, 768, and 1440 CSS pixels. All 112 viewport steps save geometry. Top screenshots are saved at 320, 390, 430, 768, and 1440. Resizing avoids loading large detail media eight times; it does not prove fresh-navigation behavior at every width.
+- `menu-baseline.spec.ts`: Projects, Articles, and Voice IVR menus opened after fresh navigation at 320 and 390, with screenshots and final computed typography/colors.
+- `reading-states.spec.ts`: all 18 articles directly opened at 390, each captured at the top, body midpoint, and original-source link. The original-source links are inspected without visiting the external site. Body image decoding, intrinsic/rendered aspect ratios, captions, quotes, and body geometry are recorded.
+- The longest-title article also has eight resize steps at the same widths as the route baseline, including 1440. This is representative reading-layout coverage, not an 18-article × eight-width matrix.
+- At 320, the long Clubhouse article has top/middle root-font and synthetic text-enlargement probes. The longest-title article opens from archive page 3, then tests browser Back/Forward and Back to List, including pagination, focus, and scroll restoration. Projects expanded content and the long Lectures title also have root-font probes.
+- Contact and Enjoy have 320px synthetic computed-text-200% hero captures for inspecting reflow inside their fixed-height media/overlay structures. These record evidence without asserting a defect.
+- Menu states cover 844×390 landscape at normal text, plus synthetic text enlargement at 320×844 and 844×390. They capture the top and final materials control and check Escape, repeated open/close, focus return, removal of background inertness, and restoration of the body's prior inline overflow.
 
-This baseline does not assert universal text size, wrapping, clipping, touch-target, or overflow thresholds. Scroll containers, intentional display labels, transforms, and decorative overflow require screenshot review. A green run means evidence capture succeeded, not that the page passed visual QA. Readiness flags and browser errors must be reviewed; missing or undecoded images are recorded rather than silently called ready. Fresh-navigation open-menu PNG/geometry cases also cover Projects, Articles, and Voice IVR at 320 and 390. They record the final computed colors and font sizes without assuming the source-CSS candidates are defects. No detail-page full-height screenshots are made. Existing app sources, workflows, normal e2e gates, and snapshot baselines are untouched.
+The fixture JSON is already checked against the React article metadata and body fingerprints by `src/content/original/articles/articles.test.tsx`. It can be imported without loading React bodies or Vite-only asset imports.
+
+### What “200%” means here
+
+These two probes are deliberately distinguished in test names and JSON:
+
+1. **Root font 200%** doubles the root element's computed font size. Fixed-pixel text may remain unchanged. Actual before/after font samples are recorded; this is not a claim that all visible text doubled.
+2. **Synthetic computed text 200%** freezes all HTML font sizes and numeric line heights in the selected subtree, then doubles them. It records before/after text samples and checks the requested scale actually applied. This stresses fixed-pixel text without doubling inherited values repeatedly. It is not native browser zoom, OS text scaling, or an accessibility conformance result. Pseudo-elements and browser settings are not emulated.
+
+Neither probe replaces real browser text zoom or device accessibility-setting checks. No application styles are changed by these isolated browser-fixture mutations.
+
+## Evidence and review
+
+- `test-results/mobile-ui/`: viewport-sized PNGs, geometry JSON, and route summaries.
+- `playwright-report/mobile-ui/`: independent HTML report with screenshot/JSON attachments.
+- Landing case IDs: `<route>--w<width>--top`; reading states append `top`, `middle`, `source-link`, or a named enlargement/navigation state.
+- Actual computed heading/body fonts, element boxes, rendered text-node Range fragments and grouped line rectangles, clipping ancestors/client boxes, touch-control dimensions, document overflow, and individual overflow candidates are captured.
+- Laid-out text outside the screenshot is retained as `inViewport: false`; hidden/inert text is excluded. Range evidence caps at 2,000 rendered text nodes and explicitly reports truncation. Body samples cap at 150; overflow candidates cap at 250. Synthetic enlargement samples cap at 60 and also report truncation.
+- First-screen readiness awaits fonts, bounded image decoding, and four stable animation frames. Article readiness additionally attempts decoding every article body image. Mid-body settling preserves the current scroll position rather than calling the first-screen helper, which intentionally resets to the top. There is no `networkidle` dependency.
+- Reading-state JSON includes runtime page errors. Missing/undecoded images, incomplete layout settling, image crops/stretch candidates, and off-viewport controls remain reviewable observations. A midpoint screenshot does not show every paragraph or image.
+
+This baseline does not assert universal font-size, wrapping, clipping, touch-target, or overflow thresholds. Scroll containers, display labels, transforms, and decorative overflow require screenshot review before becoming defects. No detail-page full-height screenshots are generated. The 1440 captures are comparison evidence; screenshots alone do not prove desktop pixels stayed unchanged.
+
+## Existing behavioral regression coverage
+
+The diagnostic config only runs `tests/mobile-ui`. Run the ordinary e2e suite separately; the diagnostic run does not replace or imply a pass for these tests:
+
+```sh
+npx playwright test tests/e2e/mobile-scroll-snap.spec.ts tests/e2e/mobile-controls.spec.ts tests/e2e/articles.spec.ts --workers=2 --retries=0
+```
+
+- `mobile-scroll-snap.spec.ts`: native section snap on all 14 routes at 390; free document scrolling across all 14 routes at 1440; the 767/768 boundary; reduced-motion behavior; fixed-header hash anchors and keyboard skip navigation; article history and interior reading; expanded project content; independent horizontal gallery scrolling; detail/gallery overlap contracts.
+- `mobile-controls.spec.ts`: repeated keyboard focus containment and dismissal, preservation of existing inert/overflow values, header transitions at 1023/1024, desktop Escape, and materials-panel behavior.
+- `articles.spec.ts`: archive pagination, reading and original-source links, direct detail links, and Back/Forward/list restoration at 390 and 1440.
+
+Remaining manual/extended checks include real iOS Safari/Android devices, touch gestures and carousel swipes (the existing gallery test uses horizontal wheel input), screen readers, native browser text zoom, every article image in-view, and fresh navigation at every width. Default diagnostic captures use reduced motion; normal-motion snapping is exercised by the separate regression suite above.
