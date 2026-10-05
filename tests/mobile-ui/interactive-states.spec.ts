@@ -42,15 +42,19 @@ test.beforeEach(async ({ page }, testInfo) => {
 
 test.afterEach(async ({ page }, testInfo) => {
   const path = testInfo.outputPath("interactive-state-manifest.json");
+  const errors = manifests.get(testInfo)?.[0]?.browserErrors ?? [];
   await writeFile(
     path,
     JSON.stringify(
       {
-        schemaVersion: 1,
+        schemaVersion: 2,
         test: testInfo.title,
         url: page.url(),
         viewport: page.viewportSize(),
-        status: testInfo.status,
+        statusBeforeRuntimeAssertion: testInfo.status,
+        runtimePageErrorCheck:
+          Array.isArray(errors) && errors.length === 0 ? "passed" : "failed",
+        finalResultAuthority: "Playwright terminal report, including all hooks",
         limits,
         states: manifests.get(testInfo) ?? [],
       },
@@ -62,7 +66,6 @@ test.afterEach(async ({ page }, testInfo) => {
     path,
     contentType: "application/json",
   });
-  const errors = manifests.get(testInfo)?.[0]?.browserErrors ?? [];
   expect(
     errors,
     "Interaction states must not emit runtime page errors",

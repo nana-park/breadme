@@ -3,15 +3,30 @@
 기존 [Portfolio](https://github.com/nana-park/Portfolio)의 디자인과 내용을 React로 옮기는 프로젝트입니다. **원본 디자인을 기준으로 합니다.** 처음 만들었던 구조 설명용 화면은 실제 포트폴리오 화면으로 교체했습니다.
 
 - [공개 사이트](https://nana-park.github.io/breadme/)
-- [Home 개선 검토 PR #2](https://github.com/nana-park/breadme/pull/2)
+- [모바일 UI 수정 전후 검토 문서](docs/qa/mobile-ui-review.md)
+- [모바일 UI 테스트 케이스](docs/qa/mobile-ui-test-cases.md)
+- [현재 작업: Draft PR #3](https://github.com/nana-park/breadme/pull/3)
+- [Home 개선 이력: 병합된 PR #2](https://github.com/nana-park/breadme/pull/2)
 - [기존 공개 포트폴리오](https://nana-park.github.io/Portfolio/)
 - 원본 기준 커밋: `834815915647e4b3fbf9285b88b8001e37b94aa0`
 - 새 게시 주소: https://nana-park.github.io/breadme/ (배포 결과는 Actions와 deployment.json에서 확인)
 - 기존 `Portfolio` 저장소·공개 사이트는 그대로 유지합니다. 이름을 바꾼 것은 이 React 저장소뿐입니다.
 
-## 이번 Home 개선 (검토 중)
+## 현재 작업: 모바일 전체 UI·가독성 검토 (Draft PR #3)
 
-공개된 첫 이관본 다음 작업입니다. **Home 소개 변경에 이어, 사용자가 요청한 모바일 전체 페이지 스크롤 동작을 같은 PR에서 검토합니다. 아직 공개 사이트에는 반영하지 않았습니다.**
+**Home PR #2는 main `4f026a3`에 반영됐습니다. 현재는 `feature/mobile-ui-readability`의 Draft PR #3에서 모바일 전체 UI를 검토하며, 이번 변경의 병합·배포는 별도 승인이 필요합니다.** 실제 공개된 커밋은 [deployment.json](https://nana-park.github.io/breadme/deployment.json)에서 확인합니다.
+
+먼저 [수정 전후 검토 문서](docs/qa/mobile-ui-review.md)에서 As-is/To-be 화면, 확인한 문제와 수정 내용을 보세요. 검사 범위와 재현 절차는 [모바일 UI 테스트 케이스](docs/qa/mobile-ui-test-cases.md)에 있습니다.
+
+- 14개 경로의 제목·본문, 모바일 메뉴·Footer, 18개 Articles의 읽기 화면과 펼친 내용·글자 확대 상태를 확인합니다. 모든 상태를 모든 폭에서 검사했다는 뜻은 아닙니다.
+- 좁은 화면의 글자 잘림·겹침·작은 조작 영역을 보정하고, 768/1440px는 기존 main과 비교합니다.
+- 767px 이하 모든 페이지에서 중복된 최소화 자료 바로가기를 감춥니다. Home도 Hero 아래에서 다시 표시하지 않습니다. 메뉴의 Resume/Portfolio PDF는 기존 Coming Soon 패널을 열며, 실제 자료 전송은 비활성 상태입니다.
+- 최신 결과에는 아직 조사 중인 실패가 있습니다. 통과·실패·미검수와 보류 항목, 정확한 검사 커밋은 [검토 문서](docs/qa/mobile-ui-review.md)와 [PR #3 검사](https://github.com/nana-park/breadme/pull/3/checks)를 기준으로 합니다. 이전 커밋의 성공을 현재 변경의 전체 통과로 대신하지 않습니다.
+- GitHub Actions의 Chromium 검수이며, 실제 휴대폰·iOS Safari·브라우저 자체 확대의 종합 검수를 뜻하지 않습니다.
+
+## Home 개선 이력 (PR #2 main 반영)
+
+공개된 첫 이관본 이후 [PR #2](https://github.com/nana-park/breadme/pull/2)에서 반영한 Home 소개 변경입니다. 아래는 현재 모바일 UI 작업과 구분한 기존 변경 기록입니다.
 
 - 사용자 경력 자료를 근거로 AI Product Manager의 실제 역할을 소개합니다. 성과 수치를 새로 만들지 않습니다.
 - 제목: `Designing AI Product Experiences Across Markets`
@@ -22,12 +37,9 @@
 - About·Projects 등 다른 화면과 Home 아래 경력·학력 섹션은 유지합니다.
 - 작은 이름·직무 → 큰 제목 → 작은 과거 경력 근거의 글자 크기 위계를 둡니다.
 - 사용자 요청에 따라 `Grounded in psychology`로 시작해 `Japan.`으로 끝나는 설명 문단만 잠시 제거했습니다. 원문은 Git의 `e783331` 이력에 남겨 다음 수정 때 다시 검토합니다. 이름·제목·과거 회사·CTA와 스타일은 그대로입니다.
-- 모바일 첫 소개 영역에서는 중복된 떠 있는 자료 버튼을 잠시 숨기고, Header의 자료 메뉴는 유지합니다. 소개 영역을 지나면 떠 있는 버튼이 다시 보입니다. 자료 전송은 여전히 Coming Soon입니다.
-- 320 / 375 / 390 / 430 / 1440px의 전후 캡처, 실제 글자 크기·줄 수·겹침·CTA 목적지와 키보드를 검수합니다. 정확한 통과 여부는 PR의 최신 Actions 결과를 확인합니다.
+- Home 개선 당시 320 / 375 / 390 / 430 / 1440px의 전후 캡처, 실제 글자 크기·줄 수·겹침·CTA 목적지와 키보드를 검수했습니다. 당시 커밋별 결과는 [PR #2 검사 기록](https://github.com/nana-park/breadme/pull/2/checks)에서 확인합니다. 현재 PR #3의 결과와 구분합니다.
 
-현재 공개 커밋은 `4607953bda8b0c0683b4ba09786781f95be861ea`입니다. 첫 이관·공개 검수는 단위77개, 기능48개, 실제 공개 URL34개가 통과했습니다. 이 기록을 이번 Home 수정의 통과 결과로 대신하지 않습니다. 새 병합·게시에는 별도 확인이 필요합니다.
-
-## 모바일 전체 페이지 스크롤 (이번 PR에서 검토 중)
+## 기존 모바일 전체 페이지 스크롤 (PR #2 main 반영)
 
 - 767px 이하에서 모든 14개 페이지의 **큰 구간 근처에 멈추면 시작점에 살짝 맞춰지는** 기본 브라우저 스크롤 스냅을 적용합니다. 매번 한 화면씩 강제로 넘어가는 슬라이드가 아닙니다.
 - 소개, 프로젝트 카테고리, 상세 사례의 큰 챕터, 아티클 목록·읽기, Footer가 기준입니다. 작은 문단·개별 아코디언·내부 제품 데모에는 넣지 않습니다.
@@ -38,7 +50,7 @@
 - 휠·터치 이벤트를 가로채거나 스크롤을 별도 JavaScript 애니메이션으로 바꾸지 않습니다. 가까움의 판정과 느낌은 브라우저마다 조금 다를 수 있습니다.
 - Home의 마지막 버튼 아래와 로고 소개 위 여백은 모바일에서 각각40px로 맞췄습니다. 두 구간 사이의 빈 공간은136px에서80px로 줄고, 데스크톱 간격은 그대로입니다.
 
-구간 목록은 `src/config/mobileScrollSnap.ts`, 모바일 동작은 `src/styles/mobile-scroll.css`에 있습니다. 긴 글·뒤로/앞으로·주소 앵커·키보드·아코디언·메뉴·가로 캐러셀 검사를 추가했습니다. 원리는 [CSS Scroll Snap 표준](https://www.w3.org/TR/css-scroll-snap-1/)의 proximity 방식이며, 최종 실제 통과 여부는 PR의 최신 CI를 확인합니다. 실기기·Safari 전체 검수를 뜻하지 않습니다.
+구간 목록은 `src/config/mobileScrollSnap.ts`, 모바일 동작은 `src/styles/mobile-scroll.css`에 있습니다. 긴 글·뒤로/앞으로·주소 앵커·키보드·아코디언·메뉴·가로 캐러셀 검사를 추가했습니다. 원리는 [CSS Scroll Snap 표준](https://www.w3.org/TR/css-scroll-snap-1/)의 proximity 방식입니다. PR #3에서도 이 동작을 유지하는지 검사하며, 현재 결과는 모바일 UI 검토 문서를 기준으로 합니다. 실기기·Safari 전체 검수를 뜻하지 않습니다.
 
 ## 지금 된 것
 
@@ -47,7 +59,7 @@
 - 실제로 연결된 프로젝트 상세 3개: Voice IVR / Hopzie / AI Mentoring
 - Articles 18개 영어 본문 전체, 6쪽 목록, 읽기·뒤로 이동
 - 원본 Header / Footer, 모바일 메뉴, 경력 전환·인증 탭·갤러리·강의 캐러셀·프로젝트 펼침·상세 탭
-- 최초 이관에서는 원본 Spline 장면과 배지를 보존했습니다. 이번 Home 검토안은 사용자가 선택한 텍스트 중심 소개로 변경합니다. 원본 파일·해시 기록은 보존하지만 Home에서는 불러오지 않습니다.
+- 최초 이관에서는 원본 Spline 장면과 배지를 보존했고, 병합된 Home PR #2에서 사용자가 선택한 텍스트 중심 소개로 변경했습니다. 원본 파일·해시 기록은 보존하지만 Home에서는 불러오지 않습니다.
 - 기본 실행·코드·타입·단위·브라우저 검사와 원본 비교 캡처
 
 전체 HTML을 iframe에 넣거나 문자열 HTML로 보여주는 방식이 아닙니다. 화면은 실제 React 요소이고, 동작은 React 상태와 정리 가능한 이벤트 처리로 옮겼습니다. 원본에 이미 있던 YouTube 동영상 플레이어는 미디어 임베드로 유지합니다. 멘토링의 제품 데모는 React 요소로 변환했습니다.
@@ -71,7 +83,7 @@
 - 원본의 미완성 Korean 버튼은 `Coming soon!` 안내를 유지합니다. 영어 페이지를 번역 완료라고 표시하지 않습니다.
 - 원본에서 숨긴 Enjoy 메뉴는 새로 노출하지 않습니다. 기존 `enjoy.html` 주소의 화면은 옮겼습니다.
 - 연결되지 않은 오래된 프로젝트 페이지·백업 파일은 복사하지 않았습니다.
-- 최초 이관본은 main에 반영해 공개했습니다. 이후의 변경은 검토 브랜치와 PR에서 검수하고, 별도로 확인한 뒤 공개합니다.
+- 최초 이관과 Home PR #2는 main에 반영됐습니다. 현재 모바일 UI PR #3은 Draft이며, 검수와 별도 승인 후에만 병합·공개합니다.
 
 ## 내 컴퓨터에서 실행하기
 
@@ -140,17 +152,21 @@ src/
 
 ## 검수 상태와 범위
 
-원본과 React의 14개 페이지를 390px·1440px에서 비교했습니다. Home은 320/390/767/768/1024/1025/1440px에서도 확인했습니다. 단위 검사 68개와 브라우저 검사 48개로 화면·이동·조작을 검수했고, 발견한 Awards 배경·Enjoy 필터·자료 버튼 겹침 등을 수정했습니다. 정확한 검사 커밋과 후속 기록은 아래 문서를 기준으로 합니다.
+현재 모바일 UI의 수정 전후 화면, 커밋별 검사 결과와 남은 한계는 [모바일 UI 검토 문서](docs/qa/mobile-ui-review.md)에 기록합니다. [테스트 케이스](docs/qa/mobile-ui-test-cases.md)와 [Draft PR #3 검사](https://github.com/nana-park/breadme/pull/3/checks)를 함께 확인하세요. 화면 캡처가 생성됐다는 사실만으로 UI 합격을 뜻하지 않으며, 미검수·실패·보류 항목을 전체 통과에 포함하지 않습니다.
 
-최신 전체 경로·모바일 조작·시각 검수의 **통과 / 미검수 구분**은 [이관 검수 기록](docs/qa/original-migration-verification.md)과 [디자인 비교](design-qa.md)에 기록합니다. [PR checks](https://github.com/nana-park/breadme/pull/1/checks)에서 정확한 마지막 커밋의 결과를 볼 수 있습니다.
+### 최초 이관 검수 이력
 
-로컬 Chromium 실행은 작업환경의 OS socket 제한, 클라우드 브라우저의 localhost 접근은 보안 제한으로 막혔습니다. 사용자 컴퓨터 설정을 풀지 않고 GitHub-hosted Chromium에서 실제 렌더링·스크린샷·조작을 검수합니다.
+아래는 PR #1과 첫 공개 커밋 `4607953` 당시의 기록이며 현재 PR #3의 검사 결과가 아닙니다.
+
+원본과 React의 14개 페이지를 390px·1440px에서 비교했고, Home은 320/390/767/768/1024/1025/1440px에서도 확인했습니다. 초기 비교 단계에는 단위 검사 68개·브라우저 검사 48개로 Awards 배경·Enjoy 필터·자료 버튼 겹침 등을 확인했습니다. 첫 공개 검수에서는 단위 77개·기능 48개·실제 공개 URL 34개가 통과했습니다. 정확한 당시 커밋과 범위는 [이관 검수 기록](docs/qa/original-migration-verification.md), [원본 디자인 비교](design-qa.md), [PR #1 검사 기록](https://github.com/nana-park/breadme/pull/1/checks)을 기준으로 합니다.
+
+최초 이관 작업환경에서는 로컬 Chromium 실행의 OS socket 제한과 클라우드 브라우저의 localhost 접근 제한이 있었습니다. 사용자 컴퓨터 설정을 풀지 않고 GitHub-hosted Chromium에서 렌더링·스크린샷·조작을 검수했습니다. 현재 작업의 실행 환경과 한계는 모바일 UI 검토 문서에 따로 기록합니다.
 
 ## 브랜치와 공개 상태
 
-최신 협업 규칙을 보존하려고 `docs/collaboration-ground-rules`에서 `feature/responsive-react-foundation`을 만들었습니다. 처음에는 문서 브랜치를 대상으로 검토했고, 공개·main 병합 승인 후 PR 대상을 main으로 전환합니다. 문서와 코드의 기존 이력은 일반 merge로 보존합니다.
+현재 작업 브랜치는 `feature/mobile-ui-readability`이며 [PR #3](https://github.com/nana-park/breadme/pull/3)은 Draft입니다. 기준 main은 Home PR #2가 병합된 `4f026a3`입니다. 이번 모바일 UI 변경의 main 병합·배포는 승인되지 않았습니다.
 
-이번에는 사용자가 검수한 변경을 main에 합치고 main에서만 게시하는 방식을 승인했습니다. 기존 문서·기능 이력을 보존하는 merge commit을 사용하며, PR 검사를 통과한 변경만 main에 반영합니다.
+초기 이관 당시에는 협업 규칙을 보존하려고 `docs/collaboration-ground-rules`에서 `feature/responsive-react-foundation`을 만들었습니다. 문서 브랜치를 대상으로 검토한 뒤, 별도 공개·main 병합 승인을 받아 main에 통합했습니다. 문서와 기능의 기존 이력은 merge commit으로 보존했습니다. 당시 승인은 이후 변경의 병합·공개 승인으로 사용하지 않습니다.
 
 GitHub Pages용 빌드는 `VITE_BASE_PATH=/breadme/ npm run build`입니다. 14개 `.html` 파일을 실제로 만들어 중첩 상세 페이지에 직접 들어가거나 새로고침해도 개발 서버의 우회 없이 열리도록 했습니다. `VITE_BASE_PATH=/breadme/ npm run test:pages`로 배포 파일과 원본 자산을 검사합니다.
 
@@ -160,6 +176,8 @@ GitHub Pages의 기존 main 허용 규칙을 유지합니다. 기존 `/Portfolio
 
 ## 문서
 
+- [현재 모바일 UI 수정 전후 검토](docs/qa/mobile-ui-review.md)
+- [모바일 UI 테스트 케이스](docs/qa/mobile-ui-test-cases.md)
 - [원본 이관 범위와 화면 구성](src/pages/original/README.md)
 - [Ground Rules](docs/ground-rules/README.md)
 - [반응형 전략](docs/responsive-strategy.md)
