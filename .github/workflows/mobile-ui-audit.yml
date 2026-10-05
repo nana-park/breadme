@@ -40,6 +40,18 @@ jobs:
           name: mobile-ui-report
           path: playwright-report/mobile-ui/
           retention-days: 7
+      - name: Observe the same Voice IVR cases on unchanged main
+        if: ${{ !cancelled() }}
+        continue-on-error: true
+        run: npx playwright test --config=playwright.provider-baseline.config.ts
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: always()
+        with:
+          name: provider-baseline-evidence
+          path: |
+            test-results/provider-baseline/
+            playwright-report/provider-baseline/
+          retention-days: 7
       - run: npx playwright test --config=playwright.desktop-unchanged.config.ts
         if: ${{ !cancelled() }}
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6

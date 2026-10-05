@@ -25,8 +25,14 @@ const manifests = new WeakMap<TestInfo, Array<Record<string, unknown>>>();
 test.beforeEach(async ({ page }, testInfo) => {
   manifests.set(testInfo, []);
   const errors: string[] = [];
-  page.on("pageerror", (error) => errors.push(error.message));
-  manifests.get(testInfo)!.push({ browserErrors: errors });
+  const errorDetails: Array<{ message: string; stack?: string }> = [];
+  page.on("pageerror", (error) => {
+    errors.push(error.message);
+    errorDetails.push({ message: error.message, stack: error.stack });
+  });
+  manifests
+    .get(testInfo)!
+    .push({ browserErrors: errors, browserErrorDetails: errorDetails });
   testInfo.annotations.push({
     type: "interactive-evidence",
     description:

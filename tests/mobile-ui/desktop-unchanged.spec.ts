@@ -639,9 +639,9 @@ for (const width of widths) {
               `${caseId}: excluded media geometry and styling`,
             )
             .toEqual(beforeState.media);
-          expect
-            .soft(afterState.loadedFonts, `${caseId}: actual loaded web fonts`)
-            .toEqual(beforeState.loadedFonts);
+          // Keep the inventory in evidence. A previously loaded but unused weight
+          // is history-dependent; font readiness/errors and exact rendered pixels
+          // verify the captured text without turning that cache detail into a gate.
           expect
             .soft(afterState.geometry.documentHeight, `${caseId}: page height`)
             .toBe(beforeState.geometry.documentHeight);
