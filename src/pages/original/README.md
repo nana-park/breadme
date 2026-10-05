@@ -72,3 +72,9 @@ About와 Awards의 장식용 바깥 `overflow:hidden`만 모바일에서 `clip`�
 AI Mentoring 상세는 기존 데모 소스의 업로드 제한 때문에 선택적 타이포그래피 역할 2개를 적용하지 않고 원본 파일을 그대로 둡니다. 기존 제목 32px·Director’s Log 14px는 유지됩니다. 공통 메뉴/Footer와 해당 경로의 QA는 포함하지만, 이 페이지의 글자 크기 조정까지 완료한 것으로 표시하지 않습니다.
 
 추가 화면 검수에서 원형 자료 바로가기가 여러 페이지의 본문을 가리는 것이 확인되어, 767px 이하의 최소화 바로가기는 전 경로에서 감춥니다. Home에서도 Hero 아래에 다시 나타나지 않습니다. 같은 Resume/Portfolio PDF 진입은 메뉴에 남고 Coming Soon 패널은 그대로이며, PDF 공개나 전송 기능을 추가하지 않습니다. 패널을 닫거나 숨김 경계로 크기를 바꾸면 보이는 메뉴 버튼에 초점을 돌립니다.
+
+## Contact 모바일 Hero 정렬 (2026-10-05)
+
+사용자 요청에 따라 Contact의 767px 이하 Hero 텍스트만 Home과 같은 좌측 정렬·좌우 패딩 20px·최대 읽기 폭 380px을 사용합니다. 제목은 실제 Home 제목과 같은 `clamp(32px, 8.8vw, 40px)` / line-height 1.1, 본문은 화면에 렌더링되는 Home 경력 요약과 같은 13px / line-height 1.6입니다. Home의 사용하지 않는 17px summary 규칙은 기준이 아닙니다.
+
+보정은 `OriginalPage.module.css`의 Contact Hero 역할 안에만 적용합니다. 사진·오버레이·문구·기존 세로 높이·하단 카드/링크·자료 Coming Soon·native proximity snap은 보존하며 768px 이상과 Home·Awards·GNB는 바꾸지 않습니다. [집중 검수 기록](../../../docs/qa/contact-mobile-alignment.md)에 실제 실행 결과와 캡처 한계를 구분합니다.
