@@ -85,10 +85,10 @@ test("mobile menu and honest materials state", async ({ page }, testInfo) => {
   );
 });
 
-test("Home career controls keep the original second-panel content", async ({
+test("Career controls keep the original second-panel content", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/career.html");
   await page.locator("#btn-career-next").click();
   await expect(page.locator("#career-page-2")).toHaveCSS("opacity", "1");
   await expect(page.locator("#career-role-title")).toContainText(

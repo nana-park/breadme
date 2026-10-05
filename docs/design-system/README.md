@@ -16,6 +16,7 @@
 | 모바일 읽기 역할 | [`OriginalPage.module.css`](../../src/pages/original/OriginalPage.module.css)의 `data-reading-role` 선택자 |
 | 공통 메뉴·Footer·자료 UI | 각 `OriginalHeader`, `OriginalFooter`, `MaterialsPopup`의 CSS Module이 자체 보정 소유 |
 | 현재 Home Hero | [`HomeHero.module.css`](../../src/pages/home/HomeHero.module.css); 다른 페이지의 공통 Hero 규칙이 아님 |
+| Home 경력 | [`HomeExperience.module.css`](../../src/pages/home/HomeExperience.module.css): 기존 Education의 흰 배경·2열/모바일1열·타입·여백·버튼 규격 재사용. 사진·경력 모션 제거, 승인된 회사별 1px 테두리/10px radius/24px padding 추가. 원래 Education·캐러셀 유지 |
 | 초기 뼈대 | `design-tokens.css`, `globals.css`, `HomePage`, `Header`, `Footer`, `Container`, `SectionTitle`, `ActionLink`는 현재 App의 실행 조합이 아님 |
 
 [`08` 스타일 규칙](../ground-rules/08-css-and-responsive-styles.md)은 신규 작업의 CSS Modules 중심 방향을 설명하며 Tailwind를 사용하지 않는다고 명시합니다. 현재 원본 utility 보존은 [이관 범위의 결정](../responsive-strategy.md#2-데스크톱은-원본과-같은-조건으로-비교)입니다. 이를 신규 화면에도 Tailwind를 도입하는 상시 허가로 읽지 않습니다. 원본의 inline 스타일·강한 선택자를 정리하는 작업도 별도 범위로 계획합니다.

@@ -15,8 +15,12 @@ for (const [pageId, route] of Object.entries(originalRoutePaths)) {
     vi.spyOn(HTMLMediaElement.prototype, "pause").mockImplementation(() => {});
     window.history.replaceState({}, "", `${base}${route}`);
     const { container } = render(<App />);
-    await waitFor(() =>
-      expect(container.querySelector("main h1, main h2")).not.toBeNull(),
+    // The preserved pages (especially Articles) are transformed on a cold lazy
+    // import. Keep the content assertion, but do not mistake a 1s import delay
+    // in the test runner for a missing rendered route.
+    await waitFor(
+      () => expect(container.querySelector("main h1, main h2")).not.toBeNull(),
+      { timeout: 5000 },
     );
     expect(
       container

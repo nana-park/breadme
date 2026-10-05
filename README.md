@@ -22,7 +22,7 @@ Nahyun Park의 AI Product Manager 포트폴리오입니다. 기존 [Portfolio](h
 ## 현재 제공 범위
 
 - 핵심 11개 화면과 프로젝트 상세 3개, 영어 Articles 18개
-- Home → Projects → 상세 사례 → Contact로 탐색하는 정적 포트폴리오
+- Home의 경력 요약 → Projects → 상세 사례 → Contact로 탐색하는 정적 포트폴리오
 - 경력·인증 탭, 프로젝트 펼침, 갤러리·강의 캐러셀, 글 읽기/복귀, 프로젝트 내부 시연 UI
 - 모바일 메뉴, 767px 이하 큰 구간의 proximity 스크롤 스냅, 줄바꿈·조작 영역 보정
 - 이력서/Portfolio PDF 전송과 Korean UI는 Coming Soon. 전송 백엔드가 없으며, 모든 Contact 본문 버튼이 실제 동작하는 것은 아닙니다. [행동별 상태](docs/product/routes-and-content.md)를 기준으로 확인합니다.

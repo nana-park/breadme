@@ -194,6 +194,18 @@ for (const [sourceFile, componentName] of pageDefinitions) {
   ).replace(/^\uFEFF/, "");
   const dom = new JSDOM(source);
   const document = dom.window.document;
+  // WHAT: Preserve the user's Home-only, one-sentence Research Focus copy.
+  // WHY: Remove the forced break without changing Education layout or Career copy.
+  if (sourceFile === "index.html") {
+    const researchFocus = Array.from(
+      document.querySelectorAll("#history-2 p"),
+    ).find((node) =>
+      node.textContent.trim().startsWith("Focused on human cognition,"),
+    );
+    if (researchFocus)
+      researchFocus.textContent =
+        "Focused on human cognition, statistical modeling, and AI technical literacy, with research published in SSCI-indexed journals.";
+  }
   // WHAT: Stable reading roles for the reviewed mobile refinements.
   // WHY: Keep page-owned responsive CSS out of source utility strings and make
   // regeneration preserve the fixes without altering desktop declarations.
@@ -506,6 +518,12 @@ for (const [sourceFile, componentName] of pageDefinitions) {
       imports.add("HomeHero");
       return `${indent}<HomeHero />`;
     }
+    // WHAT: Replace Home's career section with the selected Education-style layout.
+    // WHY: The user removed career photos/motion; carousel and Education layout remain original.
+    if (sourceFile === "index.html" && node.id === "history") {
+      imports.add("HomeExperience");
+      return `${indent}<HomeExperience />`;
+    }
     if (tag === "spline-viewer") {
       imports.add("SplineHero");
       return `${indent}<SplineHero${attributes(node)} />`;
@@ -546,6 +564,10 @@ for (const [sourceFile, componentName] of pageDefinitions) {
     );
   if (imports.has("HomeHero"))
     importLines.push("import { HomeHero } from '@/pages/home/HomeHero';");
+  if (imports.has("HomeExperience"))
+    importLines.push(
+      "import { HomeExperience } from '@/pages/home/HomeExperience';",
+    );
   if (imports.has("SplineHero"))
     importLines.push(
       "import { SplineHero } from '@/shared/ui/SplineHero/SplineHero';",
