@@ -177,7 +177,9 @@ async function settleViewport(page: Page, footer: boolean) {
           documentHeight: document.documentElement.scrollHeight,
           footer: Array.from(document.querySelectorAll("footer")).map(box),
           visible: Array.from(
-            document.querySelectorAll("h1,h2,p,img,header,footer *"),
+            document.querySelectorAll(
+              "h1,h2,p,img,button,[role=button],header,footer *",
+            ),
           )
             .filter((element) => {
               const rect = element.getBoundingClientRect();
@@ -492,6 +494,7 @@ for (const width of widths) {
           // This is evidence only: it never substitutes a more convenient reference,
           // masks a region, or changes the cross-build zero-pixel acceptance gate.
           let baselineRepeat: Record<string, unknown> | undefined;
+          let candidateRepeat: Record<string, unknown> | undefined;
           if (pixels.changedPixels !== 0 || !pixels.dimensionsMatch) {
             const repeat = await context.newPage();
             try {
@@ -522,14 +525,77 @@ for (const width of widths) {
                   Buffer.from(repeatedDiff, "base64"),
                   "image/png",
                 );
+              const {
+                diff: candidateBaselineDiff,
+                ...candidateBaselinePixels
+              } = await comparePixels(comparison, candidate, capture.image);
               baselineRepeat = {
                 readiness,
                 state,
                 attempts: capture.attempts,
                 pixels: repeatPixels,
+                candidatePixels: candidateBaselinePixels,
               };
+              if (candidateBaselineDiff)
+                await save(
+                  testInfo,
+                  `${caseId}--candidate-vs-main-repeat-diff.png`,
+                  Buffer.from(candidateBaselineDiff, "base64"),
+                  "image/png",
+                );
             } finally {
               await repeat.close();
+            }
+            const repeatCandidate = await context.newPage();
+            try {
+              const readiness = await preparePage(
+                repeatCandidate,
+                new URL(path, candidateURL).href,
+                width,
+              );
+              const state = await settleViewport(
+                repeatCandidate,
+                position === "footer",
+              );
+              const capture = await stableScreenshot(
+                repeatCandidate,
+                comparison,
+                testInfo,
+                `${caseId}--candidate-repeat`,
+              );
+              await save(
+                testInfo,
+                `${caseId}--candidate-repeat.png`,
+                capture.image,
+                "image/png",
+              );
+              const { diff: repeatedDiff, ...repeatPixels } =
+                await comparePixels(comparison, candidate, capture.image);
+              const { diff: referenceDiff, ...referencePixels } =
+                await comparePixels(comparison, reference, capture.image);
+              if (repeatedDiff)
+                await save(
+                  testInfo,
+                  `${caseId}--candidate-self-diff.png`,
+                  Buffer.from(repeatedDiff, "base64"),
+                  "image/png",
+                );
+              if (referenceDiff)
+                await save(
+                  testInfo,
+                  `${caseId}--main-vs-candidate-repeat-diff.png`,
+                  Buffer.from(referenceDiff, "base64"),
+                  "image/png",
+                );
+              candidateRepeat = {
+                readiness,
+                state,
+                attempts: capture.attempts,
+                pixels: repeatPixels,
+                referencePixels,
+              };
+            } finally {
+              await repeatCandidate.close();
             }
           }
           const result = {
@@ -542,6 +608,7 @@ for (const width of widths) {
               candidate: candidateCapture.attempts,
             },
             baselineRepeat,
+            candidateRepeat,
             referencePngSha256: createHash("sha256")
               .update(reference)
               .digest("hex"),
@@ -596,7 +663,7 @@ for (const width of widths) {
             coverage:
               "Top viewport and complete footer viewport only; no full-page or interaction-state equivalence claim.",
             deterministicTreatment:
-              "Same Chromium run/DPR 1/UTC/en-US/light; local pinned assets and loaded web fonts; fixed Date and seeded Math.random; reduced motion, animations and transitions disabled; video paused; video/iframe/canvas/spline pixels persistently hidden while boxes and overlays remain; external network blocked (the excluded YouTube player bootstrap is an expected abort); foreground captures must be consecutively pixel-identical; persistent cross-build differences remain failures and trigger a diagnostic fresh immutable-main capture.",
+              "Same Chromium run/software rasterization/DPR 1/UTC/en-US/light; local pinned assets and loaded web fonts; fixed Date and seeded Math.random; reduced motion, animations and transitions disabled; video paused; video/iframe/canvas/spline pixels persistently hidden while boxes and overlays remain; external network blocked (the excluded YouTube player bootstrap is an expected abort); foreground captures must be consecutively pixel-identical; persistent cross-build differences remain failures and trigger diagnostic fresh immutable-main and candidate captures.",
             readiness: { before, after },
             results,
           },

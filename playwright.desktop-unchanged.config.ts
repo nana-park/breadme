@@ -29,6 +29,11 @@ export default defineConfig({
     timezoneId: "UTC",
     colorScheme: "light",
     reducedMotion: "reduce",
+    // WHY: CI reproduced rounded-edge differences on immutable main itself.
+    // Use the same software raster path for both builds instead of introducing
+    // a perceptual threshold or masking otherwise static border pixels.
+    // Chromium switch: https://chromium.googlesource.com/chromium/src/+/HEAD/gpu/config/gpu_switches.cc
+    launchOptions: { args: ["--disable-gpu-rasterization"] },
     serviceWorkers: "block",
     screenshot: "only-on-failure",
     // WHY: Traces duplicate the 302 MiB asset corpus; PNG/JSON evidence is enough.

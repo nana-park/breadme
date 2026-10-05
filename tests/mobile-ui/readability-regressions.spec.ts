@@ -459,7 +459,15 @@ for (const width of [320, 390, 767]) {
     await diagram.scrollIntoViewIfNeeded();
     await settleGeometry(diagram);
     await expect(page.locator(role("identity-meaning-text"))).toHaveCount(2);
+    for (const meaning of await page
+      .locator(role("identity-meaning-text"))
+      .all())
+      await expect(meaning.locator("..")).toHaveCSS("opacity", "1");
     const evidence = await inspectText(diagram);
+    const meanings = await inspectText(
+      page.locator(role("identity-meaning-text")),
+    );
+    assertReadable(meanings, "both BREAD and ME glyph bounds");
     await attachEvidence(
       page,
       testInfo,
