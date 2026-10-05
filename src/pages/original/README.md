@@ -4,6 +4,10 @@
 
 `nana-park/Portfolio`의 `834815915647e4b3fbf9285b88b8001e37b94aa0`을 기준으로 레이아웃·문구·사진·글꼴·색상·원본 SVG와 주요 동작을 보존합니다. 원본과 다른 새 시안을 만드는 작업이 아닙니다.
 
+## Home 경력 구현
+
+Home의 `#history`는 사진·모션 없는 흰색 Education 스타일의 `HomeExperience`로 교체합니다. 회사 캐러셀·발자취·Education·나머지 섹션과 다른 페이지는 유지합니다. 실제 규격·콘텐츠 순서·검수 한계는 [Home README](../home/README.md)를 따릅니다.
+
 ## 페이지
 
 | URL                                        | 내용                                                |

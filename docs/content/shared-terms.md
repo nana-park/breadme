@@ -59,3 +59,7 @@ ID: naver-cloud
 ```
 
 예외를 추가하면 관련 콘텐츠 파일, 페이지 README, PR과 버전 기록도 함께 확인합니다.
+
+## Home 제품 표시 예외 — 2026-10-05
+
+사용자가 Home 경력 카드의 가독성을 위해 `NAVER Care Call`, `NAVER Care Call Console`, `LINE WORKS AI Call` 표기를 지정했습니다. 적용 범위는 Home의 Products 목록이며, 원본 자료의 `CLOVA CareCall` / `LINE WORKS AiCall` 브랜드명은 성과별 내부 데이터와 공식 근거에 유지합니다. 다른 페이지나 전역 명칭은 변경하지 않습니다. 이 로컬 표시 예외는 `src/content/site/homeExperience.ts`에서 관리합니다.

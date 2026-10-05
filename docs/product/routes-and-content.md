@@ -66,7 +66,7 @@ Header 메뉴 미노출
 
 | # | 경로 / 페이지 | 진입·노출 | 주요 내용과 현재 동작 | 본문 원본 |
 | --- | --- | --- | --- | --- |
-| 1 | `/index.html` / Home | HOME·로고·루트 | 텍스트 Hero → 파트너 → 발자취 → 경력 → 학력 → 역량 CTA. `View my work`/`View projects` → Projects, `Get in touch` → Contact, `View publications` → Research, `Explore Qualifications` → Qualified, Google Scholar 외부 링크. 경력 2패널과 발자취 가로 탐색 | [HomeHero](../../src/pages/home/HomeHero.tsx), [OriginalHomeContent](../../src/pages/original/generated/OriginalHomeContent.tsx) |
+| 1 | `/index.html` / Home | HOME·로고·루트 | 텍스트 Hero → 기존 파트너·발자취 → 흰색 경력 요약 → 기존 학력 → 역량 CTA. 경력은 Education 스타일의 사진 없는 2열/모바일1열, 짧은 수치 성과, `Full career` → Career. AiCall시장1위 문장 → 공식발표. `View my work` → Projects, `Get in touch` → Contact, 기존 학력/Qualified CTA 유지. 캐러셀 유지; 학력은 Research Focus 문장만 교정 | [HomeHero](../../src/pages/home/HomeHero.tsx), [HomeExperience](../../src/pages/home/HomeExperience.tsx), [OriginalHomeContent](../../src/pages/original/generated/OriginalHomeContent.tsx) |
 | 2 | `/about.html` / About (`breadme`) | ABOUT와 하위 breadme | 소개·브랜드 의미·배경 영상·미디어. `View my projects` → Projects, `Watch full interview` → YouTube. 임베드 인터뷰 재생 | [OriginalAboutContent](../../src/pages/original/generated/OriginalAboutContent.tsx) |
 | 3 | `/career.html` / Career | ABOUT 하위 Career | 경력 2패널·학력·추천 카드. `View projects` → Projects, `View publications` → Research, Google Scholar 외부 링크; 추천 카드 가로 탐색 | [OriginalCareerContent](../../src/pages/original/generated/OriginalCareerContent.tsx) |
 | 4 | `/qualified.html` / Qualified | ABOUT 하위 Qualified | 역량·4개 인증 탭(`AI & Tools`, `Data & Statistics`, `Psychology`, `Languages`)·업무 원칙. 본문 핵심 조작은 탭 전환 | [OriginalQualifiedContent](../../src/pages/original/generated/OriginalQualifiedContent.tsx) |
@@ -135,7 +135,8 @@ Header 메뉴 미노출
 | 수정 대상 | 현재 활성 원본 | 함께 확인할 곳 |
 | --- | --- | --- |
 | Home 첫 소개/CTA 문구 | [homeHero.ts](../../src/content/site/homeHero.ts) | [HomeHero](../../src/pages/home/HomeHero.tsx), [Home README](../../src/pages/home/README.md) |
-| Home 나머지·About·Career·Qualified·Enjoy·Projects·Research·Lectures·Awards·Contact·상세 본문 | 위 라우트 표의 `generated/Original…Content.tsx` | 해당 CSS, 두 interaction hook, [원본 페이지 README](../../src/pages/original/README.md), [변환기](../../scripts/convert-original-pages.mjs) |
+| Home 경력 요약 | [homeExperience.ts](../../src/content/site/homeExperience.ts) | [HomeExperience](../../src/pages/home/HomeExperience.tsx), [Home README](../../src/pages/home/README.md) |
+| Home 로고/갤러리/학력/CTA·About·Career·Qualified·Enjoy·Projects·Research·Lectures·Awards·Contact·상세 본문 | 위 라우트 표의 `generated/Original…Content.tsx` | 해당 CSS, 두 interaction hook, [원본 페이지 README](../../src/pages/original/README.md), [변환기](../../scripts/convert-original-pages.mjs) |
 | Articles 제목·날짜·요약·원문 링크·순서 | [articles/index.ts](../../src/content/original/articles/index.ts) | 연결된 `Article<ID>Body.tsx`, source expectations와 검사 |
 | Articles Hero·읽기/복귀 버튼 문구 | [pageContent.ts](../../src/content/original/articles/pageContent.ts) | [OriginalArticlesPage](../../src/pages/original/OriginalArticlesPage.tsx) |
 | 본문 이미지·동영상·문서 | [원본 manifest](../../src/content/original/asset-manifest.json), [외부 manifest](../../src/content/original/external-asset-manifest.json), 각 사용처 | [assetUrl/originalHref](../../src/shared/utils/originalPaths.ts), [원본 에셋 문서](../original-assets.md), [외부 에셋 문서](../original-external-assets.md) |
