@@ -382,18 +382,19 @@ for (const pageId of originalPageIds) {
           { readiness, title, copy },
           [320, 390, 767].includes(width),
         );
-        assertReadable(title, "landing headline", pageId === "home" ? 32 : 30);
+        const homeAlignedHero = pageId === "home" || pageId === "contact";
+        assertReadable(title, "landing headline", homeAlignedHero ? 32 : 30);
         for (const heading of title)
           expect(heading.fontSize).toBeLessThanOrEqual(
-            pageId === "home" ? 40.1 : 36.1,
+            homeAlignedHero ? 40.1 : 36.1,
           );
-        // Home's approved experience metadata remains 13px; Qualified categories
+        // Home and the requested matching Contact Hero use 13px; Qualified categories
         // and Awards' art heading have no common editorial body role.
         if (copy.length)
           assertReadable(
             copy,
             "landing editorial copy",
-            pageId === "home" ? 13 : unchangedMentoring ? 14 : 16,
+            homeAlignedHero ? 13 : unchangedMentoring ? 14 : 16,
           );
         if (unchangedMentoring) {
           expect(title[0].fontSize, "unchanged Mentoring title baseline").toBe(
