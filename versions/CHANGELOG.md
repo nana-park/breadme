@@ -1,8 +1,32 @@
 # Changelog
 
-모든 중요한 변경사항을 최신 작업부터 기록합니다. 아직 공개 릴리스는 없습니다.
+사용자에게 보이는 변경과 중요한 운영 변경을 기록합니다. GitHub Pages 게시 상태와 패키지 버전·태그·GitHub Release를 구분합니다. 최신 공개 근거는 [버전 허브](README.md)에 있습니다.
 
 ## [Unreleased]
+
+### 지속 개선 문서 기반 — 2026-10-05
+
+- 제품 목적·가설 사용자·주요 여정, 14개 경로와 행동별 상태, 콘텐츠 소유 위치를 정리
+- 실제 디자인/아키텍처/운영·QA 안내와 완료 조건이 있는 개선 목록, 문서 갱신 체크리스트 추가
+- README와 버전 허브의 오래된 Draft 상태 정정. 기존 QA 실패와 비교 스크린샷은 당시 증거로 보존
+- 런타임·콘텐츠·의존성·배포 설정은 변경하지 않음. 이 문서 작업은 아직 main 반영/게시하지 않음
+
+## GitHub Pages 반영 이력
+
+### 2026-10-05
+
+- [PR #4](https://github.com/nana-park/breadme/pull/4), `3738e46`: Home 파트너 설명의 단어 공백을 모바일 줄바꿈에서도 유지
+- [PR #3](https://github.com/nana-park/breadme/pull/3), `b666b34`: 모바일 제목·본문·메뉴·Footer·읽기/조작 보정, 767px 이하 최소화 자료 바로가기 숨김. 실제 자료 전송은 여전히 Coming Soon
+- 검사 범위와 미해결/보류: [모바일 UI 보고서](../docs/qa/mobile-ui-review.md). 병합을 과거 엄격 픽셀 검사의 소급 통과로 해석하지 않음
+
+### 2026-10-04
+
+- [PR #2](https://github.com/nana-park/breadme/pull/2), `4f026a3`: 텍스트 중심 AI PM Home, Across Markets 헤드라인, 모바일 왼쪽 정렬/세로 CTA, 큰 구간 proximity 스크롤 스냅. Home에서 Spline 렌더링 제거
+- [PR #1](https://github.com/nana-park/breadme/pull/1), `4607953`: 원본 React 이관과 별도 `/breadme/` GitHub Pages 공개
+
+## 이전 단계 기록 (당시 상태 보존)
+
+아래는 작업 당시 기록입니다. `Draft`, `예정`, Spline 유지, 당시 검사 개수 등은 아래 단계에만 적용되며 위의 이후 변경과 현재 버전 허브가 최신 상태입니다.
 
 ### 원본 충실 이관 — 2026-10-04
 
@@ -84,7 +108,7 @@
 - 저장소 및 협업 Ground Rules
 - 버전관리 허브와 공통 컴포넌트 적용표
 
-## [0.1.0] - 예정
+## 초기 [0.1.0] 계획 — 역사 기록
 
 ### 현재 목표
 
