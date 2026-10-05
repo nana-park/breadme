@@ -66,7 +66,12 @@ export function Article63259Body() {
             src={assetUrl(
               "https://www.artinsight.co.kr/data/tmp/2302/20230201043049_nfvhbaab.jpg",
             )}
-            style={{ width: "660px", height: "419px" } as CSSProperties}
+            style={
+              {
+                width: "660px",
+                height: "var(--article-image-height, 419px)",
+              } as CSSProperties
+            }
           />{" "}
           <figcaption
             className="cheditor-caption-text"
@@ -175,7 +180,12 @@ export function Article63259Body() {
             src={assetUrl(
               "https://www.artinsight.co.kr/data/tmp/2302/20230201042842_ivnmbgdw.jpg",
             )}
-            style={{ width: "398px", height: "419px" } as CSSProperties}
+            style={
+              {
+                width: "398px",
+                height: "var(--article-image-height, 419px)",
+              } as CSSProperties
+            }
           />{" "}
           <figcaption
             className="cheditor-caption-text"
@@ -253,7 +263,12 @@ export function Article63259Body() {
             src={assetUrl(
               "https://www.artinsight.co.kr/data/tmp/2302/20230201043815_whphcwlz.jpg",
             )}
-            style={{ width: "660px", height: "372px" } as CSSProperties}
+            style={
+              {
+                width: "660px",
+                height: "var(--article-image-height, 372px)",
+              } as CSSProperties
+            }
           />{" "}
           <figcaption
             className="cheditor-caption-text"
@@ -344,7 +359,12 @@ export function Article63259Body() {
             src={assetUrl(
               "https://www.artinsight.co.kr/data/tmp/2302/20230201043630_izsenmkn.jpg",
             )}
-            style={{ width: "660px", height: "372px" } as CSSProperties}
+            style={
+              {
+                width: "660px",
+                height: "var(--article-image-height, 372px)",
+              } as CSSProperties
+            }
           />{" "}
           <figcaption
             className="cheditor-caption-text"

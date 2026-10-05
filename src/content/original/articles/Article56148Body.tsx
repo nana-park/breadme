@@ -26,7 +26,12 @@ export function Article56148Body() {
           src={assetUrl(
             "https://www.artinsight.co.kr/data/tmp/2110/20211001024701_gfkxxryh.jpg",
           )}
-          style={{ width: "480px", height: "270px" } as CSSProperties}
+          style={
+            {
+              width: "480px",
+              height: "var(--article-image-height, 270px)",
+            } as CSSProperties
+          }
         />
       </p>{" "}
       <p>
@@ -58,7 +63,12 @@ export function Article56148Body() {
           src={assetUrl(
             "https://www.artinsight.co.kr/data/tmp/2110/20211001024909_eronoume.jpg",
           )}
-          style={{ width: "660px", height: "368px" } as CSSProperties}
+          style={
+            {
+              width: "660px",
+              height: "var(--article-image-height, 368px)",
+            } as CSSProperties
+          }
         />
       </p>{" "}
       <p style={{ textAlign: "justify" } as CSSProperties}>

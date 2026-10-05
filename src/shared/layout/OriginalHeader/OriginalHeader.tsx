@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { originalNavigation } from "@/content/original/navigation";
 import { originalHref } from "@/shared/utils/originalPaths";
+import styles from "./OriginalHeader.module.css";
 
 type Props = { pageId: string; onOpenMaterials: () => void };
 const DESKTOP_BREAKPOINT = 1024;
@@ -190,7 +191,7 @@ export function OriginalHeader({ pageId, onOpenMaterials }: Props) {
   return (
     <nav
       ref={nav}
-      className={`navbar ${["projects", "articles"].includes(pageId) ? "force-scrolled" : ""} ${isScrolled ? "scrolled" : ""} ${openGroup ? "gnb-expanded" : ""} ${openGroup === "ABOUT" ? "original-about-open" : ""} ${forceClosed ? "nav-force-close" : ""}`}
+      className={`navbar ${styles.navigation} ${["projects", "articles"].includes(pageId) ? "force-scrolled" : ""} ${isScrolled ? "scrolled" : ""} ${openGroup ? "gnb-expanded" : ""} ${openGroup === "ABOUT" ? "original-about-open" : ""} ${forceClosed ? "nav-force-close" : ""}`}
       id="navbar"
       aria-label="Main navigation"
       onMouseLeave={() => setOpenGroup(null)}
@@ -257,7 +258,7 @@ export function OriginalHeader({ pageId, onOpenMaterials }: Props) {
               >
                 <a
                   href={originalHref(item.path)}
-                  className={`nav-link ${hasChildren ? "flex items-center h-full" : ""} ${isActive ? "active" : ""}`}
+                  className={`nav-link ${styles.primaryLink} ${hasChildren ? "flex items-center h-full" : ""} ${isActive ? "active" : ""}`}
                   aria-current={isActive ? "page" : undefined}
                 >
                   {item.label}
@@ -270,7 +271,7 @@ export function OriginalHeader({ pageId, onOpenMaterials }: Props) {
                       <a
                         key={child.path}
                         href={originalHref(child.path)}
-                        className="text-[13px] font-sans font-medium text-white/90 hover:text-[#d97706] transition-colors flex items-center justify-center w-full lnb-link"
+                        className={`text-[13px] font-sans font-medium text-white/90 hover:text-[#d97706] transition-colors flex items-center justify-center w-full lnb-link ${styles.secondaryLink}`}
                       >
                         {child.label}
                       </a>

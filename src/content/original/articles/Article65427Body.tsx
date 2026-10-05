@@ -68,7 +68,12 @@ export function Article65427Body() {
             src={assetUrl(
               "https://www.artinsight.co.kr/data/tmp/2306/20230622182718_nussbfxm.png",
             )}
-            style={{ width: "660px", height: "660px" } as CSSProperties}
+            style={
+              {
+                width: "660px",
+                height: "var(--article-image-height, 660px)",
+              } as CSSProperties
+            }
           />{" "}
           <figcaption
             className="cheditor-caption-text"

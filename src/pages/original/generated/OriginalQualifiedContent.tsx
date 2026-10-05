@@ -55,6 +55,7 @@ export function OriginalQualifiedContent() {
                 'font-sans tracking-tight text-zinc-900 text-[32px] md:text-[44px] leading-[1.1] font-normal mb-8 text-center'
               }
               style={{ wordBreak: 'keep-all' } as CSSProperties}
+              data-reading-role={'landing-title'}
             >
               {
                 '\n                    The foundation behind my product decisions.\n                '
@@ -66,6 +67,7 @@ export function OriginalQualifiedContent() {
               className={
                 'flex items-center justify-center flex-wrap gap-3 md:gap-4 text-zinc-500 font-sans text-[11px] md:text-[12.5px] font-semibold uppercase tracking-[0.1em] mb-[4.5rem]'
               }
+              data-reading-role={'landing-categories'}
             >
               {'\n                    '}
               <span>{'Core Competencies'}</span>

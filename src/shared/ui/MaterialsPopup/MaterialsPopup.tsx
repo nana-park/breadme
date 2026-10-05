@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import styles from "./MaterialsPopup.module.css";
 type Props = {
   isOpen: boolean;
   onToggle: () => void;
@@ -25,16 +26,34 @@ export function MaterialsPopup({
       else if (wasOpen.current) {
         if (hideMinimized)
           document.querySelector<HTMLElement>("#navbar .logo")?.focus();
+        else if (
+          window.innerWidth < 768 &&
+          document.querySelector("#article-detail")
+        )
+          document.querySelector<HTMLElement>("#mobileToggle")?.focus();
         else toggle.current?.focus();
       }
     }
     wasOpen.current = isOpen;
   }, [isOpen, hideMinimized]);
   useEffect(() => {
+    let shortcutHadFocus = document.activeElement === toggle.current;
+    const trackShortcutFocus = (event: FocusEvent) => {
+      shortcutHadFocus = event.target === toggle.current;
+    };
     const updatePosition = () => {
       const popup = root.current,
         footer = document.querySelector<HTMLElement>(".footer");
       if (!popup) return;
+      // A resize can hide the reading shortcut without an open/close render.
+      if (
+        !isOpen &&
+        window.innerWidth < 768 &&
+        document.querySelector("#article-detail") &&
+        (document.activeElement === toggle.current ||
+          (document.activeElement === document.body && shortcutHadFocus))
+      )
+        document.querySelector<HTMLElement>("#mobileToggle")?.focus();
       if (hideMinimizedDuringHomeHero) {
         const hero = document.querySelector<HTMLElement>(
           "[data-original-page='home'] #home",
@@ -139,6 +158,7 @@ export function MaterialsPopup({
     };
     window.addEventListener("scroll", updatePosition, { passive: true });
     window.addEventListener("resize", updatePosition);
+    document.addEventListener("focusin", trackShortcutFocus);
     document.addEventListener("keydown", onKey);
     updatePosition();
     const timer = window.setTimeout(updatePosition, 400);
@@ -155,6 +175,7 @@ export function MaterialsPopup({
       observer.disconnect();
       window.removeEventListener("scroll", updatePosition);
       window.removeEventListener("resize", updatePosition);
+      document.removeEventListener("focusin", trackShortcutFocus);
       document.removeEventListener("keydown", onKey);
       window.clearTimeout(timer);
     };
@@ -163,7 +184,7 @@ export function MaterialsPopup({
     <div
       ref={root}
       id="email-popup"
-      className={`email-popup ${isOpen ? "" : "minimized"}`}
+      className={`email-popup ${styles.popup} ${isOpen ? "" : "minimized"}`}
       style={{
         position: "fixed",
         top: "auto",

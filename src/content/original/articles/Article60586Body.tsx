@@ -123,7 +123,12 @@ export function Article60586Body() {
           src={assetUrl(
             "https://www.artinsight.co.kr/data/tmp/2207/20220705215517_wdfnlmbk.jpg",
           )}
-          style={{ width: "660px", height: "661px" } as CSSProperties}
+          style={
+            {
+              width: "660px",
+              height: "var(--article-image-height, 661px)",
+            } as CSSProperties
+          }
         />{" "}
       </p>{" "}
       <p>

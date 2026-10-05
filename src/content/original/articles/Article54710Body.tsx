@@ -21,7 +21,12 @@ export function Article54710Body() {
           src={assetUrl(
             "https://www.artinsight.co.kr/data/tmp/2107/20210701001757_xdqbswod.jpg",
           )}
-          style={{ width: "660px", height: "692px" } as CSSProperties}
+          style={
+            {
+              width: "660px",
+              height: "var(--article-image-height, 692px)",
+            } as CSSProperties
+          }
         />
       </p>{" "}
       <p>
@@ -85,7 +90,12 @@ export function Article54710Body() {
           src={assetUrl(
             "https://www.artinsight.co.kr/data/tmp/2107/20210701212348_xhuppyug.jpg",
           )}
-          style={{ width: "660px", height: "438px" } as CSSProperties}
+          style={
+            {
+              width: "660px",
+              height: "var(--article-image-height, 438px)",
+            } as CSSProperties
+          }
         />
       </p>{" "}
       <p className="article-reference">{"Source"}</p>

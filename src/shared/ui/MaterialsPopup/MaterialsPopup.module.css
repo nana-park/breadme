@@ -1,0 +1,15 @@
+@media (max-width: 1023px) {
+  /* WHY: Inert blocks interaction, but still paints the floating control above
+   * the open menu. Hide its owned root until the menu restores the inert state. */
+  .popup[inert] {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Reading already has materials access through the shared menu. A floating
+   * shortcut otherwise covers the last words of narrow article paragraphs. */
+  :global(body:has(#article-detail)) .popup:global(.minimized) {
+    display: none;
+  }
+}

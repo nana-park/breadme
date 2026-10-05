@@ -76,7 +76,12 @@ export function Article47268Body() {
           >
             {"\n         "}
             <img
-              style={{ width: "660px", height: "668px" } as CSSProperties}
+              style={
+                {
+                  width: "660px",
+                  height: "var(--article-image-height, 668px)",
+                } as CSSProperties
+              }
               alt={"A Bigger Splash"}
               src={assetUrl(
                 "https://www.artinsight.co.kr/data/tmp/2004/20200414154809_hzcrdnsw.jpg",
@@ -327,7 +332,12 @@ export function Article47268Body() {
           >
             {"\n         "}
             <img
-              style={{ height: "495px", width: "660px" } as CSSProperties}
+              style={
+                {
+                  height: "var(--article-image-height, 495px)",
+                  width: "660px",
+                } as CSSProperties
+              }
               alt={"Do remember they can't cancel the spring"}
               src={assetUrl(
                 "https://www.artinsight.co.kr/data/tmp/2004/20200414154956_cpivtvgp.png",

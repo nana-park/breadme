@@ -97,7 +97,12 @@ export function Article58579Body() {
           src={assetUrl(
             "https://www.artinsight.co.kr/data/tmp/2202/20220227163422_heziezgs.png",
           )}
-          style={{ width: "660px", height: "599px" } as CSSProperties}
+          style={
+            {
+              width: "660px",
+              height: "var(--article-image-height, 599px)",
+            } as CSSProperties
+          }
         />
       </p>{" "}
       <p>
@@ -151,7 +156,12 @@ export function Article58579Body() {
           src={assetUrl(
             "https://www.artinsight.co.kr/data/tmp/2202/20220227163651_zchwrdas.png",
           )}
-          style={{ width: "660px", height: "330px" } as CSSProperties}
+          style={
+            {
+              width: "660px",
+              height: "var(--article-image-height, 330px)",
+            } as CSSProperties
+          }
         />
       </p>{" "}
       <p>

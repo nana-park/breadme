@@ -1,0 +1,57 @@
+/* WHAT: Readable mobile footer links and independent touch targets.
+ * WHY: Four legacy columns leave 10px text and undersized icons at phone widths.
+ * Source declarations consume these hooks with their original fallbacks, so
+ * the existing 768px tablet and desktop styling stays unchanged. */
+@media (max-width: 767px) {
+  .footer {
+    --footer-mobile-columns: repeat(2, minmax(0, 1fr));
+    --footer-columns-gap: var(--space-6, 1.5rem);
+    --footer-heading-size: 1rem;
+    --footer-heading-margin: var(--space-2, 0.5rem);
+    --footer-link-margin: 0;
+    --footer-mobile-link-size: var(--type-small, 0.875rem);
+    --footer-mobile-icon-size: var(--space-6, 1.5rem);
+    --footer-mobile-icon-padding: 0;
+    --footer-mobile-language-size: var(--type-small, 0.875rem);
+    --footer-mobile-language-padding: 0.625rem 0.875rem;
+  }
+
+  .footer :global(.footer-links) a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--control-size, 2.75rem);
+    min-width: var(--control-size, 2.75rem);
+    line-height: 1.5;
+  }
+
+  .footer :global(.social-icon) {
+    align-items: center;
+    justify-content: center;
+    min-width: var(--control-size, 2.75rem);
+    min-height: var(--control-size, 2.75rem);
+    flex-shrink: 0;
+  }
+
+  .footer :global(.lang-btn) {
+    min-width: var(--control-size, 2.75rem);
+    min-height: var(--control-size, 2.75rem);
+    line-height: 1.5;
+  }
+
+  .footer :global(.footer-lang) {
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+
+  .footer :global(.footer-bottom-bar) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4, 1rem);
+  }
+
+  .footer :global(.footer-copyright) p {
+    color: #9ca3af;
+    font-size: var(--type-small, 0.875rem);
+    line-height: 1.5;
+  }
+}

@@ -41,6 +41,7 @@ export function OriginalAboutContent() {
           className={
             'relative w-full h-[75vh] min-h-[600px] max-h-[900px] flex flex-col items-center justify-center mb-16 overflow-hidden'
           }
+          data-reading-role={'video-hero'}
         >
           {'\n            '}
           {'\n            '}
@@ -78,6 +79,7 @@ export function OriginalAboutContent() {
                 'font-sans text-white text-[36px] md:text-[48px] lg:text-[56px] leading-[1.1] tracking-tight font-medium mb-6 drop-shadow-lg'
               }
               style={{ wordBreak: 'keep-all' } as CSSProperties}
+              data-reading-role={'landing-title'}
             >
               {
                 '\n                    Designing AI as a daily staple.\n                '
@@ -88,6 +90,7 @@ export function OriginalAboutContent() {
               className={
                 'font-sans text-white/90 text-[16px] md:text-[18px] leading-[1.7] max-w-[800px] mx-auto font-light mb-16 drop-shadow-md'
               }
+              data-reading-role={'landing-copy'}
             >
               {
                 "\n                    My professional handle, 'BREADME,' is derived from my childhood nickname."
@@ -143,7 +146,10 @@ export function OriginalAboutContent() {
         {'\n\n        '}
         <div className={'container mx-auto'}>
           {'\n            '}
-          <div className={'id-diagram-container'}>
+          <div
+            className={'id-diagram-container'}
+            data-reading-role={'identity-diagram-container'}
+          >
             {'\n                '}
             <div className={'id-root-section'}>
               {'\n                    '}
@@ -157,19 +163,38 @@ export function OriginalAboutContent() {
             {'\n                '}
             <div className={'id-pronunciation-label'}>{'PRONUNCIATION'}</div>
             {'\n                '}
-            <div className={'id-derivation-row'}>
+            <div
+              className={'id-derivation-row'}
+              data-reading-role={'identity-derivation-row'}
+            >
               {'\n                    '}
-              <div className={'id-decorator-slash id-slash-left'}>{'/'}</div>
+              <div
+                className={'id-decorator-slash id-slash-left'}
+                data-reading-role={'identity-decorator-slash'}
+              >
+                {'/'}
+              </div>
               {'\n                    '}
-              <div className={'id-decorator-slash id-slash-right'}>{'/'}</div>
+              <div
+                className={'id-decorator-slash id-slash-right'}
+                data-reading-role={'identity-decorator-slash'}
+              >
+                {'/'}
+              </div>
               {'\n                    '}
-              <div className={'id-translation-group'}>
+              <div
+                className={'id-translation-group'}
+                data-reading-role={'identity-translation-group'}
+              >
                 {'\n                        '}
                 <div className={'id-floating-label'}>
                   {'\n                            '}
                   <div className={'id-floating-badge'}>
                     {'\n                                '}
-                    <span className={'id-floating-text'}>
+                    <span
+                      className={'id-floating-text'}
+                      data-reading-role={'identity-floating-text'}
+                    >
                       {'TRANSLATED TO ENGLISH'}
                     </span>
                     {'\n                            '}
@@ -179,7 +204,10 @@ export function OriginalAboutContent() {
                 {'\n                        '}
                 <div className={'id-dashed-line'} />
                 {'\n                        '}
-                <div className={'id-phonetic-part'}>
+                <div
+                  className={'id-phonetic-part'}
+                  data-reading-role={'identity-phonetic-part'}
+                >
                   {'\n                            '}
                   <div className={'id-phonetic-symbol'}>{'b̥aŋ'}</div>
                   {'\n                            '}
@@ -187,13 +215,21 @@ export function OriginalAboutContent() {
                   {'\n                            '}
                   <div className={'id-meaning'}>
                     {'\n                                '}
-                    <div className={'id-meaning-text'}>{'BREAD'}</div>
+                    <div
+                      className={'id-meaning-text'}
+                      data-reading-role={'identity-meaning-text'}
+                    >
+                      {'BREAD'}
+                    </div>
                     {'\n                            '}
                   </div>
                   {'\n                        '}
                 </div>
                 {'\n                        '}
-                <div className={'id-phonetic-part'}>
+                <div
+                  className={'id-phonetic-part'}
+                  data-reading-role={'identity-phonetic-part'}
+                >
                   {'\n                            '}
                   <div className={'id-phonetic-symbol'}>{'na'}</div>
                   {'\n                            '}
@@ -201,7 +237,12 @@ export function OriginalAboutContent() {
                   {'\n                            '}
                   <div className={'id-meaning'}>
                     {'\n                                '}
-                    <div className={'id-meaning-text'}>{'ME'}</div>
+                    <div
+                      className={'id-meaning-text'}
+                      data-reading-role={'identity-meaning-text'}
+                    >
+                      {'ME'}
+                    </div>
                     {'\n                            '}
                   </div>
                   {'\n                        '}
@@ -209,7 +250,10 @@ export function OriginalAboutContent() {
                 {'\n                    '}
               </div>
               {'\n                    '}
-              <div className={'id-phonetic-part id-faded-part'}>
+              <div
+                className={'id-phonetic-part id-faded-part'}
+                data-reading-role={'identity-phonetic-part'}
+              >
                 {'\n                        '}
                 <div className={'id-faded-symbol'}>{'hjʌn'}</div>
                 {'\n                    '}

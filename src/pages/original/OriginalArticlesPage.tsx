@@ -139,11 +139,17 @@ export function OriginalArticlesPage() {
       >
         <div className="container mx-auto px-4 lg:px-12 max-w-[1400px]">
           <div className="flex flex-col items-center mb-24 mx-auto text-center">
-            <h2 className="font-sans tracking-tight text-zinc-900 text-[32px] md:text-[44px] leading-[1.1] font-normal mb-4">
+            <h2
+              data-reading-role="landing-title"
+              className="font-sans tracking-tight text-zinc-900 text-[32px] md:text-[44px] leading-[1.1] font-normal mb-4"
+            >
               {content.heading[0]} <br />
               {content.heading[1]}
             </h2>
-            <p className="font-sans text-zinc-600 text-[14px] md:text-[15px] font-normal mb-16">
+            <p
+              data-reading-role="landing-copy"
+              className="font-sans text-zinc-600 text-[14px] md:text-[15px] font-normal mb-16"
+            >
               {content.introduction}
             </p>
             <div className="w-full aspect-[16/7] bg-zinc-100 rounded-none overflow-hidden mb-16 relative shadow-sm">
@@ -156,7 +162,10 @@ export function OriginalArticlesPage() {
             <h3 className="font-sans tracking-tight text-zinc-900 text-[18px] md:text-[22px] font-normal mb-1.5">
               {content.subheading}
             </h3>
-            <p className="font-sans text-zinc-600 text-[15px] md:text-[17px] font-light">
+            <p
+              data-reading-role="landing-copy"
+              className="font-sans text-zinc-600 text-[15px] md:text-[17px] font-light"
+            >
               {content.description}
             </p>
           </div>
@@ -173,7 +182,10 @@ export function OriginalArticlesPage() {
                     className="py-8 px-4 lg:px-8 border-b border-gray-200 flex flex-col lg:flex-row gap-4 lg:gap-8 hover:bg-gray-50 transition-colors"
                   >
                     <div className="lg:w-1/6 shrink-0 mt-0.5">
-                      <span className="font-sans text-zinc-500 text-[12px] font-medium">
+                      <span
+                        data-reading-role="archive-date"
+                        className="font-sans text-zinc-500 text-[12px] font-medium"
+                      >
                         {displayDate(article.date)}
                       </span>
                     </div>
@@ -181,7 +193,10 @@ export function OriginalArticlesPage() {
                       <h3 className="font-sans text-[16px] md:text-[18px] font-medium text-zinc-900 tracking-tight mb-2 leading-snug">
                         {article.title}
                       </h3>
-                      <p className="font-sans text-zinc-600 text-[13px] leading-relaxed mb-4">
+                      <p
+                        data-reading-role="archive-excerpt"
+                        className="font-sans text-zinc-600 text-[13px] leading-relaxed mb-4"
+                      >
                         {article.excerpt}
                       </p>
                     </div>
@@ -195,6 +210,7 @@ export function OriginalArticlesPage() {
                         href={`#article-detail?id=${article.id}`}
                         onClick={() => rememberListPosition(article)}
                         aria-label={`${content.readArticle}: ${article.title}`}
+                        data-reading-role="archive-action"
                         className="shrink-0 px-5 py-2 rounded-full border border-gray-300 font-sans text-[12px] font-semibold text-zinc-900 hover:bg-zinc-100 transition-colors whitespace-nowrap"
                       >
                         {content.readArticle}
@@ -211,6 +227,7 @@ export function OriginalArticlesPage() {
               {totalPages > 1 && (
                 <nav
                   aria-label="Articles pagination"
+                  data-reading-role="archive-pagination"
                   className="flex justify-center items-center gap-2 mt-12 mb-8 font-sans"
                 >
                   <button
@@ -266,6 +283,7 @@ export function OriginalArticlesPage() {
             <button
               type="button"
               onClick={backToList}
+              data-reading-role="archive-action"
               className="mb-8 px-5 py-2 border border-gray-300 rounded-full hover:bg-zinc-100 text-[13px] text-zinc-600 hover:text-zinc-900 font-sans font-semibold transition-colors inline-flex items-center gap-2 group"
             >
               <Chevron
@@ -291,14 +309,19 @@ export function OriginalArticlesPage() {
             </div>
             <div
               id="article-detail-content"
+              data-reading-role="article-body"
               className="font-sans text-zinc-700 text-[16px] leading-[1.8] space-y-6"
             >
               <selectedArticle.Body />
             </div>
-            <div className="mt-16 pt-8 border-t border-gray-200 flex justify-center gap-4 items-center font-sans">
+            <div
+              data-reading-role="article-actions"
+              className="mt-16 pt-8 border-t border-gray-200 flex justify-center gap-4 items-center font-sans"
+            >
               <button
                 type="button"
                 onClick={backToList}
+                data-reading-role="archive-action"
                 className="px-5 py-2.5 bg-zinc-100 rounded-full hover:bg-zinc-200 text-[13px] text-zinc-700 font-semibold transition-colors inline-flex items-center gap-2 group"
               >
                 <Chevron
@@ -309,6 +332,7 @@ export function OriginalArticlesPage() {
               </button>
               <a
                 id="article-original-link"
+                data-reading-role="archive-action"
                 href={selectedArticle.url}
                 target="_blank"
                 rel="noopener noreferrer"

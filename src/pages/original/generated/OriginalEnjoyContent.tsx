@@ -32,6 +32,7 @@ export function OriginalEnjoyContent() {
             className={
               'relative w-full h-[500px] md:h-[650px] rounded-[10px] overflow-hidden bg-black mt-6 mb-8 mx-auto'
             }
+            data-reading-role={'photo-hero'}
           >
             {'\n                '}
             <div
@@ -69,12 +70,14 @@ export function OriginalEnjoyContent() {
               className={
                 'absolute z-20 bottom-0 left-0 w-full flex flex-col justify-end items-start px-8 md:px-12 pb-12'
               }
+              data-reading-role={'photo-copy'}
             >
               {'\n                    '}
               <h2
                 className={
                   'font-sans text-[36px] lg:text-[48px] tracking-tight font-medium text-white mb-3 drop-shadow-md'
                 }
+                data-reading-role={'landing-title'}
               >
                 {'\n                            Enjoy\n                    '}
               </h2>
@@ -83,6 +86,7 @@ export function OriginalEnjoyContent() {
                 className={
                   'font-sans text-[#dddddd] text-[15px] md:text-[16px] leading-[1.6] max-w-[700px] font-light shadow-black drop-shadow-lg mb-6'
                 }
+                data-reading-role={'landing-copy'}
               >
                 {
                   '\n                        From exploring diverse creative arts to engaging in dynamic physical pursuits and travel,'
@@ -100,6 +104,7 @@ export function OriginalEnjoyContent() {
               className={
                 'absolute z-20 bottom-0 right-0 pr-3 md:pr-5 pb-4 opacity-40 flex items-center gap-1.5 pointer-events-none select-none'
               }
+              data-reading-role={'photo-credit'}
             >
               {'\n                    '}
               <svg

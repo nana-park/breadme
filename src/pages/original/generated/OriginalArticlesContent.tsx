@@ -31,6 +31,7 @@ export function OriginalArticlesContent() {
               className={
                 'font-sans tracking-tight text-zinc-900 text-[32px] md:text-[44px] leading-[1.1] font-normal mb-4'
               }
+              data-reading-role={'landing-title'}
             >
               {'\n                    Sharing insights and thoughts'}
               <br />
@@ -43,6 +44,7 @@ export function OriginalArticlesContent() {
               className={
                 'font-sans text-zinc-600 text-[14px] md:text-[15px] font-normal mb-16'
               }
+              data-reading-role={'landing-copy'}
             >
               {
                 '\n                    Exploring the intersection of business, technology, and design.\n                '
@@ -79,6 +81,7 @@ export function OriginalArticlesContent() {
               className={
                 'font-sans text-zinc-600 text-[15px] md:text-[17px] font-light'
               }
+              data-reading-role={'landing-copy'}
             >
               {
                 '\n                    Documenting lessons learned, product strategies, and industry trends.\n                '

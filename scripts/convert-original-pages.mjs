@@ -194,6 +194,112 @@ for (const [sourceFile, componentName] of pageDefinitions) {
   ).replace(/^\uFEFF/, "");
   const dom = new JSDOM(source);
   const document = dom.window.document;
+  // WHAT: Stable reading roles for the reviewed mobile refinements.
+  // WHY: Keep page-owned responsive CSS out of source utility strings and make
+  // regeneration preserve the fixes without altering desktop declarations.
+  if (
+    sourceFile !== "index.html" &&
+    sourceFile !== "mentoring_agent_mockup.html" &&
+    // The existing demo source stays untouched while its optional two reading
+    // hooks are pending. Do not silently re-add them on a later regeneration.
+    sourceFile !== "projects/ai-mentoring-agent-detail.html"
+  ) {
+    const heading = document.querySelector("h1, h2");
+    heading?.setAttribute("data-reading-role", "landing-title");
+    heading?.parentElement?.querySelectorAll(":scope > p").forEach((node) => {
+      node.setAttribute("data-reading-role", "landing-copy");
+    });
+    if (sourceFile.startsWith("projects/")) {
+      for (const paragraph of document.querySelectorAll("p")) {
+        if (paragraph.textContent.trim().startsWith("Director's Log:"))
+          paragraph.setAttribute("data-reading-role", "director-copy");
+      }
+    }
+    if (sourceFile === "career.html") {
+      document
+        .querySelector("#career-role-desc")
+        ?.setAttribute("data-reading-role", "career-copy");
+      for (const role of [
+        "testimonial-card",
+        "card-quote",
+        "card-signature",
+        "card-author-title",
+      ]) {
+        document.querySelectorAll(`.${role}`).forEach((node) => {
+          node.setAttribute("data-reading-role", role);
+        });
+      }
+    }
+    if (sourceFile === "qualified.html")
+      heading?.nextElementSibling?.setAttribute(
+        "data-reading-role",
+        "landing-categories",
+      );
+    if (sourceFile === "lectures.html") {
+      document.querySelectorAll("#lectures .truncate").forEach((node) => {
+        node.setAttribute("data-reading-role", "lecture-copy");
+      });
+      document.querySelectorAll("#lectures h3").forEach((node) => {
+        node.parentElement?.setAttribute(
+          "data-reading-role",
+          "lecture-content",
+        );
+        node.nextElementSibling?.setAttribute(
+          "data-reading-role",
+          "lecture-meta",
+        );
+        node.nextElementSibling?.nextElementSibling?.setAttribute(
+          "data-reading-role",
+          "lecture-facts",
+        );
+      });
+    }
+    if (sourceFile === "awards.html") {
+      heading?.parentElement?.setAttribute(
+        "data-reading-role",
+        "artwork-caption",
+      );
+      heading?.parentElement?.previousElementSibling?.setAttribute(
+        "data-reading-role",
+        "artwork-media",
+      );
+    }
+    if (sourceFile === "about.html") {
+      heading?.parentElement?.parentElement?.setAttribute(
+        "data-reading-role",
+        "video-hero",
+      );
+      for (const role of [
+        "diagram-container",
+        "derivation-row",
+        "translation-group",
+        "phonetic-part",
+        "meaning-text",
+        "floating-text",
+        "decorator-slash",
+      ]) {
+        document.querySelectorAll(`.id-${role}`).forEach((node) => {
+          node.setAttribute("data-reading-role", `identity-${role}`);
+        });
+      }
+    }
+    if (sourceFile === "contact.html")
+      heading?.parentElement?.parentElement?.setAttribute(
+        "data-reading-role",
+        "contact-hero",
+      );
+    if (sourceFile === "enjoy.html") {
+      heading?.parentElement?.setAttribute("data-reading-role", "photo-copy");
+      heading?.parentElement?.parentElement?.setAttribute(
+        "data-reading-role",
+        "photo-hero",
+      );
+      heading?.parentElement?.nextElementSibling?.setAttribute(
+        "data-reading-role",
+        "photo-credit",
+      );
+    }
+  }
   // WHY: The source materials form only displays a fake success alert. Keep its
   // approved visual content, but do not collect data or imply a working backend.
   for (const form of document.querySelectorAll("form")) {

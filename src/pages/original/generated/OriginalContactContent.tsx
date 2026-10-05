@@ -26,6 +26,7 @@ export function OriginalContactContent() {
           className={
             'relative w-full h-[350px] lg:h-[500px] overflow-hidden flex flex-col items-center justify-center text-center px-4'
           }
+          data-reading-role={'contact-hero'}
         >
           {'\n            '}
           {'\n            '}
@@ -46,6 +47,7 @@ export function OriginalContactContent() {
                 'font-sans text-white text-[32px] md:text-[48px] lg:text-[56px] leading-[1.1] tracking-tight font-medium mb-6 drop-shadow-lg'
               }
               style={{ wordBreak: 'keep-all' } as CSSProperties}
+              data-reading-role={'landing-title'}
             >
               {
                 '\n                    Please be my next colleagues!\n                '
@@ -57,6 +59,7 @@ export function OriginalContactContent() {
                 'font-sans text-white/90 text-[15px] md:text-[16px] leading-[1.6] mx-auto font-light drop-shadow-md'
               }
               style={{ wordBreak: 'keep-all' } as CSSProperties}
+              data-reading-role={'landing-copy'}
             >
               {
                 '\n                    Open to joining teams building the next frontier of conversational AI.'

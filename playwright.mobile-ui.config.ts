@@ -4,6 +4,7 @@ import { defineConfig } from "@playwright/test";
 export default defineConfig({
   testDir: "./tests/mobile-ui",
   testMatch: "**/*.spec.ts",
+  testIgnore: "**/desktop-unchanged.spec.ts",
   outputDir: "test-results/mobile-ui",
   fullyParallel: true,
   timeout: 120_000,

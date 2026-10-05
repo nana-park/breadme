@@ -114,7 +114,7 @@ export function Article52537Body() {
                 {
                   backgroundColor: "rgb(217, 119, 6)",
                   width: "660px",
-                  height: "368px",
+                  height: "var(--article-image-height, 368px)",
                 } as CSSProperties
               }
             />{" "}
@@ -222,7 +222,12 @@ export function Article52537Body() {
             src={assetUrl(
               "https://www.artinsight.co.kr/data/tmp/2102/20210228205155_cqgglncl.jpeg",
             )}
-            style={{ width: "660px", height: "513px" } as CSSProperties}
+            style={
+              {
+                width: "660px",
+                height: "var(--article-image-height, 513px)",
+              } as CSSProperties
+            }
           />{" "}
           <figcaption
             className="cheditor-caption-text"
@@ -340,7 +345,12 @@ export function Article52537Body() {
             src={assetUrl(
               "https://www.artinsight.co.kr/data/tmp/2102/20210228205259_zfwmhcbd.jpeg",
             )}
-            style={{ width: "660px", height: "546px" } as CSSProperties}
+            style={
+              {
+                width: "660px",
+                height: "var(--article-image-height, 546px)",
+              } as CSSProperties
+            }
           />{" "}
           <figcaption
             className="cheditor-caption-text"
@@ -606,7 +616,12 @@ export function Article52537Body() {
             src={assetUrl(
               "https://www.artinsight.co.kr/data/tmp/2102/20210228205708_iqobcyil.jpeg",
             )}
-            style={{ width: "660px", height: "440px" } as CSSProperties}
+            style={
+              {
+                width: "660px",
+                height: "var(--article-image-height, 440px)",
+              } as CSSProperties
+            }
           />{" "}
           <figcaption
             className="cheditor-caption-text"

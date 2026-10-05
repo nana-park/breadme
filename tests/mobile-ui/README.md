@@ -64,3 +64,18 @@ npx playwright test tests/e2e/mobile-scroll-snap.spec.ts tests/e2e/mobile-contro
 - `articles.spec.ts`: archive pagination, reading and original-source links, direct detail links, and Back/Forward/list restoration at 390 and 1440.
 
 Remaining manual/extended checks include real iOS Safari/Android devices, touch gestures and carousel swipes (the existing gallery test uses horizontal wheel input), screen readers, native browser text zoom, every article image in-view, and fresh navigation at every width. Default diagnostic captures use reduced motion; normal-motion snapping is exercised by the separate regression suite above.
+
+## Strict regressions and desktop guard
+
+The evidence-only descriptions above apply to the baseline/reading capture files. `readability-regressions.spec.ts` now adds screenshot-grounded assertions for landing text, menus, footer controls, Lectures, About, Awards, Career, and enlarged Contact/Enjoy. `interactive-states.spec.ts` covers non-default tabs, disclosures, table scrolling and photo controls. `article-image-ratios.spec.ts` checks every original body image's decoded aspect ratio. These strict cases must pass; capture completion is still not a substitute for reviewing the actual PNGs.
+
+The independent desktop guard is excluded from the mobile config. Run after the candidate build:
+
+```sh
+node scripts/prepare-desktop-unchanged.mjs
+npx playwright test --config=playwright.desktop-unchanged.config.ts
+```
+
+It builds immutable main `4f026a3`, verifies reused original assets, and compares the first viewport and complete footer of all14 routes at768/1440 in the same Chromium installation. Exact decoded-pixel comparisons are required. Dynamic video/iframe/canvas pixels are hidden on both sides while their geometry is recorded. This does not claim full-page, all-state, video-frame, Safari or physical-device equivalence. Reference output lives in `test-results/desktop-unchanged-baseline/`; evidence in `test-results/desktop-unchanged/`.
+
+Explicit pending item: the original Mentoring detail JSX remains unchanged because uploading its preexisting demo payload was blocked. Its two optional typography hooks are not applied. The corresponding strict route case is annotated `pending-typography-hook` and verifies the original32px headline/14px copy plus the shared menu/footer. It does not count as the16px editorial-copy upgrade being complete.

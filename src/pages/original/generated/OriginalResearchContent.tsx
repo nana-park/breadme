@@ -31,6 +31,7 @@ export function OriginalResearchContent() {
               className={
                 'font-sans tracking-tight text-zinc-900 text-[32px] md:text-[44px] leading-[1.1] font-normal mb-4'
               }
+              data-reading-role={'landing-title'}
             >
               {'\n                    Pioneering user-centric AI experiences'}
               <br />
@@ -43,6 +44,7 @@ export function OriginalResearchContent() {
               className={
                 'font-sans text-zinc-600 text-[14px] md:text-[15px] font-normal mb-16'
               }
+              data-reading-role={'landing-copy'}
             >
               {
                 '\n                    Bridging the gap between human psychology and software engineering.\n                '
@@ -79,6 +81,7 @@ export function OriginalResearchContent() {
               className={
                 'font-sans text-zinc-600 text-[15px] md:text-[17px] font-light'
               }
+              data-reading-role={'landing-copy'}
             >
               {
                 '\n                    Applying empirical research methodologies to orchestrate meaningful digital transformation.\n                '
