@@ -50,7 +50,7 @@ export function OriginalHomeContent() {
               'font-sans text-[#a1a1aa] text-[13px] md:text-[14px] leading-relaxed max-w-[400px] mx-auto mb-10 tracking-wide'
             }
           >
-            {'\n                Experience & collaboration with'}
+            {'\n                Experience & collaboration with '}
             <br className={'hidden sm:block'} />
             {'industry leading organizations:\n            '}
           </p>
