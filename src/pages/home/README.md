@@ -28,7 +28,7 @@
 
 - `HomeExperience.tsx`, `HomeExperience.module.css`: 경력만의 조립/스타일
 - `src/content/site/homeExperience.ts`: 문구와 공개 근거 링크; 회사명은 공통 `terms` 사용
-- `OriginalHomeContent.tsx`: `#history`만 컴포넌트로 교체. 회사 캐러셀·갤러리는 main533d33b와 동일. Education은 승인된 Research Focus 한 문장 외에 동일. 하단 CTA의 모바일 제목 보정은 아래 기록을 따름
+- `OriginalHomeContent.tsx`: `#history`만 컴포넌트로 교체. 회사 캐러셀·갤러리는 main533d33b와 동일. Education은 승인된 Research Focus 한 문장 외에 동일. 하단 CTA의 모바일 제목·본문 좌측 정렬과 버튼 중앙 유지은 아래 기록을 따름
 - `scripts/convert-original-pages.mjs`: Home history 교체와 Research Focus 문장 교정을 재생성 시 보존. 다른 페이지 생성 규칙은 바꾸지 않음
 - 공통 Header/Footer/자료 UI·Career 페이지·기존 Hero는 그대로 유지. Resume/PDF는 Coming Soon
 
@@ -59,3 +59,12 @@
 `home-cta-mobile-alignment.spec.ts`는 320/390px 제목의 실제 왼쪽 좌표·줄바꿈·내용과 768/1440px 원래 규격, 캡처를 검사합니다. 로컬 Chromium 실행 제한으로 실제 렌더링/스크린샷 통과를 선언하지 않으며, 실행 가능한 CI의 결과를 별도로 확인해야 합니다.
 
 로컬 실행 결과: `npm run check`의 lint·typecheck·100개 단위 검사·에셋 무결성 검사·프로덕션 빌드 통과. Playwright는 4개 케이스를 발견했지만 첫 320px 케이스가 Chromium `socket() failed: Operation not permitted`로 페이지 생성 전에 차단됐고 나머지 3개는 실행하지 않았습니다. 실제 DOM 좌표와 스크린샷은 아직 미검증입니다.
+
+
+## 2026-10-06 하단 CTA 본문 좌측 정렬·버튼 중앙 유지
+
+후속 요청으로 767px 이하에서 `Discover the academic background, certifications, and working principles that shape my approach.` 본문을 제목과 같은 카드 내부 왼쪽 선에 맞춥니다. 사용자 최종 선택에 따라 Explore Qualifications 버튼은 카드의 가로 중앙에 유지합니다. 제목 전용 보정으로 남아 있던 `text-center` 상속만 Home 전용 `qualifications-cta` 역할에서 덮어쓰고, 기존 `items-center` 배치는 그대로 둡니다. 본문은 `qualifications-copy` 역할에서 전체 읽기 열 너비를 채워, 넓은 모바일에서도 원본 `mx-auto`가 짧은 문장을 다시 가운데로 옮기지 못하게 합니다. 변환기도 두 표식을 보존합니다. 기존 24px 제목, 14px 본문, 24px 내부 패딩, 5vw 외부 여백, 문구·링크·배경을 유지합니다. 768px 이상은 제목·본문·버튼의 중앙 정렬과 기존 규격을 유지합니다.
+
+`home-cta-mobile-alignment.spec.ts`는 320/390/430/767px의 제목·본문 각 줄 왼쪽 좌표와 버튼의 가로 중앙 좌표를 검사하며, 부모 정렬과 별도로 실제 본문 요소의 computed `text-align`을 단언합니다. 768/1440px에서는 원래 중앙 정렬·글자 크기·좌표를 검사합니다.
+
+로컬 Chromium은 `socket() failed: Operation not permitted`로 페이지 생성 전에 차단됩니다. 로컬 테스트 정의 자체를 실제 좌표·computed style·스크린샷 통과로 간주하지 않습니다. 이번 보정은 사용자 승인에 따라 PR의 실제 브라우저 검사를 통과하고 캡처를 확인한 뒤 기존 main/Pages 절차로 게시합니다. 승인과 실제 게시 완료는 구분합니다.

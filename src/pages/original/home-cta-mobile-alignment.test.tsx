@@ -9,8 +9,8 @@ const titleText =
 const titleSelector =
   '.page[data-original-page="home"] [data-reading-role="qualifications-title"]';
 
-describe("Home qualifications CTA mobile heading", () => {
-  it("marks only the exact sentence and preserves the card and remaining content", () => {
+describe("Home qualifications CTA mobile alignment", () => {
+  it("marks the card, title and copy while preserving desktop utilities and content", () => {
     render(<OriginalHomeContent />);
     const title = screen.getByRole("heading", { name: titleText });
     expect(title).toHaveAttribute("data-reading-role", "qualifications-title");
@@ -24,6 +24,13 @@ describe("Home qualifications CTA mobile heading", () => {
       "lg:text-[42px]",
     );
     expect(title.parentElement).toHaveAttribute("id", "cta-dark-container");
+    expect(title.parentElement).toHaveAttribute(
+      "data-reading-role",
+      "qualifications-cta",
+    );
+    expect(
+      document.querySelectorAll('[data-reading-role="qualifications-cta"]'),
+    ).toHaveLength(1);
     expect(title.parentElement).toHaveClass(
       "px-6",
       "text-center",
@@ -33,7 +40,10 @@ describe("Home qualifications CTA mobile heading", () => {
       screen.getByText(
         "Discover the academic background, certifications, and working principles that shape my approach.",
       ),
-    ).toBeInTheDocument();
+    ).toHaveAttribute("data-reading-role", "qualifications-copy");
+    expect(
+      document.querySelectorAll('[data-reading-role="qualifications-copy"]'),
+    ).toHaveLength(1);
     expect(
       screen.getByRole("link", { name: "Explore Qualifications" }),
     ).toHaveAttribute("href", "/qualified.html");
@@ -65,10 +75,66 @@ describe("Home qualifications CTA mobile heading", () => {
     ]);
   });
 
-  it("preserves the heading hook when the original content is regenerated", () => {
+  it("limits inherited copy alignment to Home mobile without overriding the centered flex action", () => {
+    const css = postcss.parse(
+      readFileSync("src/pages/original/OriginalPage.module.css", "utf8"),
+    );
+    const declarations: string[] = [];
+    css.walkRules((rule) => {
+      if (!rule.selector.includes("qualifications-cta")) return;
+      expect(rule.selector).toBe(
+        '.page[data-original-page="home"] [data-reading-role="qualifications-cta"]',
+      );
+      const parent = rule.parent;
+      expect(parent?.type).toBe("atrule");
+      if (parent?.type === "atrule") {
+        expect(parent.name).toBe("media");
+        expect(parent.params).toBe("(max-width: 767px)");
+      }
+      rule.walkDecls((declaration) => {
+        expect(declaration.important).toBeFalsy();
+        declarations.push(`${declaration.prop}: ${declaration.value}`);
+      });
+    });
+    expect(declarations).toEqual(["text-align: left"]);
+  });
+
+  it("keeps the description full-width only on mobile despite its source auto margins", () => {
+    const css = postcss.parse(
+      readFileSync("src/pages/original/OriginalPage.module.css", "utf8"),
+    );
+    const declarations: string[] = [];
+    css.walkRules((rule) => {
+      if (!rule.selector.includes("qualifications-copy")) return;
+      expect(rule.selector).toBe(
+        '.page[data-original-page="home"] [data-reading-role="qualifications-copy"]',
+      );
+      const parent = rule.parent;
+      expect(parent?.type).toBe("atrule");
+      if (parent?.type === "atrule") {
+        expect(parent.name).toBe("media");
+        expect(parent.params).toBe("(max-width: 767px)");
+      }
+      rule.walkDecls((declaration) => {
+        expect(declaration.important).toBeFalsy();
+        declarations.push(`${declaration.prop}: ${declaration.value}`);
+      });
+    });
+    expect(declarations).toEqual(["width: 100%"]);
+  });
+
+  it("preserves all hooks when the original content is regenerated", () => {
     const converter = readFileSync(
       "scripts/convert-original-pages.mjs",
       "utf8",
+    );
+    expect(converter).toContain('.querySelector("#cta-dark-container")');
+    expect(converter).toContain(
+      '?.setAttribute("data-reading-role", "qualifications-cta")',
+    );
+    expect(converter).toContain('.querySelector("#cta-dark-container p")');
+    expect(converter).toContain(
+      '?.setAttribute("data-reading-role", "qualifications-copy")',
     );
     expect(converter).toContain('.querySelector("#cta-dark-container h2")');
     expect(converter).toContain(

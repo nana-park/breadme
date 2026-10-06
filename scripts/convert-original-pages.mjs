@@ -199,10 +199,16 @@ for (const [sourceFile, componentName] of pageDefinitions) {
   // WHAT: Preserve the user's Home-only, one-sentence Research Focus copy.
   // WHY: Remove the forced break without changing Education layout or Career copy.
   if (sourceFile === "index.html") {
-    // WHAT: Preserve the Home CTA's mobile-only, heading-specific style hook.
+    // WHAT: Preserve the Home CTA's mobile-only alignment and heading style hooks.
+    document
+      .querySelector("#cta-dark-container")
+      ?.setAttribute("data-reading-role", "qualifications-cta");
     document
       .querySelector("#cta-dark-container h2")
       ?.setAttribute("data-reading-role", "qualifications-title");
+    document
+      .querySelector("#cta-dark-container p")
+      ?.setAttribute("data-reading-role", "qualifications-copy");
     const researchFocus = Array.from(
       document.querySelectorAll("#history-2 p"),
     ).find((node) =>
