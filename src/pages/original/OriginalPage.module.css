@@ -33,6 +33,29 @@
     height: auto;
     min-height: 350px;
     padding-block: 4rem;
+    padding-inline: 20px;
+    text-align: left;
+  }
+  /* WHAT: Contact's mobile reading column follows the rendered Home Hero.
+   * WHY: Home uses a 380px text column and its visible experience copy is 13px;
+   * the unused Home summary class is not the reference. Keep the photo and
+   * vertical panel sizing, and leave tablet/desktop source styles unchanged. */
+  .page [data-reading-role="contact-hero"] > div:last-child {
+    width: 100%;
+    max-width: 380px;
+  }
+  .page [data-reading-role="contact-hero"] [data-reading-role="landing-title"] {
+    font-size: clamp(32px, 8.8vw, 40px);
+    line-height: 1.1;
+  }
+  .page [data-reading-role="contact-hero"] [data-reading-role="landing-copy"] {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  /* WHY: The user keeps Domain on larger screens but removes the complete
+   * mobile card from layout and focus order, without leaving an empty grid row. */
+  .page [data-contact-card="domain"] {
+    display: none;
   }
   .page [data-reading-role="video-hero"] {
     height: auto;

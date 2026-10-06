@@ -28,7 +28,7 @@
 - Header는 원본 70px 높이와 1024px 메뉴 경계를 유지하며 모바일 초점·터치·닫기 동작을 보정합니다.
 - MaterialsPopup은 원본 핵심 11개 페이지에만 있습니다. 원본 상세 3개에는 떠 있는 버튼이 없고 Header 자료 링크는 `Coming soon!` 안내를 표시합니다. 자료 전송은 `Coming Soon` 상태입니다. 연결 상태를 메일 기능 완료로 표시하지 않습니다.
 - Home은 사용자 선택에 따라 텍스트 중심 `HomeHero`와 CSS Module을 사용합니다. `SplineHero`는 Home에서 렌더링하지 않으며 원본 이관 파일은 보존합니다. 다른 페이지로 새 Hero 스타일을 확대하지 않습니다.
-- Home 경력은 `HomeExperience`와 CSS Module로 관리합니다. 사용자 선택에 따라 Education의 흰 배경·타입·여백·열 규칙을 재사용하고 사진·경력 모션을 제거했습니다. 회사 안의 Products/Outcomes는 같은 h4 위계·스타일이며 각 항목은 그 아래 목록으로 표시합니다. 회사 박스는 승인된 1px #e4e4e7·radius10px·padding24px·shadow없음만 추가합니다. Education은 사용자 요청의 Research Focus 문장 교정·강제 줄바꿈 제거만 적용하며 구조·사진·스타일은 유지합니다. 회사 캐러셀·갤러리·공통 Header/Footer·자료 UI·Career 페이지는 바꾸지 않습니다.
+- Home 경력은 `HomeExperience`와 CSS Module로 관리합니다. 사용자 선택에 따라 Education의 흰 배경·타입·여백·열 규칙을 재사용하고 사진·경력 모션을 제거했습니다. 회사 안의 Products/Outcomes는 같은 h4 위계·스타일이며 각 항목은 그 아래 목록으로 표시합니다. 회사 박스는 2026-10-06 요청에 따라 Contact Domain의 실제 1px #e5e7eb·radius8px·작은 그림자·hover 중간 그림자를 사용합니다. padding은 1024px 미만24px / 이상32px이며 제목·내용·grid는 보존합니다. Education은 사용자 요청의 Research Focus 문장 교정·강제 줄바꿈 제거만 적용하며 구조·사진·스타일은 유지합니다. 회사 캐러셀·갤러리·공통 Header/Footer·자료 UI·Career 페이지는 바꾸지 않습니다.
 - Articles는 목록·읽기 화면을 가진 하나의 경로입니다. 영어 본문 18개와 6쪽 목록은 `OriginalArticlesPage`가 관리합니다.
 - 모바일 가독성 보정(PR #3)은 `OriginalPage.module.css`의 명시적 `data-reading-role`과 Header/Footer/MaterialsPopup의 자체 CSS Module에서 관리합니다. 생성 페이지의 역할 표식은 변환기에도 반영합니다. 새 모바일 전용 페이지나 복제된 콘텐츠는 만들지 않습니다.
 - Footer의 기존 CSS 중요 선언은 컴포넌트가 767px 이하에서 설정하는 CSS 변수로 제어하며 기존 fallback은 그대로입니다. 새 CSS Module에 `!important`를 추가하지 않습니다. 콘텐츠용 보정은 767px 이하, 메뉴용 보정은 기존 1023px 이하 범위입니다.

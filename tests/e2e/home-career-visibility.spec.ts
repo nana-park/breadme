@@ -1,13 +1,52 @@
 import { expect, test } from "@playwright/test";
+import type { Locator } from "@playwright/test";
+
+async function cardSurface(card: Locator) {
+  return card.evaluate((element) => {
+    const style = getComputedStyle(element);
+    // WHY: Tailwind's two transparent zero-size ring shadows paint nothing;
+    // compare the real visible shadow, not its utility implementation detail.
+    const paintedShadow = style.boxShadow
+      .split(/,(?![^(]*\))/)
+      .map((layer) => layer.trim())
+      .filter((layer) => !layer.startsWith("rgba(0, 0, 0, 0) "))
+      .join(", ");
+    return {
+      background: style.backgroundColor,
+      border: style.border,
+      radius: style.borderRadius,
+      padding: style.padding,
+      paintedShadow,
+      transitionDuration: style.transitionDuration,
+      transitionTimingFunction: style.transitionTimingFunction,
+    };
+  });
+}
 
 // WHAT: Check compact career typography while protecting the original Home order.
 // WHY: The user explicitly keeps the carousel, gallery, and full education unchanged.
-for (const width of [320, 390, 768, 1440]) {
+for (const width of [320, 390, 768, 1023, 1024, 1440]) {
   test(`Home career visibility ${width}px`, async ({ page }, testInfo) => {
     const height = width < 768 ? 844 : 900;
     await page.setViewportSize({ width, height });
     const errors: string[] = [];
     page.on("pageerror", (error) => errors.push(error.message));
+    await page.goto("/contact.html");
+    const domain = page.locator('[data-contact-card="domain"]');
+    await expect(domain).toHaveCount(1);
+    await page.evaluate(() => document.fonts.ready);
+    const referenceSurface = await cardSurface(domain);
+    let hoverSurface: Awaited<ReturnType<typeof cardSurface>> | undefined;
+    if (width === 1440) {
+      await domain.hover();
+      await domain.evaluate(async (element) => {
+        await Promise.all(
+          element.getAnimations().map((animation) => animation.finished),
+        );
+      });
+      hoverSurface = await cardSurface(domain);
+    }
+    await page.mouse.move(0, 0);
     await page.goto("/");
     await expect(page.locator("#experience-title")).toBeVisible();
     await page.evaluate(() => document.fonts.ready);
@@ -52,12 +91,16 @@ for (const width of [320, 390, 768, 1440]) {
     const careers = page.locator("[data-home-company]");
     await expect(careers).toHaveCount(2);
     for (const card of await careers.all()) {
+      expect(await cardSurface(card)).toEqual(referenceSurface);
       await expect(card).toHaveCSS("border-top-width", "1px");
-      await expect(card).toHaveCSS("border-top-color", "rgb(228, 228, 231)");
-      await expect(card).toHaveCSS("border-radius", "10px");
-      await expect(card).toHaveCSS("padding", "24px");
+      await expect(card).toHaveCSS("border-top-color", "rgb(229, 231, 235)");
+      await expect(card).toHaveCSS("border-radius", "8px");
+      await expect(card).toHaveCSS("padding", width < 1024 ? "24px" : "32px");
       await expect(card).toHaveCSS("background-color", "rgb(255, 255, 255)");
-      await expect(card).toHaveCSS("box-shadow", "none");
+      await expect(card).toHaveCSS(
+        "box-shadow",
+        "rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+      );
     }
     for (const company of ["NAVER Cloud", "SK Telecom"]) {
       await expect(
@@ -171,6 +214,26 @@ for (const width of [320, 390, 768, 1440]) {
       body: JSON.stringify(measures, null, 2),
       contentType: "application/json",
     });
+    await testInfo.attach("Contact and Home actual card surfaces", {
+      body: JSON.stringify(
+        {
+          width,
+          referenceSurface,
+          homeSurface: await cardSurface(careers.first()),
+        },
+        null,
+        2,
+      ),
+      contentType: "application/json",
+    });
+    if (hoverSurface) {
+      await careers.first().hover();
+      await expect
+        .poll(() => cardSurface(careers.first()))
+        .toEqual(hoverSurface);
+      await expect(careers.first()).toHaveCSS("transform", "none");
+      await page.mouse.move(0, 0);
+    }
     expect(errors, "Home runtime errors").toEqual([]);
     await page.getByRole("link", { name: "Full career", exact: false }).click();
     await expect(page).toHaveURL(/\/career\.html$/);
