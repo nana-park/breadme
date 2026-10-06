@@ -99,6 +99,7 @@ export function OriginalContactContent() {
               className={
                 'bg-white border border-gray-200 shadow-sm rounded-[8px] p-6 lg:p-8 flex flex-col hover:shadow-md transition-all duration-300'
               }
+              data-contact-card={'domain'}
             >
               {'\n                    '}
               <div
