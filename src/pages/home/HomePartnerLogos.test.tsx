@@ -61,8 +61,9 @@ describe("Home partner companies", () => {
       });
       expect(screen.getByAltText("H&M")).toHaveStyle({ height: "29px" });
       expect(screen.getByAltText("LINE WORKS")).toHaveStyle({ height: "26px" });
-      expect(screen.getByAltText("LINE WORKS").style.filter).toBe("");
-      expect(screen.getByAltText("SK Inc.").style.filter).toBe("");
+      for (const image of document.querySelectorAll(".logo-track img")) {
+        expect(image).toHaveStyle({ filter: "grayscale(100%) opacity(0.45)" });
+      }
     });
   }
   it("keeps both official SVG files byte-for-byte and preserves the converter hook", () => {

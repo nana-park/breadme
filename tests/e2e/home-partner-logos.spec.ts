@@ -37,15 +37,17 @@ for (const width of [300, 390, 768, 1440]) {
       "column-gap",
       width < 640 ? "64px" : width < 768 ? "96px" : "144px",
     );
-    await expect(partners.getByAltText("LINE WORKS")).toHaveCSS(
-      "filter",
-      "none",
-    );
+    const establishedFilter = await partners
+      .getByAltText("NAVER")
+      .evaluate((node) => getComputedStyle(node).filter);
+    expect(establishedFilter).toBe("grayscale(1) opacity(0.45)");
+    for (const image of await track.locator("img").all()) {
+      await expect(image).toHaveCSS("filter", establishedFilter);
+    }
     await expect(partners.getByAltText("LINE WORKS")).toHaveCSS(
       "height",
       "26px",
     );
-    await expect(partners.getByAltText("SK Inc.")).toHaveCSS("filter", "none");
     const metrics = await track.evaluate((node) => {
       const style = getComputedStyle(node);
       const starts = [0, 1, 2].map(

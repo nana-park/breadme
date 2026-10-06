@@ -32,23 +32,21 @@ export function HomePartnerLogos() {
               className={
                 partner.id === "sk-inc" ? styles.holdingImage : undefined
               }
-              style={
-                partner.id === "sk-inc"
-                  ? undefined
+              style={{
+                filter: "grayscale(100%) opacity(0.45)",
+                ...(partner.id === "sk-inc"
+                  ? {}
                   : {
                       height: `${logoHeights[partner.id]}px`,
                       width: "auto",
-                      filter: partner.originalAsset
-                        ? "grayscale(100%) opacity(0.45)"
-                        : undefined,
                       alignSelf:
                         partner.id === "sk-telecom" ? "flex-start" : "center",
                       transform:
                         partner.id === "sk-telecom"
                           ? "translateY(-10px)"
                           : undefined,
-                    }
-              }
+                    }),
+              }}
             />
           );
           return partner.id === "sk-inc" ? (

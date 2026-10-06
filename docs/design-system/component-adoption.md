@@ -89,4 +89,4 @@ Home의 Full career와 Products는 같은 `HomeExperience` action 스타일을 �
 
 ## Home 회사 로고 (2026-10-06)
 
-`HomePartnerLogos`는 기존 파트너 영역의 움직이는 로고 목록만 소유합니다. Google을 제거하고 SK Inc.와 LINE WORKS를 추가하며 SK Telecom·NAVER·NAVER Cloud·H&M은 유지합니다. 새 두 로고의 공식 원본 색상, 기존 로고의 기존 처리, 40초 움직임과 반응형 간격을 보존합니다. 로고 세 반복은 단일 데이터 목록을 사용하며, 끝 간격으로 이음새를 맞추고 중복 접근성 이름을 제거합니다. Header/Footer/자료 UI와 다른 Home 섹션은 바꾸지 않습니다.
+`HomePartnerLogos`는 기존 파트너 영역의 움직이는 로고 목록만 소유합니다. Google을 제거하고 SK Inc.와 LINE WORKS를 추가하며 SK Telecom·NAVER·NAVER Cloud·H&M은 유지합니다. 공식 원본 SVG 파일과 40초 움직임·반응형 간격을 보존하고, 새 로고에도 기존의 흑백·45% 투명도 처리를 똑같이 적용합니다. 로고 세 반복은 단일 데이터 목록을 사용하며, 끝 간격으로 이음새를 맞추고 중복 접근성 이름을 제거합니다. Header/Footer/자료 UI와 다른 Home 섹션은 바꾸지 않습니다.
