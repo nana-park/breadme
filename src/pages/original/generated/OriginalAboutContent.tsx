@@ -42,6 +42,7 @@ export function OriginalAboutContent() {
             'relative w-full h-[75vh] min-h-[600px] max-h-[900px] flex flex-col items-center justify-center mb-16 overflow-hidden'
           }
           data-reading-role={'video-hero'}
+          data-about-chapter={'introduction'}
         >
           {'\n            '}
           {'\n            '}
@@ -72,6 +73,7 @@ export function OriginalAboutContent() {
             className={
               'container mx-auto px-6 relative z-20 flex flex-col items-center'
             }
+            data-reading-role={'about-introduction'}
           >
             {'\n                '}
             <h2
@@ -144,7 +146,7 @@ export function OriginalAboutContent() {
           {'\n        '}
         </div>
         {'\n\n        '}
-        <div className={'container mx-auto'}>
+        <div className={'container mx-auto'} data-about-chapter={'identity'}>
           {'\n            '}
           <div
             className={'id-diagram-container'}
@@ -268,7 +270,11 @@ export function OriginalAboutContent() {
       </section>
       {'\n            '}
       {'\n    '}
-      <section id={'media'} className={'w-full bg-[#0a0a0a] py-20 md:py-32'}>
+      <section
+        id={'media'}
+        className={'w-full bg-[#0a0a0a] py-20 md:py-32'}
+        data-about-chapter={'interview'}
+      >
         {'\n        '}
         <div
           className={

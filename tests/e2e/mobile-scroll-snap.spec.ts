@@ -500,9 +500,9 @@ test("mobile menu suspends snap, locks background, traps focus and restores scro
     await expect(toggle).toBeFocused();
     await page.keyboard.press("Shift+Tab");
     await expect(
-      page.locator(
-        ".original-mobile-materials [data-materials-action='portfolio']",
-      ),
+      page
+        .locator("#navMenu")
+        .getByRole("link", { name: "CONTACT", exact: true }),
     ).toBeFocused();
     await page.mouse.move(200, 420);
     await page.mouse.wheel(0, 400);

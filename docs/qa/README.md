@@ -10,6 +10,7 @@
 
 | 자료 | 용도와 주의점 |
 | --- | --- |
+| [Contact 패키지 직접 조작](contact-package-actions.md) | 본문 자료 진입·공개 URL 복사·정확한 alert·실패 복구의 로컬 검사와 브라우저 대기 범위 |
 | [모바일 As-is / To-be](mobile-ui-review.md) | PR #3 당시 발견한 결함·전후 PNG·실행별 결과. 본문의 당시 공개/후보 상태를 오늘 상태로 읽지 않음 |
 | [모바일 TC](mobile-ui-test-cases.md) | L/M/R/I/S/F 항목, 14개 경로·18개 글의 재현 절차와 범위 |
 | [엄격한 웹 비교 기록](mobile-ui-desktop-evidence.md) | 고정 기준과 후보별 PNG/픽셀·실패 기록. 전체 긴 페이지 검수가 아님 |

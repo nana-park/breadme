@@ -1,5 +1,5 @@
 import { resolveOriginalPage } from "@/config/originalRoutes";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { OriginalHeader } from "@/shared/layout/OriginalHeader/OriginalHeader";
 import { OriginalFooter } from "@/shared/layout/OriginalFooter/OriginalFooter";
 import { MaterialsPopup } from "@/shared/ui/MaterialsPopup/MaterialsPopup";
@@ -13,6 +13,15 @@ export function App() {
     "ai-mentoring-agent-detail",
   ].includes(pageId);
   const [isMaterialsOpen, setIsMaterialsOpen] = useState(false);
+  const materialsReturnFocus = useRef<HTMLButtonElement | null>(null);
+  const openPageMaterials = (trigger: HTMLButtonElement) => {
+    materialsReturnFocus.current = trigger;
+    setIsMaterialsOpen(true);
+    // WHY: A second body action can be activated while this nonmodal panel is
+    // already open. Re-focus its close control without toggling it closed.
+    if (isMaterialsOpen)
+      document.querySelector<HTMLButtonElement>("#popupMinimize")?.focus();
+  };
   const closeMaterials = useCallback(() => setIsMaterialsOpen(false), []);
   const showPending = useCallback(() => window.alert("Coming soon!"), []);
   useEffect(() => {
@@ -70,12 +79,13 @@ export function App() {
         }
       />
       <main id="main-content" tabIndex={-1}>
-        <OriginalPage pageId={pageId} />
+        <OriginalPage pageId={pageId} onOpenMaterials={openPageMaterials} />
       </main>
       <OriginalFooter onPending={showPending} />
       {!isProjectDetail && (
         <MaterialsPopup
           hideMinimizedDuringHomeHero={pageId === "home"}
+          returnFocusRef={materialsReturnFocus}
           isOpen={isMaterialsOpen}
           onToggle={() => setIsMaterialsOpen((open) => !open)}
           onClose={closeMaterials}

@@ -64,15 +64,22 @@ test("mobile menu and honest materials state", async ({ page }, testInfo) => {
   await expect(
     page.getByRole("link", { name: "Career", exact: true }),
   ).toBeVisible();
+  await expect(page.locator("#navMenu [data-materials-action]")).toHaveCount(0);
+  await expect(page.locator(".original-mobile-materials")).toHaveCount(0);
   await page.screenshot({ path: testInfo.outputPath("mobile-menu-open.png") });
   await page.keyboard.press("Escape");
   await expect(menu).toHaveAttribute("aria-expanded", "false");
   await expect(menu).toBeFocused();
   await expect(page.locator("#popupToggle")).toBeHidden();
-  await menu.click();
-  await page
-    .locator(".original-mobile-materials [data-materials-action='resume']")
-    .click();
+  // WHAT: Exercise the retained desktop materials entry, then its mobile panel.
+  await page.setViewportSize({ width: 1440, height: 900 });
+  const resume = page.locator("#navbar [data-materials-action='resume']");
+  await expect(resume).toBeVisible();
+  await expect(
+    page.locator("#navbar [data-materials-action='portfolio']"),
+  ).toBeVisible();
+  await resume.click();
+  await page.setViewportSize({ width: 390, height: 844 });
   await expect(page.getByText("Coming Soon", { exact: true })).toBeVisible();
   await expect(
     page.getByRole("textbox", { name: "Email address (coming soon)" }),

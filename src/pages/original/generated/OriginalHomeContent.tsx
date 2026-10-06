@@ -1288,6 +1288,7 @@ export function OriginalHomeContent() {
             </div>
             {'\n\n                '}
             <h2
+              data-reading-role={'qualifications-title'}
               className={
                 'relative z-10 font-sans text-white text-[28px] md:text-[36px] lg:text-[42px] leading-[1.15] tracking-tight font-medium max-w-[800px] mx-auto mb-5 drop-shadow-md'
               }

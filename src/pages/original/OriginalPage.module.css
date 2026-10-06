@@ -7,6 +7,15 @@
     --article-image-height: auto;
   }
 
+  /* WHAT: Make Home's qualifications CTA heading quieter on phones.
+   * WHY: Only the requested sentence becomes smaller and left-aligned;
+   * the inset card, its padding, copy, action, and desktop styles stay intact. */
+  .page[data-original-page="home"] [data-reading-role="qualifications-title"] {
+    width: 100%;
+    font-size: 24px;
+    text-align: left;
+  }
+
   .page [data-reading-role="landing-title"] {
     font-size: clamp(1.875rem, 8.2vw, 2.25rem);
     line-height: 1.18;
@@ -85,24 +94,50 @@
     flex: none;
   }
 
+  /* WHY: Keep the authored desktop break while letting mobile wrap naturally. */
+  .page [data-reading-role="testimonial-intro"] br {
+    display: none;
+  }
+
+  .page[data-original-page="career"] :global(.testimonials-container) {
+    padding-inline: max(0px, calc((100% - 350px) / 2));
+    align-items: flex-start;
+  }
   .page [data-reading-role="testimonial-card"] {
+    --testimonial-card-size: min(350px, calc(100vw - 48px));
+    flex-basis: var(--testimonial-card-size);
+    width: var(--testimonial-card-size);
+    /* WHY: A square minimum preserves the design without letting aspect-ratio
+     * constrain a flex card when enlarged quotes need more vertical space. */
     height: auto;
-    min-height: 350px;
+    min-height: var(--testimonial-card-size);
     aspect-ratio: auto;
-    padding: 2rem 1.5rem;
-    gap: 1rem;
+    padding: 1rem;
+    gap: 0.625rem;
+  }
+  .page [data-reading-role="testimonial-card"] :global(.card-stars) {
+    font-size: 0.875rem;
+    line-height: 1.2;
+    margin-bottom: 0;
+    flex: none;
   }
   .page [data-reading-role="card-quote"] {
+    font-size: 0.875rem;
+    line-height: 1.45;
     height: auto;
-    flex: 1;
+    flex: 1 0 auto;
     margin-bottom: 0;
   }
   .page [data-reading-role="card-signature"] {
+    font-size: 0.75rem;
+    line-height: 1.3;
+    flex: none;
     margin-top: 0;
   }
   .page [data-reading-role="card-author-title"] {
-    font-size: 0.8125rem;
-    line-height: 1.5;
+    font-size: 0.75rem;
+    line-height: 1.35;
+    margin-top: 0.25rem;
   }
 
   .page [data-reading-role="lecture-content"] {
@@ -166,6 +201,73 @@
 
   .page [data-reading-role="artwork-media"] {
     height: clamp(24rem, 100vw, 30rem);
+  }
+
+  /* WHAT: About reads as three native document-scroll chapters on phones.
+   * WHY: Viewport minimums make each boundary clear without fixing height or
+   * hiding long/enlarged content. Existing proximity, menu and reduced-motion
+   * rules still own the scrolling behavior; no gesture handler is introduced. */
+  .page[data-original-page="about"] [data-about-chapter] {
+    min-height: calc(100svh - 70px);
+  }
+  .page[data-original-page="about"] [data-about-chapter="introduction"] {
+    margin-bottom: 0;
+  }
+  .page [data-reading-role="about-introduction"] {
+    /* Match Home's centered 380px reading column, including wider phones. */
+    --original-container-gutter: max(20px, calc((100% - 380px) / 2));
+    align-items: flex-start;
+    text-align: left;
+  }
+  .page
+    [data-reading-role="about-introduction"]
+    [data-reading-role="landing-title"],
+  .page
+    [data-reading-role="about-introduction"]
+    [data-reading-role="landing-copy"] {
+    max-width: 380px;
+    margin-inline: 0;
+  }
+  .page [data-reading-role="about-introduction"] > div {
+    justify-content: flex-start;
+  }
+  .page[data-original-page="about"] [data-about-chapter="identity"] {
+    display: flex;
+    align-items: center;
+  }
+  /* Keep the name diagram's small labels readable. Reduce only the display
+   * typography and its connectors by roughly 10–12%, never scale the text layer. */
+  .page[data-original-page="about"]
+    [data-reading-role="identity-diagram-container"] {
+    margin-block: 0;
+    padding-block: 2.625rem;
+  }
+  .page[data-original-page="about"] :global(.id-root-name) {
+    font-size: 2.25rem;
+  }
+  .page[data-original-page="about"] :global(.id-vertical-line) {
+    height: 2.625rem;
+  }
+  .page[data-original-page="about"]
+    [data-reading-role="identity-derivation-row"] {
+    margin-top: 1.3125rem;
+  }
+  .page[data-original-page="about"] :global(.id-phonetic-symbol),
+  .page[data-original-page="about"] :global(.id-faded-symbol),
+  .page[data-original-page="about"]
+    [data-reading-role="identity-decorator-slash"] {
+    font-size: 1.6875rem;
+  }
+  .page[data-original-page="about"] :global(.id-connector) {
+    height: 70px;
+  }
+  .page[data-original-page="about"] :global(.id-floating-label),
+  .page[data-original-page="about"] :global(.id-dashed-line) {
+    top: 78px;
+  }
+  .page[data-original-page="about"]
+    [data-reading-role="identity-meaning-text"] {
+    font-size: clamp(1.125rem, 5.4vw, 1.575rem);
   }
 
   /* Three phonetic parts must fit the actual content width. The original fixed

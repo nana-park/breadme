@@ -196,6 +196,10 @@ async function verifyMobileControls(page: Page, testInfo: TestInfo) {
     await expect(toggle).toHaveAttribute("aria-expanded", "true");
     await expect(page.locator("main")).toHaveAttribute("inert");
     await expect(page.locator("body")).toHaveCSS("overflow", "hidden");
+    await expect(page.locator("#navMenu [data-materials-action]")).toHaveCount(
+      0,
+    );
+    await expect(page.locator(".original-mobile-materials")).toHaveCount(0);
     const menu = await page.locator("#navMenu").boundingBox();
     expect(menu!.x).toBeGreaterThanOrEqual(0);
     expect(menu!.x + menu!.width).toBeLessThanOrEqual(
@@ -216,11 +220,14 @@ async function verifyMobileControls(page: Page, testInfo: TestInfo) {
       await page.locator("body").evaluate((element) => element.style.overflow),
     ).toBe(originalOverflow);
   }
-  // WHY: Hiding a duplicate floating entry must not remove access to materials.
-  await toggle.click();
-  await page
-    .locator(".original-mobile-materials [data-materials-action='resume']")
-    .click();
+  // WHAT: Keep popup resizing/dismissal coverage through the retained desktop entry.
+  // WHY: Mobile navigation deliberately no longer contains materials actions.
+  const mobileViewport = page.viewportSize()!;
+  await page.setViewportSize({ width: 1440, height: 900 });
+  const resume = page.locator("#navbar [data-materials-action='resume']");
+  await expect(resume).toBeVisible();
+  await resume.click();
+  await page.setViewportSize(mobileViewport);
   await expect(
     page.getByRole("button", { name: "Minimize Popup" }),
   ).toBeFocused();

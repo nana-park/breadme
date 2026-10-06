@@ -571,10 +571,13 @@ for (const scenario of [
       "#navbar",
       { readiness, enlargement },
     );
-    // Inspect the last control without activating materials or leaving the page.
-    const finalControl = page.locator(
-      ".original-mobile-materials [data-materials-action='portfolio']",
+    // Inspect the final navigation link without leaving the page.
+    await expect(page.locator("#navMenu [data-materials-action]")).toHaveCount(
+      0,
     );
+    const finalControl = page
+      .locator("#navMenu")
+      .getByRole("link", { name: "CONTACT", exact: true });
     await finalControl.scrollIntoViewIfNeeded();
     await finalControl.focus();
     const menuPosition = await settleReadingPosition(page);
@@ -586,6 +589,7 @@ for (const scenario of [
       { enlargement, menuPosition },
     );
     await expect(finalControl).toBeFocused();
+    await expect(finalControl).toBeInViewport({ ratio: 1 });
     await page.keyboard.press("Escape");
     await expect(toggle).toHaveAttribute("aria-expanded", "false");
     await expect(toggle).toBeFocused();

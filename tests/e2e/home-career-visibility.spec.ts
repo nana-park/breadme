@@ -82,6 +82,13 @@ for (const width of [320, 390, 768, 1023, 1024, 1440]) {
     expect(measures.headingSize).toBe(measures.educationHeadingSize);
     expect(measures.headingSize).toBe(width < 768 ? 24 : 28);
     expect(Math.min(...measures.bodySizes)).toBe(13);
+    for (const list of await page
+      .locator("[data-home-products], [data-home-outcomes]")
+      .all()) {
+      await expect(list).toHaveCSS("row-gap", "4px");
+      await expect(list).toHaveCSS("font-size", "13px");
+      await expect(list).toHaveCSS("line-height", "20.8px");
+    }
     expect(measures.scrollWidth).toBeLessThanOrEqual(width);
     if (width < 768) {
       await expect(page.locator("#history")).toHaveAttribute(
@@ -115,6 +122,26 @@ for (const width of [320, 390, 768, 1023, 1024, 1440]) {
     await expect(
       page.getByRole("link", { name: "Full career", exact: false }),
     ).toHaveAttribute("href", "/career.html");
+    const actions = page.locator("[data-home-experience-actions]");
+    await expect(actions.getByRole("link")).toHaveCount(2);
+    await expect(
+      actions.getByRole("link", { name: "Products" }),
+    ).toHaveAttribute("href", "/projects.html");
+    const actionBoxes = await actions.getByRole("link").evaluateAll((links) =>
+      links.map((link) => {
+        const box = link.getBoundingClientRect();
+        return { x: box.x, y: box.y, right: box.right, height: box.height };
+      }),
+    );
+    for (const box of actionBoxes) {
+      expect(box.height).toBeGreaterThanOrEqual(44);
+      expect(box.x).toBeGreaterThanOrEqual(0);
+      expect(box.right).toBeLessThanOrEqual(width);
+    }
+    expect(Math.abs(actionBoxes[0].y - actionBoxes[1].y)).toBeLessThanOrEqual(
+      1,
+    );
+    expect(actionBoxes[1].x - actionBoxes[0].right).toBeGreaterThanOrEqual(12);
     await expect(
       page.getByRole("heading", { name: "Academic Standing" }),
     ).toBeVisible();
@@ -191,6 +218,31 @@ for (const width of [320, 390, 768, 1023, 1024, 1440]) {
       ).toBeLessThanOrEqual(1);
     }
     if (width === 390 || width === 1440) {
+      // WHAT: Capture a normal viewport for user review, not only tall element
+      // screenshots where the fixed header can overlap a scrolled section.
+      await page.evaluate(() => {
+        if (document.activeElement instanceof HTMLElement)
+          document.activeElement.blur();
+        const section = document.querySelector("#history")!;
+        window.scrollTo({
+          top: section.getBoundingClientRect().top + scrollY - 70,
+          behavior: "instant",
+        });
+      });
+      await page.evaluate(
+        () =>
+          new Promise<void>((resolve) =>
+            requestAnimationFrame(() => requestAnimationFrame(() => resolve())),
+          ),
+      );
+      const viewportPath = testInfo.outputPath(
+        `home-${width}-career-viewport.png`,
+      );
+      await page.screenshot({ path: viewportPath, animations: "disabled" });
+      await testInfo.attach(`career-viewport-${width}`, {
+        path: viewportPath,
+        contentType: "image/png",
+      });
       for (const [label, target] of [
         ["career", "#history"],
         ["education", "#history-2"],
@@ -243,5 +295,57 @@ for (const width of [320, 390, 768, 1023, 1024, 1440]) {
     );
     await page.goBack();
     await expect(page.locator("#history")).toBeVisible();
+    await page
+      .locator("[data-home-experience-actions]")
+      .getByRole("link", { name: "Products" })
+      .click();
+    await expect(page).toHaveURL(/\/projects\.html$/);
+    await expect(page.locator("[data-original-page]")).toHaveAttribute(
+      "data-original-page",
+      "projects",
+    );
+    await page.goBack();
+    await expect(page.locator("[data-home-experience-actions]")).toBeVisible();
   });
 }
+
+test("Home experience actions wrap at 320px with doubled text", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 320, height: 844 });
+  await page.goto("/");
+  const actions = page.locator("[data-home-experience-actions]");
+  await expect(actions).toBeVisible();
+  await page.evaluate(() => document.fonts.ready);
+  // WHAT: Text-only enlargement, separate from browser zoom or device QA.
+  await actions.getByRole("link").evaluateAll((links) => {
+    for (const link of links) {
+      (link as HTMLElement).style.fontSize =
+        `${parseFloat(getComputedStyle(link).fontSize) * 2}px`;
+    }
+  });
+  const boxes = await actions.getByRole("link").evaluateAll((links) =>
+    links.map((link) => {
+      const box = link.getBoundingClientRect();
+      return {
+        x: box.x,
+        y: box.y,
+        bottom: box.bottom,
+        right: box.right,
+        height: box.height,
+        clientWidth: link.clientWidth,
+        scrollWidth: link.scrollWidth,
+      };
+    }),
+  );
+  expect(boxes[1].y - boxes[0].bottom).toBeGreaterThanOrEqual(12);
+  for (const box of boxes) {
+    expect(box.height).toBeGreaterThanOrEqual(44);
+    expect(box.x).toBeGreaterThanOrEqual(0);
+    expect(box.right).toBeLessThanOrEqual(320);
+    expect(box.scrollWidth).toBeLessThanOrEqual(box.clientWidth);
+  }
+  expect(
+    await page.evaluate(() => document.documentElement.scrollWidth),
+  ).toBeLessThanOrEqual(320);
+});

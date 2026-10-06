@@ -6,6 +6,11 @@ import { lazy, Suspense, useLayoutEffect, useRef } from "react";
 import type { OriginalPageId } from "@/config/originalRoutes";
 import { useOriginalPageInteractions } from "@/shared/hooks/useOriginalPageInteractions";
 import styles from "./OriginalPage.module.css";
+import type { ContactMaterialsOpener } from "./ContactPackageActions";
+type Props = {
+  pageId: OriginalPageId;
+  onOpenMaterials: ContactMaterialsOpener;
+};
 
 const pages = {
   home: {
@@ -127,7 +132,7 @@ const pageCss = import.meta.glob<string>("./generated/*.css", {
   eager: true,
 });
 
-function MountedOriginalPage({ pageId }: { pageId: OriginalPageId }) {
+function MountedOriginalPage({ pageId, onOpenMaterials }: Props) {
   const root = useRef<HTMLDivElement>(null);
   useOriginalPageInteractions(pageId, root);
   useOriginalDetailInteractions(pageId, root);
@@ -145,32 +150,41 @@ function MountedOriginalPage({ pageId }: { pageId: OriginalPageId }) {
       data-original-page={pageId}
       onSubmitCapture={(event) => event.preventDefault()}
     >
-      <style>{pageCss[`./generated/${pages[pageId].css}.css`]}</style>
-      {pageId === "ai-mentoring-agent-detail" && (
-        <style>
-          {pageCss["./generated/OriginalMentoringMockupContent.css"]}
-        </style>
-      )}
-      {/* WHY: Source CDN utilities are inserted after its authored page CSS. */}
-      <style>{originalUtilities}</style>
-      <style>{mobileAccessibility}</style>
       <div data-mobile-snap-entry aria-hidden="true" />
-      <Page />
+      <Page onOpenMaterials={onOpenMaterials} />
     </div>
   );
 }
 
-export function OriginalPage({ pageId }: { pageId: OriginalPageId }) {
+export function OriginalPage({ pageId, onOpenMaterials }: Props) {
   return (
-    <Suspense
-      fallback={
-        <div
-          aria-label="Loading portfolio"
-          style={{ minHeight: "100vh", background: "#fff" }}
+    <>
+      {/* WHAT: Apply the existing style stack before lazy content is ready.
+          WHY: The shared header renders outside Suspense and needs utilities
+          immediately. Preserve page CSS → utilities → accessibility order. */}
+      <style data-original-style="page">
+        {pageCss[`./generated/${pages[pageId].css}.css`]}
+      </style>
+      {pageId === "ai-mentoring-agent-detail" && (
+        <style data-original-style="mockup">
+          {pageCss["./generated/OriginalMentoringMockupContent.css"]}
+        </style>
+      )}
+      <style data-original-style="utilities">{originalUtilities}</style>
+      <style data-original-style="accessibility">{mobileAccessibility}</style>
+      <Suspense
+        fallback={
+          <div
+            aria-label="Loading portfolio"
+            style={{ minHeight: "100vh", background: "#fff" }}
+          />
+        }
+      >
+        <MountedOriginalPage
+          pageId={pageId}
+          onOpenMaterials={onOpenMaterials}
         />
-      }
-    >
-      <MountedOriginalPage pageId={pageId} />
-    </Suspense>
+      </Suspense>
+    </>
   );
 }

@@ -68,15 +68,15 @@ Header 메뉴 미노출
 | --- | --- | --- | --- | --- |
 | 1 | `/index.html` / Home | HOME·로고·루트 | 텍스트 Hero → 기존 파트너·발자취 → 흰색 경력 요약 → 기존 학력 → 역량 CTA. 경력은 Education 스타일의 사진 없는 2열/모바일1열, 짧은 수치 성과, `Full career` → Career. AiCall시장1위 문장 → 공식발표. `View my work` → Projects, `Get in touch` → Contact, 기존 학력/Qualified CTA 유지. 캐러셀 유지; 학력은 Research Focus 문장만 교정 | [HomeHero](../../src/pages/home/HomeHero.tsx), [HomeExperience](../../src/pages/home/HomeExperience.tsx), [OriginalHomeContent](../../src/pages/original/generated/OriginalHomeContent.tsx) |
 | 2 | `/about.html` / About (`breadme`) | ABOUT와 하위 breadme | 소개·브랜드 의미·배경 영상·미디어. `View my projects` → Projects, `Watch full interview` → YouTube. 임베드 인터뷰 재생 | [OriginalAboutContent](../../src/pages/original/generated/OriginalAboutContent.tsx) |
-| 3 | `/career.html` / Career | ABOUT 하위 Career | 경력 2패널·학력·추천 카드. `View projects` → Projects, `View publications` → Research, Google Scholar 외부 링크; 추천 카드 가로 탐색 | [OriginalCareerContent](../../src/pages/original/generated/OriginalCareerContent.tsx) |
+| 3 | `/career.html` / Career | ABOUT 하위 Career | 경력 2패널·추천 카드. `View projects` → Projects; 추천 카드 가로 탐색. 중복 학력은 제거하고 Home의 Academic Standing 유지 | [OriginalCareerContent](../../src/pages/original/generated/OriginalCareerContent.tsx) |
 | 4 | `/qualified.html` / Qualified | ABOUT 하위 Qualified | 역량·4개 인증 탭(`AI & Tools`, `Data & Statistics`, `Psychology`, `Languages`)·업무 원칙. 본문 핵심 조작은 탭 전환 | [OriginalQualifiedContent](../../src/pages/original/generated/OriginalQualifiedContent.tsx) |
 | 5 | `/enjoy.html` / Enjoy | 주 메뉴 미노출, 직접 주소 가능 | 7개 취미/활동 카테고리와 여행 지역 선택. `All Destinations`는 전체 사진 순서를 섞는다. 선택 카테고리를 세션에 보관 | [OriginalEnjoyContent](../../src/pages/original/generated/OriginalEnjoyContent.tsx) |
 | 6 | `/projects.html` / Projects (`Products`) | PROJECTS·하위 Products·Home/About/Contact | 제품군과 프로젝트, `View more/fewer projects`, `View/Hide projects`, 9개 `details` 펼침. 3개 사례 상세 링크, 논문·로컬 PDF·외부 Notion 링크. 목록 펼침은 검색/필터 기능이 아님 | [OriginalProjectsContent](../../src/pages/original/generated/OriginalProjectsContent.tsx) |
-| 7 | `/research.html` / Research | PROJECTS 하위 Research·Home/Career | 연구 4건. `Read Paper`는 ScienceDirect·DOI·사이트 PDF, `Conference`는 외부 링크 | [OriginalResearchContent](../../src/pages/original/generated/OriginalResearchContent.tsx) |
+| 7 | `/research.html` / Research | PROJECTS 하위 Research·Home | 연구 4건. `Read Paper`는 ScienceDirect·DOI·사이트 PDF, `Conference`는 외부 링크 | [OriginalResearchContent](../../src/pages/original/generated/OriginalResearchContent.tsx) |
 | 8 | `/articles.html` / Articles | PROJECTS 하위 Articles | 영어 글 18개·6쪽·한 쪽 3개. `Read Article`로 해시 읽기, 위/아래 `Back to List`로 복귀, `View Original (KR)`로 ArtInsight 외부 원문 | [OriginalArticlesPage](../../src/pages/original/OriginalArticlesPage.tsx), [글 데이터](../../src/content/original/articles/index.ts) |
 | 9 | `/lectures.html` / Lectures | PROJECTS 하위 Lectures | 2개 강의/멘토링 항목·각 사진 캐러셀. 이전/다음·표시점·키보드·터치 이동. `View Workflow Detail` → Mentor AI 상세 | [OriginalLecturesContent](../../src/pages/original/generated/OriginalLecturesContent.tsx) |
 | 10 | `/awards.html` / Awards | AWARDS | 수상·후원 등 이미지와 반복 표시 콘텐츠. `Get in Touch with breadme` → Contact. 반복 마크업 수를 별도 수상 건수로 세지 않음 | [OriginalAwardsContent](../../src/pages/original/generated/OriginalAwardsContent.tsx) |
-| 11 | `/contact.html` / Contact | CONTACT·Home/Awards | `Review Projects` → Projects, `View Profile` → LinkedIn. 본문 이메일/Copy URL 버튼은 핸들러 없음. Resume/PDF 직접 링크는 placeholder. 자료 요청 폼은 비활성 | [OriginalContactContent](../../src/pages/original/generated/OriginalContactContent.tsx) |
+| 11 | `/contact.html` / Contact | CONTACT·Home/Awards | `Review Projects` → Projects, `View Profile` → LinkedIn. 본문 이메일 버튼은 핸들러 없음. Resume/PDF는 공통 Coming Soon 패널, Copy URL은 공개 홈 주소 복사·결과 alert. 자료 요청 폼은 비활성 | [OriginalContactContent](../../src/pages/original/generated/OriginalContactContent.tsx) |
 | 12 | `/projects/llm-based-voice-ivr.html` / LLM-based Voice IVR | Projects 상세 링크 | 사례·5개 탭(`Conversational Routing`, `Separate Chatbot`, `Reuse Scenarios`, `Building`, `Demo Call`)·YouTube 데모·뉴스·기업 로고. `Back to Products` → Projects. 실제 통화/답변 저장 API 없음 | [OriginalVoiceIvrContent](../../src/pages/original/generated/OriginalVoiceIvrContent.tsx) |
 | 13 | `/projects/hopzie-oneclickbuilder.html` / Hopzie | Projects 상세 링크 | 사례·5개 탭(`Storefront`, `Building`, `Commission Optimization`, `Link Resilience`, `YouTube Description`)·뉴스·크리에이터 링크. `Generate Commerce Page`는 로컬 오버레이 표시 전환, 예시 storefront 링크는 탭 전환. 실제 사이트 생성/발행 아님. `Back to Products` → Projects | [OriginalHopzieContent](../../src/pages/original/generated/OriginalHopzieContent.tsx) |
 | 14 | `/projects/ai-mentoring-agent-detail.html` / Mentor AI Operation System | Projects·Lectures | 사례·5개 탭(`Learner Memory`, `Workflow Automation`, `Meeting Parsing`, `Insight Extraction`, `Memoirs`)·React 목업. Scheduled Automation은 설정 영역 표시 전환이며 실제 예약/실행 서비스 아님. `Back to Products` → Projects | [OriginalMentoringContent](../../src/pages/original/generated/OriginalMentoringContent.tsx), [목업](../../src/pages/original/generated/OriginalMentoringMockupContent.tsx) |
@@ -99,15 +99,16 @@ Header 메뉴 미노출
 | Header, 상세 3페이지 | Resume / Portfolio PDF | `Coming soon!` alert, 자료 패널 미렌더링 | 기본 페이지와 진입 반응이 다름 |
 | 공통 자료 패널 | 이메일 입력·Receive package | 입력·전송 모두 disabled, submit 차단, Coming Soon 표시 | 이메일 수집·자료 전송 없음. 설명의 “instantly receive”는 구현 보장이 아님 |
 | 최소화 자료 바로가기 | 떠 있는 원형 버튼 | 기본 페이지에만 존재; 767px 이하에서는 페이지 전체에서 숨김 | 모바일에는 Header 메뉴 진입이 남음. Home Hero 이후 다시 보인다는 과거 설명은 현 CSS와 다름 |
-| Contact 본문 | Resume / Portfolio PDF | `href="#"`; `data-original-click`에 alert 문자열만 있고 Contact에 해당 이벤트 연결 없음 | 실제 다운로드/정상 Coming Soon alert로 기록하지 않음; 미연결 CTA |
-| Contact 본문 | 이메일 표시 버튼, Copy URL | 클릭/클립보드 핸들러 없음 | 복사 성공·복사 실패 UI가 구현된 상태가 아님 |
+| Contact 본문 | Resume / Portfolio PDF | native button으로 공통 Application Materials 패널 열기 | Coming Soon·비활성 폼 유지. 닫기/Escape 뒤 본문 진입 버튼으로 초점 복귀 |
+| Contact 본문 | Copy URL | `https://nana-park.github.io/breadme/`를 Clipboard API로 복사. 실제 write 완료 뒤 “포트폴리오 웹사이트 URL이 복사되었습니다” alert | 거부·미지원은 별도 실패 alert와 직접 선택할 URL 제공. 현재 Contact 경로·query·hash를 복사하지 않음 |
+| Contact 본문 | 이메일 표시 버튼 | 클릭/클립보드 핸들러 없음 | 패키지 직접 조작 수정의 범위 밖 |
 | Contact 본문 | 자료 요청 폼 | 이름·이메일·회사 입력과 submit 모두 disabled | `data-original-submit`의 원본 성공 alert는 실행하지 않음 |
 | Footer | Critic & Essay, Instagram, LinkedIn, Email | 외부 사이트 또는 `mailto:` 이동 | 외부 페이지 이용·메일 발송 결과는 사이트가 확인하지 않음 |
 | Footer | Interviews / Seminars / Korean | 기본 이동 차단 또는 버튼 클릭 뒤 `Coming soon!` alert | 실제 콘텐츠·언어 전환 아님 |
 | Footer | English | 활성 표시, 전환 핸들러 없음 | 현재 표시 언어는 영어 |
 | 상세 내부 목업 | 전화, Save Answer, 실행/저장 버튼 등 | 사례 설명용 UI; 바인딩된 탭·데모 표시 상태 외 서비스 동작 없음 | 목업의 편집 가능한 브라우저 필드와 실제 저장/서버 처리를 구분 |
 
-근거: [App](../../src/app/App.tsx), [Header](../../src/shared/layout/OriginalHeader/OriginalHeader.tsx), [Footer](../../src/shared/layout/OriginalFooter/OriginalFooter.tsx), [MaterialsPopup](../../src/shared/ui/MaterialsPopup/MaterialsPopup.tsx), [자료 패널 CSS](../../src/shared/ui/MaterialsPopup/MaterialsPopup.module.css), [페이지 동작](../../src/shared/hooks/useOriginalPageInteractions.ts), [상세 동작](../../src/shared/hooks/useOriginalDetailInteractions.ts). 이 문서는 확인된 미연결 상태를 기록하며 동작 수정은 포함하지 않는다.
+근거: [App](../../src/app/App.tsx), [Header](../../src/shared/layout/OriginalHeader/OriginalHeader.tsx), [Footer](../../src/shared/layout/OriginalFooter/OriginalFooter.tsx), [MaterialsPopup](../../src/shared/ui/MaterialsPopup/MaterialsPopup.tsx), [자료 패널 CSS](../../src/shared/ui/MaterialsPopup/MaterialsPopup.module.css), [페이지 동작](../../src/shared/hooks/useOriginalPageInteractions.ts), [상세 동작](../../src/shared/hooks/useOriginalDetailInteractions.ts). 2026-10-06 Contact 패키지 직접 조작은 [ContactPackageActions](../../src/pages/original/ContactPackageActions.tsx)에 연결했다. 다른 미완성 기능의 완료를 뜻하지 않는다.
 
 ## 3. Articles 콘텐츠 목록: 총 18개
 

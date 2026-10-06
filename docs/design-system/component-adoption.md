@@ -25,7 +25,7 @@
 
 - `App`이 Header·본문·Footer·MaterialsPopup을 조립하고 `OriginalPage`가 14개 페이지를 선택합니다.
 - `/`와 `/index.html`은 같은 Home입니다. Enjoy는 경로를 유지하지만 원본처럼 메뉴에서는 숨깁니다.
-- Header는 원본 70px 높이와 1024px 메뉴 경계를 유지하며 모바일 초점·터치·닫기 동작을 보정합니다.
+- Header는 원본 70px 높이와 1024px 메뉴 경계를 유지합니다. 2026-10-06 요청에 따라 모바일 메뉴의 Resume/Portfolio PDF를 제거하고 ABOUT·PROJECTS 하위 링크를 2열로 배치합니다. 5개 상위·7개 하위 링크의 이름·목적지, 16/14px 글자와 최소 44px 터치 영역, 초점·닫기·스크롤 잠금은 유지합니다.
 - MaterialsPopup은 원본 핵심 11개 페이지에만 있습니다. 원본 상세 3개에는 떠 있는 버튼이 없고 Header 자료 링크는 `Coming soon!` 안내를 표시합니다. 자료 전송은 `Coming Soon` 상태입니다. 연결 상태를 메일 기능 완료로 표시하지 않습니다.
 - Home은 사용자 선택에 따라 텍스트 중심 `HomeHero`와 CSS Module을 사용합니다. `SplineHero`는 Home에서 렌더링하지 않으며 원본 이관 파일은 보존합니다. 다른 페이지로 새 Hero 스타일을 확대하지 않습니다.
 - Home 경력은 `HomeExperience`와 CSS Module로 관리합니다. 사용자 선택에 따라 Education의 흰 배경·타입·여백·열 규칙을 재사용하고 사진·경력 모션을 제거했습니다. 회사 안의 Products/Outcomes는 같은 h4 위계·스타일이며 각 항목은 그 아래 목록으로 표시합니다. 회사 박스는 2026-10-06 요청에 따라 Contact Domain의 실제 1px #e5e7eb·radius8px·작은 그림자·hover 중간 그림자를 사용합니다. padding은 1024px 미만24px / 이상32px이며 제목·내용·grid는 보존합니다. Education은 사용자 요청의 Research Focus 문장 교정·강제 줄바꿈 제거만 적용하며 구조·사진·스타일은 유지합니다. 회사 캐러셀·갤러리·공통 Header/Footer·자료 UI·Career 페이지는 바꾸지 않습니다.
@@ -53,6 +53,30 @@ Header·Footer·자료 UI를 바꾸면 14개 경로가 영향 범위입니다. 3
 
 공통 컴포넌트·경로·콘텐츠 위치가 바뀌면 이 표와 [페이지 README](../../src/pages/original/README.md)를 함께 갱신합니다. `적용 대기`는 실제 구현 화면에서 계획된 미이관 항목에만 사용합니다.
 
-## PR #3 모바일 자료 진입
+## 모바일 메뉴·자료 진입 (2026-10-06 갱신)
 
-767px 이하에서는 본문을 가리는 중복 원형 바로가기를 숨기고 공통 메뉴의 Resume/Portfolio PDF 항목을 사용합니다. Home도 동일합니다. Coming Soon 패널과 비활성 자료 요청은 유지합니다. 768px 이상 표시와 Desktop 구성은 변경하지 않습니다.
+767px 이하의 본문을 가리는 중복 원형 바로가기 숨김은 유지합니다. 이후 사용자 요청으로 1024px 미만 햄버거 메뉴의 Resume/Portfolio PDF 항목도 제거합니다. Desktop Header의 두 자료 버튼, 768px 이상 원형 바로가기, Contact 본문의 자료 영역과 Coming Soon 상태는 유지합니다. 팝업 상태·초점 검사는 실제 Desktop 진입 후 모바일 resize 또는 컴포넌트의 부모 상태 제어로 검증하며, 제거된 모바일 진입을 가정하지 않습니다.
+
+메뉴의 최소 높이는 약 428px(원본 submenu 테두리가 있는 경로는 432px)에 safe-area 하단 여백을 더한 값입니다. 390×844·390×740·375×667·320×640 무스크롤 노출을 브라우저 검사 대상으로 삼고, 더 짧은 화면·확대 글자에는 overflow-y:auto를 유지합니다. 이 수치는 CSS 설계값이며 브라우저 실측 통과 선언이 아닙니다. [검수 범위와 제한](../qa/mobile-menu-compact.md)을 참고합니다.
+
+## About 모바일 구간 정리
+
+2026-10-06 About 요청은 기존 OriginalHeader·OriginalFooter·MaterialsPopup 연결을 유지합니다. 페이지 CSS Module과 명시적 역할/구간 표식에서만 소개 정렬·이름 도식 크기·구간 최소 높이를 관리합니다. `.container` gutter의 5vw fallback은 유지하고 모바일 About 소개에서만 최소 20px와 Home의 중앙 최대 380px 읽기 열을 함께 따릅니다. 공통 스크롤 hook은 기존 요소에 구간 표식을 붙이며 실제 스크롤은 native proximity 규칙이 처리합니다.
+
+## Career 콘텐츠 정리 (2026-10-06)
+
+Career의 Education 섹션을 제거해 경력 다음에 추천이 이어집니다. Home의 학력과 공통 Header/Footer/자료 UI 적용 상태는 유지합니다. Team Work 소개 문장의 줄바꿈만 페이지 소유 `testimonial-intro` 역할로 767px 이하에서 자연 흐름으로 바꾸며 별도 모바일 콘텐츠나 공통 컴포넌트는 추가하지 않습니다.
+
+Career 모바일 추천 카드는 1:1 비율과 축소한 본문/작성자 글자 규격을 페이지 CSS Module에서 관리합니다. 글자 확대 시 내용 높이를 우선해 잘림을 방지하며, Desktop 원본 카드와 인용문은 그대로입니다.
+
+## 로딩 상태에서도 유지되는 공통 스타일
+
+공통 Header가 본문 로딩 중에도 이미 표시되므로, Header가 사용하는 기존 utility와 모바일 접근성 스타일은 lazy 본문과 별도로 즉시 삽입합니다. `OriginalPage`가 페이지 CSS → utility → 접근성 순서를 그대로 소유하고 Suspense는 본문만 감쌉니다. 새로운 스타일 시스템이나 자료 기능은 추가하지 않습니다.
+
+## Home 경력·제품 진입
+
+Home의 Full career와 Products는 같은 `HomeExperience` action 스타일을 사용합니다. 기존 route helper가 각각 Career와 제품 목록 경로를 만들며, 44px 최소 높이와 줄바꿈 가능한 action row로 좁은 화면·큰 글자를 지원합니다. 회사 카드의 표면과 내용, Home 학력은 그대로입니다.
+
+## Contact 패키지 직접 조작
+
+2026-10-06: Contact 본문의 Resume / Portfolio PDF도 기존 MaterialsPopup을 엽니다. Contact 전용 `ContactPackageActions`는 원본 버튼의 색·border·radius·SVG를 보존하며 clipboard 진행·실패·직접 복사를 담당합니다. 공통 자료 패널은 선택적 `returnFocusRef`로 본문 진입 버튼에 초점을 복귀시키고, 이 ref가 없는 기존 Header·떠 있는 버튼 동작은 유지합니다. PDF 공개·이메일 수집·전송을 추가하지 않습니다.

@@ -8,12 +8,14 @@ function Harness({
   showHeader = true,
   pageId = "home",
   hideMinimizedDuringHomeHero = false,
+  initiallyOpenMaterials = false,
 }: {
   showHeader?: boolean;
   pageId?: string;
   hideMinimizedDuringHomeHero?: boolean;
+  initiallyOpenMaterials?: boolean;
 }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(initiallyOpenMaterials);
   const close = useCallback(() => setIsOpen(false), []);
   return (
     <>
@@ -28,6 +30,7 @@ function Harness({
       )}
       <main id="main-content">
         <button>Outside control</button>
+        <button onClick={() => setIsOpen(true)}>Open test materials</button>
         <div data-original-page={pageId}>
           <section id="home">
             <div>
@@ -83,13 +86,10 @@ function rect(top: number, left = 0, width = 100, height = 44) {
   } as DOMRect;
 }
 
-function openMobileMaterials(action: "resume" | "portfolio" = "resume") {
-  fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
-  fireEvent.click(
-    document.querySelector(
-      `.original-mobile-materials [data-materials-action='${action}']`,
-    )!,
-  );
+// WHAT: Popup behavior is exercised via a parent-owned state trigger, not a
+// removed mobile menu entry or a click on a CSS-hidden production control.
+function openTestMaterials() {
+  fireEvent.click(screen.getByRole("button", { name: "Open test materials" }));
 }
 
 beforeEach(() => {
@@ -179,19 +179,12 @@ describe("mobile controls and nonmodal materials focus", () => {
     expect(projects).toHaveFocus();
     expect(screen.getByRole("main")).not.toHaveAttribute("inert");
     expect(document.body.style.overflow).toBe("");
+    const desktopResume = screen.getByRole("button", { name: "Resume" });
+    focus(desktopResume);
     resize(1023);
-    fireEvent.click(toggle);
-    focus(
-      document.querySelector<HTMLElement>(
-        ".original-mobile-materials [data-materials-action='resume']",
-      )!,
-    );
+    expect(toggle).toHaveFocus();
     resize(1024);
-    expect(
-      document.querySelector(
-        ".hidden.lg\\:flex > [data-materials-action='resume']",
-      ),
-    ).toHaveFocus();
+    expect(projects).toHaveFocus();
     const outside = screen.getByRole("button", { name: "Outside control" });
     focus(outside);
     resize(1023);
@@ -236,7 +229,7 @@ describe("mobile controls and nonmodal materials focus", () => {
       );
       const toggle = screen.getByRole("button", { name: "Open Email Popup" });
       for (const closeWithEscape of [false, true, false]) {
-        if (width < 768) openMobileMaterials();
+        if (width < 768) openTestMaterials();
         else fireEvent.click(toggle);
         const minimize = screen.getByRole("button", { name: "Minimize Popup" });
         expect(minimize).toHaveFocus();
@@ -266,29 +259,29 @@ describe("mobile controls and nonmodal materials focus", () => {
     },
   );
 
-  it.each(["resume", "portfolio"] as const)(
-    "hands %s focus from the mobile menu to materials after removing inert",
-    (action) => {
-      render(<Harness />);
-      openMobileMaterials(action);
-      expect(
-        screen.getByRole("button", { name: "Minimize Popup" }),
-      ).toHaveFocus();
-      expect(document.querySelector("#email-popup")).not.toHaveAttribute(
-        "inert",
-      );
-      expect(screen.getByRole("main")).not.toHaveAttribute("inert");
-      fireEvent.keyDown(document, { key: "Escape" });
-      expect(screen.getByRole("button", { name: "Open menu" })).toHaveFocus();
-    },
-  );
+  it("removes materials from the mobile menu but preserves desktop actions and navigation", () => {
+    const openMaterials = vi.fn();
+    render(<OriginalHeader pageId="home" onOpenMaterials={openMaterials} />);
+    fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
+    const menu = document.querySelector("#navMenu")!;
+    expect(menu.querySelectorAll("a")).toHaveLength(12);
+    expect(
+      menu.querySelectorAll("button, [data-materials-action]"),
+    ).toHaveLength(0);
+    expect(menu).not.toHaveTextContent(/Resume|Portfolio/);
+    fireEvent.keyDown(document, { key: "Escape" });
+    resize(1440);
+    for (const name of ["Resume", "Portfolio PDF"]) {
+      const action = screen.getByRole("button", { name });
+      expect(menu).not.toContainElement(action);
+      fireEvent.click(action);
+    }
+    expect(openMaterials).toHaveBeenCalledTimes(2);
+  });
 
   it("does not dismiss or focus the inert popup behind an open mobile menu", () => {
-    render(<Harness />);
-    const popupToggle = screen.getByRole("button", {
-      name: "Open Email Popup",
-    });
-    openMobileMaterials();
+    render(<Harness initiallyOpenMaterials />);
+    const popupToggle = document.querySelector("#popupToggle")!;
     const menuToggle = screen.getByRole("button", { name: "Open menu" });
     fireEvent.click(menuToggle);
     fireEvent.keyDown(document, { key: "Escape" });
@@ -333,7 +326,7 @@ describe("mobile controls and nonmodal materials focus", () => {
       },
     );
     render(<Harness />);
-    openMobileMaterials();
+    openTestMaterials();
     const popup = document.querySelector<HTMLElement>("#email-popup")!;
     expect(popup.style.position).toBe("fixed");
     expect(popup.style.bottom).toBe("2rem");
@@ -388,7 +381,7 @@ describe("mobile controls and nonmodal materials focus", () => {
     for (const top of [0, -900]) {
       heroTop = top;
       fireEvent.scroll(window);
-      openMobileMaterials();
+      openTestMaterials();
       expect(
         screen.getByRole("button", { name: "Minimize Popup" }),
       ).toHaveFocus();

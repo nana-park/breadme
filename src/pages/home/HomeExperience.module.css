@@ -46,8 +46,15 @@
   line-height: 1.5;
   word-break: keep-all;
 }
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
 .careerLink {
   display: inline-flex;
+  min-height: 44px;
+  max-width: 100%;
   align-items: center;
   justify-content: center;
   gap: 6px;
@@ -139,7 +146,7 @@
 .outcomes {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
   list-style: none;
   padding: 0;
   margin: 0;

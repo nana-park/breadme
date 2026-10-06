@@ -265,7 +265,7 @@ export function OriginalHeader({ pageId, onOpenMaterials }: Props) {
                 </a>
                 {hasChildren && (
                   <div
-                    className={`absolute top-[70px] left-1/2 -translate-x-1/2 w-[200px] ${"about" in item ? "h-[120px]" : "h-[160px]"} opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 flex flex-col justify-center items-center gap-1.5 z-[999] original-submenu`}
+                    className={`absolute top-[70px] left-1/2 -translate-x-1/2 w-[200px] ${"about" in item ? "h-[120px]" : "h-[160px]"} opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 flex flex-col justify-center items-center gap-1.5 z-[999] original-submenu ${styles.submenu}`}
                   >
                     {item.children.map((child) => (
                       <a
@@ -281,28 +281,6 @@ export function OriginalHeader({ pageId, onOpenMaterials }: Props) {
               </div>
             );
           })}
-          <div className="original-mobile-materials">
-            <button
-              type="button"
-              data-materials-action="resume"
-              onClick={() => {
-                setIsMenuOpen(false);
-                onOpenMaterials();
-              }}
-            >
-              Resume
-            </button>
-            <button
-              type="button"
-              data-materials-action="portfolio"
-              onClick={() => {
-                setIsMenuOpen(false);
-                onOpenMaterials();
-              }}
-            >
-              Portfolio PDF
-            </button>
-          </div>
         </div>
         <div className="flex-1 flex justify-end items-center gap-3">
           <div ref={desktopMaterials} className="hidden lg:flex gap-3">
