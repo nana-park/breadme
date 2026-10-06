@@ -1,0 +1,104 @@
+/* WHAT: Reuse Academic Standing's actual H2/H3/body scale and 8/12/24/32px spacing.
+ * Source: OriginalHomeContent #history-2 at main 2cc48d0, not unused design tokens.
+ * WHY: Product Focus and Core Strengths are equal headings under one larger title.
+ * The existing dark card, effects, outer spacing and padding remain source-owned. */
+.content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 800px;
+  min-width: 0;
+  font-family: var(--font-sans);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+.content h2 {
+  margin: 0 0 12px;
+  color: #fff;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.025em;
+}
+.introduction {
+  margin: 0 0 24px;
+  color: #a1a1aa;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+.groups {
+  display: grid;
+  gap: 24px;
+}
+.group {
+  min-width: 0;
+}
+.group h3 {
+  margin: 0 0 8px;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.025em;
+}
+.group p {
+  margin: 0;
+  color: #a1a1aa;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+.actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+.productLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 44px;
+  max-width: 100%;
+  padding: 10px 24px;
+  border-radius: 4px;
+  background: #fff;
+  color: #000;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 300ms;
+}
+.productLink:hover {
+  background: #e4e4e7;
+}
+.productLink svg {
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  transition: transform 300ms;
+}
+.productLink:hover svg {
+  transform: translateX(4px);
+}
+.productLink:focus-visible {
+  outline: 2px solid #d97706;
+  outline-offset: 4px;
+}
+@media (max-width: 767px) {
+  .content {
+    text-align: left;
+  }
+  .content h2 {
+    font-size: 24px;
+  }
+  .introduction {
+    font-size: 13px;
+  }
+  .group h3 {
+    font-size: 20px;
+  }
+}

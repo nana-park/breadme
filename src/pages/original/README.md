@@ -31,7 +31,7 @@ Home의 `#history`는 사진·모션 없는 흰색 Education 스타일의 `HomeE
 
 ## 파일 역할
 
-- Home Hero는 `../home/HomeHero.tsx`에서 별도 관리합니다. 나머지 원본 섹션은 유지하며 변환기를 재실행해도 Hero 연결을 보존합니다.
+- Home Hero는 `../home/HomeHero.tsx`, 경력은 `HomeExperience`, 하단 CTA 내용은 `HomeCapabilities`에서 관리합니다. CTA는 기존 박스와 배경 효과 안에서 Product Focus·Core Strengths를 표시하고 Products 목록으로 연결합니다. 변환기는 이 세 컴포넌트 연결을 보존하며 나머지 원본 섹션은 유지합니다.
 - `generated/*.tsx`: 원본 HTML 요소를 실제 React JSX로 옮긴 내용. HTML 문자열 주입이나 전체 페이지 iframe이 아닙니다.
 - `generated/*.css`: 원본 페이지의 개별 스타일
 - `OriginalPage.module.css`: 검수에서 확인된 모바일 글자 역할·잘림 보정. `data-reading-role`로 실제 소개 문구·강의 정보·이름 도식·추천인 카드만 지정하며 제품 데모의 축소 글자는 일괄 확대하지 않습니다.
