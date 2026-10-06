@@ -7,13 +7,22 @@
     --article-image-height: auto;
   }
 
-  /* WHAT: Make Home's qualifications CTA heading quieter on phones.
-   * WHY: Only the requested sentence becomes smaller and left-aligned;
-   * the inset card, its padding, copy, action, and desktop styles stay intact. */
+  /* WHAT: Left-align Home's qualifications copy while keeping its action centered.
+   * WHY: The heading-only override leaves paragraph text centered by inheritance.
+   * Preserve the source flex alignment for the user's centered button. */
+  .page[data-original-page="home"] [data-reading-role="qualifications-cta"] {
+    text-align: left;
+  }
+
   .page[data-original-page="home"] [data-reading-role="qualifications-title"] {
     width: 100%;
     font-size: 24px;
     text-align: left;
+  }
+
+  /* Keep the source mx-auto margins from recentering a short line on wide phones. */
+  .page[data-original-page="home"] [data-reading-role="qualifications-copy"] {
+    width: 100%;
   }
 
   .page [data-reading-role="landing-title"] {

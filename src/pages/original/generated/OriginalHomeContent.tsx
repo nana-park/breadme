@@ -1201,6 +1201,7 @@ export function OriginalHomeContent() {
           {'\n            '}
           <div
             id={'cta-dark-container'}
+            data-reading-role={'qualifications-cta'}
             className={
               'relative w-full rounded-[10px] overflow-hidden bg-[#150d0a] border border-white/5 border-t-white/10 py-24 lg:py-32 flex flex-col items-center justify-center group mx-auto px-6 text-center'
             }
@@ -1300,6 +1301,7 @@ export function OriginalHomeContent() {
             </h2>
             {'\n                '}
             <p
+              data-reading-role={'qualifications-copy'}
               className={
                 'relative z-10 font-sans text-[#a1a1aa] text-[14px] md:text-[15px] leading-[1.6] max-w-[800px] mx-auto font-light mb-10 drop-shadow'
               }
