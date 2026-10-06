@@ -38,7 +38,7 @@ for (const width of [300, 390, 768, 1440]) {
       width < 640 ? "64px" : width < 768 ? "96px" : "144px",
     );
     const establishedFilter = await partners
-      .getByAltText("NAVER")
+      .getByAltText("NAVER", { exact: true })
       .evaluate((node) => getComputedStyle(node).filter);
     expect(establishedFilter).toBe("grayscale(1) opacity(0.45)");
     for (const image of await track.locator("img").all()) {
