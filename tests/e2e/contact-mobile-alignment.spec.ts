@@ -120,9 +120,35 @@ for (const width of [320, 390, 430, 767]) {
       "scroll-snap-type",
       /^y(?: proximity)?$/,
     );
+    const domain = page.locator('[data-contact-card="domain"]');
+    await expect(domain).toBeHidden();
+    expect(await domain.boundingBox()).toBeNull();
+    await expect(domain.locator("a")).toHaveAttribute("href", "/projects.html");
+    const grid = domain.locator("..");
+    await expect(grid).toHaveAttribute("data-mobile-snap-section");
+    const connect = grid.locator(":scope > div").nth(1);
+    const location = grid.locator(":scope > div").nth(2);
+    await expect(connect).toBeVisible();
+    await expect(location).toBeVisible();
     await expect(
-      page.getByRole("link", { name: "Review Projects" }),
-    ).toHaveAttribute("href", "/projects.html");
+      connect.getByRole("link", { name: "View Profile" }),
+    ).toHaveAttribute("href", /linkedin\.com/);
+    const gridBox = await grid.boundingBox();
+    const connectBox = await connect.boundingBox();
+    const locationBox = await location.boundingBox();
+    expect(connectBox!.y).toBeCloseTo(gridBox!.y, 1);
+    expect(locationBox!.y - connectBox!.y - connectBox!.height).toBeCloseTo(
+      24,
+      1,
+    );
+    await expect(
+      page.getByRole("button", { name: "Copy URL", exact: true }),
+    ).toBeVisible();
+    // The complete grid remains the snap chapter; the hidden card adds no stop.
+    await expect(domain.locator("[data-mobile-snap-section]")).toHaveCount(0);
+    await expect(
+      page.locator("#contact [data-mobile-snap-section]"),
+    ).toHaveCount(3);
     const path = testInfo.outputPath(`contact-after-${width}.png`);
     await page.screenshot({ path, animations: "disabled" });
     await testInfo.attach("Contact mobile after", {
@@ -154,6 +180,10 @@ for (const width of [768, 1440]) {
     // WHY: Resize from the modified layout to prove its overrides stop at 767px.
     await page.setViewportSize({ width, height: 900 });
     await ready(page);
+    await expect(page.locator('[data-contact-card="domain"]')).toBeVisible();
+    await expect(
+      page.getByRole("link", { name: "Review Projects" }),
+    ).toBeVisible();
     await expect(hero).toHaveCSS("text-align", "center");
     await expect(hero).toHaveCSS("padding-left", "16px");
     await expect(hero).toHaveCSS("padding-right", "16px");
