@@ -56,3 +56,12 @@
 
 위의 `dc47f8f` CI·캡처는 Hero 정렬만 검증한 결과이며 이번 숨김까지 통과했다는 뜻은 아닙니다. 추가 변경은 새 PR head의 CI와 실제 390px 캡처를 확인한 후 병합하고, 기존 Pages build/deploy/live 검사를 통해 게시 revision까지 확인합니다. 최종 실행 링크는 [PR #7 checks](https://github.com/nana-park/breadme/pull/7/checks)와 해당 PR 검증 요약을 따릅니다.
 
+
+## 2026-10-06 추가 요청: Home Selected Projects 카드
+
+Contact Domain 카드와 같은 표면 규격을 Home NAVER/SK Telecom 카드에 적용합니다. 흰 배경·1px #e5e7eb·radius8px·작은 그림자, 1024px 미만 padding24px / 이상32px, hover 중간 그림자와 300ms easing을 사용합니다. 원본 Contact의 투명한 0px ring-shadow는 표시 결과에 영향이 없으므로 CSS Module로 복제하지 않습니다.
+
+`home-career-visibility.spec.ts`는 320/390/768/1023/1024/1440px에서 실제 Domain의 computed style과 두 Home 카드를 비교합니다. 제품·성과 문구·역할·링크·타이포·열·학력/갤러리 순서 계약을 그대로 확인하고 390/1440px의 경력·학력·전체 화면 PNG를 남깁니다. 1440px hover도 실제 Contact 카드와 비교합니다. 추가 요청의 최종 CI와 게시 여부는 해당 head의 PR checks 및 공개 revision으로 확인합니다.
+
+
+2026-10-06 사용자가 Contact/Home 변경을 같은 PR에 포함해 검수 후 함께 배포하도록 승인했습니다. Contact-only head `6db26ddb0c2f7a9c33d3a52cea8f27316805de7e`는 [Foundation 90개 브라우저 검사](https://github.com/nana-park/breadme/actions/runs/37392701968)와 [production paths](https://github.com/nana-park/breadme/actions/runs/37392701698)를 통과했고, 실제 390px Domain 숨김 및 768/1440px 변경 픽셀 0을 확인했습니다. Home 표면을 포함한 후속 head의 통과 여부는 이 이전 결과와 별도로 최신 PR checks에서 확인합니다. 배포는 최종 head 검수와 기존 Pages build/deploy/verify-live 통과, 공개 revision 일치까지 확인해야 완료입니다.
