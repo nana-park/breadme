@@ -13,23 +13,43 @@ async function holdPageChunk(page: Page, chunk: string) {
     requested = resolve;
   });
   const pattern = `**/${chunk}-*.js`;
+  const inFlight = new Set<Promise<void>>();
   const handler = async (route: Route) => {
+    let settled!: () => void;
+    const completion = new Promise<void>((resolve) => {
+      settled = resolve;
+    });
+    inFlight.add(completion);
     requested();
-    await gate;
-    await route.continue();
+    try {
+      await gate;
+      await route.continue();
+    } finally {
+      settled();
+      inFlight.delete(completion);
+    }
   };
   await page.route(pattern, handler);
+  let resuming: Promise<void> | undefined;
   return {
     requestSeen,
     async resume() {
-      release();
-      await page.unroute(pattern, handler);
+      // Wait for held requests before unregistering: unroute during continue
+      // races with Playwright's fallback and produces "Route is already handled".
+      resuming ??= (async () => {
+        release();
+        await Promise.all(inFlight);
+        await page.unroute(pattern, handler);
+      })();
+      await resuming;
     },
   };
 }
 
 async function verifyHeader(page: Page, width: number) {
-  const desktop = page.locator(".hidden.lg\\:flex");
+  const desktop = page
+    .locator("#navbar [data-materials-action='resume']")
+    .locator("..");
   const menu = page.locator("#mobileToggle");
   await expect(page.locator("style[data-original-style]")).toHaveCount(3);
   expect(

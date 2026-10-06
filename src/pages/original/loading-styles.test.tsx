@@ -18,7 +18,7 @@ vi.mock("./generated/OriginalAboutContent", async () => {
 });
 
 it("keeps one ordered style stack mounted while the lazy body is pending and after it resolves", async () => {
-  render(<OriginalPage pageId="about" />);
+  render(<OriginalPage pageId="about" onOpenMaterials={() => {}} />);
   expect(screen.getByLabelText("Loading portfolio")).toBeInTheDocument();
   const styles = Array.from(
     document.querySelectorAll("style[data-original-style]"),

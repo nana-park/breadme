@@ -1,16 +1,19 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import type { RefObject } from "react";
 import styles from "./MaterialsPopup.module.css";
 type Props = {
   isOpen: boolean;
   onToggle: () => void;
   onClose: () => void;
   hideMinimizedDuringHomeHero?: boolean;
+  returnFocusRef?: RefObject<HTMLButtonElement | null>;
 };
 export function MaterialsPopup({
   isOpen,
   onToggle,
   onClose,
   hideMinimizedDuringHomeHero = false,
+  returnFocusRef,
 }: Props) {
   const [homeHeroVisible, setHomeHeroVisible] = useState(false);
   const hideMinimized =
@@ -24,13 +27,17 @@ export function MaterialsPopup({
     if (!root.current?.closest("[inert]")) {
       if (isOpen) minimize.current?.focus();
       else if (wasOpen.current) {
-        if (window.innerWidth < 768)
+        const trigger = returnFocusRef?.current;
+        if (trigger?.isConnected && !trigger.closest("[hidden], [inert]"))
+          trigger.focus();
+        else if (window.innerWidth < 768)
           document.querySelector<HTMLElement>("#mobileToggle")?.focus();
         else toggle.current?.focus();
+        if (returnFocusRef) returnFocusRef.current = null;
       }
     }
     wasOpen.current = isOpen;
-  }, [isOpen, hideMinimized]);
+  }, [isOpen, hideMinimized, returnFocusRef]);
   useEffect(() => {
     let shortcutHadFocus = document.activeElement === toggle.current;
     const trackShortcutFocus = (event: FocusEvent) => {

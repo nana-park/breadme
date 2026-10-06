@@ -6,6 +6,11 @@ import { lazy, Suspense, useLayoutEffect, useRef } from "react";
 import type { OriginalPageId } from "@/config/originalRoutes";
 import { useOriginalPageInteractions } from "@/shared/hooks/useOriginalPageInteractions";
 import styles from "./OriginalPage.module.css";
+import type { ContactMaterialsOpener } from "./ContactPackageActions";
+type Props = {
+  pageId: OriginalPageId;
+  onOpenMaterials: ContactMaterialsOpener;
+};
 
 const pages = {
   home: {
@@ -127,7 +132,7 @@ const pageCss = import.meta.glob<string>("./generated/*.css", {
   eager: true,
 });
 
-function MountedOriginalPage({ pageId }: { pageId: OriginalPageId }) {
+function MountedOriginalPage({ pageId, onOpenMaterials }: Props) {
   const root = useRef<HTMLDivElement>(null);
   useOriginalPageInteractions(pageId, root);
   useOriginalDetailInteractions(pageId, root);
@@ -146,12 +151,12 @@ function MountedOriginalPage({ pageId }: { pageId: OriginalPageId }) {
       onSubmitCapture={(event) => event.preventDefault()}
     >
       <div data-mobile-snap-entry aria-hidden="true" />
-      <Page />
+      <Page onOpenMaterials={onOpenMaterials} />
     </div>
   );
 }
 
-export function OriginalPage({ pageId }: { pageId: OriginalPageId }) {
+export function OriginalPage({ pageId, onOpenMaterials }: Props) {
   return (
     <>
       {/* WHAT: Apply the existing style stack before lazy content is ready.
@@ -175,7 +180,10 @@ export function OriginalPage({ pageId }: { pageId: OriginalPageId }) {
           />
         }
       >
-        <MountedOriginalPage pageId={pageId} />
+        <MountedOriginalPage
+          pageId={pageId}
+          onOpenMaterials={onOpenMaterials}
+        />
       </Suspense>
     </>
   );

@@ -221,51 +221,70 @@ async function settleGeometry(locator: Locator) {
 }
 
 async function checkMenu(page: Page, testInfo: TestInfo, caseId: string) {
-  // A short phone viewport deliberately exercises menu overflow instead of
-  // assuming the full menu must overflow on every 844px-tall phone.
-  await page.setViewportSize({
-    width: page.viewportSize()!.width,
-    height: 640,
-  });
-  caseId += "--h640";
-  // Open from below the hero, where the floating materials control is painted.
+  // WHAT: A normal short phone fits every link; a much shorter viewport can scroll.
+  // WHY: Overflow is a fallback for constrained/enlarged layouts, not the default.
+  const width = page.viewportSize()!.width;
+  await page.setViewportSize({ width, height: 640 });
   await page.locator("footer").scrollIntoViewIfNeeded();
   const toggle = page.locator("#mobileToggle");
   await toggle.click();
   await expect(toggle).toHaveAttribute("aria-expanded", "true");
   const menu = page.locator("#navMenu");
   await expect(menu).toHaveCSS("overflow-y", "auto");
+  await expect(menu.locator("[data-materials-action]")).toHaveCount(0);
+  await expect(page.locator(".original-mobile-materials")).toHaveCount(0);
   const primary = await inspectText(menu.locator(".nav-link"));
   const secondary = await inspectText(menu.locator(".lnb-link"));
   const scrollBox = await menu.evaluate((element) => ({
     height: element.clientHeight,
     scrollHeight: element.scrollHeight,
+    scrollTop: element.scrollTop,
   }));
-  await attachEvidence(page, testInfo, `${caseId}--menu-top`, {
+  await attachEvidence(page, testInfo, `${caseId}--h640--menu-top`, {
     primary,
     secondary,
     scrollBox,
   });
   assertReadable(primary, "menu primary labels", 16);
   assertReadable(secondary, "menu secondary labels", 14);
-  expect(scrollBox.scrollHeight).toBeGreaterThan(scrollBox.height);
+  expect(primary).toHaveLength(5);
+  expect(secondary).toHaveLength(7);
+  expect(
+    scrollBox.scrollHeight,
+    "All navigation fits at 640px height without scrolling",
+  ).toBeLessThanOrEqual(scrollBox.height + TOLERANCE);
+  expect(scrollBox.scrollTop).toBe(0);
+  for (const link of await menu.locator("a").all())
+    await expect(link).toBeInViewport({ ratio: 1 });
   await expect(page.locator("#main-content")).toHaveAttribute("inert");
   const popup = page.locator("#email-popup");
   if (await popup.count()) {
     await expect(popup).toHaveAttribute("inert");
     await expect(popup).toBeHidden();
   }
-  const material = menu.locator("[data-materials-action='portfolio']");
-  await material.scrollIntoViewIfNeeded();
-  await material.focus();
-  await expect(material).toBeInViewport();
+
+  await page.setViewportSize({ width, height: 320 });
+  await expect(toggle).toHaveAttribute("aria-expanded", "true");
+  const shortScrollBox = await menu.evaluate((element) => ({
+    height: element.clientHeight,
+    scrollHeight: element.scrollHeight,
+  }));
+  expect(
+    shortScrollBox.scrollHeight,
+    "The menu retains its scroll fallback in a very short viewport",
+  ).toBeGreaterThan(shortScrollBox.height);
+  const contact = menu.getByRole("link", { name: "CONTACT", exact: true });
+  await contact.scrollIntoViewIfNeeded();
+  await contact.focus();
+  await expect(contact).toBeInViewport({ ratio: 1 });
   const reached = await menu.evaluate((element) => ({
     scrollTop: element.scrollTop,
     top: element.getBoundingClientRect().top,
     bottom: element.getBoundingClientRect().bottom,
   }));
-  const control = await material.boundingBox();
-  await attachEvidence(page, testInfo, `${caseId}--menu-materials`, {
+  const control = await contact.boundingBox();
+  await attachEvidence(page, testInfo, `${caseId}--h320--menu-contact`, {
+    shortScrollBox,
     reached,
     control,
   });

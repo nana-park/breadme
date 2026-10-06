@@ -12,12 +12,8 @@ test("mobile controls leave the original Hero copy clear and center the hamburge
   const toggle = page.locator("#popupToggle");
   await expect(toggle).toBeHidden();
   await page.locator("#mobileToggle").click();
-  await page
-    .locator(".original-mobile-materials [data-materials-action='resume']")
-    .click();
-  await expect(
-    page.getByRole("button", { name: "Minimize Popup" }),
-  ).toBeFocused();
+  await expect(page.locator("#navMenu [data-materials-action]")).toHaveCount(0);
+  await expect(page.locator("#navMenu a")).toHaveCount(12);
   await page.keyboard.press("Escape");
   await expect(page.locator("#mobileToggle")).toBeFocused();
   await expect(toggle).toBeHidden();
@@ -95,9 +91,9 @@ test("mobile menu contains keyboard focus and restores inert and scroll after re
     await expect(toggle).toBeFocused();
     await page.keyboard.press("Shift+Tab");
     await expect(
-      page.locator(
-        ".original-mobile-materials [data-materials-action='portfolio']",
-      ),
+      page
+        .locator("#navMenu")
+        .getByRole("link", { name: "CONTACT", exact: true }),
     ).toBeFocused();
     await page.keyboard.press("Tab");
     await expect(toggle).toBeFocused();
@@ -202,10 +198,10 @@ test("materials remain nonmodal and disabled with reliable focus on open and clo
     ["portfolio", true],
     ["resume", false],
   ] as const) {
-    await menuToggle.click();
-    await page
-      .locator(`.original-mobile-materials [data-materials-action='${action}']`)
-      .click();
+    // The panel can remain open during a resize; mobile no longer has materials links.
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.locator(`#navbar [data-materials-action='${action}']`).click();
+    await page.setViewportSize({ width: 390, height: 844 });
     const minimize = page.getByRole("button", { name: "Minimize Popup" });
     await expect(minimize).toBeFocused();
     await expect(toggle).toHaveAttribute("tabindex", "-1");
@@ -222,18 +218,12 @@ test("materials remain nonmodal and disabled with reliable focus on open and clo
     await expect(toggle).toHaveAttribute("aria-expanded", "false");
     await expect(page.locator("#materials-content")).toBeHidden();
   }
-  await page.locator("#mobileToggle").click();
-  await page
-    .locator(".original-mobile-materials [data-materials-action='resume']")
-    .click();
-  await expect(
-    page.getByRole("button", { name: "Minimize Popup" }),
-  ).toBeFocused();
-  await expect(page.locator("#email-popup")).not.toHaveAttribute("inert");
-  await expect(page.locator("main")).not.toHaveAttribute("inert");
+  await menuToggle.click();
+  await expect(page.locator("#navMenu [data-materials-action]")).toHaveCount(0);
+  await expect(page.locator("#email-popup")).toHaveAttribute("inert");
   await page.keyboard.press("Escape");
   await expect(menuToggle).toBeFocused();
-  await expect(toggle).toBeHidden();
+  await expect(page.locator("#email-popup")).not.toHaveAttribute("inert");
   await page.setViewportSize({ width: 768, height: 900 });
   await expect(toggle).toBeVisible();
   await toggle.click();

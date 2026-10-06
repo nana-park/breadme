@@ -175,7 +175,7 @@ test("long article 52537: image widths clamp without distortion at 320px", async
   await assertArticleImages(page, testInfo, article, 320);
 });
 
-test("article reading retains materials access through the mobile menu", async ({
+test("article reading has navigation-only mobile menu and preserves resized materials dismissal", async ({
   page,
 }) => {
   await openArticle(page, "52537", 390);
@@ -184,28 +184,40 @@ test("article reading retains materials access through the mobile menu", async (
   await expect(popup).toBeHidden();
   await menuToggle.click();
   await expect(menuToggle).toHaveAttribute("aria-expanded", "true");
-  await page
-    .locator(".original-mobile-materials [data-materials-action='portfolio']")
-    .click();
-  await expect(menuToggle).toHaveAttribute("aria-expanded", "false");
-  await expect(popup).toBeVisible();
-  await expect(popup).not.toHaveAttribute("inert");
-  await expect(page.locator("#materials-content")).toBeVisible();
-  await expect(page.locator("main")).not.toHaveAttribute("inert");
-  const minimize = page.getByRole("button", { name: "Minimize Popup" });
-  await expect(minimize).toBeFocused();
-  await minimize.click();
-  await expect(popup).toBeHidden();
-  await expect(menuToggle).toBeFocused();
-  await expect(page.locator("#article-detail-content")).toBeVisible();
-  await menuToggle.click();
-  await page
-    .locator(".original-mobile-materials [data-materials-action='resume']")
-    .click();
-  await expect(minimize).toBeFocused();
+  await expect(page.locator("#navMenu [data-materials-action]")).toHaveCount(0);
+  await expect(page.locator(".original-mobile-materials")).toHaveCount(0);
+  await expect(
+    page
+      .locator("#navMenu")
+      .getByRole("link", { name: "CONTACT", exact: true }),
+  ).toBeInViewport({ ratio: 1 });
   await page.keyboard.press("Escape");
-  await expect(popup).toBeHidden();
+  await expect(menuToggle).toHaveAttribute("aria-expanded", "false");
   await expect(menuToggle).toBeFocused();
+
+  // WHAT: Preserve mobile popup focus and dismissal coverage after a real desktop open.
+  // WHY: No removed or hidden phone-only entry should be used to create this state.
+  const minimize = page.getByRole("button", { name: "Minimize Popup" });
+  for (const action of ["portfolio", "resume"] as const) {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    const material = page.locator(
+      `#navbar [data-materials-action='${action}']`,
+    );
+    await expect(material).toBeVisible();
+    await material.click();
+    await expect(minimize).toBeFocused();
+    await page.setViewportSize({ width: 390, height: 844 });
+    await expect(popup).toBeVisible();
+    await expect(popup).not.toHaveAttribute("inert");
+    await expect(page.locator("#materials-content")).toBeVisible();
+    await expect(page.locator("main")).not.toHaveAttribute("inert");
+    await expect(minimize).toBeFocused();
+    if (action === "portfolio") await minimize.click();
+    else await page.keyboard.press("Escape");
+    await expect(popup).toBeHidden();
+    await expect(menuToggle).toBeFocused();
+    await expect(page.locator("#article-detail-content")).toBeVisible();
+  }
 
   await page.setViewportSize({ width: 768, height: 900 });
   const shortcut = page.locator("#popupToggle");

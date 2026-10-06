@@ -2,7 +2,6 @@
 .original-skip-link { position: fixed; top: -100px; left: 16px; padding: 12px 20px; background: #111; color: white; z-index: 10001; }
 .original-skip-link:focus { top: 8px; }
 :focus-visible { outline: 2px solid #d97706; outline-offset: 4px; }
-.original-mobile-materials { display: none; }
 .original-menu-expanded > .original-submenu { opacity: 1; visibility: visible; }
 .navbar.gnb-expanded .mega-backdrop { height: 160px; opacity: 1; visibility: visible; }
 .navbar.original-about-open .mega-backdrop { height: 120px; }
@@ -13,8 +12,6 @@
   .nav-menu.active .nav-link { color: white; min-height: 44px; justify-content: center; }
   .nav-menu.active .original-submenu { position: static; opacity: 1; visibility: visible; transform: none; width: 100%; height: auto; gap: 0; padding: 0; }
   .nav-menu.active .lnb-link { min-height: 44px; }
-  .nav-menu.active .original-mobile-materials { display: flex; flex-direction: row; justify-content: center; gap: 16px; color: white; }
-  .original-mobile-materials button { min-height: 44px; padding: 8px; }
   #mobileToggle { display: flex; flex-direction: column; gap: 4px; min-height: 44px; min-width: 44px; align-items: center; justify-content: center; }
   #mobileToggle span { width: 25px; height: 2px; background: var(--color-text-dark); }
 }

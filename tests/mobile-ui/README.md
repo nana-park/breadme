@@ -26,7 +26,7 @@ The preview server uses port 4173. `MOBILE_UI_BASE_URL` optionally selects a bui
 - The longest-title article also has eight resize steps at the same widths as the route baseline, including 1440. This is representative reading-layout coverage, not an 18-article × eight-width matrix.
 - At 320, the long Clubhouse article has top/middle root-font and synthetic text-enlargement probes. The longest-title article opens from archive page 3, then tests browser Back/Forward and Back to List, including pagination, focus, and scroll restoration. Projects expanded content and the long Lectures title also have root-font probes.
 - Contact and Enjoy have 320px synthetic computed-text-200% hero captures for inspecting reflow inside their fixed-height media/overlay structures. These record evidence without asserting a defect.
-- Menu states cover 844×390 landscape at normal text, plus synthetic text enlargement at 320×844 and 844×390. They capture the top and final materials control and check Escape, repeated open/close, focus return, removal of background inertness, and restoration of the body's prior inline overflow.
+- Menu states cover 844×390 landscape at normal text, plus synthetic text enlargement at 320×844 and 844×390. They capture the top and final CONTACT navigation link and check Escape, repeated open/close, focus return, removal of background inertness, and restoration of the body's prior inline overflow.
 
 The fixture JSON is already checked against the React article metadata and body fingerprints by `src/content/original/articles/articles.test.tsx`. It can be imported without loading React bodies or Vite-only asset imports.
 
@@ -60,6 +60,7 @@ npx playwright test tests/e2e/mobile-scroll-snap.spec.ts tests/e2e/mobile-contro
 ```
 
 - `mobile-scroll-snap.spec.ts`: native section snap on all 14 routes at 390; free document scrolling across all 14 routes at 1440; the 767/768 boundary; reduced-motion behavior; fixed-header hash anchors and keyboard skip navigation; article history and interior reading; expanded project content; independent horizontal gallery scrolling; detail/gallery overlap contracts.
+- `mobile-menu-compact.spec.ts` (ordinary e2e): all 14 routes at 390×844 plus Home at 390×740, 375×667, and 320×640; all 12 navigation links fit without scrolling, retain 44px targets and 16/14px type, and exclude materials actions. Short 320×320 and synthetic-200% text cases verify reachable vertical overflow. Screenshots and geometry are attached per viewport.
 - `mobile-controls.spec.ts`: repeated keyboard focus containment and dismissal, preservation of existing inert/overflow values, header transitions at 1023/1024, desktop Escape, and materials-panel behavior.
 - `articles.spec.ts`: archive pagination, reading and original-source links, direct detail links, and Back/Forward/list restoration at 390 and 1440.
 

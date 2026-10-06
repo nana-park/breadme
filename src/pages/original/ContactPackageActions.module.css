@@ -1,0 +1,76 @@
+/* WHAT: Preserve the source package action styling, with contained wrapping. */
+.actions {
+  min-width: 0;
+  max-width: 100%;
+}
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background: #fff;
+  color: #111;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
+  transition: border-color 150ms;
+  overflow-wrap: anywhere;
+}
+.button:hover {
+  border-color: #d1d5db;
+}
+.button:focus-visible,
+.manualCopy input:focus-visible {
+  outline: 2px solid #111;
+  outline-offset: 3px;
+}
+.icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: #6b7280;
+}
+.status {
+  margin: 8px 0 0;
+  color: #52525b;
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.status:empty {
+  margin: 0;
+}
+.manualCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  margin-top: 8px;
+  font-size: 13px;
+}
+.manualCopy input {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #d4d4d8;
+  border-radius: 6px;
+  padding: 8px;
+  background: white;
+  color: #111;
+}
+@media (max-width: 767px) {
+  .button,
+  .manualCopy input {
+    min-height: 44px;
+  }
+}

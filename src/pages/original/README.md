@@ -71,7 +71,7 @@ About와 Awards의 장식용 바깥 `overflow:hidden`만 모바일에서 `clip`�
 
 AI Mentoring 상세는 기존 데모 소스의 업로드 제한 때문에 선택적 타이포그래피 역할 2개를 적용하지 않고 원본 파일을 그대로 둡니다. 기존 제목 32px·Director’s Log 14px는 유지됩니다. 공통 메뉴/Footer와 해당 경로의 QA는 포함하지만, 이 페이지의 글자 크기 조정까지 완료한 것으로 표시하지 않습니다.
 
-추가 화면 검수에서 원형 자료 바로가기가 여러 페이지의 본문을 가리는 것이 확인되어, 767px 이하의 최소화 바로가기는 전 경로에서 감춥니다. Home에서도 Hero 아래에 다시 나타나지 않습니다. 같은 Resume/Portfolio PDF 진입은 메뉴에 남고 Coming Soon 패널은 그대로이며, PDF 공개나 전송 기능을 추가하지 않습니다. 패널을 닫거나 숨김 경계로 크기를 바꾸면 보이는 메뉴 버튼에 초점을 돌립니다.
+추가 화면 검수에서 원형 자료 바로가기가 여러 페이지의 본문을 가리는 것이 확인되어, 767px 이하의 최소화 바로가기는 전 경로에서 감춥니다. Home에서도 Hero 아래에 다시 나타나지 않습니다. 2026-10-06 후속 요청으로 모바일 햄버거 메뉴의 Resume/Portfolio PDF 진입도 제거했습니다. Desktop 자료 버튼·Contact 자료 본문·Coming Soon 패널은 그대로이며, PDF 공개나 전송 기능을 추가하지 않습니다. 패널을 닫거나 숨김 경계로 크기를 바꾸면 보이는 메뉴 버튼에 초점을 돌립니다.
 
 ## Contact 모바일 Hero 정렬 (2026-10-05)
 
@@ -99,3 +99,16 @@ AI Mentoring 상세는 기존 데모 소스의 업로드 제한 때문에 선택
 페이지 전환 시 lazy 본문의 다운로드를 기다리는 동안에도 기존 페이지 CSS → utility → 모바일 접근성 스타일을 한 번씩 즉시 적용합니다. 스타일 묶음은 `OriginalPage`의 Suspense 밖에 있고 본문과 상호작용 hook만 로딩 경계 안에 있습니다. Desktop 자료 버튼의 모바일 숨김과 Header 정렬이 처음부터 유지되어 Resume/Portfolio PDF가 기본 버튼으로 잠깐 노출되지 않게 합니다. CSS 내용·적용 순서·페이지 링크 방식은 바꾸지 않습니다.
 
 `loading-styles.test.tsx`는 로딩 전후 스타일 노드의 개수·순서·동일성을 검사하고, `header-loading-styles.spec.ts`는 실제 본문 JS 응답을 지연시킨 상태의 320–1440px Header와 반복 페이지 이동을 검사합니다. 단위 검사가 실제 브라우저 검사 결과를 대신하지 않습니다.
+
+## 모바일 메뉴 한 화면 배치 (2026-10-06)
+
+공통 Header의 모바일 메뉴는 5개 상위 링크와 ABOUT 3개·PROJECTS 4개 하위 링크를 모두 유지합니다. 하위 링크만 2열로 배치하고 메뉴의 상하 여백·그룹 간격을 줄여 390×844·390×740·375×667·320×640에서 스크롤 없이 보이도록 구성합니다. 글자는 기존 16/14px, 최소 터치 영역은 44px이며 링크 이름·목적지는 바꾸지 않습니다. 더 짧은 화면과 확대 글자를 위해 세로 스크롤을 남기고, Escape·닫기 버튼·초점 가두기·본문 스크롤 잠금은 유지합니다. Desktop은 변경하지 않습니다. 실제 실행 결과와 미검수 범위는 [모바일 메뉴 검수 기록](../../../docs/qa/mobile-menu-compact.md)에 구분합니다.
+
+
+## Contact 패키지 직접 조작 (2026-10-06)
+
+Resume / Portfolio PDF placeholder를 `ContactPackageActions`의 native 버튼으로 연결합니다. App → OriginalPage의 콜백으로 기존 Application Materials 패널을 열고, 반복 실행은 열린 패널을 유지하며 닫기/Escape 뒤 실제 본문 진입 버튼으로 초점을 돌립니다. 자료 전송·PDF 공개는 여전히 Coming Soon입니다.
+
+Copy URL은 `siteMetadata.portfolioUrl`의 공개 홈 `https://nana-park.github.io/breadme/`만 복사합니다. Clipboard API가 완료된 뒤에만 사용자 지정 “포트폴리오 웹사이트 URL이 복사되었습니다” alert를 보입니다. 거부·미지원은 실패 alert 및 선택 가능한 읽기 전용 URL로 안내하고 재시도할 수 있습니다. 진행 중 중복 클릭은 무시합니다. 문구는 `src/content/site/contactPackage.ts`, 버튼·피드백 스타일은 `ContactPackageActions.module.css`가 소유합니다. 원본 형태·줄바꿈을 보존하고 767px 이하 버튼 조작 높이만 44px 이상으로 보정합니다. Hero 정렬·Domain 숨김·메일 폼은 이 수정에 영향받지 않습니다. 변환기도 본문 조작 컴포넌트를 보존합니다.
+
+검사 범위와 브라우저 실행 제한은 [Contact 패키지 검수](../../../docs/qa/contact-package-actions.md)를 봅니다.
