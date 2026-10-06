@@ -36,11 +36,10 @@
       "sectionIds": [
         "about",
         "history",
-        "history-2",
         "testimonials"
       ],
-      "elementCount": 181,
-      "textCount": 361,
+      "elementCount": 140,
+      "textCount": 285,
       "inlineStyleBlocks": 2,
       "importantRules": 1
     },

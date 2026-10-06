@@ -69,7 +69,7 @@ body {
     max-width: 1440px !important;
     width: 100% !important;
     margin: 0 auto !important;
-    padding: 0 5vw !important;
+    padding: 0 var(--original-container-gutter, 5vw) !important;
     position: relative;
     z-index: 10;
 }

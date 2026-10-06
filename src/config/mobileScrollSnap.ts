@@ -4,7 +4,7 @@ import type { OriginalPageId } from "./originalRoutes";
 // accordion panel or embedded demo would interrupt reading and nested scrolling.
 export const mobileSnapSelectors: Record<OriginalPageId, string> = {
   home: ":scope > section",
-  about: "#about > div, #media",
+  about: "[data-about-chapter]",
   career: ":scope > section",
   qualified: ":scope > section",
   enjoy: "#enjoy > .container > div",

@@ -14,7 +14,7 @@ Home의 `#history`는 사진·모션 없는 흰색 Education 스타일의 `HomeE
 | ------------------------------------------ | --------------------------------------------------- |
 | `/`, `/index.html`                         | 선택된 텍스트 Hero·원본 파트너·발자취·경력·학력·CTA |
 | `/about.html`                              | 소개·배경 영상·미디어                               |
-| `/career.html`                             | 경력·학력·추천                                      |
+| `/career.html`                             | 경력·추천                                           |
 | `/qualified.html`                          | 역량·인증 4개 탭·업무 원칙                          |
 | `/enjoy.html`                              | 원본 갤러리·카테고리·여행지 선택. 메뉴 숨김 유지    |
 | `/projects.html`                           | 실제 프로젝트·펼침 목록·9개 세부 펼침·상세 링크     |
@@ -81,3 +81,21 @@ AI Mentoring 상세는 기존 데모 소스의 업로드 제한 때문에 선택
 
 
 2026-10-06 추가 요청: Contact의 `Domain` 카드 전체는 767px 이하에서만 감춥니다. `data-contact-card="domain"` 표식과 같은 CSS Module이 소유하며 변환기에도 표식을 보존합니다. 모바일은 빈 카드 자리 없이 Connect → Location으로 이어지고, 768px 이상 Domain/Review Projects는 유지합니다. 별도 Resume & Portfolio Package의 Copy URL, 기존 비활성 폼과 Coming Soon은 바꾸지 않습니다.
+
+## About 모바일 소개·이름 도식·구간 경계
+
+2026-10-06 요청 범위에서는 767px 이하 About의 소개 제목·설명·버튼을 Home과 같은 20px 시작선에 좌측 정렬합니다. 기존 `.container`의 기본 5vw를 보존하는 gutter 변수는 About 소개 요소에서만 모바일 값으로 설정합니다. 이름 도식의 Park Nahyun은 40→36px, 발음 기호는 30→27px, 연결선은 80→70px로 조금 줄이고 작은 설명 라벨과 BREAD/ME의 의미는 유지합니다.
+
+`data-about-chapter`는 소개 → 이름 도식 → 인터뷰의 세 경계를 명시합니다. 모바일 각 구간의 최소 높이는 화면에서 Header 70px를 뺀 값이며, 긴 내용과 확대된 글자는 구간 자체를 늘립니다. 기존 문서 proximity snap·메뉴 열림 시 해제·reduced motion 규칙을 재사용합니다. 강제 고정 높이, 새 스크롤 컨테이너, 휠/터치 가로채기는 추가하지 않습니다. 768px 이상 화면은 원본 값을 사용합니다. [검수 범위와 상태](../../../docs/qa/about-mobile-sections.md)를 확인합니다.
+
+## Career 콘텐츠 정리 (2026-10-06)
+
+사용자 요청으로 Career의 중복 Education(`history-2`)을 모바일·데스크톱 모두 제거합니다. 순서는 소개 → 경력 2패널 → Team Work 추천이며 Home의 Academic Standing·학력 사진·연구 링크는 그대로입니다. 빈 섹션이나 스냅 지점은 남기지 않습니다. 변환기의 `applyCareerContentOverrides`가 재생성 시 같은 범위를 유지합니다. Team Work 아래 `Unfiltered voices…` 문장의 명시적 줄바꿈은 767px 이하에서만 숨겨 자연스럽게 줄바꿈되며, 문구와 768px 이상 줄바꿈은 보존합니다.
+
+같은 요청의 모바일 추천 카드는 기본 1:1 비율, 너비 최대350px(좁은 화면은 viewport−48px), padding16px, 본문14px/1.45, 추천인12px/1.35로 조정합니다. 원문 6개와 작성자 정보는 생략하지 않습니다. 글자 확대 시에는 `min-height:min-content`로 정사각형보다 높게 늘어나 전체 텍스트를 보존합니다. 768px 이상 기존 카드 크기·본문·작성자 스타일은 유지합니다.
+
+## 페이지 로딩 중 공통 Header 스타일
+
+페이지 전환 시 lazy 본문의 다운로드를 기다리는 동안에도 기존 페이지 CSS → utility → 모바일 접근성 스타일을 한 번씩 즉시 적용합니다. 스타일 묶음은 `OriginalPage`의 Suspense 밖에 있고 본문과 상호작용 hook만 로딩 경계 안에 있습니다. Desktop 자료 버튼의 모바일 숨김과 Header 정렬이 처음부터 유지되어 Resume/Portfolio PDF가 기본 버튼으로 잠깐 노출되지 않게 합니다. CSS 내용·적용 순서·페이지 링크 방식은 바꾸지 않습니다.
+
+`loading-styles.test.tsx`는 로딩 전후 스타일 노드의 개수·순서·동일성을 검사하고, `header-loading-styles.spec.ts`는 실제 본문 JS 응답을 지연시킨 상태의 320–1440px Header와 반복 페이지 이동을 검사합니다. 단위 검사가 실제 브라우저 검사 결과를 대신하지 않습니다.

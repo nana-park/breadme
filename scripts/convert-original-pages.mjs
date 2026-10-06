@@ -10,6 +10,7 @@ import { fileURLToPath } from "node:url";
 import { JSDOM } from "jsdom";
 import postcss from "postcss";
 import { format } from "prettier";
+import { applyCareerContentOverrides } from "./apply-career-content-overrides.ts";
 
 const projectRoot = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
@@ -194,6 +195,7 @@ for (const [sourceFile, componentName] of pageDefinitions) {
   ).replace(/^\uFEFF/, "");
   const dom = new JSDOM(source);
   const document = dom.window.document;
+  applyCareerContentOverrides(document, sourceFile);
   // WHAT: Preserve the user's Home-only, one-sentence Research Focus copy.
   // WHY: Remove the forced break without changing Education layout or Career copy.
   if (sourceFile === "index.html") {
@@ -281,6 +283,21 @@ for (const [sourceFile, componentName] of pageDefinitions) {
         "data-reading-role",
         "video-hero",
       );
+      // Preserve semantic About chapters and the mobile-only intro gutter hook.
+      heading?.parentElement?.setAttribute(
+        "data-reading-role",
+        "about-introduction",
+      );
+      heading?.parentElement?.parentElement?.setAttribute(
+        "data-about-chapter",
+        "introduction",
+      );
+      document
+        .querySelector(".id-diagram-container")
+        ?.parentElement?.setAttribute("data-about-chapter", "identity");
+      document
+        .querySelector("#media")
+        ?.setAttribute("data-about-chapter", "interview");
       for (const role of [
         "diagram-container",
         "derivation-row",

@@ -145,15 +145,6 @@ function MountedOriginalPage({ pageId }: { pageId: OriginalPageId }) {
       data-original-page={pageId}
       onSubmitCapture={(event) => event.preventDefault()}
     >
-      <style>{pageCss[`./generated/${pages[pageId].css}.css`]}</style>
-      {pageId === "ai-mentoring-agent-detail" && (
-        <style>
-          {pageCss["./generated/OriginalMentoringMockupContent.css"]}
-        </style>
-      )}
-      {/* WHY: Source CDN utilities are inserted after its authored page CSS. */}
-      <style>{originalUtilities}</style>
-      <style>{mobileAccessibility}</style>
       <div data-mobile-snap-entry aria-hidden="true" />
       <Page />
     </div>
@@ -162,15 +153,30 @@ function MountedOriginalPage({ pageId }: { pageId: OriginalPageId }) {
 
 export function OriginalPage({ pageId }: { pageId: OriginalPageId }) {
   return (
-    <Suspense
-      fallback={
-        <div
-          aria-label="Loading portfolio"
-          style={{ minHeight: "100vh", background: "#fff" }}
-        />
-      }
-    >
-      <MountedOriginalPage pageId={pageId} />
-    </Suspense>
+    <>
+      {/* WHAT: Apply the existing style stack before lazy content is ready.
+          WHY: The shared header renders outside Suspense and needs utilities
+          immediately. Preserve page CSS → utilities → accessibility order. */}
+      <style data-original-style="page">
+        {pageCss[`./generated/${pages[pageId].css}.css`]}
+      </style>
+      {pageId === "ai-mentoring-agent-detail" && (
+        <style data-original-style="mockup">
+          {pageCss["./generated/OriginalMentoringMockupContent.css"]}
+        </style>
+      )}
+      <style data-original-style="utilities">{originalUtilities}</style>
+      <style data-original-style="accessibility">{mobileAccessibility}</style>
+      <Suspense
+        fallback={
+          <div
+            aria-label="Loading portfolio"
+            style={{ minHeight: "100vh", background: "#fff" }}
+          />
+        }
+      >
+        <MountedOriginalPage pageId={pageId} />
+      </Suspense>
+    </>
   );
 }

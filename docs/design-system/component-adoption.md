@@ -56,3 +56,17 @@ Header·Footer·자료 UI를 바꾸면 14개 경로가 영향 범위입니다. 3
 ## PR #3 모바일 자료 진입
 
 767px 이하에서는 본문을 가리는 중복 원형 바로가기를 숨기고 공통 메뉴의 Resume/Portfolio PDF 항목을 사용합니다. Home도 동일합니다. Coming Soon 패널과 비활성 자료 요청은 유지합니다. 768px 이상 표시와 Desktop 구성은 변경하지 않습니다.
+
+## About 모바일 구간 정리
+
+2026-10-06 About 요청은 기존 OriginalHeader·OriginalFooter·MaterialsPopup 연결을 유지합니다. 페이지 CSS Module과 명시적 역할/구간 표식에서만 소개 정렬·이름 도식 크기·구간 최소 높이를 관리합니다. `.container` gutter의 5vw fallback은 유지하고 모바일 About 소개에서만 20px로 지정합니다. 공통 스크롤 hook은 기존 요소에 구간 표식을 붙이며 실제 스크롤은 native proximity 규칙이 처리합니다.
+
+## Career 콘텐츠 정리 (2026-10-06)
+
+Career의 Education 섹션을 제거해 경력 다음에 추천이 이어집니다. Home의 학력과 공통 Header/Footer/자료 UI 적용 상태는 유지합니다. Team Work 소개 문장의 줄바꿈만 페이지 소유 `testimonial-intro` 역할로 767px 이하에서 자연 흐름으로 바꾸며 별도 모바일 콘텐츠나 공통 컴포넌트는 추가하지 않습니다.
+
+Career 모바일 추천 카드는 1:1 비율과 축소한 본문/작성자 글자 규격을 페이지 CSS Module에서 관리합니다. 글자 확대 시 내용 높이를 우선해 잘림을 방지하며, Desktop 원본 카드와 인용문은 그대로입니다.
+
+## 로딩 상태에서도 유지되는 공통 스타일
+
+공통 Header가 본문 로딩 중에도 이미 표시되므로, Header가 사용하는 기존 utility와 모바일 접근성 스타일은 lazy 본문과 별도로 즉시 삽입합니다. `OriginalPage`가 페이지 CSS → utility → 접근성 순서를 그대로 소유하고 Suspense는 본문만 감쌉니다. 새로운 스타일 시스템이나 자료 기능은 추가하지 않습니다.
