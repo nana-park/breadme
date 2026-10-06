@@ -52,6 +52,11 @@
     font-size: 13px;
     line-height: 1.6;
   }
+  /* WHY: The user keeps Domain on larger screens but removes the complete
+   * mobile card from layout and focus order, without leaving an empty grid row. */
+  .page [data-contact-card="domain"] {
+    display: none;
+  }
   .page [data-reading-role="video-hero"] {
     height: auto;
     min-height: max(600px, 75svh);
