@@ -42,3 +42,17 @@
 모든 값은 CSS px입니다. 두 페이지의 제목·본문은 모두 `text-align: left`이며, 작은 화면에서 실제 glyph와 문서 폭 넘침이 없었습니다. 380px 한도에 도달한 뒤에는 읽기 열 자체가 가운데 놓이는 Home 동작을 그대로 따릅니다.
 
 실제 iOS/Android·Safari·native 200% zoom은 미검수입니다. 사진 배경 위 텍스트의 전체 대비 접근성 인증을 이번 작은 정렬 작업으로 선언하지 않습니다. 이후 이 QA 기록만 갱신한 커밋은 runtime diff가 없는지 구분하고 최신 PR 검사를 다시 확인합니다.
+
+
+## 2026-10-06 추가 요청: 모바일 Domain 카드 숨김
+
+사용자가 모바일 Contact의 Domain 숨김과 함께 배포를 승인했습니다. Hero 정렬과 같은 PR에 포함합니다.
+
+- 767px 이하에서 `Domain` 카드와 그 안의 Review Projects를 `display: none`으로 처리
+- 모바일 카드 흐름은 Connect → Location. 첫 카드 자리를 남기지 않으며 grid 자체의 기존 snap 구간은 유지
+- 별도 Resume & Portfolio Package의 Copy URL은 Domain 내부가 아니므로 변경하지 않음
+- 768px 이상 Domain과 모든 원본 카드/링크 유지
+- 변환기에서 `data-contact-card="domain"` 표식을 보존하고, 집중 7개 검사의 mobile hidden / desktop visible / 빈 gap·snap 없음 확인을 추가
+
+위의 `dc47f8f` CI·캡처는 Hero 정렬만 검증한 결과이며 이번 숨김까지 통과했다는 뜻은 아닙니다. 추가 변경은 새 PR head의 CI와 실제 390px 캡처를 확인한 후 병합하고, 기존 Pages build/deploy/live 검사를 통해 게시 revision까지 확인합니다. 최종 실행 링크는 [PR #7 checks](https://github.com/nana-park/breadme/pull/7/checks)와 해당 PR 검증 요약을 따릅니다.
+
