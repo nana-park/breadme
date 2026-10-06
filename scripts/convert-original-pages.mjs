@@ -295,11 +295,19 @@ for (const [sourceFile, componentName] of pageDefinitions) {
         });
       }
     }
-    if (sourceFile === "contact.html")
+    if (sourceFile === "contact.html") {
       heading?.parentElement?.parentElement?.setAttribute(
         "data-reading-role",
         "contact-hero",
       );
+      // WHY: Preserve the requested mobile-only Domain hiding on regeneration.
+      const domainCard = Array.from(
+        document.querySelectorAll(
+          "#contact > .container > div:first-child > div",
+        ),
+      ).find((card) => card.firstElementChild?.textContent.trim() === "Domain");
+      domainCard?.setAttribute("data-contact-card", "domain");
+    }
     if (sourceFile === "enjoy.html") {
       heading?.parentElement?.setAttribute("data-reading-role", "photo-copy");
       heading?.parentElement?.parentElement?.setAttribute(
