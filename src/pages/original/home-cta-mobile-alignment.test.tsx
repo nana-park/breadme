@@ -96,6 +96,7 @@ describe("Home product capabilities CTA", () => {
     expect(rules.get("desktop .group p")).toMatchObject({
       "font-size": "13px",
       "line-height": "1.6",
+      color: "#f4f4f5",
     });
     expect(rules.get("(max-width: 767px) .content h2")).toEqual({
       "font-size": "24px",

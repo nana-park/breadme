@@ -35,6 +35,7 @@ for (const width of [300, 320, 360, 375, 390, 414, 430, 767, 768, 1440]) {
     }
     for (const body of await content.locator(":scope > div > div > p").all()) {
       await expect(body).toHaveCSS("font-size", "13px");
+      await expect(body).toHaveCSS("color", "rgb(244, 244, 245)");
       await expect(body).toHaveCSS("line-height", "20.8px");
     }
     // Compare the live source section, not an unused typography token.
