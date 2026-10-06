@@ -18,7 +18,7 @@
 - 라벨11px/weight500/자간0.2em → 제목24px(768px부터28px)/weight500 → 설명13px(768px부터14px)
 - 버튼: #1a1a1a, 13px/weight600, 상하10px·좌우24px, radius4px, 작은↗
 - 열: 모바일1열, 768px부터2열; gap32px, 1024px부터48px
-- 회사 박스: 1px solid #e4e4e7, radius10px, 흰 배경, shadow없음, 웹·모바일 모두 내부24px. 제목 묶음은 박스 밖에 유지. 웹은 grid stretch로 같은 행의 높이를 맞추고, 모바일에는 고정 높이를 두지 않음
+- 회사 박스: Contact Domain 카드와 같은 1px solid #e5e7eb, radius8px, 흰 배경, 0 1px 2px rgba(0,0,0,.05)의 작은 그림자. 내부 패딩은 1024px 미만24px / 1024px 이상32px이며 hover 시 원본 Contact와 같은 중간 그림자(300ms)만 적용. 제목 묶음은 박스 밖에 유지. 웹은 grid stretch로 같은 행의 높이를 맞추고, 모바일에는 고정 높이를 두지 않음
 - 항목: 날짜11px → 회사명20px(768px부터22px)/weight400 → 직무명12px (두 회사 모두 AI Product Manager)
 - Products/Outcomes 라벨10px로 동일 위계; 각 목록 내용13px/line-height1.6. 항목 사이8px, 제품 목록 아래24px, 자연 줄바꿈; 고정 높이·축소 글자·말줄임 없음
 
@@ -40,6 +40,11 @@
 - `home-career-visibility.spec.ts`: 320/390/768/1440px 흰 배경·기존 순서·학력과 같은 제목 위계·열 배치·줄바꿈·링크/Back·캡처
 - Hero·메뉴·자료·모바일 스크롤 검사를 유지하고, 원래 경력 페이지의 패널 검사는 `/career.html`에서 계속 수행
 - 로컬 Chromium은 정상 실행 시 socket permission 오류로 시작 전에 차단됨. 정책/실행 플래그를 바꿔 우회하지 않음. 도식 이미지는 실제 브라우저 캡처나 기기 검수의 대체가 아님
-- 현 단계는 로컬 구현/검토입니다. GitHub push/PR와 main 병합·배포는 아직 승인·수행되지 않음
+- 2026-10-06 사용자가 Contact 모바일 보정과 Home 카드 표면 변경을 같은 PR로 묶어 검수 후 게시하도록 승인했습니다. [PR #7](https://github.com/nana-park/breadme/pull/7)의 해당 head CI·실제 캡처를 통과한 뒤 기존 Pages 절차로 게시하며, 승인과 실제 게시 완료는 구분합니다.
 
 `HomePage.tsx` / `HomePage.module.css`는 초기 구조 미리보기 역사 파일로 현재 라우트에서 렌더링하지 않습니다.
+
+
+## 2026-10-06 카드 표면 정렬
+
+사용자 요청으로 Selected Projects의 두 회사 카드에 Contact의 실제 Domain 카드 표면 규격을 적용합니다. 사용하지 않는 디자인 토큰을 가져오지 않으며 위 회사 박스 규격이 이전 radius10px/무그림자 선택을 대체합니다. NAVER/SK Telecom 제품·성과·직무·날짜·링크·글자 크기·목록 순서, 기존 열 구성, Hero·로고 캐러셀·발자취·Education은 그대로입니다. 검수와 게시 승인 범위는 [Contact/Home 집중 검수 기록](../../../docs/qa/contact-mobile-alignment.md)의 최신 추가 요청을 따릅니다.
