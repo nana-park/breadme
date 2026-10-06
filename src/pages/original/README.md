@@ -112,3 +112,6 @@ Resume / Portfolio PDF placeholder를 `ContactPackageActions`의 native 버튼�
 Copy URL은 `siteMetadata.portfolioUrl`의 공개 홈 `https://nana-park.github.io/breadme/`만 복사합니다. Clipboard API가 완료된 뒤에만 사용자 지정 “포트폴리오 웹사이트 URL이 복사되었습니다” alert를 보입니다. 거부·미지원은 실패 alert 및 선택 가능한 읽기 전용 URL로 안내하고 재시도할 수 있습니다. 진행 중 중복 클릭은 무시합니다. 문구는 `src/content/site/contactPackage.ts`, 버튼·피드백 스타일은 `ContactPackageActions.module.css`가 소유합니다. 원본 형태·줄바꿈을 보존하고 767px 이하 버튼 조작 높이만 44px 이상으로 보정합니다. Hero 정렬·Domain 숨김·메일 폼은 이 수정에 영향받지 않습니다. 변환기도 본문 조작 컴포넌트를 보존합니다.
 
 검사 범위와 브라우저 실행 제한은 [Contact 패키지 검수](../../../docs/qa/contact-package-actions.md)를 봅니다.
+
+
+Home 협업 회사 목록은 `HomePartnerLogos`에서 관리합니다. 기존 파트너 섹션의 문구·위치·크기는 유지하고 Google을 제거, SK Inc.와 LINE WORKS를 추가했습니다. SK Telecom과 SK Inc.는 별도 회사이며 6개 로고를 세 번 반복합니다. 자세한 공식 출처와 스타일 보존 범위는 [Home README](../home/README.md)를 따릅니다.

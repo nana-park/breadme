@@ -1,0 +1,45 @@
+/* WHAT: Preserve the source 64/96/144px gaps and 40-second source animation.
+ * WHY: One trailing gap makes each of three cycles exactly one third of the track,
+ * so adding SK Inc. does not expose a jump at the animation seam. */
+.track {
+  --partner-gap: 9rem;
+  display: flex;
+  gap: var(--partner-gap);
+  align-items: flex-end;
+  min-width: max-content;
+  padding-inline-end: var(--partner-gap);
+  white-space: nowrap;
+}
+.logoFrame {
+  display: contents;
+}
+.holdingFrame {
+  position: relative;
+  display: block;
+  flex: 0 0 92px;
+  width: 92px;
+  height: 30px;
+  align-self: center;
+  overflow: hidden;
+}
+/* WHY: The official SK Inc. SVG's ink is within its first 86x24 units, but its
+ * canvas is 228.19x30. Clip only empty right canvas; keep all source bytes, path
+ * geometry, colors and scale intact, with 3px visual padding around the mark. */
+.holdingImage {
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 228.19px;
+  max-width: none;
+  height: 30px;
+}
+@media (max-width: 767px) {
+  .track {
+    --partner-gap: 6rem;
+  }
+}
+@media (max-width: 639px) {
+  .track {
+    --partner-gap: 4rem;
+  }
+}

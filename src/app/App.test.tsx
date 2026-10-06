@@ -62,7 +62,7 @@ describe("Original portfolio React migration", () => {
     ).toHaveLength(0);
     expect(document.querySelectorAll("#history-2 img")).toHaveLength(2);
     expect(document.querySelectorAll("#partners .logo-track img")).toHaveLength(
-      15,
+      18,
     );
   });
   it("shows short outcomes in the selected order without separate caveat lines", async () => {

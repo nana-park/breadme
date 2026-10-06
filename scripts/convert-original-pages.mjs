@@ -547,6 +547,15 @@ for (const [sourceFile, componentName] of pageDefinitions) {
     if (topLevel && tag === "svg" && node.getAttribute("width") === "0")
       return "";
     elementCount++;
+    // WHAT: Keep the verified six-company carousel when regenerating Home.
+    if (
+      sourceFile === "index.html" &&
+      node.classList.contains("logo-track") &&
+      node.closest("#partners")
+    ) {
+      imports.add("HomePartnerLogos");
+      return `${indent}<HomePartnerLogos />`;
+    }
     // WHAT: Preserve the reviewed Home-only refinement when regenerating source pages.
     if (sourceFile === "index.html" && node.id === "home") {
       imports.add("HomeHero");
@@ -619,6 +628,10 @@ for (const [sourceFile, componentName] of pageDefinitions) {
   if (imports.has("HomeCapabilities"))
     importLines.push(
       "import { HomeCapabilities } from '@/pages/home/HomeCapabilities';",
+    );
+  if (imports.has("HomePartnerLogos"))
+    importLines.push(
+      "import { HomePartnerLogos } from '@/pages/home/HomePartnerLogos';",
     );
   if (imports.has("SplineHero"))
     importLines.push(
