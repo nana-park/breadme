@@ -7,6 +7,15 @@
     --article-image-height: auto;
   }
 
+  /* WHAT: Make Home's qualifications CTA heading quieter on phones.
+   * WHY: Only the requested sentence becomes smaller and left-aligned;
+   * the inset card, its padding, copy, action, and desktop styles stay intact. */
+  .page[data-original-page="home"] [data-reading-role="qualifications-title"] {
+    width: 100%;
+    font-size: 24px;
+    text-align: left;
+  }
+
   .page [data-reading-role="landing-title"] {
     font-size: clamp(1.875rem, 8.2vw, 2.25rem);
     line-height: 1.18;
@@ -95,11 +104,14 @@
     align-items: flex-start;
   }
   .page [data-reading-role="testimonial-card"] {
-    flex-basis: min(350px, calc(100vw - 48px));
-    width: min(350px, calc(100vw - 48px));
+    --testimonial-card-size: min(350px, calc(100vw - 48px));
+    flex-basis: var(--testimonial-card-size);
+    width: var(--testimonial-card-size);
+    /* WHY: A square minimum preserves the design without letting aspect-ratio
+     * constrain a flex card when enlarged quotes need more vertical space. */
     height: auto;
-    min-height: min-content;
-    aspect-ratio: 1 / 1;
+    min-height: var(--testimonial-card-size);
+    aspect-ratio: auto;
     padding: 1rem;
     gap: 0.625rem;
   }
@@ -113,7 +125,7 @@
     font-size: 0.875rem;
     line-height: 1.45;
     height: auto;
-    flex: 1;
+    flex: 1 0 auto;
     margin-bottom: 0;
   }
   .page [data-reading-role="card-signature"] {

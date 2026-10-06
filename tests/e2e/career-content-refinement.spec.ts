@@ -120,39 +120,70 @@ test("Career square cards expand for synthetic 200% text at 320px", async ({
   await page.goto("/career.html");
   await expect(page.locator("#testimonialsContainer")).toBeVisible();
   await page.evaluate(() => document.fonts.ready);
-  const enlargement = await enlargeComputedText(page, "#testimonialsContainer");
   const cards = page.locator('[data-reading-role="testimonial-card"]');
+  await page.locator("#testimonialsContainer").scrollIntoViewIfNeeded();
+  await cards.nth(1).focus();
+  await page.keyboard.press("ArrowLeft");
+  await expect(cards.first()).toHaveAttribute("aria-pressed", "true");
+  const enlargement = await enlargeComputedText(page, "#testimonialsContainer");
   const results = await cards.evaluateAll((elements) =>
-    elements.map((element) => {
+    elements.map((element, index) => {
       const card = element as HTMLElement;
       const box = card.getBoundingClientRect();
       const children = Array.from(
         card.querySelectorAll(
-          ".card-quote, .card-signature, .card-author-title",
+          ".card-stars, .card-quote, .card-signature, .card-author-title",
         ),
+        (child) => {
+          const childBox = child.getBoundingClientRect();
+          const style = getComputedStyle(child);
+          return {
+            className: child.className,
+            text: child.textContent?.trim().replace(/\s+/g, " "),
+            box: childBox.toJSON(),
+            fontSize: style.fontSize,
+            lineHeight: style.lineHeight,
+            clientWidth: child.clientWidth,
+            scrollWidth: child.scrollWidth,
+            clientHeight: child.clientHeight,
+            scrollHeight: child.scrollHeight,
+            fits:
+              childBox.top >= box.top - 1 &&
+              childBox.bottom <= box.bottom + 1 &&
+              childBox.left >= box.left - 1 &&
+              childBox.right <= box.right + 1 &&
+              child.scrollHeight <= child.clientHeight + 1 &&
+              child.scrollWidth <= child.clientWidth + 1,
+          };
+        },
       );
       return {
+        index,
         width: card.offsetWidth,
         height: card.offsetHeight,
-        fits: children.every((child) => {
-          const childBox = child.getBoundingClientRect();
-          return (
-            childBox.top >= box.top - 1 &&
-            childBox.bottom <= box.bottom + 1 &&
-            child.scrollHeight <= child.clientHeight + 1 &&
-            child.scrollWidth <= child.clientWidth + 1
-          );
-        }),
+        box: box.toJSON(),
+        children,
+        fits: children.every((child) => child.fits),
       };
     }),
   );
-  for (const result of results) expect(result.fits).toBe(true);
-  expect(results[0].height).toBeGreaterThan(results[0].width);
-  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(
-    320,
-  );
+  // WHY: Preserve useful geometry and the actual enlarged card even on failure.
   await testInfo.attach("Synthetic text enlargement; not native zoom", {
     body: JSON.stringify({ enlargement, results }, null, 2),
     contentType: "application/json",
   });
+  const screenshot = testInfo.outputPath("career-testimonial-320-text-200.png");
+  await cards.first().screenshot({ path: screenshot, animations: "disabled" });
+  await testInfo.attach("Longest testimonial with synthetic 200% text", {
+    path: screenshot,
+    contentType: "image/png",
+  });
+  for (const sample of enlargement.samples)
+    expect(sample.afterFontPx).toBeCloseTo(sample.beforeFontPx * 2, 1);
+  for (const result of results)
+    expect(result.fits, JSON.stringify(result)).toBe(true);
+  expect(results[0].height).toBeGreaterThan(results[0].width);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(
+    320,
+  );
 });

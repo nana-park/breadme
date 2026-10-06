@@ -26,3 +26,9 @@ The local base `7674290b025cff186cc340b64c2055067aceeb92` has tree `325f2396ddd2
 Local Chromium launch fails because the executor blocks its process socket (`socket() failed: Operation not permitted`). No local screenshot, dimension measurement, or visual pass is claimed.
 
 The new E2E suite is included in the existing Foundation checks workflow and must pass on the exact published PR commit before calling visual QA complete. It covers 320/390/430/767/768/1440px, all six cards and full author text, career pagination, testimonial keyboard forward/back navigation, removed section/snap target, Home education, and synthetic 200% text reflow. Synthetic enlargement is not native browser zoom. Actual mobile devices and Safari remain unverified.
+
+## First CI reflow correction
+
+The initial PR #8 Chromium run passed all six normal-width Career cases (320/390/430/767/768/1440px), including square mobile cards, full quotes/attributions and preserved desktop sizing. Only the synthetic 200% reflow case failed its content-fit assertion. Its original failure screenshot showed the page top, not the enlarged cards, and diagnostics were attached after the failing assertion.
+
+The mobile card now uses its width as a minimum height with automatic content-driven height and a non-shrinking quote. This preserves the normal square while allowing enlarged text to grow naturally without an aspect-ratio constraint. The test scrolls to the actual card, records every child box/font/scroll size and captures the enlarged first card before assertions. No clipping assertion was removed or relaxed; stars and horizontal containment are also covered. Exact-commit CI verification of this correction remains pending.
