@@ -29,6 +29,10 @@ for (const width of [300, 320, 360, 375, 390, 414, 430, 767, 768, 1440]) {
     await expect(title).toHaveCSS("text-align", mobile ? "left" : "center");
     await expect(intro).toHaveCSS("font-size", mobile ? "13px" : "14px");
     await expect(groups).toHaveText(["Product Focus", "Core Strengths"]);
+    await expect(content.locator(":scope > div > div > p")).toHaveText([
+      "AI Agents · Conversational & Voice AI · Personalized Recommendations",
+      "AI UX Design · Research & Data Analysis · Launches in Korea & Japan",
+    ]);
     for (const group of await groups.all()) {
       await expect(group).toHaveCSS("font-size", mobile ? "20px" : "22px");
       await expect(group).toHaveCSS("text-align", mobile ? "left" : "center");

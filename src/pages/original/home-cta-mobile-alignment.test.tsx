@@ -38,10 +38,10 @@ describe("Home product capabilities CTA", () => {
     ]);
     expect(groups[0].className).toBe(groups[1].className);
     expect(groups[0].nextElementSibling).toHaveTextContent(
-      "Conversational AI · Voice AI · AI Agents",
+      "AI Agents · Conversational & Voice AI · Personalized Recommendations",
     );
     expect(groups[1].nextElementSibling).toHaveTextContent(
-      "AI UX Design · Research & Data Analysis · Korea–Japan Launches",
+      "AI UX Design · Research & Data Analysis · Launches in Korea & Japan",
     );
     expect(heading.nextElementSibling).toHaveTextContent(
       /^Grounded in psychology and Human-AI Interaction\.$/,

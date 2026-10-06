@@ -5,12 +5,13 @@ export const homeCapabilities = {
   groups: [
     {
       title: "Product Focus",
-      description: "Conversational AI · Voice AI · AI Agents",
+      description:
+        "AI Agents · Conversational & Voice AI · Personalized Recommendations",
     },
     {
       title: "Core Strengths",
       description:
-        "AI UX Design · Research & Data Analysis · Korea–Japan Launches",
+        "AI UX Design · Research & Data Analysis · Launches in Korea & Japan",
     },
   ],
   action: { label: "View products", href: "projects.html" },

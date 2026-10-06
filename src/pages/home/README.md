@@ -79,7 +79,7 @@
 - H2: From human understanding to AI product experiences.
 - 소개: Grounded in psychology and Human-AI Interaction. (`Human-AI`는 ASCII 하이픈)
 - 같은 H3 위계: Product Focus / Core Strengths
-- 각 본문: Conversational AI · Voice AI · AI Agents / AI UX Design · Research & Data Analysis · Korea–Japan Launches
+- 각 본문: AI Agents · Conversational & Voice AI · Personalized Recommendations / AI UX Design · Research & Data Analysis · Launches in Korea & Japan
 - View products: `originalHref("projects.html")`로 기존 Products 목록 이동
 
 실제 Academic Standing 규격을 사용합니다. H2는 모바일 24px / 768px 이상 28px, H3는 20px / 22px, 소개는 13px / 14px, 그룹 본문은 13px·행간 1.6입니다. 제목 아래 12px, 소개·그룹 사이 24px, 그룹 제목 아래 8px, 버튼 위 32px로 원본 간격 단위를 사용합니다. 모바일에서는 모든 텍스트를 왼쪽에, 버튼을 중앙에 둡니다. 768px 이상은 텍스트와 버튼을 중앙에 둡니다. 강제 줄바꿈·nowrap·배지·추가 성과 수치를 넣지 않습니다.
