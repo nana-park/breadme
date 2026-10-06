@@ -78,3 +78,6 @@ AI Mentoring 상세는 기존 데모 소스의 업로드 제한 때문에 선택
 사용자 요청에 따라 Contact의 767px 이하 Hero 텍스트만 Home과 같은 좌측 정렬·좌우 패딩 20px·최대 읽기 폭 380px을 사용합니다. 제목은 실제 Home 제목과 같은 `clamp(32px, 8.8vw, 40px)` / line-height 1.1, 본문은 화면에 렌더링되는 Home 경력 요약과 같은 13px / line-height 1.6입니다. Home의 사용하지 않는 17px summary 규칙은 기준이 아닙니다.
 
 보정은 `OriginalPage.module.css`의 Contact Hero 역할 안에만 적용합니다. 사진·오버레이·문구·기존 세로 높이·하단 카드/링크·자료 Coming Soon·native proximity snap은 보존하며 768px 이상과 Home·Awards·GNB는 바꾸지 않습니다. [집중 검수 기록](../../../docs/qa/contact-mobile-alignment.md)에 실제 실행 결과와 캡처 한계를 구분합니다.
+
+
+2026-10-06 추가 요청: Contact의 `Domain` 카드 전체는 767px 이하에서만 감춥니다. `data-contact-card="domain"` 표식과 같은 CSS Module이 소유하며 변환기에도 표식을 보존합니다. 모바일은 빈 카드 자리 없이 Connect → Location으로 이어지고, 768px 이상 Domain/Review Projects는 유지합니다. 별도 Resume & Portfolio Package의 Copy URL, 기존 비활성 폼과 Coming Soon은 바꾸지 않습니다.
