@@ -121,7 +121,7 @@ for (const pageId of originalPageIds) {
       await page.keyboard.press("Escape");
       await expect(toggle).toBeFocused();
       await expect(toggle).toHaveAttribute("aria-expanded", "false");
-      await expect(page.locator("main")).not.toHaveAttribute("inert");
+      await expect(page.locator("#main-content")).not.toHaveAttribute("inert");
       await expect(page.locator("body")).not.toHaveCSS("overflow", "hidden");
     }
   });
@@ -184,7 +184,7 @@ for (const enlarged of [false, true]) {
     });
     await page.keyboard.press("Escape");
     await expect(page.locator("#mobileToggle")).toBeFocused();
-    await expect(page.locator("main")).not.toHaveAttribute("inert");
+    await expect(page.locator("#main-content")).not.toHaveAttribute("inert");
     await expect(page.locator("body")).not.toHaveCSS("overflow", "hidden");
   });
 }

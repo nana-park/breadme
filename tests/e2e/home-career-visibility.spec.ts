@@ -218,6 +218,31 @@ for (const width of [320, 390, 768, 1023, 1024, 1440]) {
       ).toBeLessThanOrEqual(1);
     }
     if (width === 390 || width === 1440) {
+      // WHAT: Capture a normal viewport for user review, not only tall element
+      // screenshots where the fixed header can overlap a scrolled section.
+      await page.evaluate(() => {
+        if (document.activeElement instanceof HTMLElement)
+          document.activeElement.blur();
+        const section = document.querySelector("#history")!;
+        window.scrollTo({
+          top: section.getBoundingClientRect().top + scrollY - 70,
+          behavior: "instant",
+        });
+      });
+      await page.evaluate(
+        () =>
+          new Promise<void>((resolve) =>
+            requestAnimationFrame(() => requestAnimationFrame(() => resolve())),
+          ),
+      );
+      const viewportPath = testInfo.outputPath(
+        `home-${width}-career-viewport.png`,
+      );
+      await page.screenshot({ path: viewportPath, animations: "disabled" });
+      await testInfo.attach(`career-viewport-${width}`, {
+        path: viewportPath,
+        contentType: "image/png",
+      });
       for (const [label, target] of [
         ["career", "#history"],
         ["education", "#history-2"],

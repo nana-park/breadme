@@ -214,7 +214,8 @@
     margin-bottom: 0;
   }
   .page [data-reading-role="about-introduction"] {
-    --original-container-gutter: 20px;
+    /* Match Home's centered 380px reading column, including wider phones. */
+    --original-container-gutter: max(20px, calc((100% - 380px) / 2));
     align-items: flex-start;
     text-align: left;
   }

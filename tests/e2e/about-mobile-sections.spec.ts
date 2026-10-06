@@ -69,10 +69,22 @@ async function approach(page: Page, target: Locator) {
     .toBeLessThanOrEqual(3);
 }
 
-for (const width of [320, 390, 430]) {
+for (const width of [320, 390, 430, 767]) {
   test(`About mobile chapters align and snap at ${width}px`, async ({
     page,
   }, testInfo) => {
+    await page.setViewportSize({ width, height: 844 });
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await expect(page.locator("#home-title")).toBeVisible();
+    await settleFirstScreen(page);
+    const home = {
+      title: (await page.locator("#home-title").boundingBox())!,
+      body: (await page.locator("[data-home-description] p").boundingBox())!,
+    };
+    await testInfo.attach(`home-${width}-reading-reference`, {
+      body: await page.screenshot({ animations: "disabled" }),
+      contentType: "image/png",
+    });
     await openAbout(page, width);
     await expect(page.locator("html")).toHaveCSS("scroll-snap-type", proximity);
     expect(await page.evaluate(() => scrollY)).toBeLessThanOrEqual(1);
@@ -82,8 +94,21 @@ for (const width of [320, 390, 430]) {
       `${introduction} a`,
     ]) {
       const element = page.locator(selector);
-      expect((await element.boundingBox())!.x).toBeCloseTo(20, 0);
+      expect((await element.boundingBox())!.x).toBeCloseTo(home.title.x, 1);
     }
+    const about = {
+      title: (await page.locator(`${introduction} h2`).boundingBox())!,
+      body: (await page.locator(`${introduction} p`).boundingBox())!,
+      action: (await page.locator(`${introduction} a`).boundingBox())!,
+    };
+    expect(about.title.width).toBeCloseTo(home.title.width, 1);
+    expect(about.body.x).toBeCloseTo(home.body.x, 1);
+    expect(about.body.width).toBeCloseTo(home.body.width, 1);
+    expect(about.title.x).toBeCloseTo(Math.max(20, (width - 380) / 2), 1);
+    await testInfo.attach(`home-about-${width}-reading-columns`, {
+      body: JSON.stringify({ width, home, about }, null, 2),
+      contentType: "application/json",
+    });
     await expect(page.locator(introduction)).toHaveCSS("text-align", "left");
     await expect(page.locator(".id-root-name")).toHaveCSS("font-size", "36px");
     await expect(page.locator(".id-phonetic-symbol").first()).toHaveCSS(

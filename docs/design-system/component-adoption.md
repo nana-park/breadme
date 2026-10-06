@@ -61,7 +61,7 @@ Header·Footer·자료 UI를 바꾸면 14개 경로가 영향 범위입니다. 3
 
 ## About 모바일 구간 정리
 
-2026-10-06 About 요청은 기존 OriginalHeader·OriginalFooter·MaterialsPopup 연결을 유지합니다. 페이지 CSS Module과 명시적 역할/구간 표식에서만 소개 정렬·이름 도식 크기·구간 최소 높이를 관리합니다. `.container` gutter의 5vw fallback은 유지하고 모바일 About 소개에서만 20px로 지정합니다. 공통 스크롤 hook은 기존 요소에 구간 표식을 붙이며 실제 스크롤은 native proximity 규칙이 처리합니다.
+2026-10-06 About 요청은 기존 OriginalHeader·OriginalFooter·MaterialsPopup 연결을 유지합니다. 페이지 CSS Module과 명시적 역할/구간 표식에서만 소개 정렬·이름 도식 크기·구간 최소 높이를 관리합니다. `.container` gutter의 5vw fallback은 유지하고 모바일 About 소개에서만 최소 20px와 Home의 중앙 최대 380px 읽기 열을 함께 따릅니다. 공통 스크롤 hook은 기존 요소에 구간 표식을 붙이며 실제 스크롤은 native proximity 규칙이 처리합니다.
 
 ## Career 콘텐츠 정리 (2026-10-06)
 

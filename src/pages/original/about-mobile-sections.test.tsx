@@ -61,7 +61,9 @@ describe("About mobile reading chapters", () => {
       "padding: 0 var(--original-container-gutter, 5vw) !important;",
     );
     expect(
-      pageCss.indexOf("--original-container-gutter: 20px"),
+      pageCss.indexOf(
+        "--original-container-gutter: max(20px, calc((100% - 380px) / 2))",
+      ),
     ).toBeGreaterThan(pageCss.indexOf("@media (max-width: 767px)"));
     expect(pageCss).toContain("min-height: calc(100svh - 70px)");
     expect(pageCss).not.toMatch(/scroll-snap-type:\s*y mandatory/);
