@@ -2,6 +2,8 @@ import type { CSSProperties } from 'react';
 import { assetUrl, originalHref } from '@/shared/utils/originalPaths';
 import { HomeHero } from '@/pages/home/HomeHero';
 import { HomeExperience } from '@/pages/home/HomeExperience';
+import { HomeCapabilities } from '@/pages/home/HomeCapabilities';
+import { HomePartnerLogos } from '@/pages/home/HomePartnerLogos';
 
 /**
  * WHAT: Native React content from index.html.
@@ -68,214 +70,7 @@ export function OriginalHomeContent() {
             }
           >
             {'\n                '}
-            <div
-              className={
-                'logo-track flex gap-16 sm:gap-24 md:gap-36 items-end whitespace-nowrap min-w-max'
-              }
-            >
-              {'\n                    '}
-              {'\n                    '}
-              <img
-                src={assetUrl('Files/Logo/Naver-logo.svg')}
-                alt={'NAVER'}
-                style={
-                  {
-                    height: '22px',
-                    width: 'auto',
-                    filter: 'grayscale(100%) opacity(0.45)',
-                    alignSelf: 'center',
-                  } as CSSProperties
-                }
-              />
-              {'\n                    '}
-              <img
-                src={assetUrl('Files/Logo/Naver%20Cloud-logo.svg')}
-                alt={'NAVER CLOUD'}
-                style={
-                  {
-                    height: '24px',
-                    width: 'auto',
-                    filter: 'grayscale(100%) opacity(0.45)',
-                    alignSelf: 'center',
-                  } as CSSProperties
-                }
-              />
-              {'\n                    '}
-              <img
-                src={assetUrl('Files/Logo/SK%20Telecom-logo.svg')}
-                alt={'SK Telecom'}
-                style={
-                  {
-                    height: '44px',
-                    width: 'auto',
-                    filter: 'grayscale(100%) opacity(0.45)',
-                    alignSelf: 'flex-start',
-                    transform: 'translateY(-10px)',
-                  } as CSSProperties
-                }
-              />
-              {'\n                    '}
-              <img
-                src={assetUrl('Files/Logo/Google-logo.svg')}
-                alt={'Google'}
-                style={
-                  {
-                    height: '26px',
-                    width: 'auto',
-                    filter: 'grayscale(100%) opacity(0.45)',
-                    alignSelf: 'center',
-                  } as CSSProperties
-                }
-              />
-              {'\n                    '}
-              <img
-                src={assetUrl('Files/Logo/H&M-logo.svg')}
-                alt={'H&M'}
-                style={
-                  {
-                    height: '29px',
-                    width: 'auto',
-                    filter: 'grayscale(100%) opacity(0.45)',
-                    alignSelf: 'center',
-                  } as CSSProperties
-                }
-              />
-              {'\n                    '}
-              {'\n                    '}
-              <img
-                src={assetUrl('Files/Logo/Naver-logo.svg')}
-                alt={'NAVER'}
-                style={
-                  {
-                    height: '22px',
-                    width: 'auto',
-                    filter: 'grayscale(100%) opacity(0.45)',
-                    alignSelf: 'center',
-                  } as CSSProperties
-                }
-              />
-              {'\n                    '}
-              <img
-                src={assetUrl('Files/Logo/Naver%20Cloud-logo.svg')}
-                alt={'NAVER CLOUD'}
-                style={
-                  {
-                    height: '24px',
-                    width: 'auto',
-                    filter: 'grayscale(100%) opacity(0.45)',
-                    alignSelf: 'center',
-                  } as CSSProperties
-                }
-              />
-              {'\n                    '}
-              <img
-                src={assetUrl('Files/Logo/SK%20Telecom-logo.svg')}
-                alt={'SK Telecom'}
-                style={
-                  {
-                    height: '44px',
-                    width: 'auto',
-                    filter: 'grayscale(100%) opacity(0.45)',
-                    alignSelf: 'flex-start',
-                    transform: 'translateY(-10px)',
-                  } as CSSProperties
-                }
-              />
-              {'\n                    '}
-              <img
-                src={assetUrl('Files/Logo/Google-logo.svg')}
-                alt={'Google'}
-                style={
-                  {
-                    height: '26px',
-                    width: 'auto',
-                    filter: 'grayscale(100%) opacity(0.45)',
-                    alignSelf: 'center',
-                  } as CSSProperties
-                }
-              />
-              {'\n                    '}
-              <img
-                src={assetUrl('Files/Logo/H&M-logo.svg')}
-                alt={'H&M'}
-                style={
-                  {
-                    height: '29px',
-                    width: 'auto',
-                    filter: 'grayscale(100%) opacity(0.45)',
-                    alignSelf: 'center',
-                  } as CSSProperties
-                }
-              />
-              {'\n                    '}
-              {'\n                    '}
-              <img
-                src={assetUrl('Files/Logo/Naver-logo.svg')}
-                alt={'NAVER'}
-                style={
-                  {
-                    height: '22px',
-                    width: 'auto',
-                    filter: 'grayscale(100%) opacity(0.45)',
-                    alignSelf: 'center',
-                  } as CSSProperties
-                }
-              />
-              {'\n                    '}
-              <img
-                src={assetUrl('Files/Logo/Naver%20Cloud-logo.svg')}
-                alt={'NAVER CLOUD'}
-                style={
-                  {
-                    height: '24px',
-                    width: 'auto',
-                    filter: 'grayscale(100%) opacity(0.45)',
-                    alignSelf: 'center',
-                  } as CSSProperties
-                }
-              />
-              {'\n                    '}
-              <img
-                src={assetUrl('Files/Logo/SK%20Telecom-logo.svg')}
-                alt={'SK Telecom'}
-                style={
-                  {
-                    height: '44px',
-                    width: 'auto',
-                    filter: 'grayscale(100%) opacity(0.45)',
-                    alignSelf: 'flex-start',
-                    transform: 'translateY(-10px)',
-                  } as CSSProperties
-                }
-              />
-              {'\n                    '}
-              <img
-                src={assetUrl('Files/Logo/Google-logo.svg')}
-                alt={'Google'}
-                style={
-                  {
-                    height: '26px',
-                    width: 'auto',
-                    filter: 'grayscale(100%) opacity(0.45)',
-                    alignSelf: 'center',
-                  } as CSSProperties
-                }
-              />
-              {'\n                    '}
-              <img
-                src={assetUrl('Files/Logo/H&M-logo.svg')}
-                alt={'H&M'}
-                style={
-                  {
-                    height: '29px',
-                    width: 'auto',
-                    filter: 'grayscale(100%) opacity(0.45)',
-                    alignSelf: 'center',
-                  } as CSSProperties
-                }
-              />
-              {'\n                '}
-            </div>
+            <HomePartnerLogos />
             {'\n            '}
           </div>
           {'\n        '}
@@ -1201,7 +996,6 @@ export function OriginalHomeContent() {
           {'\n            '}
           <div
             id={'cta-dark-container'}
-            data-reading-role={'qualifications-cta'}
             className={
               'relative w-full rounded-[10px] overflow-hidden bg-[#150d0a] border border-white/5 border-t-white/10 py-24 lg:py-32 flex flex-col items-center justify-center group mx-auto px-6 text-center'
             }
@@ -1288,58 +1082,9 @@ export function OriginalHomeContent() {
               {'\n                '}
             </div>
             {'\n\n                '}
-            <h2
-              data-reading-role={'qualifications-title'}
-              className={
-                'relative z-10 font-sans text-white text-[28px] md:text-[36px] lg:text-[42px] leading-[1.15] tracking-tight font-medium max-w-[800px] mx-auto mb-5 drop-shadow-md'
-              }
-              style={{ wordBreak: 'keep-all' } as CSSProperties}
-            >
-              {'\n                    Creating AI dialogue experiences'}
-              <br />
-              {'driven by deep human intent.\n                '}
-            </h2>
+            <HomeCapabilities />
             {'\n                '}
-            <p
-              data-reading-role={'qualifications-copy'}
-              className={
-                'relative z-10 font-sans text-[#a1a1aa] text-[14px] md:text-[15px] leading-[1.6] max-w-[800px] mx-auto font-light mb-10 drop-shadow'
-              }
-              style={{ wordBreak: 'keep-all' } as CSSProperties}
-            >
-              {
-                '\n                    Discover the academic background, certifications, and working principles that shape my approach.\n                '
-              }
-            </p>
             {'\n                '}
-            <a
-              href={originalHref('qualified.html')}
-              className={
-                'relative z-10 inline-flex items-center justify-center px-6 py-2.5 bg-white text-black font-sans text-[13px] font-semibold rounded hover:bg-zinc-200 transition-all duration-300 group/btn'
-              }
-            >
-              {
-                '\n                    Explore Qualifications\n                    '
-              }
-              <svg
-                className={
-                  'ml-1 w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1'
-                }
-                fill={'none'}
-                stroke={'currentColor'}
-                viewBox={'0 0 24 24'}
-              >
-                {'\n                        '}
-                <path
-                  strokeLinecap={'round'}
-                  strokeLinejoin={'round'}
-                  strokeWidth={'2'}
-                  d={'M9 5l7 7-7 7'}
-                />
-                {'\n                    '}
-              </svg>
-              {'\n                '}
-            </a>
             {'\n            '}
           </div>
           {'\n\n            '}

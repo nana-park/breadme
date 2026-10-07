@@ -145,7 +145,7 @@ for (const width of [320, 390, 768, 1023, 1024, 1440]) {
     await expect(
       page.getByRole("heading", { name: "Academic Standing" }),
     ).toBeVisible();
-    await expect(page.locator("#partners .logo-track img")).toHaveCount(15);
+    await expect(page.locator("#partners .logo-track img")).toHaveCount(18);
     await expect(page.locator("#history")).toHaveCSS(
       "background-color",
       "rgb(255, 255, 255)",

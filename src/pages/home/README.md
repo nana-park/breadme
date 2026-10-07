@@ -1,6 +1,6 @@
 # Home
 
-`/breadme/`와 `/breadme/index.html`의 순서는 기존 Hero → 회사 로고 캐러셀 → 발자취 갤러리 → 경력 → Education → Qualified CTA입니다.
+`/breadme/`와 `/breadme/index.html`의 순서는 기존 Hero → 회사 로고 캐러셀 → 발자취 갤러리 → 경력 → Education → Product Focus / Core Strengths CTA입니다.
 
 ## 선택된 경력 구현
 
@@ -28,8 +28,10 @@
 
 - `HomeExperience.tsx`, `HomeExperience.module.css`: 경력만의 조립/스타일
 - `src/content/site/homeExperience.ts`: 문구와 공개 근거 링크; 회사명은 공통 `terms` 사용
-- `OriginalHomeContent.tsx`: `#history`만 컴포넌트로 교체. 회사 캐러셀·갤러리는 main533d33b와 동일. Education은 승인된 Research Focus 한 문장 외에 동일. 하단 CTA의 모바일 제목·본문 좌측 정렬과 버튼 중앙 유지은 아래 기록을 따름
-- `scripts/convert-original-pages.mjs`: Home history 교체와 Research Focus 문장 교정을 재생성 시 보존. 다른 페이지 생성 규칙은 바꾸지 않음
+- `OriginalHomeContent.tsx`: Home Hero와 `#history`, 하단 CTA 내용을 페이지 전용 컴포넌트로 연결. 회사 캐러셀·갤러리는 main533d33b와 동일. Education은 승인된 Research Focus 한 문장 외에 동일. 하단 CTA는 `HomeCapabilities`를 렌더링하며, 모바일 텍스트 좌측·버튼 중앙 정렬은 유지
+- `src/content/site/homeCapabilities.ts`: 하단 CTA의 승인 문구와 Products 목적지
+- `HomeCapabilities.tsx`, `HomeCapabilities.module.css`: 기존 어두운 박스 안의 제목·소개·두 그룹·버튼
+- `scripts/convert-original-pages.mjs`와 `apply-home-capabilities-override.ts`: Home 경력·하단 CTA 교체와 Research Focus 문장 교정을 재생성 시 보존. 다른 페이지 생성 규칙은 바꾸지 않음
 - 공통 Header/Footer/자료 UI·Career 페이지·기존 Hero는 그대로 유지. Resume/PDF는 Coming Soon
 
 검사 결과와 한계는 [Home career review](../../../docs/qa/home-career-review.md)에 기록합니다.
@@ -52,7 +54,7 @@
 
 이후 사용자 선택에 따라 Products/Outcomes 목록의 항목 사이 추가 gap은 모바일·데스크톱 모두 8px에서 4px로 줄입니다. 본문 13px / 1.6(20.8px) 행간, 라벨 아래 8px와 그룹 사이 24px는 유지합니다. E2E는 최종 gap 4px와 기존 글자 크기·행간을 확인합니다.
 
-## 2026-10-06 하단 CTA 모바일 제목
+## 이전 변경 기록: 하단 CTA 모바일 제목
 
 `Creating AI dialogue experiences driven by deep human intent.`는 Home의 하단 Qualifications CTA 문장입니다. 767px 이하에서 이 제목만 28px에서 24px로 줄이고 기존 카드 내부 읽기 영역에 좌측 정렬합니다. 카드의 24px 내부 패딩과 5vw 외부 컨테이너, 본문·버튼 정렬, 배경·문구·강제 줄바꿈은 유지합니다. 768px 이상 제목의 중앙 정렬과 36px/42px 규격은 유지합니다. `OriginalPage.module.css`의 Home 전용 `qualifications-title` 역할이 소유하며 변환기에도 같은 표식을 보존합니다.
 
@@ -61,10 +63,38 @@
 로컬 실행 결과: `npm run check`의 lint·typecheck·100개 단위 검사·에셋 무결성 검사·프로덕션 빌드 통과. Playwright는 4개 케이스를 발견했지만 첫 320px 케이스가 Chromium `socket() failed: Operation not permitted`로 페이지 생성 전에 차단됐고 나머지 3개는 실행하지 않았습니다. 실제 DOM 좌표와 스크린샷은 아직 미검증입니다.
 
 
-## 2026-10-06 하단 CTA 본문 좌측 정렬·버튼 중앙 유지
+## 이전 변경 기록: CTA 본문 좌측 정렬·버튼 중앙 유지
 
 후속 요청으로 767px 이하에서 `Discover the academic background, certifications, and working principles that shape my approach.` 본문을 제목과 같은 카드 내부 왼쪽 선에 맞춥니다. 사용자 최종 선택에 따라 Explore Qualifications 버튼은 카드의 가로 중앙에 유지합니다. 제목 전용 보정으로 남아 있던 `text-center` 상속만 Home 전용 `qualifications-cta` 역할에서 덮어쓰고, 기존 `items-center` 배치는 그대로 둡니다. 본문은 `qualifications-copy` 역할에서 전체 읽기 열 너비를 채워, 넓은 모바일에서도 원본 `mx-auto`가 짧은 문장을 다시 가운데로 옮기지 못하게 합니다. 변환기도 두 표식을 보존합니다. 기존 24px 제목, 14px 본문, 24px 내부 패딩, 5vw 외부 여백, 문구·링크·배경을 유지합니다. 768px 이상은 제목·본문·버튼의 중앙 정렬과 기존 규격을 유지합니다.
 
 `home-cta-mobile-alignment.spec.ts`는 320/390/430/767px의 제목·본문 각 줄 왼쪽 좌표와 버튼의 가로 중앙 좌표를 검사하며, 부모 정렬과 별도로 실제 본문 요소의 computed `text-align`을 단언합니다. 768/1440px에서는 원래 중앙 정렬·글자 크기·좌표를 검사합니다.
 
 로컬 Chromium은 `socket() failed: Operation not permitted`로 페이지 생성 전에 차단됩니다. 로컬 테스트 정의 자체를 실제 좌표·computed style·스크린샷 통과로 간주하지 않습니다. 이번 보정은 사용자 승인에 따라 PR의 실제 브라우저 검사를 통과하고 캡처를 확인한 뒤 기존 main/Pages 절차로 게시합니다. 승인과 실제 게시 완료는 구분합니다.
+
+
+## 2026-10-06 하단 CTA: 제품 분야와 강점
+
+앞선 Qualifications 안내를 다음 구조로 교체합니다. 이 기록이 위 CTA의 과거 문구·타입·목적지 설명을 대체합니다.
+
+- H2: From human understanding to AI product experiences.
+- 소개: Grounded in psychology and Human-AI Interaction. (`Human-AI`는 ASCII 하이픈)
+- 같은 H3 위계: Product Focus / Core Strengths
+- 각 본문: AI Agents · Conversational & Voice AI · Personalized Recommendations / AI UX Design · Research & Data Analysis · Launches in Korea & Japan
+- View products: `originalHref("projects.html")`로 기존 Products 목록 이동
+
+실제 Academic Standing 규격을 사용합니다. H2는 모바일 24px / 768px 이상 28px, H3는 20px / 22px, 소개는 13px / 14px, 그룹 본문은 13px·행간 1.6입니다. 제목 아래 12px, 소개·그룹 사이 24px, 그룹 제목 아래 8px, 버튼 위 32px로 원본 간격 단위를 사용합니다. 모바일에서는 모든 텍스트를 왼쪽에, 버튼을 중앙에 둡니다. 768px 이상은 텍스트와 버튼을 중앙에 둡니다. 강제 줄바꿈·nowrap·배지·추가 성과 수치를 넣지 않습니다.
+
+박스의 위치·배경 효과·모서리·24px 내부 가로 패딩·원본 세로 패딩은 유지합니다. Hero·캐러셀·갤러리·경력 제품/성과 데이터·Academic 콘텐츠와 스타일은 바꾸지 않습니다. CTA 텍스트 스타일은 새 페이지 전용 CSS Module이 관리하며, 이전 Qualifications 전용 모바일 보정은 제거합니다.
+
+단위 검사로 문구·위계·키보드·기본/배포 경로·변환기 범위를 확인합니다. 브라우저 검사에는 300/320/360/375/390/414/430/767/768/1440px, 실제 Academic 글자 크기 비교, 줄별 좌표·넘침·버튼 중앙·이동/뒤로가기·320px 2배 텍스트를 포함합니다. 검사를 정의한 것과 실제 렌더링 통과는 구분합니다. 이번 범위는 로컬 구현이며 PR 게시·main 병합·배포는 별도 승인 대상입니다.
+
+로컬 결과: `npm run check`(lint·typecheck·116개 단위 검사·에셋 검증·빌드), `/`와 `/breadme/` 각각의 `npm run test:pages`(각 14개 검사)를 통과했습니다. Chromium은 첫 300px 검사에서 `socket() failed: Operation not permitted`로 페이지 생성 전에 차단됐으며 나머지 10개 브라우저 검사는 실행하지 못했습니다. 따라서 실제 스크린샷·좌표·시각 검수는 아직 대기 중입니다.
+
+실제 CI 캡처 검토에서 따뜻한 배경 빛 위의 회색 본문 대비가 약한 것을 확인해 CTA 소개·그룹 본문만 밝은 zinc-100으로 보정합니다. 제목 위계·크기·정렬·배경 효과는 유지합니다.
+
+
+## 2026-10-06 협업 회사 로고
+
+Google을 제거하고 SK주식회사(SK Inc.)와 일본 LINE WORKS 기업 워드마크를 추가합니다. SK Telecom은 별도 회사이므로 기존 로고를 유지합니다. 순서는 NAVER → NAVER Cloud → SK Inc. → SK Telecom → LINE WORKS → H&M이며 세 번 반복합니다. 첫 반복만 접근성 이름을 제공하고 뒤의 장식용 반복은 스크린리더에서 제외합니다.
+
+`HomePartnerLogos`와 `src/content/site/homePartners.ts`가 목록을 관리하며 변환기도 이 연결을 보존합니다. 공식 원본 SVG 파일은 그대로 보존하고, 사용자 요청에 따라 SK Inc.와 LINE WORKS를 포함한 모든 로고에 기존 `grayscale(100%) opacity(0.45)` 처리를 동일하게 적용합니다. SK Inc.는 원본의 비어 있는 오른쪽 캔버스만 바깥 레이아웃에서 가립니다. 기존 네 로고의 높이·흑백/투명도 처리는 유지합니다. 기존 64/96/144px 간격·40초 이동·hover 일시정지·감소된 모션 설정을 유지하고, 마지막에 같은 간격을 채워 세 반복의 이음새를 맞춥니다. 섹션 위치·외부 여백·안내 문구와 나머지 Home은 바꾸지 않습니다. 공식 출처와 파일 검증값은 [로고 에셋 기록](assets/README.md)을 따릅니다.

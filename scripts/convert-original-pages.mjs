@@ -11,6 +11,7 @@ import { JSDOM } from "jsdom";
 import postcss from "postcss";
 import { format } from "prettier";
 import { applyCareerContentOverrides } from "./apply-career-content-overrides.ts";
+import { applyHomeCapabilitiesOverride } from "./apply-home-capabilities-override.ts";
 
 const projectRoot = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
@@ -196,19 +197,10 @@ for (const [sourceFile, componentName] of pageDefinitions) {
   const dom = new JSDOM(source);
   const document = dom.window.document;
   applyCareerContentOverrides(document, sourceFile);
+  applyHomeCapabilitiesOverride(document, sourceFile);
   // WHAT: Preserve the user's Home-only, one-sentence Research Focus copy.
   // WHY: Remove the forced break without changing Education layout or Career copy.
   if (sourceFile === "index.html") {
-    // WHAT: Preserve the Home CTA's mobile-only alignment and heading style hooks.
-    document
-      .querySelector("#cta-dark-container")
-      ?.setAttribute("data-reading-role", "qualifications-cta");
-    document
-      .querySelector("#cta-dark-container h2")
-      ?.setAttribute("data-reading-role", "qualifications-title");
-    document
-      .querySelector("#cta-dark-container p")
-      ?.setAttribute("data-reading-role", "qualifications-copy");
     const researchFocus = Array.from(
       document.querySelectorAll("#history-2 p"),
     ).find((node) =>
@@ -555,6 +547,15 @@ for (const [sourceFile, componentName] of pageDefinitions) {
     if (topLevel && tag === "svg" && node.getAttribute("width") === "0")
       return "";
     elementCount++;
+    // WHAT: Keep the verified six-company carousel when regenerating Home.
+    if (
+      sourceFile === "index.html" &&
+      node.classList.contains("logo-track") &&
+      node.closest("#partners")
+    ) {
+      imports.add("HomePartnerLogos");
+      return `${indent}<HomePartnerLogos />`;
+    }
     // WHAT: Preserve the reviewed Home-only refinement when regenerating source pages.
     if (sourceFile === "index.html" && node.id === "home") {
       imports.add("HomeHero");
@@ -565,6 +566,13 @@ for (const [sourceFile, componentName] of pageDefinitions) {
     if (sourceFile === "index.html" && node.id === "history") {
       imports.add("HomeExperience");
       return `${indent}<HomeExperience />`;
+    }
+    if (
+      sourceFile === "index.html" &&
+      node.hasAttribute("data-home-capabilities")
+    ) {
+      imports.add("HomeCapabilities");
+      return `${indent}<HomeCapabilities />`;
     }
     if (
       sourceFile === "contact.html" &&
@@ -616,6 +624,14 @@ for (const [sourceFile, componentName] of pageDefinitions) {
   if (imports.has("HomeExperience"))
     importLines.push(
       "import { HomeExperience } from '@/pages/home/HomeExperience';",
+    );
+  if (imports.has("HomeCapabilities"))
+    importLines.push(
+      "import { HomeCapabilities } from '@/pages/home/HomeCapabilities';",
+    );
+  if (imports.has("HomePartnerLogos"))
+    importLines.push(
+      "import { HomePartnerLogos } from '@/pages/home/HomePartnerLogos';",
     );
   if (imports.has("SplineHero"))
     importLines.push(

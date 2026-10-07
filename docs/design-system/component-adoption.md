@@ -80,3 +80,13 @@ Home의 Full career와 Products는 같은 `HomeExperience` action 스타일을 �
 ## Contact 패키지 직접 조작
 
 2026-10-06: Contact 본문의 Resume / Portfolio PDF도 기존 MaterialsPopup을 엽니다. Contact 전용 `ContactPackageActions`는 원본 버튼의 색·border·radius·SVG를 보존하며 clipboard 진행·실패·직접 복사를 담당합니다. 공통 자료 패널은 선택적 `returnFocusRef`로 본문 진입 버튼에 초점을 복귀시키고, 이 ref가 없는 기존 Header·떠 있는 버튼 동작은 유지합니다. PDF 공개·이메일 수집·전송을 추가하지 않습니다.
+
+
+## Home 하단 제품 CTA (2026-10-06)
+
+`HomeCapabilities`는 기존 Home 하단 어두운 카드의 텍스트와 버튼만 관리합니다. 실제 Academic Standing의 H2 24/28px·H3 20/22px·본문 13px 규격을 재사용하며 Product Focus와 Core Strengths를 같은 위계로 표시합니다. 기존 모바일 텍스트 좌측·버튼 중앙 정렬을 보존하고, `originalHref`로 Products 목록에 연결합니다. 이전 Qualifications의 역할별 CSS 보정은 이 컴포넌트의 CSS Module로 대체합니다. 공통 Header/Footer/MaterialsPopup 연결, Academic과 다른 페이지는 그대로입니다. PR·공개 승인은 이 연결 기록과 별개입니다.
+
+
+## Home 회사 로고 (2026-10-06)
+
+`HomePartnerLogos`는 기존 파트너 영역의 움직이는 로고 목록만 소유합니다. Google을 제거하고 SK Inc.와 LINE WORKS를 추가하며 SK Telecom·NAVER·NAVER Cloud·H&M은 유지합니다. 공식 원본 SVG 파일과 40초 움직임·반응형 간격을 보존하고, 새 로고에도 기존의 흑백·45% 투명도 처리를 똑같이 적용합니다. 로고 세 반복은 단일 데이터 목록을 사용하며, 끝 간격으로 이음새를 맞추고 중복 접근성 이름을 제거합니다. Header/Footer/자료 UI와 다른 Home 섹션은 바꾸지 않습니다.

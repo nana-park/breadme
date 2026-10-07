@@ -27,6 +27,8 @@
 | --- | --- | --- | --- | --- |
 | `naver-cloud` | Organization | NAVER Cloud | - | 사용자 예외 전달 전까지 공통 사용 |
 | `sk-telecom` | Organization | SK Telecom | - | 사용자 예외 전달 전까지 공통 사용 |
+| `sk-inc` | Organization | SK Inc. | - | 지주사. Home 로고에서 SK Telecom과 별도 표시; 공식 SK Holdings 소개 기준 |
+| `line-works` | Organization | LINE WORKS | - | 일본 LINE WORKS 기업 워드마크. 일반 LINE 서비스와 구분 |
 
 ## 기술과 도구
 
