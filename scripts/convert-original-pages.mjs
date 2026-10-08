@@ -12,6 +12,7 @@ import postcss from "postcss";
 import { format } from "prettier";
 import { applyCareerContentOverrides } from "./apply-career-content-overrides.ts";
 import { applyLandingHeroOverride } from "./apply-landing-hero-override.ts";
+import { applyEducationIaOverride } from "./apply-education-ia-override.ts";
 import { applyHomeCapabilitiesOverride } from "./apply-home-capabilities-override.ts";
 
 const projectRoot = path.resolve(
@@ -191,6 +192,10 @@ function scopedMockupCss(css) {
 
 await fs.mkdir(outputRoot, { recursive: true });
 const manifest = [];
+const iaSources = {
+  home: new JSDOM(await fs.readFile(path.join(sourceRoot, "index.html"), "utf8")).window.document,
+  qualified: new JSDOM(await fs.readFile(path.join(sourceRoot, "qualified.html"), "utf8")).window.document,
+};
 for (const [sourceFile, componentName] of pageDefinitions) {
   const source = (
     await fs.readFile(path.join(sourceRoot, sourceFile), "utf8")
@@ -199,18 +204,6 @@ for (const [sourceFile, componentName] of pageDefinitions) {
   const document = dom.window.document;
   applyCareerContentOverrides(document, sourceFile);
   applyHomeCapabilitiesOverride(document, sourceFile);
-  // WHAT: Preserve the user's Home-only, one-sentence Research Focus copy.
-  // WHY: Remove the forced break without changing Education layout or Career copy.
-  if (sourceFile === "index.html") {
-    const researchFocus = Array.from(
-      document.querySelectorAll("#history-2 p"),
-    ).find((node) =>
-      node.textContent.trim().startsWith("Focused on human cognition,"),
-    );
-    if (researchFocus)
-      researchFocus.textContent =
-        "Focused on human cognition, statistical modeling, and AI technical literacy, with research published in SSCI-indexed journals.";
-  }
   // WHAT: Stable reading roles for the reviewed mobile refinements.
   // WHY: Keep page-owned responsive CSS out of source utility strings and make
   // regeneration preserve the fixes without altering desktop declarations.
@@ -379,6 +372,7 @@ for (const [sourceFile, componentName] of pageDefinitions) {
       }
     }
   }
+  applyEducationIaOverride(document, sourceFile, iaSources);
   applyLandingHeroOverride(document, sourceFile);
   const isMockup = componentName === "OriginalMentoringMockupContent";
   const imports = new Set();

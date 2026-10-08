@@ -271,6 +271,303 @@ export function OriginalAboutContent() {
       {'\n            '}
       {'\n    '}
       <section
+        className={
+          'how-i-work-section bg-[#fafafa] pt-16 pb-32 md:pt-24 md:pb-48'
+        }
+        id={'how-work'}
+        data-about-chapter={'principles'}
+      >
+        {'\n        '}
+        <div className={'container'}>
+          {'\n            '}
+          <div
+            className={
+              'flex flex-col items-center text-center mb-16 md:mb-24 max-w-[1000px] mx-auto px-4'
+            }
+            data-reading-role={'principles-section-header'}
+          >
+            {'\n                '}
+            <h2
+              className={
+                'font-sans text-zinc-900 text-[28px] md:text-[36px] tracking-tight font-medium mb-5 leading-[1.15]'
+              }
+            >
+              {'\n                    Core principles driving'}
+              <br />
+              {'\n                    next-gen AI products.\n                '}
+            </h2>
+            {'\n                '}
+            <p
+              className={
+                'font-sans text-zinc-600 text-[15px] md:text-[18px] font-light leading-[1.6] max-w-full mx-auto'
+              }
+              style={{ wordBreak: 'keep-all' } as CSSProperties}
+            >
+              {
+                '\n                    Driving scalable product lifecycles through persuasive storytelling, empathic alignment, and\n                    relentless efficiency.'
+              }
+              <br />
+              {
+                '\n                    I unite engineering and strategy to translate ambiguous technical possibilities into user-centric\n                    realities.\n                '
+              }
+            </p>
+            {'\n            '}
+          </div>
+          {'\n            '}
+          <div
+            className={
+              'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 w-full max-w-[1240px] mx-auto px-4'
+            }
+          >
+            {'\n                '}
+            {'\n                '}
+            <div
+              className={
+                'flex flex-col bg-white border border-zinc-200 shadow-sm rounded-[16px] p-5 lg:p-6 group hover:shadow-md transition-shadow duration-300'
+              }
+            >
+              {'\n                    '}
+              <h3
+                className={
+                  'font-sans text-[22px] font-medium leading-[1.2] text-zinc-900 mb-2'
+                }
+              >
+                {'Persuasive\n                        Storytelling'}
+              </h3>
+              {'\n                    '}
+              <p
+                className={
+                  'font-sans text-[13px] leading-[1.5] text-zinc-500 mb-4 shrink-0'
+                }
+              >
+                {
+                  'Crafting narratives\n                        through analysis and writing. Enabling confident decision-making across teams and stakeholders\n                        through alignment-driven writing.'
+                }
+              </p>
+              {'\n\n                    '}
+              <div className={'flex flex-wrap gap-1.5 mb-6 mt-auto'}>
+                {'\n                        '}
+                <span
+                  className={
+                    'inline-block px-2.5 py-1 text-[10px] font-bold text-zinc-600 bg-zinc-50 border border-zinc-200/60 rounded-[4px] tracking-wide uppercase'
+                  }
+                >
+                  {'Published Writing'}
+                </span>
+                {'\n                        '}
+                <span
+                  className={
+                    'inline-block px-2.5 py-1 text-[10px] font-bold text-zinc-600 bg-zinc-50 border border-zinc-200/60 rounded-[4px] tracking-wide uppercase'
+                  }
+                >
+                  {'Data Conviction'}
+                </span>
+                {'\n                    '}
+              </div>
+              {'\n\n                    '}
+              <div
+                className={
+                  'w-full aspect-video rounded-[8px] overflow-hidden shrink-0 relative bg-zinc-100 border border-zinc-100/50'
+                }
+              >
+                {'\n                        '}
+                <img
+                  src={assetUrl('how_work_story_new_169.png')}
+                  className={'w-full h-full object-cover'}
+                />
+                {'\n                    '}
+              </div>
+              {'\n                '}
+            </div>
+            {'\n\n                '}
+            {'\n                '}
+            <div
+              className={
+                'flex flex-col bg-white border border-zinc-200 shadow-sm rounded-[16px] p-5 lg:p-6 group hover:shadow-md transition-shadow duration-300'
+              }
+            >
+              {'\n                    '}
+              <h3
+                className={
+                  'font-sans text-[22px] font-medium leading-[1.2] text-zinc-900 mb-2'
+                }
+              >
+                {'Efficiency-Driven\n                    '}
+              </h3>
+              {'\n                    '}
+              <p
+                className={
+                  'font-sans text-[13px] leading-[1.5] text-zinc-500 mb-4 shrink-0'
+                }
+              >
+                {
+                  'Focused on one clear goal\n                        driving it to resolution. Establishes a plan early from signals, aligns communication and\n                        resources to remove friction.'
+                }
+              </p>
+              {'\n\n                    '}
+              <div className={'flex flex-wrap gap-1.5 mb-6 mt-auto'}>
+                {'\n                        '}
+                <span
+                  className={
+                    'inline-block px-2.5 py-1 text-[10px] font-bold text-zinc-600 bg-zinc-50 border border-zinc-200/60 rounded-[4px] tracking-wide uppercase'
+                  }
+                >
+                  {'Deliver Results'}
+                </span>
+                {'\n                        '}
+                <span
+                  className={
+                    'inline-block px-2.5 py-1 text-[10px] font-bold text-zinc-600 bg-zinc-50 border border-zinc-200/60 rounded-[4px] tracking-wide uppercase'
+                  }
+                >
+                  {'Experiment & Iterate'}
+                </span>
+                {'\n                    '}
+              </div>
+              {'\n\n                    '}
+              <div
+                className={
+                  'w-full aspect-video rounded-[8px] overflow-hidden shrink-0 relative bg-zinc-100 border border-zinc-100/50'
+                }
+              >
+                {'\n                        '}
+                <img
+                  src={assetUrl('how_work_efficiency_new_169.png')}
+                  className={'w-full h-full object-cover '}
+                />
+                {'\n                    '}
+              </div>
+              {'\n                '}
+            </div>
+            {'\n\n                '}
+            {'\n                '}
+            <div
+              className={
+                'flex flex-col bg-white border border-zinc-200 shadow-sm rounded-[16px] p-5 lg:p-6 group hover:shadow-md transition-shadow duration-300'
+              }
+            >
+              {'\n                    '}
+              <h3
+                className={
+                  'font-sans text-[22px] font-medium leading-[1.2] text-zinc-900 mb-2'
+                }
+              >
+                {'Communication\n                        Architect'}
+              </h3>
+              {'\n                    '}
+              <p
+                className={
+                  'font-sans text-[13px] leading-[1.5] text-zinc-500 mb-4 shrink-0'
+                }
+              >
+                {
+                  'Facilitating alignment\n                        through transparent systems. Automates coordination and builds rapport, enabling issues to\n                        surface early.'
+                }
+              </p>
+              {'\n\n                    '}
+              <div className={'flex flex-wrap gap-1.5 mb-6 mt-auto'}>
+                {'\n                        '}
+                <span
+                  className={
+                    'inline-block px-2.5 py-1 text-[10px] font-bold text-zinc-600 bg-zinc-50 border border-zinc-200/60 rounded-[4px] tracking-wide uppercase'
+                  }
+                >
+                  {'Cross-functional'}
+                </span>
+                {'\n                        '}
+                <span
+                  className={
+                    'inline-block px-2.5 py-1 text-[10px] font-bold text-zinc-600 bg-zinc-50 border border-zinc-200/60 rounded-[4px] tracking-wide uppercase'
+                  }
+                >
+                  {'Psychology-informed'}
+                </span>
+                {'\n                    '}
+              </div>
+              {'\n\n                    '}
+              <div
+                className={
+                  'w-full aspect-video rounded-[8px] overflow-hidden shrink-0 relative bg-zinc-100 border border-zinc-100/50'
+                }
+              >
+                {'\n                        '}
+                <img
+                  src={assetUrl('how_work_comm_new_169.png')}
+                  className={'w-full h-full object-cover'}
+                />
+                {'\n                    '}
+              </div>
+              {'\n                '}
+            </div>
+            {'\n\n                '}
+            {'\n                '}
+            <div
+              className={
+                'flex flex-col bg-white border border-zinc-200 shadow-sm rounded-[16px] p-5 lg:p-6 group hover:shadow-md transition-shadow duration-300'
+              }
+            >
+              {'\n                    '}
+              <h3
+                className={
+                  'font-sans text-[22px] font-medium leading-[1.2] text-zinc-900 mb-2'
+                }
+              >
+                {'\n                        Inquiry-Driven'}
+                <br />
+                {'Detection'}
+              </h3>
+              {'\n                    '}
+              <p
+                className={
+                  'font-sans text-[13px] leading-[1.5] text-zinc-500 mb-4 shrink-0'
+                }
+              >
+                {
+                  'Actively uncovering\n                        signals through inquiry. Gathers perspectives from first-hand field insights, interviews, and\n                        industry seminars.'
+                }
+              </p>
+              {'\n\n                    '}
+              <div className={'flex flex-wrap gap-1.5 mb-6 mt-auto'}>
+                {'\n                        '}
+                <span
+                  className={
+                    'inline-block px-2.5 py-1 text-[10px] font-bold text-zinc-600 bg-zinc-50 border border-zinc-200/60 rounded-[4px] tracking-wide uppercase'
+                  }
+                >
+                  {'Field-driven Insights'}
+                </span>
+                {'\n                        '}
+                <span
+                  className={
+                    'inline-block px-2.5 py-1 text-[10px] font-bold text-zinc-600 bg-zinc-50 border border-zinc-200/60 rounded-[4px] tracking-wide uppercase'
+                  }
+                >
+                  {'Trend Analysis'}
+                </span>
+                {'\n                    '}
+              </div>
+              {'\n\n                    '}
+              <div
+                className={
+                  'w-full aspect-video rounded-[8px] overflow-hidden shrink-0 relative bg-zinc-100 border border-zinc-100/50'
+                }
+              >
+                {'\n                        '}
+                <img
+                  src={assetUrl('how_work_detect_new_169.png')}
+                  className={'w-full h-full object-cover'}
+                />
+                {'\n                    '}
+              </div>
+              {'\n                '}
+            </div>
+            {'\n            '}
+          </div>
+          {'\n        '}
+        </div>
+        {'\n    '}
+      </section>
+      <section
         id={'media'}
         className={'w-full bg-[#0a0a0a] py-20 md:py-32'}
         data-about-chapter={'interview'}

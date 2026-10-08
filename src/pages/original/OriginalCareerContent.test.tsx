@@ -34,12 +34,12 @@ describe("Career content boundaries", () => {
         ?.sectionIds,
     ).toEqual(["about", "history", "testimonials"]);
   });
-  it("keeps Home Academic Standing, both degrees and research links", () => {
+  it("keeps Home Academic Standing, both degree summaries and the full-education link", () => {
     const { container } = render(<OriginalHomeContent />);
     expect(
       screen.getByRole("heading", { name: "Academic Standing" }),
     ).toBeInTheDocument();
-    expect(container.querySelectorAll("#history-2 img")).toHaveLength(2);
+    expect(container.querySelectorAll("#history-2 img")).toHaveLength(0);
     expect(
       screen.getByRole("heading", { name: "M.S. in Human-AI Interaction" }),
     ).toBeInTheDocument();
@@ -47,8 +47,8 @@ describe("Career content boundaries", () => {
       screen.getByRole("heading", { name: "B.A. in Psychology" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("link", { name: /View publications/ }),
-    ).toHaveAttribute("href", "/research.html");
+      screen.getByRole("link", { name: /Full education & qualifications/ }),
+    ).toHaveAttribute("href", "/qualified.html#history-2");
   });
   it("preserves the removal and intro role during regeneration, only for Career", () => {
     const source = `<section id="history">Careers</section><section id="history-2">Education</section><section id="testimonials"><p>Unfiltered voices from the cross-functional partners and leaders<br> who have navigated complex product journeys alongside me.</p></section>`;

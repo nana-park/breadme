@@ -1,0 +1,55 @@
+name: Education and principles IA review
+on:
+  pull_request:
+    paths:
+      - .github/workflows/education-ia-review.yml
+      - scripts/apply-education-ia-override.ts
+      - tests/e2e/education-ia.spec.ts
+      - src/pages/original/generated/OriginalHomeContent.tsx
+      - src/pages/original/generated/OriginalQualifiedContent.tsx
+      - src/pages/original/generated/OriginalAboutContent.tsx
+permissions:
+  contents: read
+jobs:
+  review:
+    if: github.head_ref == 'feature/education-principles-ia'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: 58a617a3bb60261f750a2cf9fb46979e81decd82
+          path: .cache/education-baseline
+          persist-credentials: false
+      - name: Build pinned AS-IS and serve it separately
+        run: |
+          BASELINE="$GITHUB_WORKSPACE/.cache/education-baseline"
+          ln -s "$GITHUB_WORKSPACE/node_modules" "$BASELINE/node_modules"
+          cp -a "$GITHUB_WORKSPACE/public" "$BASELINE/public"
+          cd "$BASELINE"
+          npm run build
+          npm run preview -- --host 127.0.0.1 --port 4174 --strictPort > /tmp/education-baseline.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4174/ >/dev/null && break; sleep 1; done
+          curl -fsS http://127.0.0.1:4174/ >/dev/null
+      - run: npx playwright install --with-deps chromium
+      - name: Compare desktop and mobile IA and verify navigation
+        env:
+          EDUCATION_IA_BASELINE_URL: http://127.0.0.1:4174
+        run: npx playwright test tests/e2e/education-ia.spec.ts --workers=1 --retries=0
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: education-ia-as-is-to-be
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 14

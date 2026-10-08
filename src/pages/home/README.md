@@ -1,6 +1,18 @@
 # Home
 
-`/breadme/`와 `/breadme/index.html`의 순서는 기존 Hero → 회사 로고 캐러셀 → 발자취 갤러리 → 경력 → Education → Product Focus / Core Strengths CTA입니다.
+`/breadme/`와 `/breadme/index.html`의 순서는 기존 Hero → 회사 로고 캐러셀 → 발자취 갤러리 → 경력 → 짧은 Education 요약(`#history-2`) → Product Focus / Core Strengths CTA입니다.
+
+## 현재 Education 요약과 상세 진입 (2026-10-08)
+
+Home은 학력의 빠른 확인과 상세 진입을 맡습니다. 기존 `#history-2` 앵커를 유지하고 아래 두 학위·학교만 간결하게 표시합니다.
+
+- M.S. in Human-AI Interaction / Sungkyunkwan University
+- B.A. in Psychology / Sookmyung Women's University
+- 학력 상세 링크: `originalHref('qualified.html#history-2')`. 기본 경로와 `/breadme/` 모두 Qualifications의 Academic Standing으로 연결합니다.
+
+기존 Academic Standing 전체는 Qualifications Hero 다음, Core Competencies 앞의 `#history-2`로 이동합니다. 두 사진, 학위·학교·기간, Additional Degree, 두 Research Focus 문단, View publications·Google Scholar 링크와 기존 표시 스타일은 그곳에서 보존합니다. Home에는 사진·기간·연구 상세를 중복하지 않습니다. 메뉴 이름·URL, Career, 기존 Home Hero·로고·발자취·경력·하단 CTA는 이 IA 변경의 대상이 아닙니다.
+
+이 문서의 아래 날짜별 보존 설명은 해당 작업 당시의 범위입니다. Education의 현재 위치와 Home 요약 범위는 이 항목을 우선합니다. [학력·업무 원칙 IA 검수](../../../docs/qa/education-principles-ia.md)에 브라우저 AS-IS/TO-BE 증거와 미검수 상태를 분리해 기록합니다. 이번 변경은 main 병합·배포를 포함하지 않습니다.
 
 ## 선택된 경력 구현
 
@@ -22,24 +34,24 @@
 - 항목: 날짜11px → 회사명20px(768px부터22px)/weight400 → 직무명12px (두 회사 모두 AI Product Manager)
 - Products/Outcomes 라벨10px로 동일 위계; 각 목록 내용13px/line-height1.6. 항목 사이8px, 제품 목록 아래24px, 자연 줄바꿈; 고정 높이·축소 글자·말줄임 없음
 
-사진은 사용자의 최종 선택에 따라 제거했으므로 이미지 자리를 빈 박스나 고정 높이로 남기지 않습니다. 기존 Education의 사진·padding·위치는 유지합니다. 사용자 요청에 따른 유일한 본문 예외는 Research Focus 두 문장을 한 문장으로 다듬고 강제 줄바꿈을 제거한 것입니다. 화면 폭에 따른 자연 줄바꿈은 허용합니다.
+사진은 사용자의 최종 선택에 따라 제거했으므로 이미지 자리를 빈 박스나 고정 높이로 남기지 않습니다. 경력 구현 당시 기준으로 사용한 Education 전체의 사진·padding·스타일은 이제 Qualifications의 Academic Standing에서 보존합니다. 그 전에 승인된 Research Focus 한 문장과 자연 줄바꿈도 그대로 옮기며, 이번 IA 작업에서 문장을 다시 교정하지 않습니다.
 
 ## 소스와 범위
 
 - `HomeExperience.tsx`, `HomeExperience.module.css`: 경력만의 조립/스타일
 - `src/content/site/homeExperience.ts`: 문구와 공개 근거 링크; 회사명은 공통 `terms` 사용
-- `OriginalHomeContent.tsx`: Home Hero와 `#history`, 하단 CTA 내용을 페이지 전용 컴포넌트로 연결. 회사 캐러셀·갤러리는 main533d33b와 동일. Education은 승인된 Research Focus 한 문장 외에 동일. 하단 CTA는 `HomeCapabilities`를 렌더링하며, 모바일 텍스트 좌측·버튼 중앙 정렬은 유지
+- `OriginalHomeContent.tsx`: Home Hero·경력·학력 요약·하단 CTA를 조립합니다. `#history-2`는 위 요약과 Qualifications 상세 링크를 맡으며, 전체 Academic Standing은 `OriginalQualifiedContent.tsx`에서 렌더링합니다. 하단 CTA는 `HomeCapabilities`를 렌더링하며 모바일 텍스트 좌측·버튼 중앙 정렬을 유지합니다.
 - `src/content/site/homeCapabilities.ts`: 하단 CTA의 승인 문구와 Products 목적지
 - `HomeCapabilities.tsx`, `HomeCapabilities.module.css`: 기존 어두운 박스 안의 제목·소개·두 그룹·버튼
-- `scripts/convert-original-pages.mjs`와 `apply-home-capabilities-override.ts`: Home 경력·하단 CTA 교체와 Research Focus 문장 교정을 재생성 시 보존. 다른 페이지 생성 규칙은 바꾸지 않음
+- `scripts/convert-original-pages.mjs`와 관련 override: Home 경력·하단 CTA 교체와 기존 Research Focus 문장 교정을 보존합니다. `apply-education-ia-override.ts`는 `applyLandingHeroOverride` 앞에서 실행해 Home 요약, Qualifications의 전체 학력, About의 네 원칙 카드 배치를 보존합니다. 기존 generated 페이지가 마크업을 소유하며 새 페이지 컴포넌트는 추가하지 않습니다. 현재 구현과 재생성 검증 상태는 [IA QA 기록](../../../docs/qa/education-principles-ia.md)을 따릅니다.
 - 공통 Header/Footer/자료 UI·Career 페이지·기존 Hero는 그대로 유지. Resume/PDF는 Coming Soon
 
 검사 결과와 한계는 [Home career review](../../../docs/qa/home-career-review.md)에 기록합니다.
 
 ## 검수와 공개 상태
 
-- 단위 검사: section 순서, 기존 Education/로고, 경력의 사진·모션 제거, 성과 순서/회사별 귀속/공식 링크
-- `HomeExperience.test.tsx`: Full career 다음 Products의 공통 스타일·키보드 순서와 `/`·`/breadme/` 링크
+- 단위 검사: section 순서, Home의 짧은 Education 요약과 상세 앵커, Qualifications로 옮긴 전체 학력의 무손실 보존, 기존 로고, 경력의 사진·모션 제거, 성과 순서/회사별 귀속/공식 링크. 이번 IA의 실제 실행 결과는 별도 [QA 기록](../../../docs/qa/education-principles-ia.md)에서 확인합니다.
+- `HomeExperience.test.tsx`: Products 다음 Full career의 공통 스타일·키보드 순서와 `/`·`/breadme/` 링크
 - `home-career-visibility.spec.ts`: 320/390/768/1023/1024/1440px 흰 배경·기존 순서·학력과 같은 제목 위계·열 배치·줄바꿈·두 CTA의 나란한 배치/44px 터치 높이/링크/Back·캡처. 320px의 2배 텍스트는 별도 줄바꿈·넘침 검사로 보호하며 실제 브라우저 확대 검수와 구분합니다.
 - Hero·메뉴·자료·모바일 스크롤 검사를 유지하고, 원래 경력 페이지의 패널 검사는 `/career.html`에서 계속 수행
 - 로컬 Chromium은 정상 실행 시 socket permission 오류로 시작 전에 차단됨. 정책/실행 플래그를 바꿔 우회하지 않음. 도식 이미지는 실제 브라우저 캡처나 기기 검수의 대체가 아님

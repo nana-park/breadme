@@ -17,7 +17,7 @@ function AboutFixture() {
 }
 
 describe("About mobile reading chapters", () => {
-  it("marks introduction, identity and interview in order without marking diagram parts", () => {
+  it("marks introduction, identity, principles and interview in order without marking diagram parts", () => {
     const { container } = render(<AboutFixture />);
     const chapters = Array.from(
       container.querySelectorAll<HTMLElement>("[data-mobile-snap-section]"),
@@ -25,6 +25,7 @@ describe("About mobile reading chapters", () => {
     expect(chapters.map((chapter) => chapter.dataset.aboutChapter)).toEqual([
       "introduction",
       "identity",
+      "principles",
       "interview",
     ]);
     expect(container.querySelector("#about")).toHaveAttribute(
@@ -41,7 +42,7 @@ describe("About mobile reading chapters", () => {
       "href",
       "/projects.html",
     );
-    expect(chapters[2].querySelector("a")).toHaveAttribute(
+    expect(chapters[3].querySelector("a")).toHaveAttribute(
       "href",
       "https://youtu.be/BQGPG91YsLo?t=2231",
     );

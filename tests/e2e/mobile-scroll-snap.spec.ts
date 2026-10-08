@@ -290,9 +290,9 @@ test("native hash anchors and keyboard skip navigation clear the fixed header", 
 }, testInfo) => {
   await page.setViewportSize(MOBILE);
   await page.emulateMedia({ reducedMotion: "no-preference" });
-  await openRoute(page, "qualified", "#how-work");
+  await openRoute(page, "about", "#how-work");
   const target = page.locator("#how-work");
-  await expect(page).toHaveURL(/qualified\.html#how-work$/);
+  await expect(page).toHaveURL(/about\.html#how-work$/);
   await expect
     .poll(() =>
       target.evaluate((element) => element.getBoundingClientRect().top),

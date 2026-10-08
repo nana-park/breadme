@@ -1,6 +1,6 @@
-import { LandingPhotoHero } from "../LandingPhotoHero";
+import { LandingPhotoHero } from '../LandingPhotoHero';
 import type { CSSProperties } from 'react';
-import { assetUrl } from '@/shared/utils/originalPaths';
+import { assetUrl, originalHref } from '@/shared/utils/originalPaths';
 
 /**
  * WHAT: Native React content from qualified.html.
@@ -43,16 +43,335 @@ export function OriginalQualifiedContent() {
         {'\n\n    '}
       </section>
       {'\n\n    '}
+      <section
+        className={
+          'relative w-full bg-white pb-24 pt-16 flex flex-col items-center'
+        }
+        id={'history-2'}
+        data-education-detail={''}
+      >
+        {'\n        '}
+        <div
+          className={'container mx-auto px-4 lg:px-12 max-w-[1000px] w-full'}
+        >
+          {'\n            '}
+          <div className={'mb-12'}>
+            {'\n                '}
+            <div
+              className={
+                'text-[11px] text-zinc-400 uppercase tracking-[0.2em] mb-4 font-medium pl-1 font-sans'
+              }
+            >
+              {'\n                    Education'}
+            </div>
+            {'\n                '}
+            <h2
+              className={
+                'font-sans text-zinc-900 text-[24px] md:text-[28px] tracking-tight font-medium mb-3'
+              }
+            >
+              {'Academic\n                    Standing'}
+            </h2>
+            {'\n                '}
+            <p
+              className={
+                'font-sans text-zinc-500 text-[13px] md:text-[14px] max-w-[800px] font-light mb-6'
+              }
+              style={{ wordBreak: 'keep-all' } as CSSProperties}
+            >
+              {
+                '\n                    Rooted in academic rigor, I explore the nuances of human behavior, psychology, and cognitive\n                    science'
+              }
+              <br />
+              {
+                '\n                    to establish theoretical foundations for cutting-edge AI interactions.\n                '
+              }
+            </p>
+            {'\n                '}
+            <div className={'flex flex-wrap items-center gap-3'}>
+              {'\n                    '}
+              <a
+                href={originalHref('research.html')}
+                className={
+                  'inline-flex items-center justify-center px-6 py-2.5 bg-[#1a1a1a] text-white font-sans text-[13px] font-semibold rounded hover:bg-[#2a2a2a] transition-all group'
+                }
+              >
+                {
+                  '\n                        View publications\n                        '
+                }
+                <span
+                  className={
+                    'ml-1.5 translate-y-[1px] group-hover:translate-x-[2px] group-hover:-translate-y-[2px] transition-transform duration-300'
+                  }
+                >
+                  {'↗'}
+                </span>
+                {'\n                    '}
+              </a>
+              {'\n                    '}
+              <a
+                href={
+                  'https://scholar.google.com/citations?user=CTcwlAEAAAAJ&hl=ko&oi=sra'
+                }
+                target={'_blank'}
+                rel={'noopener noreferrer'}
+                className={
+                  'inline-flex items-center justify-center px-6 py-2.5 bg-white border border-zinc-200 text-zinc-700 font-sans text-[13px] font-semibold rounded hover:bg-zinc-50 transition-all shadow-sm group'
+                }
+              >
+                {
+                  '\n                        Google Scholar\n                        '
+                }
+                <span
+                  className={
+                    'ml-1.5 translate-y-[1px] group-hover:translate-x-[2px] group-hover:-translate-y-[2px] transition-transform duration-300'
+                  }
+                >
+                  {'↗'}
+                </span>
+                {'\n                    '}
+              </a>
+              {'\n                '}
+            </div>
+            {'\n            '}
+          </div>
+          {'\n\n            '}
+          <div className={'grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12'}>
+            {'\n                '}
+            {'\n                '}
+            <div className={'flex flex-col group'}>
+              {'\n                    '}
+              <div
+                className={
+                  'w-full aspect-[16/9] mb-4 overflow-hidden rounded-[10px] bg-zinc-100'
+                }
+              >
+                {'\n                        '}
+                <img
+                  src={assetUrl('nahyun_imported/image_source/HOME/MS.jpg')}
+                  alt={'M.S. in Human-AI Interaction'}
+                  className={
+                    'w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]'
+                  }
+                  style={{ objectPosition: 'center 60%' } as CSSProperties}
+                />
+                {'\n                    '}
+              </div>
+              {'\n                    '}
+              <div className={'flex flex-col mt-2'}>
+                {'\n                        '}
+                <span
+                  className={
+                    'text-[11px] text-zinc-500 font-sans tracking-tight mb-1'
+                  }
+                >
+                  {'March 2021 - February\n                            2023'}
+                </span>
+                {'\n                        '}
+                <h3
+                  className={
+                    'font-sans text-[#1a1a1a] text-[20px] md:text-[22px] tracking-tight font-normal mb-1'
+                  }
+                >
+                  {'\n                            M.S. in Human-AI Interaction'}
+                </h3>
+                {'\n                        '}
+                <p
+                  className={
+                    'font-sans text-zinc-500 text-[12px] flex items-center mb-6'
+                  }
+                >
+                  {'\n                            '}
+                  <svg
+                    className={'w-3.5 h-3.5 mr-1 text-zinc-400'}
+                    fill={'none'}
+                    stroke={'currentColor'}
+                    viewBox={'0 0 24 24'}
+                  >
+                    {'\n                                '}
+                    <path
+                      strokeLinecap={'round'}
+                      strokeLinejoin={'round'}
+                      strokeWidth={'2'}
+                      d={
+                        'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z'
+                      }
+                    >
+                      {'\n                                '}
+                    </path>
+                    {'\n                                '}
+                    <path
+                      strokeLinecap={'round'}
+                      strokeLinejoin={'round'}
+                      strokeWidth={'2'}
+                      d={'M15 11a3 3 0 11-6 0 3 3 0 016 0z'}
+                    />
+                    {'\n                            '}
+                  </svg>
+                  {
+                    '\n                            Sungkyunkwan University\n                        '
+                  }
+                </p>
+                {'\n\n                        '}
+                <div
+                  className={
+                    'text-[10px] text-zinc-400 uppercase tracking-wider mb-2 font-medium'
+                  }
+                >
+                  {'Research Focus\n                        '}
+                </div>
+                {'\n                        '}
+                <p
+                  className={
+                    'font-sans text-zinc-800 text-[13px] leading-[1.6]'
+                  }
+                  style={{ wordBreak: 'keep-all' } as CSSProperties}
+                >
+                  {
+                    'Focused on human cognition, statistical modeling, and AI technical literacy, with research published in SSCI-indexed journals.'
+                  }
+                </p>
+                {'\n                    '}
+              </div>
+              {'\n                '}
+            </div>
+            {'\n\n                '}
+            {'\n                '}
+            <div className={'flex flex-col group'}>
+              {'\n                    '}
+              <div
+                className={
+                  'w-full aspect-[16/9] mb-4 overflow-hidden rounded-[10px] bg-zinc-100'
+                }
+              >
+                {'\n                        '}
+                <img
+                  src={assetUrl(
+                    'nahyun_imported/image_source/HOME/Sookmyung.jpg',
+                  )}
+                  alt={'B.A. in Psychology'}
+                  className={
+                    'w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]'
+                  }
+                  style={{ objectPosition: 'center 35%' } as CSSProperties}
+                />
+                {'\n                    '}
+              </div>
+              {'\n                    '}
+              <div className={'flex flex-col mt-2'}>
+                {'\n                        '}
+                <span
+                  className={
+                    'text-[11px] text-zinc-500 font-sans tracking-tight mb-1'
+                  }
+                >
+                  {'March 2015 - February\n                            2021'}
+                </span>
+                {'\n                        '}
+                <h3
+                  className={
+                    'font-sans text-[#1a1a1a] text-[20px] md:text-[22px] tracking-tight font-normal mb-1'
+                  }
+                >
+                  {'\n                            B.A. in Psychology'}
+                </h3>
+                {'\n                        '}
+                <p
+                  className={
+                    'font-sans text-zinc-500 text-[12px] flex items-center mb-6'
+                  }
+                >
+                  {'\n                            '}
+                  <svg
+                    className={'w-3.5 h-3.5 mr-1 text-zinc-400'}
+                    fill={'none'}
+                    stroke={'currentColor'}
+                    viewBox={'0 0 24 24'}
+                  >
+                    {'\n                                '}
+                    <path
+                      strokeLinecap={'round'}
+                      strokeLinejoin={'round'}
+                      strokeWidth={'2'}
+                      d={
+                        'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z'
+                      }
+                    >
+                      {'\n                                '}
+                    </path>
+                    {'\n                                '}
+                    <path
+                      strokeLinecap={'round'}
+                      strokeLinejoin={'round'}
+                      strokeWidth={'2'}
+                      d={'M15 11a3 3 0 11-6 0 3 3 0 016 0z'}
+                    />
+                    {'\n                            '}
+                  </svg>
+                  {
+                    "\n                            Sookmyung Women's University\n                        "
+                  }
+                </p>
+                {'\n\n                        '}
+                <div
+                  className={
+                    'text-[10px] text-zinc-400 uppercase tracking-wider mb-2 font-medium'
+                  }
+                >
+                  {'Additional\n                            Degree'}
+                </div>
+                {'\n                        '}
+                <p
+                  className={
+                    'font-sans text-zinc-800 text-[13px] leading-[1.6] mb-6'
+                  }
+                >
+                  {
+                    '\n                            Double major in ESG Management'
+                  }
+                  <br />
+                  {
+                    '\n                            Minor in Business Administration\n                        '
+                  }
+                </p>
+                {'\n\n                        '}
+                <div
+                  className={
+                    'text-[10px] text-zinc-400 uppercase tracking-wider mb-2 font-medium'
+                  }
+                >
+                  {'Research Focus\n                        '}
+                </div>
+                {'\n                        '}
+                <p
+                  className={
+                    'font-sans text-zinc-800 text-[13px] leading-[1.6]'
+                  }
+                >
+                  {
+                    '\n                            Built core expertise in behavioral research, experimental design, and quantitative\n                            analytics, grounding future UX practices.\n                        '
+                  }
+                </p>
+                {'\n                    '}
+              </div>
+              {'\n                '}
+            </div>
+            {'\n            '}
+          </div>
+          {'\n        '}
+        </div>
+        {'\n    '}
+      </section>
       <section className={'bg-[#fafafa] py-24 md:py-32'} id={'toolkit-grid'}>
         {'\n        '}
         <div className={'container mx-auto px-6 max-w-[1200px]'}>
           {'\n\n            '}
           {'\n            '}
           <div
-            data-reading-role="qualification-section-header"
             className={
               'text-center mb-16 md:mb-24 max-w-[800px] mx-auto flex flex-col items-center'
             }
+            data-reading-role={'qualification-section-header'}
           >
             {'\n                '}
             <h2
@@ -89,8 +408,8 @@ export function OriginalQualifiedContent() {
             {'\n                '}
             {'\n                '}
             <div
-              data-reading-role="competency-card"
               className={'flex items-start gap-4 group'}
+              data-reading-role={'competency-card'}
             >
               {'\n                    '}
               <div
@@ -150,8 +469,8 @@ export function OriginalQualifiedContent() {
             {'\n\n                '}
             {'\n                '}
             <div
-              data-reading-role="competency-card"
               className={'flex items-start gap-4 group'}
+              data-reading-role={'competency-card'}
             >
               {'\n                    '}
               <div
@@ -211,8 +530,8 @@ export function OriginalQualifiedContent() {
             {'\n\n                '}
             {'\n                '}
             <div
-              data-reading-role="competency-card"
               className={'flex items-start gap-4 group'}
+              data-reading-role={'competency-card'}
             >
               {'\n                    '}
               <div
@@ -270,8 +589,8 @@ export function OriginalQualifiedContent() {
             {'\n\n                '}
             {'\n                '}
             <div
-              data-reading-role="competency-card"
               className={'flex items-start gap-4 group'}
+              data-reading-role={'competency-card'}
             >
               {'\n                    '}
               <div
@@ -333,8 +652,8 @@ export function OriginalQualifiedContent() {
             {'\n\n                '}
             {'\n                '}
             <div
-              data-reading-role="competency-card"
               className={'flex items-start gap-4 group'}
+              data-reading-role={'competency-card'}
             >
               {'\n                    '}
               <div
@@ -392,8 +711,8 @@ export function OriginalQualifiedContent() {
             {'\n\n                '}
             {'\n                '}
             <div
-              data-reading-role="competency-card"
               className={'flex items-start gap-4 group'}
+              data-reading-role={'competency-card'}
             >
               {'\n                    '}
               <div
@@ -466,8 +785,8 @@ export function OriginalQualifiedContent() {
           {'\n            '}
           {'\n            '}
           <div
-            data-reading-role="qualification-section-header"
             className={'text-center mb-16 lg:mb-24 flex flex-col items-center'}
+            data-reading-role={'qualification-section-header'}
           >
             {'\n                '}
             <h2
@@ -483,8 +802,8 @@ export function OriginalQualifiedContent() {
               className={
                 'flex flex-wrap justify-center items-center gap-2 md:gap-3 text-sm font-sans font-semibold'
               }
-              data-reading-role="qualification-filters"
               id={'cert-tabs'}
+              data-reading-role={'qualification-filters'}
             >
               {'\n                    '}
               <button
@@ -1374,302 +1693,6 @@ export function OriginalQualifiedContent() {
       </section>
       {'\n\n\n    '}
       {'\n    '}
-      <section
-        className={
-          'how-i-work-section bg-[#fafafa] pt-16 pb-32 md:pt-24 md:pb-48'
-        }
-        id={'how-work'}
-      >
-        {'\n        '}
-        <div className={'container'}>
-          {'\n            '}
-          <div
-            data-reading-role="qualification-section-header"
-            className={
-              'flex flex-col items-center text-center mb-16 md:mb-24 max-w-[1000px] mx-auto px-4'
-            }
-          >
-            {'\n                '}
-            <h2
-              className={
-                'font-sans text-zinc-900 text-[28px] md:text-[36px] tracking-tight font-medium mb-5 leading-[1.15]'
-              }
-            >
-              {'\n                    Core principles driving'}
-              <br />
-              {'\n                    next-gen AI products.\n                '}
-            </h2>
-            {'\n                '}
-            <p
-              className={
-                'font-sans text-zinc-600 text-[15px] md:text-[18px] font-light leading-[1.6] max-w-full mx-auto'
-              }
-              style={{ wordBreak: 'keep-all' } as CSSProperties}
-            >
-              {
-                '\n                    Driving scalable product lifecycles through persuasive storytelling, empathic alignment, and\n                    relentless efficiency.'
-              }
-              <br />
-              {
-                '\n                    I unite engineering and strategy to translate ambiguous technical possibilities into user-centric\n                    realities.\n                '
-              }
-            </p>
-            {'\n            '}
-          </div>
-          {'\n            '}
-          <div
-            className={
-              'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 w-full max-w-[1240px] mx-auto px-4'
-            }
-          >
-            {'\n                '}
-            {'\n                '}
-            <div
-              className={
-                'flex flex-col bg-white border border-zinc-200 shadow-sm rounded-[16px] p-5 lg:p-6 group hover:shadow-md transition-shadow duration-300'
-              }
-            >
-              {'\n                    '}
-              <h3
-                className={
-                  'font-sans text-[22px] font-medium leading-[1.2] text-zinc-900 mb-2'
-                }
-              >
-                {'Persuasive\n                        Storytelling'}
-              </h3>
-              {'\n                    '}
-              <p
-                className={
-                  'font-sans text-[13px] leading-[1.5] text-zinc-500 mb-4 shrink-0'
-                }
-              >
-                {
-                  'Crafting narratives\n                        through analysis and writing. Enabling confident decision-making across teams and stakeholders\n                        through alignment-driven writing.'
-                }
-              </p>
-              {'\n\n                    '}
-              <div className={'flex flex-wrap gap-1.5 mb-6 mt-auto'}>
-                {'\n                        '}
-                <span
-                  className={
-                    'inline-block px-2.5 py-1 text-[10px] font-bold text-zinc-600 bg-zinc-50 border border-zinc-200/60 rounded-[4px] tracking-wide uppercase'
-                  }
-                >
-                  {'Published Writing'}
-                </span>
-                {'\n                        '}
-                <span
-                  className={
-                    'inline-block px-2.5 py-1 text-[10px] font-bold text-zinc-600 bg-zinc-50 border border-zinc-200/60 rounded-[4px] tracking-wide uppercase'
-                  }
-                >
-                  {'Data Conviction'}
-                </span>
-                {'\n                    '}
-              </div>
-              {'\n\n                    '}
-              <div
-                className={
-                  'w-full aspect-video rounded-[8px] overflow-hidden shrink-0 relative bg-zinc-100 border border-zinc-100/50'
-                }
-              >
-                {'\n                        '}
-                <img
-                  src={assetUrl('how_work_story_new_169.png')}
-                  className={'w-full h-full object-cover'}
-                />
-                {'\n                    '}
-              </div>
-              {'\n                '}
-            </div>
-            {'\n\n                '}
-            {'\n                '}
-            <div
-              className={
-                'flex flex-col bg-white border border-zinc-200 shadow-sm rounded-[16px] p-5 lg:p-6 group hover:shadow-md transition-shadow duration-300'
-              }
-            >
-              {'\n                    '}
-              <h3
-                className={
-                  'font-sans text-[22px] font-medium leading-[1.2] text-zinc-900 mb-2'
-                }
-              >
-                {'Efficiency-Driven\n                    '}
-              </h3>
-              {'\n                    '}
-              <p
-                className={
-                  'font-sans text-[13px] leading-[1.5] text-zinc-500 mb-4 shrink-0'
-                }
-              >
-                {
-                  'Focused on one clear goal\n                        driving it to resolution. Establishes a plan early from signals, aligns communication and\n                        resources to remove friction.'
-                }
-              </p>
-              {'\n\n                    '}
-              <div className={'flex flex-wrap gap-1.5 mb-6 mt-auto'}>
-                {'\n                        '}
-                <span
-                  className={
-                    'inline-block px-2.5 py-1 text-[10px] font-bold text-zinc-600 bg-zinc-50 border border-zinc-200/60 rounded-[4px] tracking-wide uppercase'
-                  }
-                >
-                  {'Deliver Results'}
-                </span>
-                {'\n                        '}
-                <span
-                  className={
-                    'inline-block px-2.5 py-1 text-[10px] font-bold text-zinc-600 bg-zinc-50 border border-zinc-200/60 rounded-[4px] tracking-wide uppercase'
-                  }
-                >
-                  {'Experiment & Iterate'}
-                </span>
-                {'\n                    '}
-              </div>
-              {'\n\n                    '}
-              <div
-                className={
-                  'w-full aspect-video rounded-[8px] overflow-hidden shrink-0 relative bg-zinc-100 border border-zinc-100/50'
-                }
-              >
-                {'\n                        '}
-                <img
-                  src={assetUrl('how_work_efficiency_new_169.png')}
-                  className={'w-full h-full object-cover '}
-                />
-                {'\n                    '}
-              </div>
-              {'\n                '}
-            </div>
-            {'\n\n                '}
-            {'\n                '}
-            <div
-              className={
-                'flex flex-col bg-white border border-zinc-200 shadow-sm rounded-[16px] p-5 lg:p-6 group hover:shadow-md transition-shadow duration-300'
-              }
-            >
-              {'\n                    '}
-              <h3
-                className={
-                  'font-sans text-[22px] font-medium leading-[1.2] text-zinc-900 mb-2'
-                }
-              >
-                {'Communication\n                        Architect'}
-              </h3>
-              {'\n                    '}
-              <p
-                className={
-                  'font-sans text-[13px] leading-[1.5] text-zinc-500 mb-4 shrink-0'
-                }
-              >
-                {
-                  'Facilitating alignment\n                        through transparent systems. Automates coordination and builds rapport, enabling issues to\n                        surface early.'
-                }
-              </p>
-              {'\n\n                    '}
-              <div className={'flex flex-wrap gap-1.5 mb-6 mt-auto'}>
-                {'\n                        '}
-                <span
-                  className={
-                    'inline-block px-2.5 py-1 text-[10px] font-bold text-zinc-600 bg-zinc-50 border border-zinc-200/60 rounded-[4px] tracking-wide uppercase'
-                  }
-                >
-                  {'Cross-functional'}
-                </span>
-                {'\n                        '}
-                <span
-                  className={
-                    'inline-block px-2.5 py-1 text-[10px] font-bold text-zinc-600 bg-zinc-50 border border-zinc-200/60 rounded-[4px] tracking-wide uppercase'
-                  }
-                >
-                  {'Psychology-informed'}
-                </span>
-                {'\n                    '}
-              </div>
-              {'\n\n                    '}
-              <div
-                className={
-                  'w-full aspect-video rounded-[8px] overflow-hidden shrink-0 relative bg-zinc-100 border border-zinc-100/50'
-                }
-              >
-                {'\n                        '}
-                <img
-                  src={assetUrl('how_work_comm_new_169.png')}
-                  className={'w-full h-full object-cover'}
-                />
-                {'\n                    '}
-              </div>
-              {'\n                '}
-            </div>
-            {'\n\n                '}
-            {'\n                '}
-            <div
-              className={
-                'flex flex-col bg-white border border-zinc-200 shadow-sm rounded-[16px] p-5 lg:p-6 group hover:shadow-md transition-shadow duration-300'
-              }
-            >
-              {'\n                    '}
-              <h3
-                className={
-                  'font-sans text-[22px] font-medium leading-[1.2] text-zinc-900 mb-2'
-                }
-              >
-                {'\n                        Inquiry-Driven'}
-                <br />
-                {'Detection'}
-              </h3>
-              {'\n                    '}
-              <p
-                className={
-                  'font-sans text-[13px] leading-[1.5] text-zinc-500 mb-4 shrink-0'
-                }
-              >
-                {
-                  'Actively uncovering\n                        signals through inquiry. Gathers perspectives from first-hand field insights, interviews, and\n                        industry seminars.'
-                }
-              </p>
-              {'\n\n                    '}
-              <div className={'flex flex-wrap gap-1.5 mb-6 mt-auto'}>
-                {'\n                        '}
-                <span
-                  className={
-                    'inline-block px-2.5 py-1 text-[10px] font-bold text-zinc-600 bg-zinc-50 border border-zinc-200/60 rounded-[4px] tracking-wide uppercase'
-                  }
-                >
-                  {'Field-driven Insights'}
-                </span>
-                {'\n                        '}
-                <span
-                  className={
-                    'inline-block px-2.5 py-1 text-[10px] font-bold text-zinc-600 bg-zinc-50 border border-zinc-200/60 rounded-[4px] tracking-wide uppercase'
-                  }
-                >
-                  {'Trend Analysis'}
-                </span>
-                {'\n                    '}
-              </div>
-              {'\n\n                    '}
-              <div
-                className={
-                  'w-full aspect-video rounded-[8px] overflow-hidden shrink-0 relative bg-zinc-100 border border-zinc-100/50'
-                }
-              >
-                {'\n                        '}
-                <img
-                  src={assetUrl('how_work_detect_new_169.png')}
-                  className={'w-full h-full object-cover'}
-                />
-                {'\n                    '}
-              </div>
-              {'\n                '}
-            </div>
-            {'\n            '}
-          </div>
-          {'\n        '}
-        </div>
-        {'\n    '}
-      </section>
       {'\n\n    '}
       {'\n\n\n\n\n    '}
       {'\n    '}
