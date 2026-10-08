@@ -48,6 +48,7 @@ export function OriginalCareerContent() {
             className={
               'container mx-auto px-6 relative z-20 flex flex-col items-center'
             }
+            data-reading-role="career-introduction"
           >
             {'\n                '}
             <h2

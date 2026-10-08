@@ -121,3 +121,15 @@ Home 협업 회사 목록은 `HomePartnerLogos`에서 관리합니다. 기존 �
 Qualifications (`qualified.html`), Products (`projects.html`), Research and Articles use `LandingPhotoHero` with their existing photos. The previous long headings become two concise supporting paragraphs in `src/content/original/landingHeroes.ts`; all following page content is retained. Only widths through 767px are left-aligned, with Contact's 20px gutter, 380px column, 32–40px heading and 13px copy. Tablet/desktop remain centered, using 48/56px headings, 16px copy and 350/500px minimum hero heights. Enlarged text can grow the panel. A 60% black overlay protects white small-copy contrast (minimum 5.74:1 over white source pixels). Contact itself stays unchanged.
 
 `apply-landing-hero-override.ts` preserves this structure on regeneration. Articles pagination, reading-view spacing and return behavior remain unchanged. Mobile scroll-snap targets now follow the moved introductions. The mobile header's one-open About/Projects accordion and the career secondary action are included in the same review; see the associated QA notes.
+
+## About 모바일 프로젝트 버튼 정렬 (2026-10-08)
+
+767px 이하 About 첫 화면의 `View my projects` 버튼만 가운데 정렬합니다. 제목·본문의 좌측 정렬과 읽기 폭, 다른 CTA 및 768px 이상 레이아웃은 유지합니다. `OriginalPage.module.css`의 기존 About 소개 액션 래퍼에만 적용하며, `about-mobile-sections.spec.ts`에서 320·390·430·767px 버튼 중심과 768·1440px 기존 정렬을 검사합니다.
+
+### Qualifications 모바일 구분과 정렬
+
+767px 이하에서만 Core Competencies의 기존 6개 항목에 Contact/Home 경력과 같은 흰 배경·1px #e5e7eb 테두리·8px 모서리·24px 안쪽 여백·작은 그림자를 적용합니다. 세 본문 섹션 제목은 기존 컨테이너 왼쪽에 맞추고, 인증 필터는 12px 글자·작은 간격의 한 줄로 표시합니다. 좁으면 가로 스크롤하며 44px 터치 높이를 유지합니다. 문구·순서·필터 동작과 768px 이상 기존 배치는 보존합니다. 역할 표식은 변환기에도 반영합니다.
+
+### Career 모바일 소개 정렬
+
+767px 이하 Career 첫 제목과 소개만 다른 랜딩과 같은 최소 20px 여백·중앙 최대 380px 읽기 열 안에 왼쪽 정렬합니다. 기존 글자 크기·세로 간격·배경·경력 본문과 768px 이상 화면은 유지합니다.
