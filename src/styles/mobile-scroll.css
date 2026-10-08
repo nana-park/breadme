@@ -38,6 +38,11 @@
     position: static !important;
     top: auto !important;
   }
+  /* WHY: An expanded Products disclosure changes chapter height while reading.
+   * Suspend chapter snapping until it closes so nested project text stays reachable. */
+  html[data-mobile-scroll-snap]:has(
+      [data-original-page="projects"] details[open]
+    ),
   html[data-mobile-scroll-snap]:has(.nav-menu.active) {
     scroll-snap-type: none;
   }

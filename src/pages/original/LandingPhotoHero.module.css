@@ -8,7 +8,7 @@
   justify-content: center;
   width: 100%;
   min-height: 350px;
-  padding: 4rem var(--space-4);
+  padding: 4rem var(--space-4, 16px);
   margin-bottom: 80px;
   isolation: isolate;
   text-align: center;
@@ -49,7 +49,7 @@
   font-weight: 500;
   line-height: 1.1;
   letter-spacing: -0.025em;
-  margin: 0 0 var(--space-6);
+  margin: 0 0 var(--space-6, 24px);
   overflow-wrap: anywhere;
   text-shadow: 0 2px 8px rgb(0 0 0 / 20%);
 }
@@ -63,7 +63,7 @@
   margin: 0;
 }
 .copy p + p {
-  margin-top: var(--space-2);
+  margin-top: var(--space-2, 8px);
 }
 @media (min-width: 768px) {
   .hero {

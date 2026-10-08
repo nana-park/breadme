@@ -443,6 +443,7 @@ test("expanded project content remains reachable before and after disclosure col
   const summary = disclosure.locator("summary");
   await summary.click();
   await expect(disclosure).toHaveAttribute("open", "");
+  await expect(page.locator("html")).toHaveCSS("scroll-snap-type", "none");
   const nestedList = disclosure
     .locator('[class~="group/list"]')
     .filter({ hasText: "Conversation Infrastructure" });
@@ -465,10 +466,12 @@ test("expanded project content remains reachable before and after disclosure col
   await summary.focus();
   await page.keyboard.press("Enter");
   await expect(disclosure).not.toHaveAttribute("open");
+  await expect(page.locator("html")).toHaveCSS("scroll-snap-type", PROXIMITY);
   await expect(summary).toBeFocused();
   await expect(tail).toBeHidden();
   await page.keyboard.press("Enter");
   await expect(disclosure).toHaveAttribute("open", "");
+  await expect(page.locator("html")).toHaveCSS("scroll-snap-type", "none");
   await tail.scrollIntoViewIfNeeded();
   await expect(tail).toBeInViewport();
 });

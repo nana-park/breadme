@@ -58,12 +58,20 @@ test("Home → Projects → nested detail keeps the base through refresh and Bac
   const home = await page.goto(deployedUrl());
   expect(home?.status()).toBe(200);
   await assertPageIdentity(page, "home");
-  if (page.viewportSize()!.width < 1024)
+  const navigation = page.getByRole("navigation", { name: "Main navigation" });
+  if (page.viewportSize()!.width < 1024) {
     await page.getByRole("button", { name: "Open menu", exact: true }).click();
-  await page
-    .getByRole("navigation", { name: "Main navigation" })
-    .getByRole("link", { name: "PROJECTS", exact: true })
-    .click();
+    await navigation
+      .getByRole("button", { name: "PROJECTS", exact: true })
+      .click();
+    await navigation
+      .getByRole("link", { name: "Products", exact: true })
+      .click();
+  } else {
+    await navigation
+      .getByRole("link", { name: "PROJECTS", exact: true })
+      .click();
+  }
   await expect(page).toHaveURL(deployedUrl("projects.html"));
   await assertPageIdentity(page, "projects");
   const voiceIvrSelector = `a[href="${deployment.pathname}projects/llm-based-voice-ivr.html"]`;

@@ -12,6 +12,11 @@ for (const width of [320, 390, 430, 768, 1440]) {
       const hero = page.locator(`[data-landing-photo-hero="${route}"]`);
       await expect(hero.getByRole("heading", { name: title })).toBeVisible();
       await page.evaluate(() => document.fonts.ready);
+      await expect(hero.getByRole("heading", { name: title })).toHaveCSS(
+        "margin-bottom",
+        "24px",
+      );
+      await expect(hero).toHaveCSS("padding-top", "64px");
       await expect(hero).toHaveCSS(
         "text-align",
         width < 768 ? "left" : "center",

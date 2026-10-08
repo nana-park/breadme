@@ -126,6 +126,13 @@ test("repeated mobile page navigation never exposes desktop materials while load
     const pending = await holdPageChunk(page, target.chunk);
     try {
       await page.locator("#mobileToggle").click();
+      const about = page
+        .locator("#navMenu")
+        .getByRole("button", { name: "ABOUT", exact: true });
+      // Home starts collapsed; About/Career reopen with their current group expanded.
+      if ((await about.getAttribute("aria-expanded")) !== "true")
+        await about.click();
+      await expect(about).toHaveAttribute("aria-expanded", "true");
       await page
         .locator("#navMenu")
         .getByRole("link", { name: target.name, exact: true })

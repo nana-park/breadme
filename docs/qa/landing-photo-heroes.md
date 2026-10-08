@@ -12,3 +12,7 @@ Baseline main: `7a029aa`. Scope: Contact-style photo introductions on Qualificat
 ## Current verification
 
 Local checks passed. CI browser screenshots and interaction results pending. No claim of physical-device, Safari, Firefox or assistive-technology coverage.
+
+## First CI findings and corrections
+
+At head `1365dd3`, all 20 hero cases, the new menu cases and career action cases passed. Wider checks found three old menu-flow tests that still expected permanently visible submenu links; these now expand the relevant accordion before retaining their original navigation/loading assertions. The Products expanded-detail test exposed native snap returning readers away from nested text, so snapping is temporarily suspended while a Products disclosure is open and resumes on close. Screenshot review also caught missing spacing-token fallbacks: the migrated shell does not load provisional foundation tokens, so the hero now explicitly falls back to Contact's 16px / 24px / 8px spacing. No permissions or deployment rules changed.

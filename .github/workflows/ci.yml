@@ -63,3 +63,13 @@ jobs:
             !test-results/routes-route-smoke-*/
             !test-results/mobile-scroll-snap-*/
           retention-days: 7
+      - name: Retain compact landing and navigation review captures
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: always()
+        with:
+          name: landing-navigation-evidence
+          path: |
+            test-results/landing-photo-heroes-*/
+            test-results/mobile-menu-compact-*/
+            test-results/home-career-visibility-*/
+          retention-days: 7
