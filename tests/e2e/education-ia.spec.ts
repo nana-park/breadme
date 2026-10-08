@@ -39,7 +39,7 @@ async function hashClearsHeader(page: Page, id: string) {
   await expect
     .poll(() =>
       page.locator(id).evaluate((element) => {
-        const top = element.getBoundingClientRect().top;
+        const top = element.querySelector("h2")!.getBoundingClientRect().top;
         const headerBottom = document
           .querySelector("#navbar")!
           .getBoundingClientRect().bottom;
@@ -87,7 +87,14 @@ async function captureSection(
     contentType: "application/json",
   });
   const path = testInfo.outputPath(`${label}.png`);
-  await section.screenshot({ path, animations: "disabled" });
+  // Content-only crop: exclude fixed page chrome that otherwise appears halfway
+  // through tall-element screenshots. Full-page context below retains it.
+  await section.screenshot({
+    path,
+    animations: "disabled",
+    style:
+      "#navbar, .original-skip-link, #email-popup { visibility: hidden !important; }",
+  });
   await testInfo.attach(label, { path, contentType: "image/png" });
 }
 
@@ -130,6 +137,11 @@ for (const width of [390, 1440]) {
         `${state}-home-education-${width}`,
         "#history-2",
       );
+      await page.screenshot({
+        path: testInfo.outputPath(`${state}-home-full-${width}.png`),
+        fullPage: true,
+        animations: "disabled",
+      });
       await page.goto(route("qualified.html"));
       await ready(page);
       if (state === "AS-IS") {
@@ -161,6 +173,11 @@ for (const width of [390, 1440]) {
         `${state}-qualified-certifications-${width}`,
         "#certifications-runway",
       );
+      await page.screenshot({
+        path: testInfo.outputPath(`${state}-qualified-full-${width}.png`),
+        fullPage: true,
+        animations: "disabled",
+      });
       await page.goto(route("about.html"));
       await ready(page);
       if (state === "AS-IS")
@@ -178,11 +195,16 @@ for (const width of [390, 1440]) {
         `${state}-about-interview-${width}`,
         "#media",
       );
+      await page.screenshot({
+        path: testInfo.outputPath(`${state}-about-full-${width}.png`),
+        fullPage: true,
+        animations: "disabled",
+      });
     }
   });
 }
 
-for (const width of [320, 390, 768, 1440]) {
+for (const width of [320, 390, 767, 768, 1024, 1440]) {
   test(`Education IA content, overflow and deep links ${width}px`, async ({
     page,
   }, testInfo) => {

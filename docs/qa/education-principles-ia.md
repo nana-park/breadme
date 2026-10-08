@@ -53,7 +53,7 @@ Capture matched browser conditions for each comparison. Record browser/version, 
 | About principles | 390px and 1440px; end of identity → all four principles → Media | Pending | Pending | Pending |
 | Small width and reflow | 320px; longest academic/principle content and enlarged text | Pending | Pending | Pending |
 
-Minimum affected-screen coverage is 320/390/767/768/1024/1440px. Use matching logical content states even where the section moved to a different route, and disclose that route difference. Separate synthetic text enlargement from native browser zoom. Preserve meaningful full-page context as well as close-ups of moved content; do not use only first-screen captures for this change.
+Minimum affected-screen coverage is 320/390/767/768/1024/1440px. Use matching logical content states even where the section moved to a different route, and disclose that route difference. Section-only captures hide fixed Header, skip link and materials chrome solely during screenshot capture so tall-element crops do not paint that viewport chrome across the middle of the content. Separate full-page captures retain the actual chrome; navigation tests use the unmodified interface. Separate synthetic text enlargement from native browser zoom. Preserve meaningful full-page context as well as close-ups of moved content; do not use only first-screen captures for this change.
 
 ## Interaction and regression checklist — pending
 
@@ -89,3 +89,7 @@ Do not turn an unrun test into a pass. If browser launch or a required asset is 
 - Exact-commit automated results and matched browser AS-IS/TO-BE evidence.
 - Actual devices, Safari/Firefox, screen readers and native browser zoom are unverified unless subsequently recorded with their own evidence.
 - Main merge and deployment remain outside this work's scope.
+
+## First CI observation
+
+At review head `6b390fd`, production-path CI passed and both 390px/1440px AS-IS/TO-BE capture tests passed. The 320px navigation test incorrectly required the blank section edge itself to sit below the Header; its failure image shows the academic heading fully visible. The assertion now measures the actual `h2` against the fixed Header, preserving the intended usability requirement. This is a test correction, not a suppressed content-clipping failure. The next run also covers 767/1024px and adds full-page context plus clean content-only crops. Final results remain pending.
