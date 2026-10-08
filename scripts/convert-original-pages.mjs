@@ -247,11 +247,24 @@ for (const [sourceFile, componentName] of pageDefinitions) {
         });
       }
     }
-    if (sourceFile === "qualified.html")
+    if (sourceFile === "qualified.html") {
       heading?.nextElementSibling?.setAttribute(
         "data-reading-role",
         "landing-categories",
       );
+      document.querySelector("#cert-tabs")?.setAttribute(
+        "data-reading-role", "qualification-filters",
+      );
+      // WHAT: Preserve the mobile-only Qualifications card and heading hooks.
+      for (const id of ["toolkit-grid", "certifications-runway", "how-work"]) {
+        document.querySelector(`#${id} h2`)?.parentElement?.setAttribute(
+          "data-reading-role", "qualification-section-header",
+        );
+      }
+      document.querySelectorAll("#toolkit-grid .group").forEach((node) => {
+        node.setAttribute("data-reading-role", "competency-card");
+      });
+    }
     if (sourceFile === "lectures.html") {
       document.querySelectorAll("#lectures .truncate").forEach((node) => {
         node.setAttribute("data-reading-role", "lecture-copy");

@@ -49,6 +49,7 @@ export function OriginalQualifiedContent() {
           {'\n\n            '}
           {'\n            '}
           <div
+            data-reading-role="qualification-section-header"
             className={
               'text-center mb-16 md:mb-24 max-w-[800px] mx-auto flex flex-col items-center'
             }
@@ -87,7 +88,10 @@ export function OriginalQualifiedContent() {
           >
             {'\n                '}
             {'\n                '}
-            <div className={'flex items-start gap-4 group'}>
+            <div
+              data-reading-role="competency-card"
+              className={'flex items-start gap-4 group'}
+            >
               {'\n                    '}
               <div
                 className={
@@ -145,7 +149,10 @@ export function OriginalQualifiedContent() {
             </div>
             {'\n\n                '}
             {'\n                '}
-            <div className={'flex items-start gap-4 group'}>
+            <div
+              data-reading-role="competency-card"
+              className={'flex items-start gap-4 group'}
+            >
               {'\n                    '}
               <div
                 className={
@@ -203,7 +210,10 @@ export function OriginalQualifiedContent() {
             </div>
             {'\n\n                '}
             {'\n                '}
-            <div className={'flex items-start gap-4 group'}>
+            <div
+              data-reading-role="competency-card"
+              className={'flex items-start gap-4 group'}
+            >
               {'\n                    '}
               <div
                 className={
@@ -259,7 +269,10 @@ export function OriginalQualifiedContent() {
             </div>
             {'\n\n                '}
             {'\n                '}
-            <div className={'flex items-start gap-4 group'}>
+            <div
+              data-reading-role="competency-card"
+              className={'flex items-start gap-4 group'}
+            >
               {'\n                    '}
               <div
                 className={
@@ -319,7 +332,10 @@ export function OriginalQualifiedContent() {
             </div>
             {'\n\n                '}
             {'\n                '}
-            <div className={'flex items-start gap-4 group'}>
+            <div
+              data-reading-role="competency-card"
+              className={'flex items-start gap-4 group'}
+            >
               {'\n                    '}
               <div
                 className={
@@ -375,7 +391,10 @@ export function OriginalQualifiedContent() {
             </div>
             {'\n\n                '}
             {'\n                '}
-            <div className={'flex items-start gap-4 group'}>
+            <div
+              data-reading-role="competency-card"
+              className={'flex items-start gap-4 group'}
+            >
               {'\n                    '}
               <div
                 className={
@@ -447,6 +466,7 @@ export function OriginalQualifiedContent() {
           {'\n            '}
           {'\n            '}
           <div
+            data-reading-role="qualification-section-header"
             className={'text-center mb-16 lg:mb-24 flex flex-col items-center'}
           >
             {'\n                '}
@@ -463,6 +483,7 @@ export function OriginalQualifiedContent() {
               className={
                 'flex flex-wrap justify-center items-center gap-2 md:gap-3 text-sm font-sans font-semibold'
               }
+              data-reading-role="qualification-filters"
               id={'cert-tabs'}
             >
               {'\n                    '}
@@ -1363,6 +1384,7 @@ export function OriginalQualifiedContent() {
         <div className={'container'}>
           {'\n            '}
           <div
+            data-reading-role="qualification-section-header"
             className={
               'flex flex-col items-center text-center mb-16 md:mb-24 max-w-[1000px] mx-auto px-4'
             }

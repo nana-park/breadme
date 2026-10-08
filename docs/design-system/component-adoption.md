@@ -94,3 +94,7 @@ Home은 Products를 왼쪽 검은 primary action, Full career를 오른쪽 흰 s
 ## Contact-style introductions and mobile accordion
 
 `LandingPhotoHero` is shared by Qualifications, Products, Research and Articles. Its CSS Module owns the approved Contact-derived sizes, mobile-only left alignment and contrast overlay; it reuses the original photos. `OriginalHeader` retains desktop behavior and uses a single-open About/Projects accordion on mobile. Actions stay outside collapsed groups. Browser evidence and verification are recorded in `docs/qa/landing-photo-heroes.md`.
+
+## Qualifications 모바일 보정
+
+767px 이하 Core 6개 항목은 활성 Contact/Home 경력 카드의 흰 배경·1px #e5e7eb·radius8px·padding24px·작은 그림자를 재사용합니다. 세 본문 섹션 제목 왼쪽 정렬과 한 줄 인증 필터는 페이지 소유 모바일 역할 CSS로 적용하며 데스크톱·공통 컴포넌트·본문 문구는 유지합니다.

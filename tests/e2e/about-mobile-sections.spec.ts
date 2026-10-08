@@ -91,7 +91,6 @@ for (const width of [320, 390, 430, 767]) {
     for (const selector of [
       `${introduction} h2`,
       `${introduction} p`,
-      `${introduction} a`,
     ]) {
       const element = page.locator(selector);
       expect((await element.boundingBox())!.x).toBeCloseTo(home.title.x, 1);
@@ -101,6 +100,11 @@ for (const width of [320, 390, 430, 767]) {
       body: (await page.locator(`${introduction} p`).boundingBox())!,
       action: (await page.locator(`${introduction} a`).boundingBox())!,
     };
+    expect(about.action.x + about.action.width / 2).toBeCloseTo(width / 2, 1);
+    await expect(page.locator(`${introduction} a`)).toHaveAttribute(
+      "href",
+      /\/projects\.html$/,
+    );
     expect(about.title.width).toBeCloseTo(home.title.width, 1);
     expect(about.body.x).toBeCloseTo(home.body.x, 1);
     expect(about.body.width).toBeCloseTo(home.body.width, 1);
@@ -195,6 +199,8 @@ for (const width of [768, 1440]) {
   }, testInfo) => {
     await openAbout(page, width);
     await expect(page.locator("html")).toHaveCSS("scroll-snap-type", "none");
+    const action = (await page.locator(`${introduction} a`).boundingBox())!;
+    expect(action.x + action.width / 2).toBeCloseTo(width / 2, 1);
     await expect(page.locator(introduction)).toHaveCSS("text-align", "center");
     await expect(page.locator(introduction)).toHaveCSS("align-items", "center");
     await expect(page.locator(".id-root-name")).toHaveCSS("font-size", "40px");
