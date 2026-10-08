@@ -233,6 +233,7 @@ for (const [sourceFile, componentName] of pageDefinitions) {
       }
     }
     if (sourceFile === "career.html") {
+      heading?.parentElement?.setAttribute("data-reading-role", "career-introduction");
       document
         .querySelector("#career-role-desc")
         ?.setAttribute("data-reading-role", "career-copy");

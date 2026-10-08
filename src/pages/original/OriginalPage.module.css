@@ -71,6 +71,19 @@
     letter-spacing: 0.06em;
   }
 
+  /* Match the shared mobile reading edge without changing Career typography. */
+  .page [data-reading-role="career-introduction"] {
+    --original-container-gutter: max(20px, calc((100% - 380px) / 2));
+    align-items: flex-start;
+  }
+  .page [data-reading-role="career-introduction"] [data-reading-role="landing-title"],
+  .page [data-reading-role="career-introduction"] [data-reading-role="landing-copy"] {
+    width: 100%;
+    max-width: 380px;
+    margin-inline: 0;
+    text-align: left;
+  }
+
   /* Expanded text sets the panel height; background media remains decorative. */
   .page [data-reading-role="contact-hero"] {
     height: auto;

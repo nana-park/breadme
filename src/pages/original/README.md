@@ -129,3 +129,7 @@ Qualifications (`qualified.html`), Products (`projects.html`), Research and Arti
 ### Qualifications 모바일 구분과 정렬
 
 767px 이하에서만 Core Competencies의 기존 6개 항목에 Contact/Home 경력과 같은 흰 배경·1px #e5e7eb 테두리·8px 모서리·24px 안쪽 여백·작은 그림자를 적용합니다. 세 본문 섹션 제목은 기존 컨테이너 왼쪽에 맞추고, 인증 필터는 12px 글자·작은 간격의 한 줄로 표시합니다. 좁으면 가로 스크롤하며 44px 터치 높이를 유지합니다. 문구·순서·필터 동작과 768px 이상 기존 배치는 보존합니다. 역할 표식은 변환기에도 반영합니다.
+
+### Career 모바일 소개 정렬
+
+767px 이하 Career 첫 제목과 소개만 다른 랜딩과 같은 최소 20px 여백·중앙 최대 380px 읽기 열 안에 왼쪽 정렬합니다. 기존 글자 크기·세로 간격·배경·경력 본문과 768px 이상 화면은 유지합니다.
