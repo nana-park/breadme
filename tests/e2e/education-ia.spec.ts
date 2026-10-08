@@ -137,6 +137,8 @@ for (const width of [390, 1440]) {
         `${state}-home-education-${width}`,
         "#history-2",
       );
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
       await page.screenshot({
         path: testInfo.outputPath(`${state}-home-full-${width}.png`),
         fullPage: true,
@@ -173,6 +175,8 @@ for (const width of [390, 1440]) {
         `${state}-qualified-certifications-${width}`,
         "#certifications-runway",
       );
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
       await page.screenshot({
         path: testInfo.outputPath(`${state}-qualified-full-${width}.png`),
         fullPage: true,
@@ -195,6 +199,8 @@ for (const width of [390, 1440]) {
         `${state}-about-interview-${width}`,
         "#media",
       );
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
       await page.screenshot({
         path: testInfo.outputPath(`${state}-about-full-${width}.png`),
         fullPage: true,

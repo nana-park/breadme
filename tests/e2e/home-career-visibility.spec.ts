@@ -130,7 +130,7 @@ for (const width of [320, 390, 768, 1023, 1024, 1440]) {
     const secondary = actions.getByRole("link", { name: "Full career" });
     const academicSecondary = page
       .locator("#history-2")
-      .getByRole("link", { name: "Google Scholar" });
+      .getByRole("link", { name: /Full education & qualifications/ });
     await expect(primary).toHaveCSS("background-color", "rgb(26, 26, 26)");
     for (const property of [
       "background-color",
