@@ -23,8 +23,8 @@ function ArticlesFixture({ reading = false }: { reading?: boolean }) {
   return (
     <div ref={root}>
       <section id="articles">
+        <div id="intro" data-landing-photo-hero="articles" />
         <div className="container">
-          <div id="intro" />
           <div id="articles-list-container">
             <article id="card" />
           </div>

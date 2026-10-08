@@ -61,6 +61,12 @@ test("mobile menu and honest materials state", async ({ page }, testInfo) => {
   await page.goto("/");
   const menu = page.getByRole("button", { name: "Open menu" });
   await menu.click();
+  const about = page
+    .locator("#navMenu")
+    .getByRole("button", { name: "ABOUT", exact: true });
+  await expect(about).toHaveAttribute("aria-expanded", "false");
+  await about.click();
+  await expect(about).toHaveAttribute("aria-expanded", "true");
   await expect(
     page.getByRole("link", { name: "Career", exact: true }),
   ).toBeVisible();

@@ -1,10 +1,10 @@
+import { LandingPhotoHero } from "./LandingPhotoHero";
 import { useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
 import {
   originalArticles,
   type OriginalArticle,
 } from "@/content/original/articles";
 import { articlesPageContent as content } from "@/content/original/articles/pageContent";
-import { assetUrl } from "@/shared/utils/originalPaths";
 
 const ARTICLES_PER_PAGE = 3;
 const LIST_SCROLL_OFFSET = 150;
@@ -133,42 +133,12 @@ export function OriginalArticlesPage() {
         className="pb-24 bg-white"
         id="articles"
         style={{
-          paddingTop: "12rem",
+          paddingTop: "70px",
           display: selectedArticle ? "none" : undefined,
         }}
       >
+        <LandingPhotoHero page="articles" />
         <div className="container mx-auto px-4 lg:px-12 max-w-[1400px]">
-          <div className="flex flex-col items-center mb-24 mx-auto text-center">
-            <h2
-              data-reading-role="landing-title"
-              className="font-sans tracking-tight text-zinc-900 text-[32px] md:text-[44px] leading-[1.1] font-normal mb-4"
-            >
-              {content.heading[0]} <br />
-              {content.heading[1]}
-            </h2>
-            <p
-              data-reading-role="landing-copy"
-              className="font-sans text-zinc-600 text-[14px] md:text-[15px] font-normal mb-16"
-            >
-              {content.introduction}
-            </p>
-            <div className="w-full aspect-[16/7] bg-zinc-100 rounded-none overflow-hidden mb-16 relative shadow-sm">
-              <img
-                src={assetUrl(content.image)}
-                alt={content.imageAlt}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <h3 className="font-sans tracking-tight text-zinc-900 text-[18px] md:text-[22px] font-normal mb-1.5">
-              {content.subheading}
-            </h3>
-            <p
-              data-reading-role="landing-copy"
-              className="font-sans text-zinc-600 text-[15px] md:text-[17px] font-light"
-            >
-              {content.description}
-            </p>
-          </div>
           <div className="max-w-[1200px] mx-auto">
             <div
               ref={list}

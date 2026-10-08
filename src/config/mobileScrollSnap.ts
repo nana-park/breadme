@@ -9,10 +9,11 @@ export const mobileSnapSelectors: Record<OriginalPageId, string> = {
   qualified: ":scope > section",
   enjoy: "#enjoy > .container > div",
   projects:
-    "#projects > .container > div:first-child, #projects > .container > div:nth-child(2) > div:not(#archived-detailed-project-cards) > div > div",
-  research: "#research > .container > div",
+    '[data-landing-photo-hero="projects"], #projects > .container > div:first-child > div:not(#archived-detailed-project-cards) > div > div',
+  research:
+    '[data-landing-photo-hero="research"], #research > .container > div',
   articles:
-    "#articles > .container > div:first-child, #articles-list-container, #article-detail",
+    '[data-landing-photo-hero="articles"], #articles-list-container, #article-detail',
   lectures:
     "#lectures > .container > div:first-child, #lectures > .container > div:nth-child(2) > div",
   awards: "#awards > div:first-child, #awards > .container",

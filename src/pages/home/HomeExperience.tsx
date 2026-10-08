@@ -20,15 +20,18 @@ export function HomeExperience() {
           <h2 id="experience-title">{homeExperience.title}</h2>
           <p className={styles.summary}>{homeExperience.summary}</p>
           <div className={styles.actions} data-home-experience-actions>
-            <a className={styles.careerLink} href={originalHref("career.html")}>
-              {homeExperience.careerLabel}
-              <span aria-hidden="true">↗</span>
-            </a>
             <a
               className={styles.careerLink}
               href={originalHref("projects.html")}
             >
               {homeExperience.productsLabel}
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              className={`${styles.careerLink} ${styles.secondaryAction}`}
+              href={originalHref("career.html")}
+            >
+              {homeExperience.careerLabel}
               <span aria-hidden="true">↗</span>
             </a>
           </div>

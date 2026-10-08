@@ -1,3 +1,4 @@
+import { LandingPhotoHero } from "../LandingPhotoHero";
 import type { CSSProperties } from 'react';
 import { assetUrl, originalHref } from '@/shared/utils/originalPaths';
 
@@ -17,72 +18,14 @@ export function OriginalProjectsContent() {
       <section
         className={'pb-16 md:pb-24 bg-white'}
         id={'projects'}
-        style={{ paddingTop: '12rem' } as CSSProperties}
+        style={{ paddingTop: '70px' } as CSSProperties}
       >
         {'\n        '}
+        <LandingPhotoHero page="projects" />
         <div className={'container mx-auto px-4 lg:px-12 max-w-[1400px]'}>
           {'\n            '}
           {'\n            '}
-          <div
-            className={'flex flex-col items-center text-center mb-4 lg:mb-8'}
-          >
-            {'\n                '}
-            <h1
-              className={
-                'font-sans text-zinc-900 text-[36px] md:text-[48px] lg:text-[56px] leading-[1.1] tracking-tight font-medium max-w-[1000px] mx-auto mb-6'
-              }
-              style={{ wordBreak: 'keep-all' } as CSSProperties}
-              data-reading-role={'landing-title'}
-            >
-              {
-                '\n                    Designing AI that feels human through merging psychology and engineering.\n                '
-              }
-            </h1>
-            {'\n                '}
-            <p
-              className={
-                'font-sans text-zinc-600 text-[16px] md:text-[18px] font-normal leading-[1.6]'
-              }
-              data-reading-role={'landing-copy'}
-            >
-              {
-                '\n                    Building AI-powered systems that shape motivation, trust, and human behavior.\n                '
-              }
-            </p>
-            {'\n\n                '}
-            <div
-              className={
-                'w-full mt-12 md:mt-16 bg-gray-50 aspect-[16/9] md:aspect-[2.35/1] overflow-hidden'
-              }
-            >
-              {'\n                    '}
-              <img
-                src={assetUrl(
-                  'nahyun_imported/image_source/Projects_Products/bg.png',
-                )}
-                alt={'Team Collaboration'}
-                className={'w-full h-full object-cover object-top'}
-              />
-              {'\n                '}
-            </div>
-            {'\n\n                '}
-            <p
-              className={
-                'font-sans text-zinc-500 text-[15px] md:text-[16px] font-normal leading-[1.6] max-w-[800px] mx-auto mt-12 md:mt-16 px-4 text-center'
-              }
-              style={{ wordBreak: 'keep-all' } as CSSProperties}
-              data-reading-role={'landing-copy'}
-            >
-              {
-                '\n                    Collaborating with industry leaders in Korea, China, Japan, and Vietnam'
-              }
-              <br className={'hidden md:block'} />
-              {
-                '\n                    and reaching users effectively across Korea, Japan, and the US.\n                '
-              }
-            </p>
-            {'\n            '}
-          </div>
+
           {'\n\n            '}
           <div
             className={

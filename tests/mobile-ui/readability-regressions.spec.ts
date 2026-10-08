@@ -221,7 +221,7 @@ async function settleGeometry(locator: Locator) {
 }
 
 async function checkMenu(page: Page, testInfo: TestInfo, caseId: string) {
-  // WHAT: A normal short phone fits every link; a much shorter viewport can scroll.
+  // WHAT: A normal short phone fits either disclosure; a much shorter viewport can scroll.
   // WHY: Overflow is a fallback for constrained/enlarged layouts, not the default.
   const width = page.viewportSize()!.width;
   await page.setViewportSize({ width, height: 640 });
@@ -234,7 +234,15 @@ async function checkMenu(page: Page, testInfo: TestInfo, caseId: string) {
   await expect(menu.locator("[data-materials-action]")).toHaveCount(0);
   await expect(page.locator(".original-mobile-materials")).toHaveCount(0);
   const primary = await inspectText(menu.locator(".nav-link"));
-  const secondary = await inspectText(menu.locator(".lnb-link"));
+  // Inspect both single-column disclosures instead of assuming all seven children are exposed.
+  const secondary = [];
+  for (const group of ["ABOUT", "PROJECTS"]) {
+    const disclosure = menu.getByRole("button", { name: group });
+    if ((await disclosure.getAttribute("aria-expanded")) !== "true")
+      await disclosure.click();
+    await expect(menu.locator("button[aria-expanded='true']")).toHaveCount(1);
+    secondary.push(...(await inspectText(menu.locator(".lnb-link:visible"))));
+  }
   const scrollBox = await menu.evaluate((element) => ({
     height: element.clientHeight,
     scrollHeight: element.scrollHeight,
@@ -251,10 +259,10 @@ async function checkMenu(page: Page, testInfo: TestInfo, caseId: string) {
   expect(secondary).toHaveLength(7);
   expect(
     scrollBox.scrollHeight,
-    "All navigation fits at 640px height without scrolling",
+    "The expanded group fits at 640px height without scrolling",
   ).toBeLessThanOrEqual(scrollBox.height + TOLERANCE);
   expect(scrollBox.scrollTop).toBe(0);
-  for (const link of await menu.locator("a").all())
+  for (const link of await menu.locator("a:visible, button:visible").all())
     await expect(link).toBeInViewport({ ratio: 1 });
   await expect(page.locator("#main-content")).toHaveAttribute("inert");
   const popup = page.locator("#email-popup");
@@ -345,6 +353,12 @@ for (const pageId of originalPageIds) {
   test(`readability regression ${pageId}: six mobile widths, menu and footer`, async ({
     page,
   }, testInfo) => {
+    const photoHero = [
+      "qualified",
+      "projects",
+      "research",
+      "articles",
+    ].includes(pageId);
     const unchangedMentoring = pageId === "ai-mentoring-agent-detail";
     if (unchangedMentoring)
       testInfo.annotations.push({
@@ -378,7 +392,9 @@ for (const pageId of originalPageIds) {
               ? "#home-title"
               : unchangedMentoring
                 ? "main h1"
-                : role("landing-title"),
+                : photoHero
+                  ? "[data-landing-photo-hero] h1"
+                  : role("landing-title"),
           ),
         );
         const copySelector = [role("landing-copy"), role("director-copy")].join(
@@ -390,7 +406,9 @@ for (const pageId of originalPageIds) {
               ? "[data-home-description] p"
               : unchangedMentoring
                 ? "main h1 + div p"
-                : copySelector,
+                : photoHero
+                  ? "[data-landing-photo-hero] p"
+                  : copySelector,
           ),
         );
         const caseId = `${pageId}--w${width}--regression`;
@@ -401,7 +419,8 @@ for (const pageId of originalPageIds) {
           { readiness, title, copy },
           [320, 390, 767].includes(width),
         );
-        const homeAlignedHero = pageId === "home" || pageId === "contact";
+        const homeAlignedHero =
+          pageId === "home" || pageId === "contact" || photoHero;
         assertReadable(title, "landing headline", homeAlignedHero ? 32 : 30);
         for (const heading of title)
           expect(heading.fontSize).toBeLessThanOrEqual(

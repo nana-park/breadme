@@ -1,3 +1,4 @@
+import { LandingPhotoHero } from "../LandingPhotoHero";
 import type { CSSProperties } from 'react';
 import { assetUrl } from '@/shared/utils/originalPaths';
 
@@ -32,80 +33,13 @@ export function OriginalQualifiedContent() {
             textAlign: 'center',
             overflow: 'hidden',
             paddingBottom: '0px',
+            paddingTop: '70px',
           } as CSSProperties
         }
       >
         {'\n\n        '}
         {'\n        '}
-        <div
-          className={
-            'relative w-full pt-[7.5rem] flex flex-col items-center justify-center overflow-hidden'
-          }
-        >
-          {'\n            '}
-          {'\n            '}
-          <div
-            className={
-              'container mx-auto px-6 relative z-20 flex flex-col items-center'
-            }
-          >
-            {'\n                '}
-            <h2
-              className={
-                'font-sans tracking-tight text-zinc-900 text-[32px] md:text-[44px] leading-[1.1] font-normal mb-8 text-center'
-              }
-              style={{ wordBreak: 'keep-all' } as CSSProperties}
-              data-reading-role={'landing-title'}
-            >
-              {
-                '\n                    The foundation behind my product decisions.\n                '
-              }
-            </h2>
-            {'\n\n                '}
-            {'\n                '}
-            <div
-              className={
-                'flex items-center justify-center flex-wrap gap-3 md:gap-4 text-zinc-500 font-sans text-[11px] md:text-[12.5px] font-semibold uppercase tracking-[0.1em] mb-[4.5rem]'
-              }
-              data-reading-role={'landing-categories'}
-            >
-              {'\n                    '}
-              <span>{'Core Competencies'}</span>
-              {'\n                    '}
-              <span className={'text-zinc-300 font-light font-sans'}>
-                {'|'}
-              </span>
-              {'\n                    '}
-              <span>{'Certifications'}</span>
-              {'\n                    '}
-              <span className={'text-zinc-300 font-light font-sans'}>
-                {'|'}
-              </span>
-              {'\n                    '}
-              <span>{'Product Principles'}</span>
-              {'\n                '}
-            </div>
-            {'\n\n                '}
-            {'\n                '}
-            <div
-              className={
-                'w-full aspect-[16/7] bg-zinc-100 rounded-none overflow-hidden relative shadow-sm max-w-[1200px] mx-auto mt-4'
-              }
-            >
-              {'\n                    '}
-              <img
-                src={assetUrl(
-                  'nahyun_imported/image_source/About_Qualified/thumnail.png',
-                )}
-                alt={'Qualified thumbnail'}
-                className={'w-full h-full object-cover'}
-              />
-              {'\n                '}
-            </div>
-            {'\n            '}
-          </div>
-          {'\n        '}
-        </div>
+        <LandingPhotoHero page="qualified" />
         {'\n\n    '}
       </section>
       {'\n\n    '}

@@ -5,7 +5,7 @@
 ## 선택된 경력 구현
 
 - `HomeExperience`가 원래 `#history` 영역 전체를 교체합니다. 학력과 같은 흰 배경·2열/모바일1열 구조를 바탕으로, 사진 없이도 경계를 구분하도록 승인된 얇은 회사별 테두리를 추가했으며 사진과 기존 경력의 남색 모션은 렌더링하지 않습니다.
-- 작은 `Careers` 라벨 → `Selected Projects` 제목 → 짧은 설명 → 같은 스타일의 `Full career`·`Products` 버튼을 사용합니다. Products는 기존 `projects.html`로 이동하며 `originalHref`로 `/breadme/` 배포 경로를 유지합니다. 새 페이지나 프로젝트 목록 확장은 아닙니다.
+- 작은 `Careers` 라벨 → `Selected Projects` 제목 → 짧은 설명 → 검은 `Products` → 흰 `Full career` 순서의 버튼을 사용합니다. Products는 기존 `projects.html`로 이동하며 `originalHref`로 `/breadme/` 배포 경로를 유지합니다. 새 페이지나 프로젝트 목록 확장은 아닙니다.
 - 날짜 → 회사명 → AI Product Manager 직무명 → Products → Outcomes를 표시합니다. Products와 Outcomes는 같은 h4 스타일이며 제품명은 Products 아래 목록으로 한 번만 표시하고 성과 문장에서는 반복하지 않습니다. 긴 제품 소개/기여 설명 문단은 제거하고 성과는 한 문장/짧은 사실 단위로만 두며 별도 부연·각주 줄은 없으며 성과 여섯 항목의 끝 마침표를 생략합니다. 수치의 소수점과 No. 1/A.Dot 내부 표기는 유지합니다. 화면에는 “AI Call dropout: 33% → 8%”, “Home-feed CTR: +3.74 percentage points”로 짧게 표시합니다. 행사 체험 / 단계별 콘텐츠 테스트·1월 대비라는 측정 조건은 내부 콘텐츠 데이터와 QA 문서에 보존합니다.
 - NAVER 제품 표시는 사용자 요청에 따라 NAVER Care Call / NAVER Care Call Console / LINE WORKS AI Call 세 줄입니다. 공식 소스의 브랜드 표기는 성과별 내부 데이터에 유지합니다.
 - NAVER는 AiCall의 FY2024 일본 시장1위, CLOVA CareCall의 2025 APEC showcase, 행사 체험의 통화 이탈률 33%→8% 순서입니다. SK Telecom은 A.Dot의 2024 GDWEB GRAND PRIZE, 가입자550만/22% 성장, 단계별 콘텐츠 테스트의 1월 대비 CTR +3.74%p 순서입니다.
@@ -16,7 +16,7 @@
 - 실제 `.container`: max-width1440px, 좌우5vw. 초기 `design-tokens.css`는 연결하지 않음
 - 섹션 여백: 위64px / 아래96px; 제목 묶음 아래48px
 - 라벨11px/weight500/자간0.2em → 제목24px(768px부터28px)/weight500 → 설명13px(768px부터14px)
-- 버튼: #1a1a1a, 13px/weight600, 상하10px·좌우24px, radius4px, 작은↗. 최소 높이44px, 두 버튼 사이12px이며 확대 텍스트로 공간이 부족하면 행을 자연스럽게 나눕니다.
+- 버튼: Products는 #1a1a1a, Full career는 Academic의 Google Scholar와 같은 흰 배경·zinc-200 테두리·zinc-700 글자·작은 그림자·zinc-50 hover. 공통 13px/weight600, 상하10px·좌우24px, radius4px, 작은↗. 최소 높이44px, 두 버튼 사이12px이며 확대 텍스트로 공간이 부족하면 행을 자연스럽게 나눕니다.
 - 열: 모바일1열, 768px부터2열; gap32px, 1024px부터48px
 - 회사 박스: Contact Domain 카드와 같은 1px solid #e5e7eb, radius8px, 흰 배경, 0 1px 2px rgba(0,0,0,.05)의 작은 그림자. 내부 패딩은 1024px 미만24px / 1024px 이상32px이며 hover 시 원본 Contact와 같은 중간 그림자(300ms)만 적용. 제목 묶음은 박스 밖에 유지. 웹은 grid stretch로 같은 행의 높이를 맞추고, 모바일에는 고정 높이를 두지 않음
 - 항목: 날짜11px → 회사명20px(768px부터22px)/weight400 → 직무명12px (두 회사 모두 AI Product Manager)

@@ -75,7 +75,7 @@ Career 모바일 추천 카드는 1:1 비율과 축소한 본문/작성자 글�
 
 ## Home 경력·제품 진입
 
-Home의 Full career와 Products는 같은 `HomeExperience` action 스타일을 사용합니다. 기존 route helper가 각각 Career와 제품 목록 경로를 만들며, 44px 최소 높이와 줄바꿈 가능한 action row로 좁은 화면·큰 글자를 지원합니다. 회사 카드의 표면과 내용, Home 학력은 그대로입니다.
+Home은 Products를 왼쪽 검은 primary action, Full career를 오른쪽 흰 secondary action으로 배치합니다. `HomeExperience`의 공통 action 규격과 focus ring은 유지하며, secondary surface는 Academic Standing의 Google Scholar 버튼에서 재사용합니다. DOM과 키보드 순서도 Products → Full career입니다. 기존 route helper가 각각 Career와 제품 목록 경로를 만들며, 44px 최소 높이와 줄바꿈 가능한 action row로 좁은 화면·큰 글자를 지원합니다. 회사 카드의 표면과 내용, Home 학력은 그대로입니다.
 
 ## Contact 패키지 직접 조작
 
@@ -90,3 +90,7 @@ Home의 Full career와 Products는 같은 `HomeExperience` action 스타일을 �
 ## Home 회사 로고 (2026-10-06)
 
 `HomePartnerLogos`는 기존 파트너 영역의 움직이는 로고 목록만 소유합니다. Google을 제거하고 SK Inc.와 LINE WORKS를 추가하며 SK Telecom·NAVER·NAVER Cloud·H&M은 유지합니다. 공식 원본 SVG 파일과 40초 움직임·반응형 간격을 보존하고, 새 로고에도 기존의 흑백·45% 투명도 처리를 똑같이 적용합니다. 로고 세 반복은 단일 데이터 목록을 사용하며, 끝 간격으로 이음새를 맞추고 중복 접근성 이름을 제거합니다. Header/Footer/자료 UI와 다른 Home 섹션은 바꾸지 않습니다.
+
+## Contact-style introductions and mobile accordion
+
+`LandingPhotoHero` is shared by Qualifications, Products, Research and Articles. Its CSS Module owns the approved Contact-derived sizes, mobile-only left alignment and contrast overlay; it reuses the original photos. `OriginalHeader` retains desktop behavior and uses a single-open About/Projects accordion on mobile. Actions stay outside collapsed groups. Browser evidence and verification are recorded in `docs/qa/landing-photo-heroes.md`.

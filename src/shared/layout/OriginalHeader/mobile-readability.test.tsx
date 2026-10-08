@@ -17,12 +17,16 @@ describe("shared mobile readability ownership", () => {
       expect(navigation).toHaveClass(headerStyles.navigation);
       const primaryLinks = navigation.querySelectorAll(".nav-link");
       const secondaryLinks = navigation.querySelectorAll(".lnb-link");
-      const submenus = navigation.querySelectorAll(".original-submenu");
+      const submenus = navigation.querySelectorAll("[data-submenu]");
       expect(primaryLinks).toHaveLength(5);
       expect(secondaryLinks).toHaveLength(7);
       expect(submenus).toHaveLength(2);
       submenus.forEach((submenu) =>
-        expect(submenu).toHaveClass(headerStyles.submenu),
+        expect(submenu).toHaveClass(
+          submenu.hasAttribute("hidden")
+            ? headerStyles.collapsedSubmenu
+            : headerStyles.submenu,
+        ),
       );
       primaryLinks.forEach((link) =>
         expect(link).toHaveClass(headerStyles.primaryLink),
