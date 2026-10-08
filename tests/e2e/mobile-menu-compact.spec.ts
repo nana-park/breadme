@@ -67,6 +67,11 @@ async function assertLayout(page: Page, testInfo: TestInfo, caseId: string) {
     body: JSON.stringify(metrics, null, 2),
     contentType: "application/json",
   });
+  if (caseId.startsWith("home-"))
+    await page.screenshot({
+      path: testInfo.outputPath(`${caseId}-menu.png`),
+      animations: "disabled",
+    });
   await testInfo.attach(`${caseId}-menu`, {
     body: await page.screenshot({ animations: "disabled" }),
     contentType: "image/png",
@@ -136,16 +141,14 @@ for (const pageId of originalPageIds) {
         ).toBeHidden();
       await expect(menu).toHaveCSS("overflow-y", "auto");
       expect(
-        await menu
-          .locator("a")
-          .evaluateAll((links) =>
-            links.map((link) => ({
-              label: link.textContent?.trim(),
-              path: new URL((link as HTMLAnchorElement).href).pathname
-                .split("/")
-                .at(-1),
-            })),
-          ),
+        await menu.locator("a").evaluateAll((links) =>
+          links.map((link) => ({
+            label: link.textContent?.trim(),
+            path: new URL((link as HTMLAnchorElement).href).pathname
+              .split("/")
+              .at(-1),
+          })),
+        ),
       ).toEqual(
         expectedLinks.map((item) => ({ label: item.label, path: item.path })),
       );

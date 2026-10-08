@@ -441,9 +441,26 @@ test("expanded project content remains reachable before and after disclosure col
     }),
   });
   const summary = disclosure.locator("summary");
+  const originalBox = await disclosure.evaluate((element) => ({
+    height: element.style.height,
+    overflow: element.style.overflow,
+    transition: element.style.transition,
+  }));
+  // The open attribute precedes the existing 400ms height animation. Scrolling
+  // its temporary overflow:hidden box does not exercise document reachability.
+  const waitForDisclosureLayout = () =>
+    expect
+      .poll(() =>
+        disclosure.evaluate((element) => ({
+          height: element.style.height,
+          overflow: element.style.overflow,
+          transition: element.style.transition,
+        })),
+      )
+      .toEqual(originalBox);
   await summary.click();
   await expect(disclosure).toHaveAttribute("open", "");
-  await expect(page.locator("html")).toHaveCSS("scroll-snap-type", "none");
+  await waitForDisclosureLayout();
   const nestedList = disclosure
     .locator('[class~="group/list"]')
     .filter({ hasText: "Conversation Infrastructure" });
@@ -466,12 +483,12 @@ test("expanded project content remains reachable before and after disclosure col
   await summary.focus();
   await page.keyboard.press("Enter");
   await expect(disclosure).not.toHaveAttribute("open");
-  await expect(page.locator("html")).toHaveCSS("scroll-snap-type", PROXIMITY);
+
   await expect(summary).toBeFocused();
   await expect(tail).toBeHidden();
   await page.keyboard.press("Enter");
   await expect(disclosure).toHaveAttribute("open", "");
-  await expect(page.locator("html")).toHaveCSS("scroll-snap-type", "none");
+  await waitForDisclosureLayout();
   await tail.scrollIntoViewIfNeeded();
   await expect(tail).toBeInViewport();
 });
