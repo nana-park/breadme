@@ -1,3 +1,4 @@
+import { LandingPhotoHero } from "../LandingPhotoHero";
 import type { CSSProperties } from 'react';
 import { assetUrl } from '@/shared/utils/originalPaths';
 
@@ -17,78 +18,14 @@ export function OriginalResearchContent() {
       <section
         className={'pb-24 bg-white'}
         id={'research'}
-        style={{ paddingTop: '12rem' } as CSSProperties}
+        style={{ paddingTop: '70px' } as CSSProperties}
       >
         {'\n        '}
+        <LandingPhotoHero page="research" />
         <div className={'container mx-auto px-4 lg:px-12 max-w-[1400px]'}>
           {'\n\n            '}
           {'\n            '}
-          <div
-            className={'flex flex-col items-center mb-24 mx-auto text-center'}
-          >
-            {'\n                '}
-            <h2
-              className={
-                'font-sans tracking-tight text-zinc-900 text-[32px] md:text-[44px] leading-[1.1] font-normal mb-4'
-              }
-              data-reading-role={'landing-title'}
-            >
-              {'\n                    Pioneering user-centric AI experiences'}
-              <br />
-              {
-                'through deep academic inquiry and behavioral science.\n                '
-              }
-            </h2>
-            {'\n                '}
-            <p
-              className={
-                'font-sans text-zinc-600 text-[14px] md:text-[15px] font-normal mb-16'
-              }
-              data-reading-role={'landing-copy'}
-            >
-              {
-                '\n                    Bridging the gap between human psychology and software engineering.\n                '
-              }
-            </p>
-            {'\n\n                '}
-            <div
-              className={
-                'w-full aspect-[16/7] bg-zinc-100 rounded-none overflow-hidden mb-16 relative shadow-sm'
-              }
-            >
-              {'\n                    '}
-              <img
-                src={assetUrl(
-                  'nahyun_imported/image_source/Projects_Research/bg.png',
-                )}
-                alt={'Research Environment'}
-                className={'w-full h-full object-cover'}
-              />
-              {'\n                '}
-            </div>
-            {'\n\n                '}
-            <h3
-              className={
-                'font-sans tracking-tight text-zinc-900 text-[18px] md:text-[22px] font-normal mb-1.5'
-              }
-            >
-              {
-                '\n                    Grounded in Interaction Science, Psychology, and Multimedia.\n                '
-              }
-            </h3>
-            {'\n                '}
-            <p
-              className={
-                'font-sans text-zinc-600 text-[15px] md:text-[17px] font-light'
-              }
-              data-reading-role={'landing-copy'}
-            >
-              {
-                '\n                    Applying empirical research methodologies to orchestrate meaningful digital transformation.\n                '
-              }
-            </p>
-            {'\n            '}
-          </div>
+
           {'\n\n            '}
           {'\n            '}
           <div className={'max-w-[1200px] mx-auto'}>

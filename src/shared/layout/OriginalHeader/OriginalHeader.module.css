@@ -1,5 +1,5 @@
 /* WHAT: The shared mobile menu owns its compact layout and reading sizes on every route.
- * WHY: Two child-link columns expose the full hierarchy without shrinking the 44px
+ * WHY: One expanded group keeps the hierarchy in one left-aligned column with 44px
  * targets. Short viewports and enlarged text retain the menu's vertical scroll. */
 @media (max-width: 1023px) {
   .navigation :global(.nav-menu.active) {
@@ -22,13 +22,15 @@
     min-height: var(--control-size, 2.75rem);
     width: 100%;
     padding-block: 0.625rem;
+    padding-inline: 0;
+    text-align: left;
+    justify-content: flex-start;
   }
 
-  /* WHY: Source pages require display:flex/width:100% with important declarations.
-   * Flex basis plus max-width provides two columns without escalating that cascade. */
+  /* WHAT: Children remain one column, with a small shared indent under their parent. */
   .navigation :global(.nav-menu.active) :global(.original-submenu).submenu {
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
+    flex-wrap: nowrap;
     align-items: stretch;
     justify-content: flex-start;
     gap: 0;
@@ -37,15 +39,39 @@
 
   .navigation :global(.nav-menu.active) :global(.lnb-link).secondaryLink {
     box-sizing: border-box;
-    flex: 0 0 50%;
-    max-width: 50%;
+    flex: 0 0 auto;
+    max-width: 100%;
     min-width: 0;
     font-size: var(--type-small, 0.875rem);
     line-height: 1.5;
     min-height: var(--control-size, 2.75rem);
-    padding: 0.375rem var(--space-2, 0.5rem);
+    padding: 0.375rem 0 0.375rem var(--space-4, 1rem);
     white-space: normal;
     overflow-wrap: anywhere;
-    text-align: center;
+    text-align: left;
+    justify-content: flex-start;
+  }
+  .navigation :global(.nav-menu.active) .disclosure {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2, 0.5rem);
+    background: transparent;
+    border: 0;
+    font-family: inherit;
+    cursor: pointer;
+  }
+  .disclosure svg {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+  }
+  .disclosure[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+  }
+  /* WHY: Closed groups omit legacy display:flex classes so hidden also removes
+   * their descendants from layout, focus navigation, and the accessibility tree. */
+  .collapsedSubmenu[hidden] {
+    display: none;
   }
 }

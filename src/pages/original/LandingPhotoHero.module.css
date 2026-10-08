@@ -1,0 +1,95 @@
+/* WHAT: Contact reference: 350/500px panel, 48/56px desktop title, 16px copy.
+ * DESIGN-EXCEPTION [landing-photo-hero]: Approved Contact measurements take
+ * precedence over provisional foundation heading tokens. */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 350px;
+  padding: 4rem var(--space-4);
+  margin-bottom: 80px;
+  isolation: isolate;
+  text-align: center;
+  color: #fff;
+  font-family: var(--font-sans, sans-serif);
+}
+.hero[data-landing-photo-hero="qualified"] {
+  margin-bottom: 0;
+}
+.photo,
+.shade {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.photo {
+  object-fit: cover;
+  object-position: center;
+}
+.hero[data-landing-photo-hero="projects"] .photo {
+  object-position: center top;
+}
+/* WHY: White body copy retains at least 5.74:1 contrast over a white photo pixel. */
+.shade {
+  background: rgb(0 0 0 / 60%);
+  pointer-events: none;
+}
+.content {
+  width: 100%;
+  max-width: 800px;
+}
+.title {
+  color: inherit;
+  font-family: inherit;
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin: 0 0 var(--space-6);
+  overflow-wrap: anywhere;
+  text-shadow: 0 2px 8px rgb(0 0 0 / 20%);
+}
+.copy {
+  color: inherit;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.6;
+}
+.copy p {
+  margin: 0;
+}
+.copy p + p {
+  margin-top: var(--space-2);
+}
+@media (min-width: 768px) {
+  .hero {
+    margin-bottom: 120px;
+  }
+}
+@media (min-width: 1024px) {
+  .hero {
+    min-height: 500px;
+  }
+  .title {
+    font-size: 56px;
+  }
+}
+@media (max-width: 767px) {
+  .hero {
+    padding-inline: 20px;
+    text-align: left;
+  }
+  .content {
+    max-width: 380px;
+  }
+  .title {
+    font-size: clamp(32px, 8.8vw, 40px);
+  }
+  .copy {
+    font-size: 13px;
+  }
+}

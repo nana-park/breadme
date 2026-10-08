@@ -115,3 +115,9 @@ Copy URL은 `siteMetadata.portfolioUrl`의 공개 홈 `https://nana-park.github.
 
 
 Home 협업 회사 목록은 `HomePartnerLogos`에서 관리합니다. 기존 파트너 섹션의 문구·위치·크기는 유지하고 Google을 제거, SK Inc.와 LINE WORKS를 추가했습니다. SK Telecom과 SK Inc.는 별도 회사이며 6개 로고를 세 번 반복합니다. 자세한 공식 출처와 스타일 보존 범위는 [Home README](../home/README.md)를 따릅니다.
+
+## Contact-style photo introductions
+
+Qualifications (`qualified.html`), Products (`projects.html`), Research and Articles use `LandingPhotoHero` with their existing photos. The previous long headings become two concise supporting paragraphs in `src/content/original/landingHeroes.ts`; all following page content is retained. Only widths through 767px are left-aligned, with Contact's 20px gutter, 380px column, 32–40px heading and 13px copy. Tablet/desktop remain centered, using 48/56px headings, 16px copy and 350/500px minimum hero heights. Enlarged text can grow the panel. A 60% black overlay protects white small-copy contrast (minimum 5.74:1 over white source pixels). Contact itself stays unchanged.
+
+`apply-landing-hero-override.ts` preserves this structure on regeneration. Articles pagination, reading-view spacing and return behavior remain unchanged. Mobile scroll-snap targets now follow the moved introductions. The mobile header's one-open About/Projects accordion and the career secondary action are included in the same review; see the associated QA notes.

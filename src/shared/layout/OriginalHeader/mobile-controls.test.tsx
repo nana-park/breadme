@@ -109,6 +109,103 @@ afterEach(() => {
 });
 
 describe("mobile controls and nonmodal materials focus", () => {
+  it("uses one disclosure at a time and retains every unique destination", () => {
+    render(<Harness />);
+    fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
+    const about = screen.getByRole("button", { name: "ABOUT" });
+    const projects = screen.getByRole("button", { name: "PROJECTS" });
+    expect(about).toHaveAttribute("aria-expanded", "false");
+    expect(projects).toHaveAttribute("aria-expanded", "false");
+    expect(
+      screen.queryByRole("link", { name: "Career" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("link", { name: "Research" }),
+    ).not.toBeInTheDocument();
+    fireEvent.click(about);
+    expect(about).toHaveAttribute("aria-expanded", "true");
+    expect(
+      document.getElementById(about.getAttribute("aria-controls")!),
+    ).not.toHaveAttribute("hidden");
+    expect(screen.getByRole("link", { name: "breadme" })).toHaveAttribute(
+      "href",
+      "/about.html",
+    );
+    fireEvent.click(projects);
+    expect(about).toHaveAttribute("aria-expanded", "false");
+    expect(
+      screen.queryByRole("link", { name: "Career" }),
+    ).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Products" })).toHaveAttribute(
+      "href",
+      "/projects.html",
+    );
+    for (const name of ["Research", "Articles", "Lectures"])
+      expect(screen.getByRole("link", { name })).toBeVisible();
+    fireEvent.mouseLeave(screen.getByRole("navigation"));
+    expect(projects).toHaveAttribute("aria-expanded", "true");
+    fireEvent.click(projects);
+    expect(projects).toHaveAttribute("aria-expanded", "false");
+    expect(
+      screen.queryByRole("link", { name: "Research" }),
+    ).not.toBeInTheDocument();
+    expect(document.querySelectorAll("#navMenu a")).toHaveLength(10);
+  });
+  it.each([
+    ["home", null],
+    ["awards", null],
+    ["contact", null],
+    ["about", "ABOUT"],
+    ["career", "ABOUT"],
+    ["qualified", "ABOUT"],
+    ["projects", "PROJECTS"],
+    ["research", "PROJECTS"],
+    ["articles", "PROJECTS"],
+    ["lectures", "PROJECTS"],
+    ["llm-based-voice-ivr", "PROJECTS"],
+    ["hopzie-oneclickbuilder", "PROJECTS"],
+    ["ai-mentoring-agent-detail", "PROJECTS"],
+  ])(
+    "opens the current group on %s and resets manual choices on reopening",
+    (pageId, group) => {
+      render(<Harness pageId={pageId!} />);
+      const toggle = screen.getByRole("button", { name: "Open menu" });
+      fireEvent.click(toggle);
+      const expanded = () =>
+        Array.from(
+          document.querySelectorAll("#navMenu button[aria-expanded='true']"),
+          (n) => n.textContent,
+        );
+      expect(expanded()).toEqual(group ? [group] : []);
+      fireEvent.click(
+        screen.getByRole("button", {
+          name: group === "ABOUT" ? "PROJECTS" : "ABOUT",
+        }),
+      );
+      fireEvent.keyDown(document, { key: "Escape" });
+      expect(toggle).toHaveFocus();
+      fireEvent.click(toggle);
+      expect(expanded()).toEqual(group ? [group] : []);
+    },
+  );
+  it("changes the expanded group when the current route changes", () => {
+    const view = render(<Harness pageId="career" />);
+    fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
+    view.rerender(<Harness pageId="research" />);
+    expect(screen.getByRole("button", { name: "ABOUT" })).toHaveAttribute(
+      "aria-expanded",
+      "false",
+    );
+    expect(screen.getByRole("button", { name: "PROJECTS" })).toHaveAttribute(
+      "aria-expanded",
+      "true",
+    );
+    expect(screen.getByRole("link", { name: "Research" })).toHaveAttribute(
+      "aria-current",
+      "page",
+    );
+  });
+
   it("traps focus, restores preexisting inert/overflow, and repeats safely in StrictMode", () => {
     const view = render(
       <StrictMode>
@@ -167,16 +264,13 @@ describe("mobile controls and nonmodal materials focus", () => {
     const toggle = screen.getByRole("button", { name: "Open menu" });
     focus(toggle);
     resize(1024);
-    const projects = screen.getByRole("link", {
-      name: "PROJECTS",
-    });
-    expect(projects).toHaveFocus();
+    expect(screen.getByRole("link", { name: "PROJECTS" })).toHaveFocus();
     resize(1023);
     expect(toggle).toHaveFocus();
     fireEvent.click(toggle);
     focus(screen.getByRole("link", { name: "Research" }));
     resize(1024);
-    expect(projects).toHaveFocus();
+    expect(screen.getByRole("link", { name: "PROJECTS" })).toHaveFocus();
     expect(screen.getByRole("main")).not.toHaveAttribute("inert");
     expect(document.body.style.overflow).toBe("");
     const desktopResume = screen.getByRole("button", { name: "Resume" });
@@ -184,7 +278,7 @@ describe("mobile controls and nonmodal materials focus", () => {
     resize(1023);
     expect(toggle).toHaveFocus();
     resize(1024);
-    expect(projects).toHaveFocus();
+    expect(screen.getByRole("link", { name: "PROJECTS" })).toHaveFocus();
     const outside = screen.getByRole("button", { name: "Outside control" });
     focus(outside);
     resize(1023);
@@ -212,7 +306,7 @@ describe("mobile controls and nonmodal materials focus", () => {
     focus(projects);
     focus(screen.getByRole("link", { name: "Research" }));
     fireEvent.keyDown(document, { key: "Escape" });
-    expect(projects).toHaveFocus();
+    expect(screen.getByRole("link", { name: "PROJECTS" })).toHaveFocus();
     expect(document.querySelector("#navbar")).not.toHaveClass("gnb-expanded");
     expect(document.querySelector("#navbar")).toHaveClass("nav-force-close");
   });
@@ -264,10 +358,9 @@ describe("mobile controls and nonmodal materials focus", () => {
     render(<OriginalHeader pageId="home" onOpenMaterials={openMaterials} />);
     fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
     const menu = document.querySelector("#navMenu")!;
-    expect(menu.querySelectorAll("a")).toHaveLength(12);
-    expect(
-      menu.querySelectorAll("button, [data-materials-action]"),
-    ).toHaveLength(0);
+    expect(menu.querySelectorAll("a")).toHaveLength(10);
+    expect(menu.querySelectorAll("button[aria-controls]")).toHaveLength(2);
+    expect(menu.querySelectorAll("[data-materials-action]")).toHaveLength(0);
     expect(menu).not.toHaveTextContent(/Resume|Portfolio/);
     fireEvent.keyDown(document, { key: "Escape" });
     resize(1440);
@@ -395,6 +488,7 @@ describe("mobile controls and nonmodal materials focus", () => {
     "hopzie-oneclickbuilder",
     "ai-mentoring-agent-detail",
   ])("preserves source neutral navigation on detail %s", (pageId) => {
+    resize(1440);
     render(<Harness pageId={pageId} />);
     expect(screen.getByRole("link", { name: "PROJECTS" })).not.toHaveClass(
       "active",

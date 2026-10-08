@@ -11,6 +11,7 @@ import { JSDOM } from "jsdom";
 import postcss from "postcss";
 import { format } from "prettier";
 import { applyCareerContentOverrides } from "./apply-career-content-overrides.ts";
+import { applyLandingHeroOverride } from "./apply-landing-hero-override.ts";
 import { applyHomeCapabilitiesOverride } from "./apply-home-capabilities-override.ts";
 
 const projectRoot = path.resolve(
@@ -364,6 +365,7 @@ for (const [sourceFile, componentName] of pageDefinitions) {
       }
     }
   }
+  applyLandingHeroOverride(document, sourceFile);
   const isMockup = componentName === "OriginalMentoringMockupContent";
   const imports = new Set();
   const importantRules = [];
@@ -581,6 +583,10 @@ for (const [sourceFile, componentName] of pageDefinitions) {
       imports.add("ContactPackageActions");
       return `${indent}<ContactPackageActions onOpenMaterials={onOpenMaterials} />`;
     }
+    if (node.hasAttribute("data-landing-photo-hero")) {
+      imports.add("LandingPhotoHero");
+      return `${indent}<LandingPhotoHero page=${json(node.getAttribute("data-landing-photo-hero"))} />`;
+    }
     if (tag === "spline-viewer") {
       imports.add("SplineHero");
       return `${indent}<SplineHero${attributes(node)} />`;
@@ -610,6 +616,8 @@ for (const [sourceFile, componentName] of pageDefinitions) {
   if (isMockup)
     contents = `    <div className="original-mentoring-mockup">\n${contents}\n    </div>`;
   const importLines = [];
+  if (imports.has("LandingPhotoHero"))
+    importLines.push("import { LandingPhotoHero } from '../LandingPhotoHero';");
   if (imports.has("CSSProperties"))
     importLines.push("import type { CSSProperties } from 'react';");
   const helpers = ["assetUrl", "originalHref"].filter((helper) =>

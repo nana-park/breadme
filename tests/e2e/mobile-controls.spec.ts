@@ -13,7 +13,10 @@ test("mobile controls leave the original Hero copy clear and center the hamburge
   await expect(toggle).toBeHidden();
   await page.locator("#mobileToggle").click();
   await expect(page.locator("#navMenu [data-materials-action]")).toHaveCount(0);
-  await expect(page.locator("#navMenu a")).toHaveCount(12);
+  await expect(page.locator("#navMenu a")).toHaveCount(10);
+  await expect(
+    page.locator("#navMenu button[aria-expanded='false']"),
+  ).toHaveCount(2);
   await page.keyboard.press("Escape");
   await expect(page.locator("#mobileToggle")).toBeFocused();
   await expect(toggle).toBeHidden();
@@ -135,6 +138,10 @@ test("1023 and 1024 resize transitions keep focus on a visible counterpart witho
   await page.setViewportSize({ width: 1023, height: 900 });
   await expect(toggle).toBeFocused();
   await toggle.click();
+  await page
+    .locator("#navMenu")
+    .getByRole("button", { name: "PROJECTS" })
+    .click();
   await page.getByRole("link", { name: "Research", exact: true }).focus();
   await page.setViewportSize({ width: 1024, height: 900 });
   await expect(

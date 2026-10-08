@@ -6,6 +6,23 @@ import styles from "./OriginalHeader.module.css";
 type Props = { pageId: string; onOpenMaterials: () => void };
 const DESKTOP_BREAKPOINT = 1024;
 
+function currentMobileGroup(pageId: string) {
+  if (["about", "career", "qualified"].includes(pageId)) return "ABOUT";
+  if (
+    [
+      "projects",
+      "research",
+      "articles",
+      "lectures",
+      "llm-based-voice-ivr",
+      "hopzie-oneclickbuilder",
+      "ai-mentoring-agent-detail",
+    ].includes(pageId)
+  )
+    return "PROJECTS";
+  return null;
+}
+
 function isAvailable(element: HTMLElement) {
   if (element.closest("[hidden], [inert]")) return false;
   for (
@@ -21,6 +38,20 @@ function isAvailable(element: HTMLElement) {
 
 export function OriginalHeader({ pageId, onOpenMaterials }: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(
+    () =>
+      typeof window !== "undefined" && window.innerWidth < DESKTOP_BREAKPOINT,
+  );
+  const [mobileSelection, setMobileSelection] = useState({
+    pageId,
+    group: currentMobileGroup(pageId),
+  });
+  // WHAT: A route change chooses its own group; each menu opening resets manual selection.
+  const mobileGroup =
+    mobileSelection.pageId === pageId
+      ? mobileSelection.group
+      : currentMobileGroup(pageId);
+  const pendingDesktopFocus = useRef<string | null>(null);
   const [openGroup, setOpenGroup] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [forceClosed, setForceClosed] = useState(false);
@@ -49,6 +80,7 @@ export function OriginalHeader({ pageId, onOpenMaterials }: Props) {
         document.activeElement !== document.body
           ? document.activeElement
           : lastHeaderFocus;
+      setIsMobile(isMobile);
       setIsMenuOpen(false);
       setOpenGroup(null);
       setForceClosed(false);
@@ -74,7 +106,12 @@ export function OriginalHeader({ pageId, onOpenMaterials }: Props) {
                   "[data-current-group='true'] > .nav-link",
                 ) ?? navMenu.current?.querySelector<HTMLElement>(".nav-link"))
               : parentLink;
-          replacement?.focus();
+          // WHY: A mobile disclosure is replaced by a desktop link at this breakpoint.
+          // Restore focus after React commits the replacement, not to the removed button.
+          pendingDesktopFocus.current =
+            replacement?.closest<HTMLElement>("[data-nav-group]")?.dataset
+              .navGroup ?? null;
+          if (!pendingDesktopFocus.current) replacement?.focus();
           setOpenGroup(null);
         }
       }
@@ -89,6 +126,16 @@ export function OriginalHeader({ pageId, onOpenMaterials }: Props) {
       document.removeEventListener("focusin", trackFocus);
     };
   }, []);
+  useLayoutEffect(() => {
+    if (!isMobile && pendingDesktopFocus.current) {
+      nav.current
+        ?.querySelector<HTMLElement>(
+          `[data-nav-group="${pendingDesktopFocus.current}"] > .nav-link`,
+        )
+        ?.focus();
+      pendingDesktopFocus.current = null;
+    }
+  }, [isMobile]);
   useEffect(() => {
     const handleKey = (event: KeyboardEvent) => {
       if (
@@ -194,9 +241,11 @@ export function OriginalHeader({ pageId, onOpenMaterials }: Props) {
       className={`navbar ${styles.navigation} ${["projects", "articles"].includes(pageId) ? "force-scrolled" : ""} ${isScrolled ? "scrolled" : ""} ${openGroup ? "gnb-expanded" : ""} ${openGroup === "ABOUT" ? "original-about-open" : ""} ${forceClosed ? "nav-force-close" : ""}`}
       id="navbar"
       aria-label="Main navigation"
-      onMouseLeave={() => setOpenGroup(null)}
+      onMouseLeave={() => {
+        if (!isMobile) setOpenGroup(null);
+      }}
       onBlur={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget))
+        if (!isMobile && !event.currentTarget.contains(event.relatedTarget))
           setOpenGroup(null);
       }}
     >
@@ -256,21 +305,63 @@ export function OriginalHeader({ pageId, onOpenMaterials }: Props) {
                     setOpenGroup(hasChildren ? item.label : null);
                 }}
               >
-                <a
-                  href={originalHref(item.path)}
-                  className={`nav-link ${styles.primaryLink} ${hasChildren ? "flex items-center h-full" : ""} ${isActive ? "active" : ""}`}
-                  aria-current={isActive ? "page" : undefined}
-                >
-                  {item.label}
-                </a>
+                {isMobile && hasChildren ? (
+                  <button
+                    type="button"
+                    className={`nav-link ${styles.primaryLink} ${styles.disclosure} ${isActive ? "active" : ""}`}
+                    aria-expanded={mobileGroup === item.label}
+                    aria-controls={`mobile-submenu-${item.label.toLowerCase()}`}
+                    onClick={() =>
+                      setMobileSelection({
+                        pageId,
+                        group: mobileGroup === item.label ? null : item.label,
+                      })
+                    }
+                  >
+                    <span>{item.label}</span>
+                    <svg
+                      aria-hidden="true"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                    >
+                      <path
+                        d="m6 9 6 6 6-6"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </button>
+                ) : (
+                  <a
+                    href={originalHref(item.path)}
+                    className={`nav-link ${styles.primaryLink} ${hasChildren ? "flex items-center h-full" : ""} ${isActive ? "active" : ""}`}
+                    aria-current={isActive ? "page" : undefined}
+                  >
+                    {item.label}
+                  </a>
+                )}
                 {hasChildren && (
                   <div
-                    className={`absolute top-[70px] left-1/2 -translate-x-1/2 w-[200px] ${"about" in item ? "h-[120px]" : "h-[160px]"} opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 flex flex-col justify-center items-center gap-1.5 z-[999] original-submenu ${styles.submenu}`}
+                    id={`mobile-submenu-${item.label.toLowerCase()}`}
+                    data-submenu={item.label}
+                    hidden={isMobile && mobileGroup !== item.label}
+                    className={
+                      isMobile && mobileGroup !== item.label
+                        ? styles.collapsedSubmenu
+                        : `absolute top-[70px] left-1/2 -translate-x-1/2 w-[200px] ${"about" in item ? "h-[120px]" : "h-[160px]"} opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 flex flex-col justify-center items-center gap-1.5 z-[999] original-submenu ${styles.submenu}`
+                    }
                   >
                     {item.children.map((child) => (
                       <a
                         key={child.path}
                         href={originalHref(child.path)}
+                        aria-current={
+                          isMobile && child.path === `${pageId}.html`
+                            ? "page"
+                            : undefined
+                        }
                         className={`text-[13px] font-sans font-medium text-white/90 hover:text-[#d97706] transition-colors flex items-center justify-center w-full lnb-link ${styles.secondaryLink}`}
                       >
                         {child.label}
@@ -311,6 +402,13 @@ export function OriginalHeader({ pageId, onOpenMaterials }: Props) {
             aria-controls="navMenu"
             onClick={() => {
               setForceClosed(false);
+              if (!isMenuOpen) {
+                setMobileSelection({
+                  pageId,
+                  group: currentMobileGroup(pageId),
+                });
+                if (navMenu.current) navMenu.current.scrollTop = 0;
+              }
               setIsMenuOpen((open) => !open);
             }}
           >

@@ -31,7 +31,7 @@ describe("Original Articles reading flow", () => {
     render(<OriginalArticlesPage />);
     expect(
       screen.getByRole("heading", {
-        name: "Sharing insights and thoughts on AI product management and user experience.",
+        name: "Articles",
       }),
     ).toBeVisible();
     expect(screen.getByAltText("Articles Environment")).toHaveAttribute(
