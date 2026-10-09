@@ -13,8 +13,8 @@
         "history-2",
         "vision"
       ],
-      "elementCount": 135,
-      "textCount": 290,
+      "elementCount": 108,
+      "textCount": 231,
       "inlineStyleBlocks": 4,
       "importantRules": 0
     },
@@ -23,10 +23,11 @@
       "componentName": "OriginalAboutContent",
       "sectionIds": [
         "about",
+        "how-work",
         "media"
       ],
-      "elementCount": 53,
-      "textCount": 119,
+      "elementCount": 94,
+      "textCount": 197,
       "inlineStyleBlocks": 1,
       "importantRules": 0
     },
@@ -48,12 +49,12 @@
       "componentName": "OriginalQualifiedContent",
       "sectionIds": [
         "about",
+        "history-2",
         "toolkit-grid",
-        "certifications-runway",
-        "how-work"
+        "certifications-runway"
       ],
-      "elementCount": 245,
-      "textCount": 477,
+      "elementCount": 234,
+      "textCount": 451,
       "inlineStyleBlocks": 1,
       "importantRules": 0
     },

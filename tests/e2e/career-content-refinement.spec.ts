@@ -108,7 +108,7 @@ for (const width of [320, 390, 430, 767, 768, 1440]) {
     await expect(
       page.getByRole("heading", { name: "Academic Standing" }),
     ).toBeVisible();
-    await expect(page.locator("#history-2 img")).toHaveCount(2);
+    await expect(page.locator("#history-2 img")).toHaveCount(0);
   });
 }
 

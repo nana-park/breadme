@@ -6,16 +6,16 @@
 
 ## Home 경력 구현
 
-Home의 `#history`는 사진·모션 없는 흰색 Education 스타일의 `HomeExperience`로 교체합니다. 회사 캐러셀·발자취·Education·나머지 섹션과 다른 페이지는 유지합니다. 실제 규격·콘텐츠 순서·검수 한계는 [Home README](../home/README.md)를 따릅니다.
+Home의 `#history`는 사진·모션 없는 흰색 Education 스타일의 `HomeExperience`를 사용합니다. 2026-10-08 IA 변경에서는 `#history-2`를 짧은 학력 요약으로 바꾸고 전체 Academic Standing을 Qualifications로 옮깁니다. 회사 캐러셀·발자취·경력과 하단 CTA는 유지합니다. 실제 규격·콘텐츠 순서·검수 한계는 [Home README](../home/README.md)를 따릅니다.
 
 ## 페이지
 
 | URL                                        | 내용                                                |
 | ------------------------------------------ | --------------------------------------------------- |
-| `/`, `/index.html`                         | 선택된 텍스트 Hero·원본 파트너·발자취·경력·학력·CTA |
-| `/about.html`                              | 소개·배경 영상·미디어                               |
+| `/`, `/index.html`                         | 선택된 텍스트 Hero·파트너·발자취·경력·학력 요약/상세 링크·CTA |
+| `/about.html`                              | 소개·이름 도식 → 업무 원칙 4개 → 미디어                               |
 | `/career.html`                             | 경력·추천                                           |
-| `/qualified.html`                          | 역량·인증 4개 탭·업무 원칙                          |
+| `/qualified.html`                          | 전체 Academic Standing → Core Competencies 6개 → 인증 4개 탭                          |
 | `/enjoy.html`                              | 원본 갤러리·카테고리·여행지 선택. 메뉴 숨김 유지    |
 | `/projects.html`                           | 실제 프로젝트·펼침 목록·9개 세부 펼침·상세 링크     |
 | `/research.html`                           | 연구 4개 항목·논문 링크                             |
@@ -29,9 +29,20 @@ Home의 `#history`는 사진·모션 없는 흰색 Education 스타일의 `HomeE
 
 주소를 직접 열거나 새로고침해도 같은 페이지를 표시합니다. 브라우저 기본 링크 이동을 사용합니다. Articles는 원본의 `#article-detail?id=…` 주소를 유지합니다.
 
+## 학력과 업무 원칙의 현재 위치 (2026-10-08)
+
+- Home `#history-2`: M.S. in Human-AI Interaction / Sungkyunkwan University와 B.A. in Psychology / Sookmyung Women's University의 짧은 요약, `qualified.html#history-2` 상세 링크.
+- Qualifications: 기존 Hero → 전체 Academic Standing(`#history-2`) → Core Competencies 6개 → 기존 인증. Academic Standing은 Home에서 사진·기간·학위·학교·추가 전공·Research Focus·View publications·Google Scholar 링크를 내용 변경 없이 옮깁니다. 여섯 역량 카드와 인증 내용·탭 동작은 보존합니다.
+- About: 소개/이름 도식 다음, `#media` 앞에 기존 `#how-work`를 옮깁니다. Persuasive Storytelling, Efficiency-Driven, Communication Architect, Inquiry-Driven Detection 네 카드의 문구·태그·사진·순서를 보존합니다. 기존 미디어 내용과 조작도 유지합니다.
+- Header의 Qualified 표시명과 모든 메뉴 URL, Career의 경력/추천은 변경하지 않습니다. 이후 날짜별 항목에서 학력과 원칙의 이전 위치를 설명한 문장은 해당 변경 당시의 기록입니다.
+
+[IA 검수 기록](../../../docs/qa/education-principles-ia.md)은 브라우저 AS-IS/TO-BE 증거 대기와 실행한 검사를 구분합니다. 구조 문서 갱신은 main 병합이나 배포 완료를 뜻하지 않습니다.
+
 ## 파일 역할
 
-- Home Hero는 `../home/HomeHero.tsx`, 경력은 `HomeExperience`, 하단 CTA 내용은 `HomeCapabilities`에서 관리합니다. CTA는 기존 박스와 배경 효과 안에서 Product Focus·Core Strengths를 표시하고 Products 목록으로 연결합니다. 변환기는 이 세 컴포넌트 연결을 보존하며 나머지 원본 섹션은 유지합니다.
+- Home Hero는 `../home/HomeHero.tsx`, 경력은 `HomeExperience`, 하단 CTA 내용은 `HomeCapabilities`에서 관리합니다. CTA는 기존 박스와 배경 효과 안에서 Product Focus·Core Strengths를 표시하고 Products 목록으로 연결합니다. 변환기는 이 연결을 보존합니다. Home의 학력 요약과 Qualifications의 전체 학력, About의 업무 원칙은 위 IA 배치가 재생성 후에도 유지되어야 합니다.
+- `scripts/apply-education-ia-override.ts`: 랜딩 Hero override 전에 학력/업무 원칙의 세 페이지 배치를 보존합니다. 기존 generated 페이지가 이동한 마크업을 소유합니다.
+- `OriginalPage.tsx`: 기존 `qualified.html#how-work` 진입을 `about.html#how-work`로 replace 이동해 이전 외부/북마크 링크를 보존합니다.
 - `generated/*.tsx`: 원본 HTML 요소를 실제 React JSX로 옮긴 내용. HTML 문자열 주입이나 전체 페이지 iframe이 아닙니다.
 - `generated/*.css`: 원본 페이지의 개별 스타일
 - `OriginalPage.module.css`: 검수에서 확인된 모바일 글자 역할·잘림 보정. `data-reading-role`로 실제 소개 문구·강의 정보·이름 도식·추천인 카드만 지정하며 제품 데모의 축소 글자는 일괄 확대하지 않습니다.
@@ -86,7 +97,7 @@ AI Mentoring 상세는 기존 데모 소스의 업로드 제한 때문에 선택
 
 2026-10-06 요청 범위에서는 767px 이하 About의 소개 제목·설명·버튼을 Home의 중앙 배치된 최대 380px 읽기 열에 맞춰 좌측 정렬합니다. 기본 여백은 20px이며, 430px 화면에서는 Home처럼 25px로 늘어납니다. 기존 `.container`의 5vw 기본값을 보존하는 gutter 변수는 About 소개 요소에서만 이 모바일 값으로 설정합니다. 이름 도식의 Park Nahyun은 40→36px, 발음 기호는 30→27px, 연결선은 80→70px로 조금 줄이고 작은 설명 라벨과 BREAD/ME의 의미는 유지합니다.
 
-`data-about-chapter`는 소개 → 이름 도식 → 인터뷰의 세 경계를 명시합니다. 모바일 각 구간의 최소 높이는 화면에서 Header 70px를 뺀 값이며, 긴 내용과 확대된 글자는 구간 자체를 늘립니다. 기존 문서 proximity snap·메뉴 열림 시 해제·reduced motion 규칙을 재사용합니다. 강제 고정 높이, 새 스크롤 컨테이너, 휠/터치 가로채기는 추가하지 않습니다. 768px 이상 화면은 원본 값을 사용합니다. [검수 범위와 상태](../../../docs/qa/about-mobile-sections.md)를 확인합니다.
+2026-10-06 작업의 `data-about-chapter`는 소개 → 이름 도식 → 인터뷰의 세 경계를 명시했습니다. 2026-10-08 IA 변경에서는 이름 도식과 인터뷰 사이의 업무 원칙도 독립된 읽기 구간으로 확인합니다. 모바일 각 구간의 최소 높이는 화면에서 Header 70px를 뺀 값이며, 긴 내용과 확대된 글자는 구간 자체를 늘립니다. 기존 문서 proximity snap·메뉴 열림 시 해제·reduced motion 규칙을 재사용합니다. 강제 고정 높이, 새 스크롤 컨테이너, 휠/터치 가로채기는 추가하지 않습니다. 768px 이상 화면은 원본 값을 사용합니다. [검수 범위와 상태](../../../docs/qa/about-mobile-sections.md)를 확인합니다.
 
 ## Career 콘텐츠 정리 (2026-10-06)
 
@@ -128,7 +139,7 @@ Qualifications (`qualified.html`), Products (`projects.html`), Research and Arti
 
 ### Qualifications 모바일 구분과 정렬
 
-767px 이하에서만 Core Competencies의 기존 6개 항목에 Contact/Home 경력과 같은 흰 배경·1px #e5e7eb 테두리·8px 모서리·24px 안쪽 여백·작은 그림자를 적용합니다. 세 본문 섹션 제목은 기존 컨테이너 왼쪽에 맞추고, 인증 필터는 12px 글자·작은 간격의 한 줄로 표시합니다. 좁으면 가로 스크롤하며 44px 터치 높이를 유지합니다. 문구·순서·필터 동작과 768px 이상 기존 배치는 보존합니다. 역할 표식은 변환기에도 반영합니다.
+767px 이하에서만 Core Competencies의 기존 6개 항목에 Contact/Home 경력과 같은 흰 배경·1px #e5e7eb 테두리·8px 모서리·24px 안쪽 여백·작은 그림자를 적용합니다. Core Competencies와 인증 섹션의 기존 모바일 제목 정렬을 유지하고, 인증 필터는 12px 글자·작은 간격의 한 줄로 표시합니다. About으로 옮긴 업무 원칙은 기존 모바일 제목 왼쪽 정렬을 보존하며, 새로 들어온 Academic Standing은 Home에서 사용하던 제목·본문 규격을 유지합니다. 좁으면 가로 스크롤하며 44px 터치 높이를 유지합니다. 문구·순서·필터 동작과 768px 이상 기존 배치는 보존합니다. 역할 표식은 변환기에도 반영합니다.
 
 ### Career 모바일 소개 정렬
 

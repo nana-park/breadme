@@ -88,10 +88,7 @@ for (const width of [320, 390, 430, 767]) {
     await openAbout(page, width);
     await expect(page.locator("html")).toHaveCSS("scroll-snap-type", proximity);
     expect(await page.evaluate(() => scrollY)).toBeLessThanOrEqual(1);
-    for (const selector of [
-      `${introduction} h2`,
-      `${introduction} p`,
-    ]) {
+    for (const selector of [`${introduction} h2`, `${introduction} p`]) {
       const element = page.locator(selector);
       expect((await element.boundingBox())!.x).toBeCloseTo(home.title.x, 1);
     }
@@ -124,14 +121,14 @@ for (const width of [320, 390, 430, 767]) {
       "70px",
     );
     const chapters = page.locator("[data-about-chapter]");
-    await expect(chapters).toHaveCount(3);
+    await expect(chapters).toHaveCount(4);
     for (const item of await chapters.all()) {
       await expect(item).toHaveCSS("scroll-snap-align", "start");
       await expect(item).toHaveCSS("scroll-snap-stop", "normal");
       expect((await item.boundingBox())!.height).toBeGreaterThanOrEqual(774);
     }
     await capture(page, testInfo, `about-${width}-intro`);
-    for (const name of ["identity", "interview"]) {
+    for (const name of ["identity", "principles", "interview"]) {
       await approach(page, page.locator(chapter(name)));
       await capture(page, testInfo, `about-${width}-${name}`);
     }

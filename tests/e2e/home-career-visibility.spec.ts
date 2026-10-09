@@ -130,7 +130,7 @@ for (const width of [320, 390, 768, 1023, 1024, 1440]) {
     const secondary = actions.getByRole("link", { name: "Full career" });
     const academicSecondary = page
       .locator("#history-2")
-      .getByRole("link", { name: "Google Scholar" });
+      .getByRole("link", { name: /Full education & qualifications/ });
     await expect(primary).toHaveCSS("background-color", "rgb(26, 26, 26)");
     for (const property of [
       "background-color",
@@ -185,14 +185,14 @@ for (const width of [320, 390, 768, 1023, 1024, 1440]) {
         "#history img, #history canvas, #history #history-dark-container, #history #history-glow",
       ),
     ).toHaveCount(0);
-    await expect(page.locator("#history-2 img")).toHaveCount(2);
-    const researchFocus = page
-      .locator("#history-2")
-      .getByText(
-        "Focused on human cognition, statistical modeling, and AI technical literacy, with research published in SSCI-indexed journals.",
-      );
-    await expect(researchFocus).toBeVisible();
-    await expect(researchFocus.locator("br")).toHaveCount(0);
+    await expect(page.locator("#history-2 img")).toHaveCount(0);
+    await expect(page.locator("#history-2")).not.toContainText(
+      "Research Focus",
+    );
+    await expect(page.locator("#history-2 a")).toHaveAttribute(
+      "href",
+      "/qualified.html#history-2",
+    );
 
     await expect(
       page.locator("#history [data-home-company] h3").first(),

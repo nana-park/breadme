@@ -8,7 +8,7 @@ vi.mock("@/shared/ui/SplineHero/SplineHero", () => ({
 }));
 
 describe("Original portfolio React migration", () => {
-  it("preserves Home section order and education while refining career copy", async () => {
+  it("preserves Home section order and concise education while refining career copy", async () => {
     render(<App />);
     // The first cold lazy import transforms the preserved original page and styles.
     // Wait for real content rather than asserting against the Suspense fallback.
@@ -32,11 +32,12 @@ describe("Original portfolio React migration", () => {
       "history-2",
       "vision",
     ]);
-    const researchFocus = screen.getByText(
-      "Focused on human cognition, statistical modeling, and AI technical literacy, with research published in SSCI-indexed journals.",
-    );
-    expect(researchFocus.closest("#history-2")).not.toBeNull();
-    expect(researchFocus.querySelector("br")).toBeNull();
+    expect(
+      screen.queryByText(/Focused on human cognition,/),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /Full education & qualifications/ }),
+    ).toHaveAttribute("href", "/qualified.html#history-2");
     expect(document.querySelectorAll("[data-home-company]")).toHaveLength(2);
     expect(document.querySelector("#career-page-1")).not.toBeInTheDocument();
     expect(screen.queryByText("구조 미리보기")).not.toBeInTheDocument();
@@ -60,7 +61,7 @@ describe("Original portfolio React migration", () => {
         "img, canvas, .mesh-blob-1, #history-glow, #history-dark-container",
       ),
     ).toHaveLength(0);
-    expect(document.querySelectorAll("#history-2 img")).toHaveLength(2);
+    expect(document.querySelectorAll("#history-2 img")).toHaveLength(0);
     expect(document.querySelectorAll("#partners .logo-track img")).toHaveLength(
       18,
     );

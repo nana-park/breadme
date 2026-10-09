@@ -3,6 +3,7 @@ import { useMobileScrollSnap } from "@/shared/hooks/useMobileScrollSnap";
 import originalUtilities from "@/styles/original/tailwind.generated.css?raw";
 import mobileAccessibility from "@/styles/original/accessibility-mobile.css?raw";
 import { lazy, Suspense, useLayoutEffect, useRef } from "react";
+import { originalHref } from "@/shared/utils/originalPaths";
 import type { OriginalPageId } from "@/config/originalRoutes";
 import { useOriginalPageInteractions } from "@/shared/hooks/useOriginalPageInteractions";
 import styles from "./OriginalPage.module.css";
@@ -139,9 +140,14 @@ function MountedOriginalPage({ pageId, onOpenMaterials }: Props) {
   useMobileScrollSnap(pageId, root);
   useLayoutEffect(() => {
     const hash = window.location.hash.slice(1);
+    // WHAT: Preserve published links to the relocated working-principles section.
+    if (pageId === "qualified" && hash === "how-work") {
+      window.location.replace(originalHref("about.html#how-work"));
+      return;
+    }
     if (hash && !hash.includes("?"))
       document.getElementById(hash)?.scrollIntoView();
-  }, []);
+  }, [pageId]);
   const Page = pages[pageId].component;
   return (
     <div

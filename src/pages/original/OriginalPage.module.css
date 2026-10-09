@@ -24,8 +24,9 @@
     overflow-wrap: anywhere;
   }
 
-  /* Keep all three section titles on their existing container's left edge. */
-  .page [data-reading-role="qualification-section-header"] {
+  /* Preserve mobile section-title alignment, including the principles moved to About. */
+  .page [data-reading-role="qualification-section-header"],
+  .page [data-reading-role="principles-section-header"] {
     align-items: flex-start;
     padding-inline: 0;
     text-align: left;
@@ -398,5 +399,15 @@
   }
   .page [data-reading-role="lecture-facts"] > :nth-child(2n) {
     margin-bottom: 0.75rem;
+  }
+}
+
+/* WHAT: New and relocated detail anchors clear the existing fixed 70px header.
+ * WHY: Mobile already owns this offset through document scroll padding. */
+@media (min-width: 768px) {
+  .page [data-education-summary],
+  .page [data-education-detail],
+  .page [data-about-chapter="principles"] {
+    scroll-margin-block-start: 70px;
   }
 }

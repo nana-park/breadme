@@ -661,16 +661,16 @@ export function OriginalHomeContent() {
       {'\n    '}
       <section
         className={
-          'relative w-full bg-white pb-24 pt-16 flex flex-col items-center'
+          'relative w-full bg-white pt-16 flex flex-col items-center pb-16'
         }
         id={'history-2'}
+        data-education-summary={''}
       >
         {'\n        '}
         <div
           className={'container mx-auto px-4 lg:px-12 max-w-[1000px] w-full'}
         >
-          {'\n            '}
-          <div className={'mb-12'}>
+          <div className={'mb-6'}>
             {'\n                '}
             <div
               className={
@@ -688,292 +688,49 @@ export function OriginalHomeContent() {
               {'Academic\n                    Standing'}
             </h2>
             {'\n                '}
-            <p
-              className={
-                'font-sans text-zinc-500 text-[13px] md:text-[14px] max-w-[800px] font-light mb-6'
-              }
-              style={{ wordBreak: 'keep-all' } as CSSProperties}
-            >
-              {
-                '\n                    Rooted in academic rigor, I explore the nuances of human behavior, psychology, and cognitive\n                    science'
-              }
-              <br />
-              {
-                '\n                    to establish theoretical foundations for cutting-edge AI interactions.\n                '
-              }
-            </p>
             {'\n                '}
-            <div className={'flex flex-wrap items-center gap-3'}>
-              {'\n                    '}
-              <a
-                href={originalHref('research.html')}
-                className={
-                  'inline-flex items-center justify-center px-6 py-2.5 bg-[#1a1a1a] text-white font-sans text-[13px] font-semibold rounded hover:bg-[#2a2a2a] transition-all group'
-                }
-              >
-                {
-                  '\n                        View publications\n                        '
-                }
-                <span
-                  className={
-                    'ml-1.5 translate-y-[1px] group-hover:translate-x-[2px] group-hover:-translate-y-[2px] transition-transform duration-300'
-                  }
-                >
-                  {'↗'}
-                </span>
-                {'\n                    '}
-              </a>
-              {'\n                    '}
-              <a
-                href={
-                  'https://scholar.google.com/citations?user=CTcwlAEAAAAJ&hl=ko&oi=sra'
-                }
-                target={'_blank'}
-                rel={'noopener noreferrer'}
-                className={
-                  'inline-flex items-center justify-center px-6 py-2.5 bg-white border border-zinc-200 text-zinc-700 font-sans text-[13px] font-semibold rounded hover:bg-zinc-50 transition-all shadow-sm group'
-                }
-              >
-                {
-                  '\n                        Google Scholar\n                        '
-                }
-                <span
-                  className={
-                    'ml-1.5 translate-y-[1px] group-hover:translate-x-[2px] group-hover:-translate-y-[2px] transition-transform duration-300'
-                  }
-                >
-                  {'↗'}
-                </span>
-                {'\n                    '}
-              </a>
-              {'\n                '}
-            </div>
             {'\n            '}
           </div>
-          {'\n\n            '}
-          <div className={'grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12'}>
-            {'\n                '}
-            {'\n                '}
-            <div className={'flex flex-col group'}>
-              {'\n                    '}
-              <div
+          <div className={'grid grid-cols-1 md:grid-cols-2 gap-6'}>
+            <div>
+              <h3
                 className={
-                  'w-full aspect-[16/9] mb-4 overflow-hidden rounded-[10px] bg-zinc-100'
+                  'font-sans text-[#1a1a1a] text-[20px] md:text-[22px] tracking-tight font-normal mb-1'
                 }
               >
-                {'\n                        '}
-                <img
-                  src={assetUrl('nahyun_imported/image_source/HOME/MS.jpg')}
-                  alt={'M.S. in Human-AI Interaction'}
-                  className={
-                    'w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]'
-                  }
-                  style={{ objectPosition: 'center 60%' } as CSSProperties}
-                />
-                {'\n                    '}
-              </div>
-              {'\n                    '}
-              <div className={'flex flex-col mt-2'}>
-                {'\n                        '}
-                <span
-                  className={
-                    'text-[11px] text-zinc-500 font-sans tracking-tight mb-1'
-                  }
-                >
-                  {'March 2021 - February\n                            2023'}
-                </span>
-                {'\n                        '}
-                <h3
-                  className={
-                    'font-sans text-[#1a1a1a] text-[20px] md:text-[22px] tracking-tight font-normal mb-1'
-                  }
-                >
-                  {'\n                            M.S. in Human-AI Interaction'}
-                </h3>
-                {'\n                        '}
-                <p
-                  className={
-                    'font-sans text-zinc-500 text-[12px] flex items-center mb-6'
-                  }
-                >
-                  {'\n                            '}
-                  <svg
-                    className={'w-3.5 h-3.5 mr-1 text-zinc-400'}
-                    fill={'none'}
-                    stroke={'currentColor'}
-                    viewBox={'0 0 24 24'}
-                  >
-                    {'\n                                '}
-                    <path
-                      strokeLinecap={'round'}
-                      strokeLinejoin={'round'}
-                      strokeWidth={'2'}
-                      d={
-                        'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z'
-                      }
-                    >
-                      {'\n                                '}
-                    </path>
-                    {'\n                                '}
-                    <path
-                      strokeLinecap={'round'}
-                      strokeLinejoin={'round'}
-                      strokeWidth={'2'}
-                      d={'M15 11a3 3 0 11-6 0 3 3 0 016 0z'}
-                    />
-                    {'\n                            '}
-                  </svg>
-                  {
-                    '\n                            Sungkyunkwan University\n                        '
-                  }
-                </p>
-                {'\n\n                        '}
-                <div
-                  className={
-                    'text-[10px] text-zinc-400 uppercase tracking-wider mb-2 font-medium'
-                  }
-                >
-                  {'Research Focus\n                        '}
-                </div>
-                {'\n                        '}
-                <p
-                  className={
-                    'font-sans text-zinc-800 text-[13px] leading-[1.6]'
-                  }
-                  style={{ wordBreak: 'keep-all' } as CSSProperties}
-                >
-                  {
-                    'Focused on human cognition, statistical modeling, and AI technical literacy, with research published in SSCI-indexed journals.'
-                  }
-                </p>
-                {'\n                    '}
-              </div>
-              {'\n                '}
+                {'\n                            M.S. in Human-AI Interaction'}
+              </h3>
+              <p className={'font-sans text-zinc-500 text-[13px] mt-1'}>
+                {'\n                            '}
+                {
+                  '\n                            Sungkyunkwan University\n                        '
+                }
+              </p>
             </div>
-            {'\n\n                '}
-            {'\n                '}
-            <div className={'flex flex-col group'}>
-              {'\n                    '}
-              <div
+            <div>
+              <h3
                 className={
-                  'w-full aspect-[16/9] mb-4 overflow-hidden rounded-[10px] bg-zinc-100'
+                  'font-sans text-[#1a1a1a] text-[20px] md:text-[22px] tracking-tight font-normal mb-1'
                 }
               >
-                {'\n                        '}
-                <img
-                  src={assetUrl(
-                    'nahyun_imported/image_source/HOME/Sookmyung.jpg',
-                  )}
-                  alt={'B.A. in Psychology'}
-                  className={
-                    'w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]'
-                  }
-                  style={{ objectPosition: 'center 35%' } as CSSProperties}
-                />
-                {'\n                    '}
-              </div>
-              {'\n                    '}
-              <div className={'flex flex-col mt-2'}>
-                {'\n                        '}
-                <span
-                  className={
-                    'text-[11px] text-zinc-500 font-sans tracking-tight mb-1'
-                  }
-                >
-                  {'March 2015 - February\n                            2021'}
-                </span>
-                {'\n                        '}
-                <h3
-                  className={
-                    'font-sans text-[#1a1a1a] text-[20px] md:text-[22px] tracking-tight font-normal mb-1'
-                  }
-                >
-                  {'\n                            B.A. in Psychology'}
-                </h3>
-                {'\n                        '}
-                <p
-                  className={
-                    'font-sans text-zinc-500 text-[12px] flex items-center mb-6'
-                  }
-                >
-                  {'\n                            '}
-                  <svg
-                    className={'w-3.5 h-3.5 mr-1 text-zinc-400'}
-                    fill={'none'}
-                    stroke={'currentColor'}
-                    viewBox={'0 0 24 24'}
-                  >
-                    {'\n                                '}
-                    <path
-                      strokeLinecap={'round'}
-                      strokeLinejoin={'round'}
-                      strokeWidth={'2'}
-                      d={
-                        'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z'
-                      }
-                    >
-                      {'\n                                '}
-                    </path>
-                    {'\n                                '}
-                    <path
-                      strokeLinecap={'round'}
-                      strokeLinejoin={'round'}
-                      strokeWidth={'2'}
-                      d={'M15 11a3 3 0 11-6 0 3 3 0 016 0z'}
-                    />
-                    {'\n                            '}
-                  </svg>
-                  {
-                    "\n                            Sookmyung Women's University\n                        "
-                  }
-                </p>
-                {'\n\n                        '}
-                <div
-                  className={
-                    'text-[10px] text-zinc-400 uppercase tracking-wider mb-2 font-medium'
-                  }
-                >
-                  {'Additional\n                            Degree'}
-                </div>
-                {'\n                        '}
-                <p
-                  className={
-                    'font-sans text-zinc-800 text-[13px] leading-[1.6] mb-6'
-                  }
-                >
-                  {
-                    '\n                            Double major in ESG Management'
-                  }
-                  <br />
-                  {
-                    '\n                            Minor in Business Administration\n                        '
-                  }
-                </p>
-                {'\n\n                        '}
-                <div
-                  className={
-                    'text-[10px] text-zinc-400 uppercase tracking-wider mb-2 font-medium'
-                  }
-                >
-                  {'Research Focus\n                        '}
-                </div>
-                {'\n                        '}
-                <p
-                  className={
-                    'font-sans text-zinc-800 text-[13px] leading-[1.6]'
-                  }
-                >
-                  {
-                    '\n                            Built core expertise in behavioral research, experimental design, and quantitative\n                            analytics, grounding future UX practices.\n                        '
-                  }
-                </p>
-                {'\n                    '}
-              </div>
-              {'\n                '}
+                {'\n                            B.A. in Psychology'}
+              </h3>
+              <p className={'font-sans text-zinc-500 text-[13px] mt-1'}>
+                {'\n                            '}
+                {
+                  "\n                            Sookmyung Women's University\n                        "
+                }
+              </p>
             </div>
-            {'\n            '}
           </div>
-          {'\n        '}
+          <a
+            href={originalHref('qualified.html#history-2')}
+            className={
+              'inline-flex items-center justify-center mt-6 px-6 py-2.5 bg-white border border-zinc-200 text-zinc-700 font-sans text-[13px] font-semibold rounded hover:bg-zinc-50 transition-all shadow-sm'
+            }
+          >
+            {'Full education & qualifications ↗'}
+          </a>
         </div>
         {'\n    '}
       </section>

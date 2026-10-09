@@ -8,7 +8,7 @@ export const landingHeroes = {
     imageAlt: "Qualified thumbnail",
     paragraphs: [
       "The foundation behind my product decisions.",
-      "Core competencies, certifications, and product principles.",
+      "Education, core competencies, and certifications.",
     ],
   },
   projects: {
