@@ -57,11 +57,11 @@ Header 메뉴 미노출
 
 | 페이지 | 현재 읽기 순서와 상세 진입 |
 | --- | --- |
-| Home | Hero → 파트너 → 발자취 → 경력 → 학력 요약(`#history-2`) → 하단 제품 CTA. 요약에는 M.S. in Human-AI Interaction / Sungkyunkwan University, B.A. in Psychology / Sookmyung Women's University와 `qualified.html#history-2` 링크를 둔다. |
+| Home | Hero → 파트너 → 발자취 → 경력 → 학력 요약(`#history-2`) → 하단 제품 CTA. 요약에는 M.S. in Human-AI Interaction / Sungkyunkwan University, B.A. in Psychology / Sookmyung Women's University와 `qualified.html` 링크를 둔다. |
 | Qualifications (`qualified.html`) | Hero → 전체 Academic Standing(`#history-2`) → Core Competencies 6개 → 기존 인증. 전체 학력의 사진·기간·내용·View publications·Google Scholar 링크는 이전 Home에서 그대로 이동한다. |
 | About (`about.html`) | 소개·이름 도식 → 업무 원칙(`#how-work`) → Media(`#media`). 네 원칙 카드의 문구·태그·사진·순서를 이전 Qualifications에서 그대로 이동한다. |
 
-Qualifications의 기존 인증 내용·필터와 여섯 역량 카드는 보존한다. Career, Header의 Qualified 이름과 모든 메뉴 URL도 바꾸지 않는다. Home의 `#history-2`는 요약 앵커로 유지하고 Qualifications의 같은 ID는 별도 문서의 전체 학력 앵커다. 배포 경로에서는 `/breadme/qualified.html#history-2`로 연결한다. 이전 `qualified.html#how-work` 직접 링크는 `OriginalPage.tsx`에서 `about.html#how-work`로 replace 이동한다. 실제 링크 이동·직접 진입·Back/Forward·새로고침은 [IA QA 기록](../qa/education-principles-ia.md)의 검증 대상이며, 브라우저 AS-IS/TO-BE 증거는 아직 대기 중이다.
+Qualifications의 기존 인증 내용·필터와 여섯 역량 카드는 보존한다. Career, Header의 Qualified 이름과 모든 메뉴 URL도 바꾸지 않는다. Home의 `#history-2`는 요약 앵커로 유지하고 Qualifications의 같은 ID는 별도 문서의 전체 학력 앵커다. Home의 학력 링크는 `/breadme/qualified.html` 페이지 맨 위로 연결한다(2026-10-09). 명시적인 `/breadme/qualified.html#history-2` 직접 링크는 그대로 유지한다. 이전 `qualified.html#how-work` 직접 링크는 `OriginalPage.tsx`에서 `about.html#how-work`로 replace 이동한다. 기존 콘텐츠 이동의 화면 비교는 [IA QA 기록](../qa/education-principles-ia.md)에 보존한다. Home 링크의 페이지 상단 도착·반복 탐색과 직접 학력 앵커 유지는 [상단 이동 QA](../qa/home-education-top-link.md)에서 별도로 확인한다.
 
 ## 기준
 
@@ -76,7 +76,7 @@ Qualifications의 기존 인증 내용·필터와 여섯 역량 카드는 보존
 
 | # | 경로 / 페이지 | 진입·노출 | 주요 내용과 현재 동작 | 본문 원본 |
 | --- | --- | --- | --- | --- |
-| 1 | `/index.html` / Home | HOME·로고·루트 | 텍스트 Hero → 파트너·발자취 → 흰색 경력 요약 → 학위·학교 2개 요약(`#history-2`) → Product Focus / Core Strengths CTA. 학력 상세 → `qualified.html#history-2`. 경력의 `Products` → Projects, `Full career` → Career. `View my work`·`View products` → Projects, `Get in touch` → Contact. 기존 캐러셀·경력 내용 유지 | [HomeHero](../../src/pages/home/HomeHero.tsx), [HomeExperience](../../src/pages/home/HomeExperience.tsx), [OriginalHomeContent](../../src/pages/original/generated/OriginalHomeContent.tsx) |
+| 1 | `/index.html` / Home | HOME·로고·루트 | 텍스트 Hero → 파트너·발자취 → 흰색 경력 요약 → 학위·학교 2개 요약(`#history-2`) → Product Focus / Core Strengths CTA. 학력 상세 → `qualified.html`. 경력의 `Products` → Projects, `Full career` → Career. `View my work`·`View products` → Projects, `Get in touch` → Contact. 기존 캐러셀·경력 내용 유지 | [HomeHero](../../src/pages/home/HomeHero.tsx), [HomeExperience](../../src/pages/home/HomeExperience.tsx), [OriginalHomeContent](../../src/pages/original/generated/OriginalHomeContent.tsx) |
 | 2 | `/about.html` / About (`breadme`) | ABOUT와 하위 breadme | 소개·브랜드 의미/이름 도식 → 기존 원칙 카드 4개(`#how-work`) → 미디어(`#media`). `View my projects` → Projects, `Watch full interview` → YouTube. 임베드 인터뷰 재생과 기존 원칙 내용·태그·사진 유지 | [OriginalAboutContent](../../src/pages/original/generated/OriginalAboutContent.tsx) |
 | 3 | `/career.html` / Career | ABOUT 하위 Career | 경력 2패널·추천 카드. `View projects` → Projects; 추천 카드 가로 탐색. 이번 IA 변경에서 Career는 그대로이며 학력 상세는 Qualifications에서 제공 | [OriginalCareerContent](../../src/pages/original/generated/OriginalCareerContent.tsx) |
 | 4 | `/qualified.html` / Qualifications | ABOUT 하위 Qualified·Home 학력 요약 | Hero → 전체 Academic Standing(`#history-2`) → 기존 Core Competencies 6개 → 4개 인증 탭(`AI & Tools`, `Data & Statistics`, `Psychology`, `Languages`). 학력 사진·기간·모든 세부 내용·View publications·Google Scholar 링크 보존. 기존 인증과 탭 전환 유지. 업무 원칙은 About으로 이동 | [OriginalQualifiedContent](../../src/pages/original/generated/OriginalQualifiedContent.tsx) |
@@ -147,7 +147,7 @@ Qualifications의 기존 인증 내용·필터와 여섯 역량 카드는 보존
 | --- | --- | --- |
 | Home 첫 소개/CTA 문구 | [homeHero.ts](../../src/content/site/homeHero.ts) | [HomeHero](../../src/pages/home/HomeHero.tsx), [Home README](../../src/pages/home/README.md) |
 | Home 경력 요약 | [homeExperience.ts](../../src/content/site/homeExperience.ts) | [HomeExperience](../../src/pages/home/HomeExperience.tsx), [Home README](../../src/pages/home/README.md) |
-| Home 학력 요약 | `OriginalHomeContent.tsx`에서 연결한 요약과 `qualified.html#history-2` 링크 | [Home README](../../src/pages/home/README.md), [IA QA 기록](../qa/education-principles-ia.md), [IA override](../../scripts/apply-education-ia-override.ts) |
+| Home 학력 요약 | `OriginalHomeContent.tsx`에서 연결한 요약과 `qualified.html` 링크 | [Home README](../../src/pages/home/README.md), [IA QA 기록](../qa/education-principles-ia.md), [IA override](../../scripts/apply-education-ia-override.ts) |
 | 전체 Academic Standing / 업무 원칙 | `OriginalQualifiedContent.tsx`의 학력 / `OriginalAboutContent.tsx`의 `#how-work` | [원본 페이지 README](../../src/pages/original/README.md), 이동한 본문·사진·링크와 원본의 동등성, 변환기 재생성 보존 |
 | Home 로고/갤러리/CTA·About·Career·Qualified·Enjoy·Projects·Research·Lectures·Awards·Contact·상세 본문 | 위 라우트 표의 `generated/Original…Content.tsx` | 해당 CSS, 두 interaction hook, [원본 페이지 README](../../src/pages/original/README.md), [변환기](../../scripts/convert-original-pages.mjs) |
 | Articles 제목·날짜·요약·원문 링크·순서 | [articles/index.ts](../../src/content/original/articles/index.ts) | 연결된 `Article<ID>Body.tsx`, source expectations와 검사 |

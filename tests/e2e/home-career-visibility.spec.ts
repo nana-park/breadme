@@ -191,7 +191,7 @@ for (const width of [320, 390, 768, 1023, 1024, 1440]) {
     );
     await expect(page.locator("#history-2 a")).toHaveAttribute(
       "href",
-      "/qualified.html#history-2",
+      "/qualified.html",
     );
 
     await expect(

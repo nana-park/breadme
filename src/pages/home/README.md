@@ -8,7 +8,7 @@ Home은 학력의 빠른 확인과 상세 진입을 맡습니다. 기존 `#histo
 
 - M.S. in Human-AI Interaction / Sungkyunkwan University
 - B.A. in Psychology / Sookmyung Women's University
-- 학력 상세 링크: `originalHref('qualified.html#history-2')`. 기본 경로와 `/breadme/` 모두 Qualifications의 Academic Standing으로 연결합니다.
+- 학력 상세 링크: `originalHref('qualified.html')`. 기본 경로와 `/breadme/` 모두 Qualifications 페이지 맨 위로 연결합니다. 명시적인 `qualified.html#history-2` 직접 링크는 그대로 지원합니다.
 
 기존 Academic Standing 전체는 Qualifications Hero 다음, Core Competencies 앞의 `#history-2`로 이동합니다. 두 사진, 학위·학교·기간, Additional Degree, 두 Research Focus 문단, View publications·Google Scholar 링크와 기존 표시 스타일은 그곳에서 보존합니다. Home에는 사진·기간·연구 상세를 중복하지 않습니다. 메뉴 이름·URL, Career, 기존 Home Hero·로고·발자취·경력·하단 CTA는 이 IA 변경의 대상이 아닙니다.
 

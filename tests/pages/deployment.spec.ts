@@ -158,3 +158,41 @@ test("unknown files remain true 404s instead of silently rendering Home", async 
   );
   expect(missingAsset.status()).toBe(404);
 });
+
+
+test("Home education action opens Qualifications at the top on repeated navigation", async ({
+  page,
+}, testInfo) => {
+  const homeUrl = deployedUrl("index.html#history-2");
+  const qualifiedUrl = deployedUrl("qualified.html");
+  await page.goto(homeUrl);
+  await assertPageIdentity(page, "home");
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const action = page.locator("#history-2").getByRole("link", {
+      name: /Full education & qualifications/,
+    });
+    await expect(action).toHaveAttribute("href", `${deployment.pathname}qualified.html`);
+    await action.click();
+    await expect(page).toHaveURL(qualifiedUrl);
+    await assertPageIdentity(page, "qualified");
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+    await expect(page.getByRole("heading", { name: "Qualifications", exact: true })).toBeInViewport();
+    if (attempt === 0) {
+      await page.locator("#history-2").scrollIntoViewIfNeeded();
+      await page.goBack();
+      await expect(page).toHaveURL(homeUrl);
+      await assertPageIdentity(page, "home");
+    }
+  }
+  await page.screenshot({
+    path: testInfo.outputPath(`qualifications-top-${page.viewportSize()!.width}.png`),
+    animations: "disabled",
+  });
+  // Existing shared education anchors must still work when explicitly requested.
+  await page.goto(deployedUrl("qualified.html#history-2"));
+  await assertPageIdentity(page, "qualified");
+  await expect(page.locator("#history-2 h2")).toBeInViewport();
+  expect((await page.reload())?.status()).toBe(200);
+  await expect(page).toHaveURL(deployedUrl("qualified.html#history-2"));
+  await expect(page.locator("#history-2 h2")).toBeInViewport();
+});

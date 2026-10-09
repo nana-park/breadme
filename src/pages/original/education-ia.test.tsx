@@ -79,7 +79,7 @@ describe("Education and working-principles information architecture", () => {
     const { container } = render(<OriginalHomeContent />);
     const section = container.querySelector<HTMLElement>("#history-2")!;
     expect(section).toHaveAttribute("data-education-summary");
-    expectSummary(section, "/qualified.html#history-2");
+    expectSummary(section, "/qualified.html");
     expect(
       within(section).getByRole("link", {
         name: /Full education & qualifications/,
@@ -157,7 +157,7 @@ describe("Education IA source regeneration", () => {
     applyEducationIaOverride(home, "index.html", originals);
     // Detached HTML is inspected by DOM queries rather than visibility assertions.
     const section = home.querySelector<HTMLElement>("#history-2")!;
-    expectSummary(section, "qualified.html#history-2");
+    expectSummary(section, "qualified.html");
     expect(home.querySelector("#history")?.outerHTML).toBe(
       '<section id="history">Career</section>',
     );

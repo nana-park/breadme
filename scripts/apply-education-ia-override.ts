@@ -36,7 +36,7 @@ export function applyEducationIaOverride(
     header.querySelector(".flex")?.remove();
     header.setAttribute("class", "mb-6");
     const link = document.createElement("a");
-    link.href = "qualified.html#history-2";
+    link.href = "qualified.html";
     link.className = "inline-flex items-center justify-center mt-6 px-6 py-2.5 bg-white border border-zinc-200 text-zinc-700 font-sans text-[13px] font-semibold rounded hover:bg-zinc-50 transition-all shadow-sm";
     link.textContent = "Full education & qualifications ↗";
     container.replaceChildren(header, summary, link);
