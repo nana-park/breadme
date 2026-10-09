@@ -1,4 +1,4 @@
-import { LandingPhotoHero } from "../LandingPhotoHero";
+import { LandingPhotoHero } from '../LandingPhotoHero';
 import type { CSSProperties } from 'react';
 import { assetUrl } from '@/shared/utils/originalPaths';
 
@@ -41,12 +41,16 @@ export function OriginalResearchContent() {
             <div className={'flex flex-col border-t border-gray-200'}>
               {'\n                    '}
               <div
+                data-research-paper="1"
                 className={
                   'py-8 px-4 lg:px-8 border-b border-gray-200 flex flex-col lg:flex-row gap-4 lg:gap-8 hover:bg-gray-50 transition-colors'
                 }
               >
                 {'\n                        '}
-                <div className={'lg:w-1/6 shrink-0 mt-0.5'}>
+                <div
+                  data-research-date-column=""
+                  className={'lg:w-1/6 shrink-0 mt-0.5'}
+                >
                   <span
                     className={
                       'font-sans text-zinc-500 text-[12px] font-medium'
@@ -60,6 +64,22 @@ export function OriginalResearchContent() {
                   className={'lg:w-2/6 shrink-0 flex flex-col justify-start'}
                 >
                   {'\n                            '}
+                  <div data-research-meta="">
+                    <span
+                      data-research-index="SSCI"
+                      title="Journal index: SSCI"
+                    >
+                      SSCI
+                    </span>
+                    <span
+                      data-research-mobile-date=""
+                      className={
+                        'font-sans text-zinc-500 text-[12px] font-medium'
+                      }
+                    >
+                      February 2026
+                    </span>
+                  </div>
                   <h3
                     className={
                       'font-sans text-[16px] md:text-[18px] font-medium text-zinc-900 tracking-tight mb-2 leading-snug'
@@ -77,8 +97,7 @@ export function OriginalResearchContent() {
                   >
                     <span className={'font-medium'}>
                       {'Technology in Society'}
-                    </span>
-                    {' (SSCI)'}
+                    </span>{' '}
                     <br />
                     <span className={'font-medium'}>
                       {'International Communication Association'}
@@ -145,12 +164,16 @@ export function OriginalResearchContent() {
               </div>
               {'\n                    '}
               <div
+                data-research-paper="2"
                 className={
                   'py-8 px-4 lg:px-8 border-b border-gray-200 flex flex-col lg:flex-row gap-4 lg:gap-8 hover:bg-gray-50 transition-colors'
                 }
               >
                 {'\n                        '}
-                <div className={'lg:w-1/6 shrink-0 mt-0.5'}>
+                <div
+                  data-research-date-column=""
+                  className={'lg:w-1/6 shrink-0 mt-0.5'}
+                >
                   <span
                     className={
                       'font-sans text-zinc-500 text-[12px] font-medium'
@@ -164,6 +187,22 @@ export function OriginalResearchContent() {
                   className={'lg:w-2/6 shrink-0 flex flex-col justify-start'}
                 >
                   {'\n                            '}
+                  <div data-research-meta="">
+                    <span
+                      data-research-index="SSCI"
+                      title="Journal index: SSCI"
+                    >
+                      SSCI
+                    </span>
+                    <span
+                      data-research-mobile-date=""
+                      className={
+                        'font-sans text-zinc-500 text-[12px] font-medium'
+                      }
+                    >
+                      December 2025
+                    </span>
+                  </div>
                   <h3
                     className={
                       'font-sans text-[16px] md:text-[18px] font-medium text-zinc-900 tracking-tight mb-2 leading-snug'
@@ -181,8 +220,7 @@ export function OriginalResearchContent() {
                   >
                     <span className={'font-medium'}>
                       {'Information Development'}
-                    </span>
-                    {' (SSCI)'}
+                    </span>{' '}
                     <br />
                     <span className={'font-medium'}>
                       {'The Ergonomics Society of Korea'}
@@ -245,12 +283,16 @@ export function OriginalResearchContent() {
               </div>
               {'\n                    '}
               <div
+                data-research-paper="3"
                 className={
                   'py-8 px-4 lg:px-8 border-b border-gray-200 flex flex-col lg:flex-row gap-4 lg:gap-8 hover:bg-gray-50 transition-colors'
                 }
               >
                 {'\n                        '}
-                <div className={'lg:w-1/6 shrink-0 mt-0.5'}>
+                <div
+                  data-research-date-column=""
+                  className={'lg:w-1/6 shrink-0 mt-0.5'}
+                >
                   <span
                     className={
                       'font-sans text-zinc-500 text-[12px] font-medium'
@@ -264,6 +306,22 @@ export function OriginalResearchContent() {
                   className={'lg:w-2/6 shrink-0 flex flex-col justify-start'}
                 >
                   {'\n                            '}
+                  <div data-research-meta="">
+                    <span
+                      data-research-index="KCI"
+                      title="Journal index: KCI"
+                    >
+                      KCI
+                    </span>
+                    <span
+                      data-research-mobile-date=""
+                      className={
+                        'font-sans text-zinc-500 text-[12px] font-medium'
+                      }
+                    >
+                      October 2022
+                    </span>
+                  </div>
                   <h3
                     className={
                       'font-sans text-[16px] md:text-[18px] font-medium text-zinc-900 tracking-tight mb-2 leading-snug'
@@ -281,8 +339,7 @@ export function OriginalResearchContent() {
                   >
                     <span className={'font-medium'}>
                       {'International Telecommunications Policy Review'}
-                    </span>
-                    {' (KCI)'}
+                    </span>{' '}
                   </p>
                   {'\n                            '}
                   <div className={'flex flex-wrap gap-1.5 mt-auto'}>
@@ -338,6 +395,7 @@ export function OriginalResearchContent() {
               </div>
               {'\n                    '}
               <div
+                data-research-paper="4"
                 className={
                   'py-8 px-4 lg:px-8 border-b border-gray-200 flex flex-col lg:flex-row gap-4 lg:gap-8 hover:bg-gray-50 transition-colors'
                 }

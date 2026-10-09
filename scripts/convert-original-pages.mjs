@@ -12,6 +12,7 @@ import postcss from "postcss";
 import { format } from "prettier";
 import { applyCareerContentOverrides } from "./apply-career-content-overrides.ts";
 import { applyLandingHeroOverride } from "./apply-landing-hero-override.ts";
+import { applyResearchIndexBadges } from "./apply-research-index-badges.ts";
 import { applyEducationIaOverride } from "./apply-education-ia-override.ts";
 import { applyHomeCapabilitiesOverride } from "./apply-home-capabilities-override.ts";
 
@@ -373,6 +374,7 @@ for (const [sourceFile, componentName] of pageDefinitions) {
     }
   }
   applyEducationIaOverride(document, sourceFile, iaSources);
+  applyResearchIndexBadges(document, sourceFile);
   applyLandingHeroOverride(document, sourceFile);
   const isMockup = componentName === "OriginalMentoringMockupContent";
   const imports = new Set();

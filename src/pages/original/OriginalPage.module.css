@@ -411,3 +411,41 @@
     scroll-margin-block-start: 70px;
   }
 }
+
+/* WHAT: Existing journal classifications as the approved compact black labels.
+ * WHY: A noninteractive publication-index label must remain distinct from the
+ * preserved light topic tags. Dates retain their original desktop column. */
+.page [data-research-meta] {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.page [data-research-index] {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 24px;
+  padding-inline: 8px;
+  border-radius: 4px;
+  background: #1a1a1a;
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+.page [data-research-mobile-date] {
+  display: none;
+}
+@media (max-width: 767px) {
+  .page [data-research-date-column] {
+    display: none;
+  }
+  .page [data-research-mobile-date] {
+    display: inline;
+  }
+}

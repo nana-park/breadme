@@ -144,3 +144,9 @@ Qualifications (`qualified.html`), Products (`projects.html`), Research and Arti
 ### Career 모바일 소개 정렬
 
 767px 이하 Career 첫 제목과 소개만 다른 랜딩과 같은 최소 20px 여백·중앙 최대 380px 읽기 열 안에 왼쪽 정렬합니다. 기존 글자 크기·세로 간격·배경·경력 본문과 768px 이상 화면은 유지합니다.
+
+## Research journal-index labels (2026-10-09)
+
+The three existing journal suffixes are promoted to noninteractive black labels above their paper titles: SSCI, SSCI and KCI. The fourth, conference-only entry remains unbadged. Paper titles, journal/conference names, actual dates, links, descriptions and light topic tags are unchanged; this is not a bibliographic correction.
+
+`apply-research-index-badges.ts` derives labels and dates from the pinned source and is called by the canonical converter. At 767px and below, the badge and the actual date share a row with an 8px gap. Above that breakpoint, the original date column/layout remains and the label aligns with the title. Each breakpoint exposes only one date presentation. Page-owned styles use 24px badge height, 8px horizontal padding, white 12px semibold text and an 8px title gap. [QA and visual evidence](../../../docs/qa/research-index-badges.md).

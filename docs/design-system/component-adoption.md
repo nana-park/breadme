@@ -108,3 +108,7 @@ Home은 Products를 왼쪽 검은 primary action, Full career를 오른쪽 흰 s
 - Qualifications의 Hero 다음, Core Competencies 앞에 전체 Academic Standing을 둡니다. Home에 있던 두 사진·기간·모든 세부 문구·내부/외부 링크와 표시 스타일을 그대로 이동합니다. 여섯 역량 카드, 기존 모바일 카드 표면과 인증/탭 조작은 유지합니다.
 - About 소개·이름 도식 다음, Media 앞에 기존 `#how-work` 네 원칙 카드를 둡니다. 이 원칙 블록의 내용·사진·태그·반응형 배치와 모바일 제목 정렬을 보존합니다. 페이지를 이동한 뒤에도 About의 읽기 구간 스냅과 올바른 역할 스타일이 적용되는지 검수합니다.
 - 전체 학력이나 원칙을 두 페이지에 중복 렌더링하지 않습니다. 이동의 재생성 보존과 실제 화면 검수는 [IA QA 기록](../qa/education-principles-ia.md)에서 확인합니다. 기존 AS-IS/TO-BE 증거는 해당 기록에 보존합니다. 2026-10-09 Home 링크의 상단 이동 검증은 [별도 QA](../qa/home-education-top-link.md)를 따르며, 이번 수정의 main 병합·배포는 별도 승인 대상입니다.
+
+## Research index labels (2026-10-09)
+
+Research preserves its original paper rows and light topic tags. The existing SSCI/SSCI/KCI journal suffixes become static labels, 24px high with 8px horizontal padding, 12px white semibold text, #1a1a1a background and 4px corners. Mobile (≤767px) shows the actual date immediately after the badge with an 8px gap and centered alignment. Desktop retains the left date column and title-aligned badge with an 8px title gap; the existing stacked tablet layout remains at 768–1023px. The fourth conference-only paper has no badge. These are editorial labels, not controls. See [Research badge QA](../qa/research-index-badges.md).
