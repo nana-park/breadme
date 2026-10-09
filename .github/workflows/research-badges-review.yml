@@ -1,0 +1,58 @@
+name: Research journal badge review
+on:
+  pull_request:
+    paths:
+      - .github/workflows/research-badges-review.yml
+      - scripts/apply-research-index-badges.ts
+      - src/pages/original/generated/OriginalResearchContent.tsx
+      - src/pages/original/OriginalPage.module.css
+      - tests/pages/research-index-badges.spec.ts
+      - tests/support/research-index-badges.ts
+      - tests/fixtures/research-index-badges-before.json
+permissions:
+  contents: read
+jobs:
+  review:
+    if: github.head_ref == 'feat/research-index-badges'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      VITE_BASE_PATH: /breadme/
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: cf2da1396f888ba217e174d9e65b67a932b2a4e1
+          path: .cache/research-baseline
+          persist-credentials: false
+      - name: Build and serve the pinned baseline
+        run: |
+          BASELINE="$GITHUB_WORKSPACE/.cache/research-baseline"
+          ln -s "$GITHUB_WORKSPACE/node_modules" "$BASELINE/node_modules"
+          cp -a "$GITHUB_WORKSPACE/public" "$BASELINE/public"
+          cd "$BASELINE"
+          npm run build
+          PAGES_PORT=4174 node tests/pages/static-server.mjs > /tmp/research-baseline.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4174/breadme/ >/dev/null && break; sleep 1; done
+          curl -fsS http://127.0.0.1:4174/breadme/ >/dev/null
+      - run: npx playwright install --with-deps chromium
+      - name: Compare the approved mobile and desktop badge treatment
+        env:
+          RESEARCH_BADGES_BASELINE_URL: http://127.0.0.1:4174/breadme/
+        run: npx playwright test --config=playwright.pages.config.ts tests/pages/research-index-badges.spec.ts --workers=1 --retries=0
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: research-badges-as-is-to-be
+          path: |
+            playwright-report/pages/
+            test-results/pages/
+          retention-days: 14
