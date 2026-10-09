@@ -724,7 +724,7 @@ export function OriginalHomeContent() {
             </div>
           </div>
           <a
-            href={originalHref('qualified.html#history-2')}
+            href={originalHref('qualified.html')}
             className={
               'inline-flex items-center justify-center mt-6 px-6 py-2.5 bg-white border border-zinc-200 text-zinc-700 font-sans text-[13px] font-semibold rounded hover:bg-zinc-50 transition-all shadow-sm'
             }

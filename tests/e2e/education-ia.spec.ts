@@ -243,14 +243,18 @@ for (const width of [320, 390, 767, 768, 1024, 1440]) {
     });
     await expect(detailLink).toHaveAttribute(
       "href",
-      "/qualified.html#history-2",
+      "/qualified.html",
     );
     await noHorizontalOverflow(page, "#history-2");
     await hashClearsHeader(page, "#history-2");
     await detailLink.focus();
     await expect(detailLink).toBeFocused();
     await page.keyboard.press("Enter");
-    await expect(page).toHaveURL(/\/qualified\.html#history-2$/);
+    await expect(page).toHaveURL(/\/qualified\.html$/);
+    await ready(page);
+    await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
+    // The Home action opens the introduction; explicit education deep links remain valid.
+    await page.goto("/qualified.html#history-2");
     await ready(page);
     const education = page.locator("#history-2");
     await expect(education).toHaveAttribute("data-education-detail", "");

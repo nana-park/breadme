@@ -48,7 +48,7 @@ describe("Career content boundaries", () => {
     ).toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: /Full education & qualifications/ }),
-    ).toHaveAttribute("href", "/qualified.html#history-2");
+    ).toHaveAttribute("href", "/qualified.html");
   });
   it("preserves the removal and intro role during regeneration, only for Career", () => {
     const source = `<section id="history">Careers</section><section id="history-2">Education</section><section id="testimonials"><p>Unfiltered voices from the cross-functional partners and leaders<br> who have navigated complex product journeys alongside me.</p></section>`;

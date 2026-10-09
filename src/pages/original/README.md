@@ -31,7 +31,7 @@ Home의 `#history`는 사진·모션 없는 흰색 Education 스타일의 `HomeE
 
 ## 학력과 업무 원칙의 현재 위치 (2026-10-08)
 
-- Home `#history-2`: M.S. in Human-AI Interaction / Sungkyunkwan University와 B.A. in Psychology / Sookmyung Women's University의 짧은 요약, `qualified.html#history-2` 상세 링크.
+- Home `#history-2`: M.S. in Human-AI Interaction / Sungkyunkwan University와 B.A. in Psychology / Sookmyung Women's University의 짧은 요약, `qualified.html` 상세 링크.
 - Qualifications: 기존 Hero → 전체 Academic Standing(`#history-2`) → Core Competencies 6개 → 기존 인증. Academic Standing은 Home에서 사진·기간·학위·학교·추가 전공·Research Focus·View publications·Google Scholar 링크를 내용 변경 없이 옮깁니다. 여섯 역량 카드와 인증 내용·탭 동작은 보존합니다.
 - About: 소개/이름 도식 다음, `#media` 앞에 기존 `#how-work`를 옮깁니다. Persuasive Storytelling, Efficiency-Driven, Communication Architect, Inquiry-Driven Detection 네 카드의 문구·태그·사진·순서를 보존합니다. 기존 미디어 내용과 조작도 유지합니다.
 - Header의 Qualified 표시명과 모든 메뉴 URL, Career의 경력/추천은 변경하지 않습니다. 이후 날짜별 항목에서 학력과 원칙의 이전 위치를 설명한 문장은 해당 변경 당시의 기록입니다.

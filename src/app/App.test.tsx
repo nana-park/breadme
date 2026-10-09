@@ -37,7 +37,7 @@ describe("Original portfolio React migration", () => {
     ).not.toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: /Full education & qualifications/ }),
-    ).toHaveAttribute("href", "/qualified.html#history-2");
+    ).toHaveAttribute("href", "/qualified.html");
     expect(document.querySelectorAll("[data-home-company]")).toHaveLength(2);
     expect(document.querySelector("#career-page-1")).not.toBeInTheDocument();
     expect(screen.queryByText("구조 미리보기")).not.toBeInTheDocument();
