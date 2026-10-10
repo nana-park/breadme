@@ -18,7 +18,7 @@ Home의 `#history`는 사진·모션 없는 흰색 Education 스타일의 `HomeE
 | `/qualified.html`                          | 전체 Academic Standing → Core Competencies 6개 → 인증 4개 탭                          |
 | `/enjoy.html`                              | 원본 갤러리·카테고리·여행지 선택. 메뉴 숨김 유지    |
 | `/projects.html`                           | 실제 프로젝트·펼침 목록·9개 세부 펼침·상세 링크     |
-| `/research.html`                           | 연구 4개 항목·논문 링크                             |
+| `/research.html`                           | Journal Publications 3개 → Ongoing Research 2개 → Conference Presentations 4개 |
 | `/articles.html`                           | 아티클 18개·6쪽 목록·해시 주소로 읽기·복귀          |
 | `/lectures.html`                           | 강의·두 이미지 캐러셀                               |
 | `/awards.html`                             | 수상·원본 이미지                                    |
@@ -46,6 +46,7 @@ Home의 `#history`는 사진·모션 없는 흰색 Education 스타일의 `HomeE
 - `generated/*.tsx`: 원본 HTML 요소를 실제 React JSX로 옮긴 내용. HTML 문자열 주입이나 전체 페이지 iframe이 아닙니다.
 - `generated/*.css`: 원본 페이지의 개별 스타일
 - `OriginalPage.module.css`: 검수에서 확인된 모바일 글자 역할·잘림 보정. `data-reading-role`로 실제 소개 문구·강의 정보·이름 도식·추천인 카드만 지정하며 제품 데모의 축소 글자는 일괄 확대하지 않습니다.
+- `ResearchSections.tsx` / `ResearchSections.module.css`: Research의 세 연구 구획, 목록과 페이지 전용 반응형 스타일. 내용은 `../../content/research/publications.ts`에서 관리하며 `scripts/apply-research-sections-override.ts`가 원본 목록을 컴포넌트 연결로 대체해 재생성을 보존합니다.
 - `OriginalArticlesPage.tsx`: 아티클 목록·페이지 선택·본문·복귀
 - `../../content/original/articles/`: 원본 영어 본문 18개와 메타데이터
 - `../../shared/hooks/useOriginalPageInteractions.ts`: 경력·갤러리·인증·강의 조작
@@ -145,8 +146,26 @@ Qualifications (`qualified.html`), Products (`projects.html`), Research and Arti
 
 767px 이하 Career 첫 제목과 소개만 다른 랜딩과 같은 최소 20px 여백·중앙 최대 380px 읽기 열 안에 왼쪽 정렬합니다. 기존 글자 크기·세로 간격·배경·경력 본문과 768px 이상 화면은 유지합니다.
 
-## Research journal-index labels (2026-10-09)
+## Research journal-index labels (2026-10-09, earlier presentation change)
+
+This is the historical four-row badge treatment. The three-section review below supersedes its content ownership and row count while preserving the approved badge appearance.
 
 The three existing journal suffixes are promoted to noninteractive black labels above their paper titles: SSCI, SSCI and KCI. The fourth, conference-only entry remains unbadged. Paper titles, journal/conference names, actual dates, links, descriptions and light topic tags are unchanged; this is not a bibliographic correction.
 
-`apply-research-index-badges.ts` derives labels and dates from the pinned source and is called by the canonical converter. At 767px and below, the badge and the actual date share a row with an 8px gap. Above that breakpoint, the original date column/layout remains and the label aligns with the title. Each breakpoint exposes only one date presentation. Page-owned styles use 24px badge height, 8px horizontal padding, white 12px semibold text and an 8px title gap. [QA and visual evidence](../../../docs/qa/research-index-badges.md).
+In that earlier implementation, `apply-research-index-badges.ts` derived labels and dates from the pinned source and was called by the canonical converter. The new section override replaces that extraction path. At 767px and below, the badge and the actual date share a row with an 8px gap. Above that breakpoint, the original date column/layout remains and the label aligns with the title. Each breakpoint exposes only one date presentation. Page-owned styles use 24px badge height, 8px horizontal padding, white 12px semibold text and an 8px title gap. [QA and visual evidence](../../../docs/qa/research-index-badges.md).
+
+
+## Research three-section review (2026-10-09)
+
+Review-only candidate: the existing Research photo Hero is followed by **Journal Publications (3) → Ongoing Research (2) → Conference Presentations (4 unique)**. Header, route, navigation and shared Footer/MaterialsPopup remain unchanged. These are sections within `research.html`, not new pages or menu entries. This documentation does not establish a main merge or deployment.
+
+- `src/content/research/publications.ts` is the explicit reviewed content source. The old mixed four-row list is replaced by `ResearchSections`; the canonical `apply-research-sections-override.ts` preserves that component on regeneration. Edit the content source instead of the generated list or the earlier badge extractor.
+- All three section headings reproduce Qualifications' Academic Standing heading: semantic `h2`, `var(--font-sans)`, 24px through 767px / 28px from 768px, weight 500, line-height 1.5, letter-spacing -0.025em, color #18181b, margin-bottom 12px, and 48px below the header block. Keep them unboxed and undecorated; no new heading variant or global token is introduced.
+- The existing `OriginalPage.module.css` badge/date rules remain active. Journal rows retain the approved static SSCI / SSCI / KCI labels: 24px height, 8px horizontal padding, white 12px semibold type, #1a1a1a fill, 4px corners, 8px to the title. On mobile the label and the displayed date share a row with an 8px gap; tablet/desktop preserve the established date treatment. Ongoing research and conferences receive no index badges.
+- The section wrapper retains the 1200px list width, with 64px top padding per section. Mobile proximity-snap targets are the Research Hero and the three whole sections, not individual papers.
+- The two ongoing entries show their supplied titles, exact institution lines and `In Progress` only. The screenshot's 2025-11-30 entry date is not presented as a research start or publication date. No abstracts, author roles, journal indexes or links are inferred.
+- Four unique conferences are shown; the repeated Omni-Channel screenshot entry is deduplicated. All conference dates are source-listed dates, not independently verified event dates. Only the pre-existing Ethereum conference URL and local PDF remain linked. No placeholder buttons are created for unavailable destinations.
+- J1 uses the screenshot's journal title; J2's publisher-title normalization is a **proposal for user review**. J3 keeps the existing English title. J1 and J3 display year only because screenshot and baseline months disagree. Original journal/C3 descriptions and topic tags remain; no summaries or tags are invented for new entries. Journal metadata no longer includes ICA or ergonomics conference labels, and no journal–conference precursor relationship is asserted.
+- The screenshot's Google Scholar entry has no visible URL, so no new Research link is added. Qualifications' existing Scholar link is unaffected.
+
+The [source audit](../../../docs/content/research-source-audit.md) lists every title, institution, date, retained destination and unresolved normalization. The [review QA record](../../../docs/qa/research-sections-review.md) separates documentation checks from pending runtime, browser and exact-commit CI evidence. Content/design review and publication approval remain separate.

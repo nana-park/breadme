@@ -109,6 +109,19 @@ Home은 Products를 왼쪽 검은 primary action, Full career를 오른쪽 흰 s
 - About 소개·이름 도식 다음, Media 앞에 기존 `#how-work` 네 원칙 카드를 둡니다. 이 원칙 블록의 내용·사진·태그·반응형 배치와 모바일 제목 정렬을 보존합니다. 페이지를 이동한 뒤에도 About의 읽기 구간 스냅과 올바른 역할 스타일이 적용되는지 검수합니다.
 - 전체 학력이나 원칙을 두 페이지에 중복 렌더링하지 않습니다. 이동의 재생성 보존과 실제 화면 검수는 [IA QA 기록](../qa/education-principles-ia.md)에서 확인합니다. 기존 AS-IS/TO-BE 증거는 해당 기록에 보존합니다. 2026-10-09 Home 링크의 상단 이동 검증은 [별도 QA](../qa/home-education-top-link.md)를 따르며, 이번 수정의 main 병합·배포는 별도 승인 대상입니다.
 
-## Research index labels (2026-10-09)
+## Research index labels (2026-10-09, earlier presentation change)
+
+The following records the earlier four-row implementation. The three-section review below retains its label appearance and supersedes its row count/content ownership.
 
 Research preserves its original paper rows and light topic tags. The existing SSCI/SSCI/KCI journal suffixes become static labels, 24px high with 8px horizontal padding, 12px white semibold text, #1a1a1a background and 4px corners. Mobile (≤767px) shows the actual date immediately after the badge with an 8px gap and centered alignment. Desktop retains the left date column and title-aligned badge with an 8px title gap; the existing stacked tablet layout remains at 768–1023px. The fourth conference-only paper has no badge. These are editorial labels, not controls. See [Research badge QA](../qa/research-index-badges.md).
+
+
+## Research three-section review (2026-10-09)
+
+Common-component adoption is unchanged: `OriginalHeader`, `OriginalFooter`, `MaterialsPopup` and the existing Research `LandingPhotoHero` remain connected. Research's new page-owned `ResearchSections` and `ResearchSections.module.css` render Journal Publications (3), Ongoing Research (2), then Conference Presentations (4 unique), from `src/content/research/publications.ts`. The canonical `apply-research-sections-override.ts` replaces the legacy list with this component on regeneration.
+
+The three semantic `h2` headings reuse the active Qualifications Academic Standing style exactly: `var(--font-sans)`, 24px mobile / 28px at 768px and above, weight 500, line-height 1.5, tracking -0.025em, #18181b, 12px title margin and 48px header-block bottom spacing. There is no new box, decoration, shared `SectionTitle` adoption or global style change. The page-owned CSS Module owns the matching Research heading treatment, 64px section top padding and 1200px list width without reaching into the Qualifications component. Existing badge/date rules stay in `OriginalPage.module.css`; mobile proximity snap uses the Hero plus the three sections rather than individual entries.
+
+Only the three journal entries use the approved SSCI/SSCI/KCI labels described above; ongoing `In Progress` is a research status, not a journal index. The existing light topic tags and descriptions remain only where they already existed. Entries with no confirmed destination do not render an action, disabled fake link or placeholder button. The raw ongoing institution lines do not imply employment, authorship or funding roles.
+
+This is a review candidate, not a declaration of visual acceptance or release. [Source audit](../content/research-source-audit.md) and [Research section QA](../qa/research-sections-review.md) record the content caveats and the pending exact-commit evidence. The existing IA SVG/PNG and navigation routes remain unchanged.

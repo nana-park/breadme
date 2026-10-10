@@ -11,7 +11,7 @@ export const mobileSnapSelectors: Record<OriginalPageId, string> = {
   projects:
     '[data-landing-photo-hero="projects"], #projects > .container > div:first-child > div:not(#archived-detailed-project-cards) > div > div',
   research:
-    '[data-landing-photo-hero="research"], #research > .container > div',
+    '[data-landing-photo-hero="research"], [data-research-section]',
   articles:
     '[data-landing-photo-hero="articles"], #articles-list-container, #article-detail',
   lectures:
