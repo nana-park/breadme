@@ -2,11 +2,11 @@ import { expect } from "@playwright/test";
 import type { Page, TestInfo } from "@playwright/test";
 import baseline from "../fixtures/research-index-badges-before.json" with { type: "json" };
 
-export const researchBaselineCommit = baseline.commit;
+import { expectedResearchRecords } from "../fixtures/research-sections-expected";
 
 export async function researchReady(page: Page) {
   await expect(page.locator('[data-original-page="research"]')).toBeVisible();
-  await expect(page.locator("#research h3")).toHaveCount(4);
+  await expect(page.locator("#research h3")).toHaveCount(9);
   await page.evaluate(async () => {
     for (const image of document.querySelectorAll<HTMLImageElement>(
       "#research img",
@@ -38,7 +38,7 @@ export async function assertResearchIndexBadges(
   const width = page.viewportSize()!.width;
   const isMobile = width < 768;
   const papers = page.locator("[data-research-paper]");
-  await expect(papers).toHaveCount(4);
+  await expect(papers).toHaveCount(9);
   await expect(page.locator("[data-research-index]")).toHaveText([
     "SSCI",
     "SSCI",
@@ -54,17 +54,29 @@ export async function assertResearchIndexBadges(
   ).toHaveCount(0);
 
   const layout = [];
-  for (const [index, paper] of baseline.papers.entries()) {
+  for (const [index, paper] of expectedResearchRecords.entries()) {
     const row = papers.nth(index);
-    await expect(row).toHaveAttribute("data-research-paper", String(index + 1));
+    const preserved =
+      paper.preservedRecord === undefined
+        ? undefined
+        : baseline.papers[paper.preservedRecord];
+    await expect(row).toHaveAttribute("data-research-paper", paper.id);
+    await expect(row).toHaveAttribute("data-research-kind", paper.kind);
     await expect(row.locator("h3")).toHaveText(paper.title);
-    await expect(row.locator("h3 + p")).toHaveText(paper.journalAndConference);
-    await expect(row.locator("h3 + p + div > span")).toHaveText(paper.topics);
-    await expect(row.locator(":scope > div:last-child > p")).toHaveText(
-      paper.description,
+    await expect(row.locator("h3 + p")).toHaveText(paper.venue);
+    await expect(row.locator("[data-research-topics] > span")).toHaveText(
+      preserved?.topics ?? [],
     );
-    await expect(row.locator("a")).toHaveCount(paper.links.length);
-    for (const [linkIndex, link] of paper.links.entries()) {
+    await expect(row.locator("[data-research-details] > p")).toHaveCount(
+      preserved ? 1 : 0,
+    );
+    if (preserved) {
+      await expect(row.locator("[data-research-details] > p")).toHaveText(
+        preserved.description,
+      );
+    }
+    await expect(row.locator("a")).toHaveCount(preserved?.links.length ?? 0);
+    for (const [linkIndex, link] of (preserved?.links ?? []).entries()) {
       const anchor = row.locator("a").nth(linkIndex);
       const href = link.href.startsWith("/")
         ? new URL(link.href.slice(1), new URL("./", page.url())).pathname
@@ -73,21 +85,22 @@ export async function assertResearchIndexBadges(
       await expect(anchor).toHaveAttribute("href", href);
       await expect(anchor).toHaveAttribute("target", link.target!);
     }
-    const content = await row.evaluate((element) => {
-      const clone = element.cloneNode(true) as Element;
-      clone.querySelector("[data-research-meta]")?.remove();
-      return clone.textContent?.replace(/\s+/g, " ").trim();
-    });
-    expect(content, `All original copy for paper ${index + 1}`).toBe(
-      paper.textWithoutIndex,
-    );
+    // Each row exposes one date or status; unknown fields have no replacement UI.
+    const dateOrStatus = paper.date ?? paper.status!;
     const visibleDates = (await row.locator("span:visible").allTextContents())
       .map((text) => text.replace(/\s+/g, " ").trim())
-      .filter((text) => text === paper.date);
-    expect(
-      visibleDates,
-      `Exactly one visible date for paper ${index + 1}`,
-    ).toEqual([paper.date]);
+      .filter((text) => text === dateOrStatus);
+    expect(visibleDates, `One date/status for ${paper.id}`).toEqual([
+      dateOrStatus,
+    ]);
+    if (paper.kind === "ongoing") {
+      await expect(row.locator("[data-research-status]")).toHaveText(
+        "In Progress",
+      );
+      await expect(row).not.toContainText(
+        /2025|2026|Accepted|Published|Submission/i,
+      );
+    }
     await expect(row).toHaveCSS(
       "flex-direction",
       width >= 1024 ? "row" : "column",
@@ -122,8 +135,8 @@ export async function assertResearchIndexBadges(
     await expect(meta).toHaveCSS("display", "flex");
     await expect(meta).toHaveCSS("align-items", "center");
     await expect(meta).toHaveCSS("column-gap", "8px");
-    await expect(mobileDate).toHaveText(paper.date);
-    await expect(originalDate).toHaveText(paper.date);
+    await expect(mobileDate).toHaveText(paper.date!);
+    await expect(originalDate).toHaveText(paper.date!);
     if (isMobile) {
       await expect(originalDate).toBeHidden();
       await expect(mobileDate).toBeVisible();
@@ -206,13 +219,15 @@ export async function assertResearchIndexBadges(
         expect(geometry.originalDate.left).toBeCloseTo(geometry.badge.left, 1);
       }
     }
-    layout.push({ paper: index + 1, ...geometry });
+    layout.push({ paper: paper.id, ...geometry });
   }
 
   const overflow = await page.locator("#research").evaluate((section) => ({
     width: innerWidth,
     scrollWidth: document.documentElement.scrollWidth,
-    textOutsideViewport: Array.from(section.querySelectorAll("h3, p, a, span"))
+    textOutsideViewport: Array.from(
+      section.querySelectorAll("h2, h3, p, a, span"),
+    )
       .filter((element) => {
         const range = document.createRange();
         range.selectNodeContents(element);
@@ -239,42 +254,4 @@ export async function assertResearchIndexBadges(
     ),
     contentType: "application/json",
   });
-}
-
-export async function captureResearchPapers(
-  page: Page,
-  testInfo: TestInfo,
-  label: string,
-) {
-  const list = page
-    .locator("#research h3")
-    .first()
-    .locator("../..")
-    .locator("..");
-  await expect(list.locator("h3")).toHaveCount(4);
-  const firstCard = list.locator(":scope > div").first();
-  await firstCard.scrollIntoViewIfNeeded();
-  const viewportPath = testInfo.outputPath(`${label}-viewport.png`);
-  await page.screenshot({ path: viewportPath, animations: "disabled" });
-  await testInfo.attach(`${label}-viewport`, {
-    path: viewportPath,
-    contentType: "image/png",
-  });
-  for (const [name, target] of [
-    ["papers", list],
-    ["first-card", firstCard],
-  ] as const) {
-    const path = testInfo.outputPath(`${label}-${name}.png`);
-    await target.screenshot({
-      path,
-      animations: "disabled",
-      // Content crops exclude only fixed chrome; the viewport above preserves it.
-      style:
-        "#navbar, .original-skip-link, #email-popup { visibility: hidden !important; }",
-    });
-    await testInfo.attach(`${label}-${name}`, {
-      path,
-      contentType: "image/png",
-    });
-  }
 }

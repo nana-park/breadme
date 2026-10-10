@@ -38,8 +38,69 @@ function ArticlesFixture({ reading = false }: { reading?: boolean }) {
     </div>
   );
 }
+function ResearchFixture() {
+  const root = useRef<HTMLDivElement>(null);
+  useMobileScrollSnap("research", root);
+  return (
+    <div ref={root}>
+      <section id="research">
+        <div data-landing-photo-hero="research" />
+        <div className="container">
+          <section id="journal-publications" data-research-section="journal">
+            <div data-research-paper="journal-example">
+              <h3>Journal title</h3>
+            </div>
+          </section>
+          <section id="ongoing-research" data-research-section="ongoing">
+            <div data-research-paper="ongoing-example">
+              <h3>Ongoing title</h3>
+            </div>
+          </section>
+          <section
+            id="conference-presentations"
+            data-research-section="conference"
+          >
+            <div data-research-paper="conference-example">
+              <h3>Conference title</h3>
+            </div>
+          </section>
+        </div>
+      </section>
+    </div>
+  );
+}
 
 describe("mobile section annotations", () => {
+  it("marks the Research hero and three chapters without snapping individual publications", () => {
+    const { container } = render(<ResearchFixture />);
+    const chapters = container.querySelectorAll("[data-research-section]");
+    expect(chapters).toHaveLength(3);
+    expect(
+      container.querySelectorAll("[data-mobile-snap-section]"),
+    ).toHaveLength(4);
+    expect(Array.from(chapters, (chapter) => chapter.id)).toEqual([
+      "journal-publications",
+      "ongoing-research",
+      "conference-presentations",
+    ]);
+    chapters.forEach((chapter) =>
+      expect(chapter).toHaveAttribute("data-mobile-snap-section"),
+    );
+    expect(
+      container.querySelector("[data-landing-photo-hero]"),
+    ).toHaveAttribute("data-mobile-snap-section");
+    expect(container.querySelector("#research")).not.toHaveAttribute(
+      "data-mobile-snap-section",
+    );
+    expect(
+      container.querySelector("#research > .container"),
+    ).not.toHaveAttribute("data-mobile-snap-section");
+    expect(
+      container.querySelectorAll(
+        "[data-research-paper][data-mobile-snap-section], h3[data-mobile-snap-section]",
+      ),
+    ).toHaveLength(0);
+  });
   it("marks major sections, not a nested demo or its content", () => {
     const { container } = render(<HomeFixture />);
     expect(

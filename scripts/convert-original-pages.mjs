@@ -12,7 +12,7 @@ import postcss from "postcss";
 import { format } from "prettier";
 import { applyCareerContentOverrides } from "./apply-career-content-overrides.ts";
 import { applyLandingHeroOverride } from "./apply-landing-hero-override.ts";
-import { applyResearchIndexBadges } from "./apply-research-index-badges.ts";
+import { applyResearchSectionsOverride } from "./apply-research-sections-override.ts";
 import { applyEducationIaOverride } from "./apply-education-ia-override.ts";
 import { applyHomeCapabilitiesOverride } from "./apply-home-capabilities-override.ts";
 
@@ -374,8 +374,8 @@ for (const [sourceFile, componentName] of pageDefinitions) {
     }
   }
   applyEducationIaOverride(document, sourceFile, iaSources);
-  applyResearchIndexBadges(document, sourceFile);
   applyLandingHeroOverride(document, sourceFile);
+  applyResearchSectionsOverride(document, sourceFile);
   const isMockup = componentName === "OriginalMentoringMockupContent";
   const imports = new Set();
   const importantRules = [];
@@ -559,6 +559,10 @@ for (const [sourceFile, componentName] of pageDefinitions) {
     if (topLevel && tag === "svg" && node.getAttribute("width") === "0")
       return "";
     elementCount++;
+    if (sourceFile === "research.html" && node.hasAttribute("data-research-sections")) {
+      imports.add("ResearchSections");
+      return `${indent}<ResearchSections />`;
+    }
     // WHAT: Keep the verified six-company carousel when regenerating Home.
     if (
       sourceFile === "index.html" &&
@@ -637,6 +641,8 @@ for (const [sourceFile, componentName] of pageDefinitions) {
     importLines.push(
       `import { ${helpers.join(", ")} } from '@/shared/utils/originalPaths';`,
     );
+  if (imports.has("ResearchSections"))
+    importLines.push("import { ResearchSections } from '../ResearchSections';");
   if (imports.has("HomeHero"))
     importLines.push("import { HomeHero } from '@/pages/home/HomeHero';");
   if (imports.has("HomeExperience"))

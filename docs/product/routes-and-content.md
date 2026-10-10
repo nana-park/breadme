@@ -8,7 +8,7 @@
 
 [큰 PNG로 보기](images/site-ia.png) · [편집 원본 SVG](images/site-ia.svg)
 
-그림은 Header·라우트와 상세 페이지 연결을 나타낸다. 2026-10-08 학력·업무 원칙 재배치는 기존 메뉴·URL·페이지 수를 유지하므로 SVG/PNG의 계층은 바뀌지 않는다. 세 페이지 내부의 최신 섹션 순서는 아래 별도 명세를 따른다. 메뉴·라우트가 바뀌면 SVG와 PNG를 함께 갱신하고 텍스트 구조·페이지 명세도 대조한다. SVG는 편집 원본, PNG는 글꼴/앱 환경에 관계없이 읽기 위한 표시본이다.
+그림은 Header·라우트와 상세 페이지 연결을 나타낸다. 2026-10-08 학력·업무 원칙 재배치와 2026-10-09 Research의 세 구획 분리는 기존 메뉴·URL·페이지 수를 유지하므로 SVG/PNG의 계층은 바뀌지 않는다. 페이지 내부의 최신 섹션 순서는 아래 별도 명세를 따른다. 메뉴·라우트가 바뀌면 SVG와 PNG를 함께 갱신하고 텍스트 구조·페이지 명세도 대조한다. SVG는 편집 원본, PNG는 글꼴/앱 환경에 관계없이 읽기 위한 표시본이다.
 
 ### Header 메뉴: 방문자가 보는 탐색 구조
 
@@ -63,6 +63,19 @@ Header 메뉴 미노출
 
 Qualifications의 기존 인증 내용·필터와 여섯 역량 카드는 보존한다. Career, Header의 Qualified 이름과 모든 메뉴 URL도 바꾸지 않는다. Home의 `#history-2`는 요약 앵커로 유지하고 Qualifications의 같은 ID는 별도 문서의 전체 학력 앵커다. Home의 학력 링크는 `/breadme/qualified.html` 페이지 맨 위로 연결한다(2026-10-09). 명시적인 `/breadme/qualified.html#history-2` 직접 링크는 그대로 유지한다. 이전 `qualified.html#how-work` 직접 링크는 `OriginalPage.tsx`에서 `about.html#how-work`로 replace 이동한다. 기존 콘텐츠 이동의 화면 비교는 [IA QA 기록](../qa/education-principles-ia.md)에 보존한다. Home 링크의 페이지 상단 도착·반복 탐색과 직접 학력 앵커 유지는 [상단 이동 QA](../qa/home-education-top-link.md)에서 별도로 확인한다.
 
+### Research의 본문 IA (2026-10-09, 검토용)
+
+| 순서 | 구획 | 항목·표시·연결 원칙 |
+| --- | --- | --- |
+| 1 | 기존 Research 사진 Hero | 문구·사진·상단 탐색 유지 |
+| 2 | Journal Publications | 3개 저널 논문, 기존 SSCI / SSCI / KCI 배지와 논문 링크. 학회 메타데이터는 이 구획에서 제거 |
+| 3 | Ongoing Research | 2개 진행 연구, `In Progress`와 원문 기관 목록. 날짜·저널 배지·추정 역할·새 링크 없음 |
+| 4 | Conference Presentations | 중복을 제거한 4개 발표. 스크린샷에 적힌 날짜를 표시하며, 기존 Ethereum 항목만 Conference / Read Paper 링크 유지 |
+
+세 구획의 제목은 Qualifications의 Academic Standing과 같은 `h2` 규격을 사용한다. 새 메뉴·페이지·필터는 추가하지 않으며 총 라우트는 14개다. 내용은 [research/publications.ts](../../src/content/research/publications.ts), 표현은 [ResearchSections](../../src/pages/original/ResearchSections.tsx)와 [페이지 CSS Module](../../src/pages/original/ResearchSections.module.css)이 소유한다. [정규 변환 override](../../scripts/apply-research-sections-override.ts)가 원본 목록을 이 컴포넌트 연결로 대체한다.
+
+J1/J3의 날짜 충돌은 연도만 표시하고, J2의 정식 출판 제목 적용은 사용자 확인이 필요한 제안으로 기록한다. 기존 요약·태그와 검증된 기존 링크를 보존하되 새 항목에 없는 근거를 만들지 않는다. 학회 날짜는 독립 검증된 개최일이 아니며, 저널과 발표의 선행·후속 관계도 주장하지 않는다. 상세 근거와 보류 항목은 [연구 출처 감사](../content/research-source-audit.md), 실행·스크린샷 대기 상태는 [Research 검수](../qa/research-sections-review.md)에 둔다. 이 본문 IA는 검토용 변경이며 main 병합·배포 완료를 뜻하지 않는다.
+
 ## 기준
 
 - 최초 메뉴/라우트 문서 기준: `main` [`3738e46`](https://github.com/nana-park/breadme/tree/3738e4620bb495ecfcd7ef589c91c2049ce0153a), 2026-10-05. Home·About·Qualifications의 본문 위치는 2026-10-08 작업 브랜치의 승인된 IA에 맞춰 갱신했다. 시작 기준 커밋은 `58a617a3bb60261f750a2cf9fb46979e81decd82`이며, 실행 결과는 [해당 QA 기록](../qa/education-principles-ia.md)에 별도로 남긴다. 문서 갱신은 main 병합·배포나 새 브라우저 검수 완료를 뜻하지 않는다.
@@ -82,7 +95,7 @@ Qualifications의 기존 인증 내용·필터와 여섯 역량 카드는 보존
 | 4 | `/qualified.html` / Qualifications | ABOUT 하위 Qualified·Home 학력 요약 | Hero → 전체 Academic Standing(`#history-2`) → 기존 Core Competencies 6개 → 4개 인증 탭(`AI & Tools`, `Data & Statistics`, `Psychology`, `Languages`). 학력 사진·기간·모든 세부 내용·View publications·Google Scholar 링크 보존. 기존 인증과 탭 전환 유지. 업무 원칙은 About으로 이동 | [OriginalQualifiedContent](../../src/pages/original/generated/OriginalQualifiedContent.tsx) |
 | 5 | `/enjoy.html` / Enjoy | 주 메뉴 미노출, 직접 주소 가능 | 7개 취미/활동 카테고리와 여행 지역 선택. `All Destinations`는 전체 사진 순서를 섞는다. 선택 카테고리를 세션에 보관 | [OriginalEnjoyContent](../../src/pages/original/generated/OriginalEnjoyContent.tsx) |
 | 6 | `/projects.html` / Projects (`Products`) | PROJECTS·하위 Products·Home/About/Contact | 제품군과 프로젝트, `View more/fewer projects`, `View/Hide projects`, 9개 `details` 펼침. 3개 사례 상세 링크, 논문·로컬 PDF·외부 Notion 링크. 목록 펼침은 검색/필터 기능이 아님 | [OriginalProjectsContent](../../src/pages/original/generated/OriginalProjectsContent.tsx) |
-| 7 | `/research.html` / Research | PROJECTS 하위 Research·Qualifications 학력 | 연구 4건. 기존 저널 분류의 SSCI·SSCI·KCI 배지를 제목 위에 표시하며 네 번째 학회 항목은 배지가 없다. 모바일은 배지·실제 날짜 한 줄, 데스크톱은 기존 왼쪽 날짜 열을 유지한다. `Read Paper`는 ScienceDirect·DOI·사이트 PDF, `Conference`는 외부 링크 | [OriginalResearchContent](../../src/pages/original/generated/OriginalResearchContent.tsx) |
+| 7 | `/research.html` / Research | PROJECTS 하위 Research·Qualifications 학력 | 기존 Hero → Journal Publications 3개 → Ongoing Research 2개 → Conference Presentations 4개. 저널에만 SSCI·SSCI·KCI 배지. 진행 연구에는 `In Progress`·기관 목록만 표시. 기존 논문 3개와 Ethereum 학회/PDF 링크를 보존하며 새 목적지가 없는 항목은 버튼 없음. 날짜·제목 보류는 위 검토용 IA 명세 참고 | [ResearchSections](../../src/pages/original/ResearchSections.tsx), [연구 데이터](../../src/content/research/publications.ts), [generated 연결](../../src/pages/original/generated/OriginalResearchContent.tsx) |
 | 8 | `/articles.html` / Articles | PROJECTS 하위 Articles | 영어 글 18개·6쪽·한 쪽 3개. `Read Article`로 해시 읽기, 위/아래 `Back to List`로 복귀, `View Original (KR)`로 ArtInsight 외부 원문 | [OriginalArticlesPage](../../src/pages/original/OriginalArticlesPage.tsx), [글 데이터](../../src/content/original/articles/index.ts) |
 | 9 | `/lectures.html` / Lectures | PROJECTS 하위 Lectures | 2개 강의/멘토링 항목·각 사진 캐러셀. 이전/다음·표시점·키보드·터치 이동. `View Workflow Detail` → Mentor AI 상세 | [OriginalLecturesContent](../../src/pages/original/generated/OriginalLecturesContent.tsx) |
 | 10 | `/awards.html` / Awards | AWARDS | 수상·후원 등 이미지와 반복 표시 콘텐츠. `Get in Touch with breadme` → Contact. 반복 마크업 수를 별도 수상 건수로 세지 않음 | [OriginalAwardsContent](../../src/pages/original/generated/OriginalAwardsContent.tsx) |
@@ -149,7 +162,8 @@ Qualifications의 기존 인증 내용·필터와 여섯 역량 카드는 보존
 | Home 경력 요약 | [homeExperience.ts](../../src/content/site/homeExperience.ts) | [HomeExperience](../../src/pages/home/HomeExperience.tsx), [Home README](../../src/pages/home/README.md) |
 | Home 학력 요약 | `OriginalHomeContent.tsx`에서 연결한 요약과 `qualified.html` 링크 | [Home README](../../src/pages/home/README.md), [IA QA 기록](../qa/education-principles-ia.md), [IA override](../../scripts/apply-education-ia-override.ts) |
 | 전체 Academic Standing / 업무 원칙 | `OriginalQualifiedContent.tsx`의 학력 / `OriginalAboutContent.tsx`의 `#how-work` | [원본 페이지 README](../../src/pages/original/README.md), 이동한 본문·사진·링크와 원본의 동등성, 변환기 재생성 보존 |
-| Home 로고/갤러리/CTA·About·Career·Qualified·Enjoy·Projects·Research·Lectures·Awards·Contact·상세 본문 | 위 라우트 표의 `generated/Original…Content.tsx` | 해당 CSS, 두 interaction hook, [원본 페이지 README](../../src/pages/original/README.md), [변환기](../../scripts/convert-original-pages.mjs) |
+| Home 로고/갤러리/CTA·About·Career·Qualified·Enjoy·Projects·Lectures·Awards·Contact·상세 본문 | 위 라우트 표의 `generated/Original…Content.tsx` | 해당 CSS, 두 interaction hook, [원본 페이지 README](../../src/pages/original/README.md), [변환기](../../scripts/convert-original-pages.mjs) |
+| Research 제목·저널/기관·날짜·상태·태그·목적지·구획 순서 | [research/publications.ts](../../src/content/research/publications.ts) | [ResearchSections](../../src/pages/original/ResearchSections.tsx), [CSS Module](../../src/pages/original/ResearchSections.module.css), [재생성 override](../../scripts/apply-research-sections-override.ts), [출처 감사](../content/research-source-audit.md), [QA](../qa/research-sections-review.md) |
 | Articles 제목·날짜·요약·원문 링크·순서 | [articles/index.ts](../../src/content/original/articles/index.ts) | 연결된 `Article<ID>Body.tsx`, source expectations와 검사 |
 | Articles Hero·읽기/복귀 버튼 문구 | [pageContent.ts](../../src/content/original/articles/pageContent.ts) | [OriginalArticlesPage](../../src/pages/original/OriginalArticlesPage.tsx) |
 | 본문 이미지·동영상·문서 | [원본 manifest](../../src/content/original/asset-manifest.json), [외부 manifest](../../src/content/original/external-asset-manifest.json), 각 사용처 | [assetUrl/originalHref](../../src/shared/utils/originalPaths.ts), [원본 에셋 문서](../original-assets.md), [외부 에셋 문서](../original-external-assets.md) |
