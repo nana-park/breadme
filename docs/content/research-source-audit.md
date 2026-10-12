@@ -110,3 +110,17 @@ Verified destinations added on 2026-10-12 supersede the earlier no-URL decisions
 - C4 **Read Paper**: [DBpia record NODE11288563](https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11288563), with Park Nahyun and Lee Daeho, Sungkyunkwan University, 2022.10, pages 67–68. The publisher's English title is “Effectiveness of providing proactivity in e-commerce with an Omni Channel strategy”; its Korean title and authors establish the mapping to the existing Omni-Channel record. The existing display title is retained. Public metadata is readable; full text may require DBpia or institutional access. The user-provided Scholar citation was blocked by unusual-traffic protection and was not used as a verified mapping or bypassed.
 
 The link refinement does not resolve or silently change the earlier date uncertainties. Ongoing records retain `In Progress` without a date, journal badge or unverified link. Main merge and deployment remain separately authorized actions.
+
+### 2026-10-12 two-topic refinement
+
+The user's subsequent request, “research는 태그를 2개만”, limits all nine records to exactly two topic tags. SSCI/KCI index labels and `In Progress` status do not count. The four original two-tag pairs remain unchanged; the five later additions retain these representative existing labels, without renaming or inventing a topic:
+
+| Record | Retained topic pair | Removed topic |
+| --- | --- | --- |
+| O1 · speech | Speech Biomarkers · Memory Assessment | AI Calls |
+| O2 · intimacy | Human-AI Intimacy · Romantic Jealousy | Scale Development |
+| C1 · ICA | Credibility Signals · Online News Platforms | User Experience |
+| C2 · news interface | News Interfaces · Gatekeeping | Platform Value |
+| C4 · Omni-Channel | Omni-Channel · User Agency | E-commerce |
+
+These selections retain the study's subject and distinguishing topic, while omitting a delivery channel, method or broader label. All titles, descriptions, venues, dates, statuses, index labels, links and layout remain unchanged. The earlier three-topic table records the previous refinement, not the current displayed count.

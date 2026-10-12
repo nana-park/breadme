@@ -116,14 +116,29 @@ describe("Research reviewed content source", () => {
     for (const expected of additions) {
       const actual = papers.find((paper) => paper.id === expected.id)!;
       expect(actual.topics).toEqual(expected.topics);
-      expect(actual.topics.length).toBeGreaterThanOrEqual(2);
-      expect(actual.topics.length).toBeLessThanOrEqual(3);
+      expect(actual.topics).toHaveLength(2);
       expect(actual.links).toEqual(expected.links ?? []);
     }
     const program = papers.find((paper) => paper.id === "conference-ica")!
       .links[0];
     expect(program.label).toBe("View Program");
     expect(new URL(program.href).hash).toBe("#page=349");
+  });
+
+  it("keeps exactly two approved topic tags on all nine records, separate from index and status labels", () => {
+    expect(papers).toHaveLength(9);
+    for (const paper of papers) {
+      const expected = expectedResearchRecords.find(
+        (record) => record.id === paper.id,
+      )!;
+      expect(paper.topics, paper.id).toHaveLength(2);
+      expect(paper.topics, paper.id).toEqual(
+        expectedPublication(expected).topics,
+      );
+      expect(paper.topics).not.toContain("SSCI");
+      expect(paper.topics).not.toContain("KCI");
+      expect(paper.topics).not.toContain("In Progress");
+    }
   });
 
   it("keeps unknown dates, abstracts, indexes and URLs absent instead of inferring metadata", () => {
@@ -224,6 +239,10 @@ describe("Research section rendering", () => {
       expect(normalize(row.querySelector("h3 + p")!.textContent)).toBe(
         expected.venue,
       );
+      expect(
+        row.querySelectorAll("[data-research-topics] > span"),
+        expected.id,
+      ).toHaveLength(2);
       expect(
         Array.from(
           row.querySelectorAll("[data-research-topics] > span"),

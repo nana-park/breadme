@@ -1,3 +1,4 @@
+import { assertLineWorksLogoScale } from "../support/home-partner-logos";
 import { originalRoutePaths } from "../../src/config/originalRoutes";
 import { deployedUrl, deployment } from "./deployment";
 import {
@@ -29,6 +30,7 @@ for (const [pageId, route] of Object.entries(originalRoutePaths)) {
     await assertLocalLinks(page);
 
     if (pageId === "home") {
+      await assertLineWorksLogoScale(page);
       await expect(
         page.locator("#home spline-viewer, #home canvas"),
       ).toHaveCount(0);

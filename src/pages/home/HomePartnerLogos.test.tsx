@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import { render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { HomePartnerLogos } from "./HomePartnerLogos";
+import styles from "./HomePartnerLogos.module.css";
 
 afterEach(() => vi.unstubAllEnvs());
 const names = [
@@ -41,6 +42,18 @@ describe("Home partner companies", () => {
     ]);
     expect(cycles[1]).toEqual(cycles[0]);
     expect(cycles[2]).toEqual(cycles[0]);
+  });
+  it("scales LINE WORKS in all three cycles without changing its layout size", () => {
+    const { container } = render(<HomePartnerLogos />);
+    const marks = container.querySelectorAll('[data-partner="line-works"] img');
+    expect(marks).toHaveLength(3);
+    for (const image of marks) {
+      expect(image).toHaveClass(styles.lineWorksImage);
+      expect(image).toHaveStyle({ height: "26px", width: "auto" });
+    }
+    expect(
+      container.querySelectorAll(`.${styles.lineWorksImage}`),
+    ).toHaveLength(3);
   });
   for (const base of ["/", "/breadme/"]) {
     it(`keeps the old artwork and styles with the ${base} asset base`, () => {

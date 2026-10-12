@@ -13,6 +13,12 @@
 .logoFrame {
   display: contents;
 }
+/* WHAT: Reduce only LINE WORKS artwork to 75% at every viewport.
+ * WHY: A centered transform retains its 26px layout box, cycle widths and seam. */
+.lineWorksImage {
+  transform: scale(0.75);
+  transform-origin: center;
+}
 .holdingFrame {
   position: relative;
   display: block;
