@@ -7,7 +7,6 @@ export function HomeCapabilities() {
   return (
     <div className={styles.content} data-home-capabilities>
       <h2>{homeCapabilities.title}</h2>
-      <p className={styles.introduction}>{homeCapabilities.introduction}</p>
       <div className={styles.groups}>
         {homeCapabilities.groups.map((group) => (
           <div className={styles.group} key={group.title}>

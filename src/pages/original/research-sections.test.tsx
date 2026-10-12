@@ -46,14 +46,16 @@ function expectedPublication(record: (typeof expectedResearchRecords)[number]) {
   return {
     ...fields,
     ...(preserved ? { description: preserved.description } : {}),
-    topics: preserved?.topics ?? [],
-    links: (preserved?.links ?? []).map((link) => ({
-      label: link.text,
-      href: link.href.startsWith("/original/")
-        ? link.href.slice("/original/".length)
-        : link.href,
-      asset: link.href.startsWith("/original/"),
-    })),
+    topics: record.topics ?? preserved?.topics ?? [],
+    links:
+      record.links ??
+      (preserved?.links ?? []).map((link) => ({
+        label: link.text,
+        href: link.href.startsWith("/original/")
+          ? link.href.slice("/original/".length)
+          : link.href,
+        asset: link.href.startsWith("/original/"),
+      })),
   };
 }
 
@@ -107,12 +109,32 @@ describe("Research reviewed content source", () => {
     ).toEqual(["2026", "December 2025", "2022"]);
   });
 
+  it("adds only title-derived topics and verified destinations to previously incomplete records", () => {
+    const additions = expectedResearchRecords.filter(
+      (record) => record.preservedRecord === undefined,
+    );
+    for (const expected of additions) {
+      const actual = papers.find((paper) => paper.id === expected.id)!;
+      expect(actual.topics).toEqual(expected.topics);
+      expect(actual.topics.length).toBeGreaterThanOrEqual(2);
+      expect(actual.topics.length).toBeLessThanOrEqual(3);
+      expect(actual.links).toEqual(expected.links ?? []);
+    }
+    const program = papers.find((paper) => paper.id === "conference-ica")!
+      .links[0];
+    expect(program.label).toBe("View Program");
+    expect(new URL(program.href).hash).toBe("#page=349");
+  });
+
   it("keeps unknown dates, abstracts, indexes and URLs absent instead of inferring metadata", () => {
     for (const paper of papers.filter((item) => item.kind === "ongoing")) {
       expect(paper.status).toBe("In Progress");
       for (const field of ["date", "description", "index"])
         expect(paper).not.toHaveProperty(field);
-      expect(paper.topics).toEqual([]);
+      expect(paper.topics).toEqual(
+        expectedResearchRecords.find((record) => record.id === paper.id)!
+          .topics,
+      );
       expect(paper.links).toEqual([]);
     }
     const conferences = papers.filter((paper) => paper.kind === "conference");
@@ -125,8 +147,11 @@ describe("Research reviewed content source", () => {
       expect(paper).not.toHaveProperty("index");
       expect(paper).not.toHaveProperty("status");
       if (paper.id !== "conference-ethereum") {
-        expect(paper.links).toEqual([]);
-        expect(paper.topics).toEqual([]);
+        const expected = expectedResearchRecords.find(
+          (record) => record.id === paper.id,
+        )!;
+        expect(paper.links).toEqual(expected.links ?? []);
+        expect(paper.topics).toEqual(expected.topics);
         expect(paper).not.toHaveProperty("description");
       }
     }
@@ -177,7 +202,7 @@ describe("Research section rendering", () => {
     }
   });
 
-  it("renders stable semantic rows and preserves the shared row treatment, summaries, tags and links", () => {
+  it("renders citation metadata, tags and links without visible summaries or empty detail columns", () => {
     const { container } = render(<OriginalResearchContent />);
     const rows = container.querySelectorAll<HTMLElement>(
       "[data-research-paper]",
@@ -204,24 +229,32 @@ describe("Research section rendering", () => {
           row.querySelectorAll("[data-research-topics] > span"),
           (node) => normalize(node.textContent),
         ),
-      ).toEqual(original?.topics ?? []);
-      const description = row.querySelector("[data-research-details] > p");
-      if (original)
-        expect(normalize(description!.textContent)).toBe(original.description);
-      else expect(description).toBeNull();
+      ).toEqual(expected.topics ?? original?.topics ?? []);
+      expect(row.querySelectorAll("p")).toHaveLength(1);
+      expect(row.querySelector("[data-research-details]")).toBeNull();
+      if (original) expect(row).not.toHaveTextContent(original.description);
+      const expectedLinks = expectedPublication(expected).links;
+      const actions = row.querySelector("[data-research-actions]");
+      if (expectedLinks.length) {
+        expect(actions).toHaveClass(styles.actions);
+        expect(actions?.parentElement).toBe(row);
+        expect(actions?.children).toHaveLength(expectedLinks.length);
+      } else expect(actions).toBeNull();
       const links = row.querySelectorAll("a");
-      expect(links).toHaveLength(original?.links.length ?? 0);
-      for (const [linkIndex, link] of (original?.links ?? []).entries()) {
-        expect(links[linkIndex]).toHaveTextContent(link.text);
-        expect(links[linkIndex]).toHaveAttribute("href", link.href);
-        expect(links[linkIndex]).toHaveAttribute("target", link.target!);
+      expect(links).toHaveLength(expectedLinks.length);
+      for (const [linkIndex, link] of expectedLinks.entries()) {
+        expect(links[linkIndex]).toHaveTextContent(link.label);
+        expect(links[linkIndex]).toHaveAttribute(
+          "href",
+          link.asset ? `/original/${link.href}` : link.href,
+        );
+        expect(links[linkIndex]).toHaveAttribute("target", "_blank");
       }
       if (expected.kind === "ongoing") {
         expect(row.querySelectorAll("[data-research-status]")).toHaveLength(1);
         expect(row.querySelector("[data-research-status]")).toHaveTextContent(
           "In Progress",
         );
-        expect(row.querySelectorAll("p")).toHaveLength(1);
       }
     }
     expect(

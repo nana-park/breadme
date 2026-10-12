@@ -65,18 +65,24 @@ export async function assertResearchIndexBadges(
     await expect(row.locator("h3")).toHaveText(paper.title);
     await expect(row.locator("h3 + p")).toHaveText(paper.venue);
     await expect(row.locator("[data-research-topics] > span")).toHaveText(
-      preserved?.topics ?? [],
+      paper.topics ?? preserved?.topics ?? [],
     );
-    await expect(row.locator("[data-research-details] > p")).toHaveCount(
-      preserved ? 1 : 0,
+    await expect(row.locator("p")).toHaveCount(1);
+    await expect(row.locator("[data-research-details]")).toHaveCount(0);
+    if (preserved) await expect(row).not.toContainText(preserved.description);
+    const links =
+      paper.links?.map((link) => ({
+        text: link.label,
+        href: link.asset ? `/original/${link.href}` : link.href,
+        target: "_blank",
+      })) ??
+      preserved?.links ??
+      [];
+    await expect(row.locator(":scope > [data-research-actions]")).toHaveCount(
+      links.length ? 1 : 0,
     );
-    if (preserved) {
-      await expect(row.locator("[data-research-details] > p")).toHaveText(
-        preserved.description,
-      );
-    }
-    await expect(row.locator("a")).toHaveCount(preserved?.links.length ?? 0);
-    for (const [linkIndex, link] of (preserved?.links ?? []).entries()) {
+    await expect(row.locator("a")).toHaveCount(links.length);
+    for (const [linkIndex, link] of links.entries()) {
       const anchor = row.locator("a").nth(linkIndex);
       const href = link.href.startsWith("/")
         ? new URL(link.href.slice(1), new URL("./", page.url())).pathname
@@ -84,6 +90,11 @@ export async function assertResearchIndexBadges(
       await expect(anchor).toHaveText(link.text);
       await expect(anchor).toHaveAttribute("href", href);
       await expect(anchor).toHaveAttribute("target", link.target!);
+      await expect(anchor).toHaveCSS("padding", "8px 20px");
+      await expect(anchor).toHaveCSS("border-radius", "9999px");
+      await expect(anchor).toHaveCSS("border-width", "1px");
+      await expect(anchor).toHaveCSS("font-size", "12px");
+      await expect(anchor).toHaveCSS("font-weight", "600");
     }
     // Each row exposes one date or status; unknown fields have no replacement UI.
     const dateOrStatus = paper.date ?? paper.status!;

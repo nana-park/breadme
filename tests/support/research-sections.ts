@@ -128,16 +128,43 @@ export async function assertResearchSections(
     const position = await row.evaluate((element) => {
       const dateColumn = element.firstElementChild!;
       const titleColumn = dateColumn.nextElementSibling!;
+      const actions = element.querySelector("[data-research-actions]");
       return {
         date: dateColumn.getBoundingClientRect().toJSON(),
         title: titleColumn.getBoundingClientRect().toJSON(),
         indexed: Boolean(element.querySelector("[data-research-index]")),
+        titleFlexGrow: getComputedStyle(titleColumn).flexGrow,
+        actions: actions?.getBoundingClientRect().toJSON(),
+        widestAction: actions
+          ? Math.max(
+              ...Array.from(
+                actions.querySelectorAll("a"),
+                (link) => link.getBoundingClientRect().width,
+              ),
+            )
+          : null,
+        contentRight:
+          element.getBoundingClientRect().right -
+          parseFloat(getComputedStyle(element).paddingRight),
       };
     });
     if (!position.indexed || width >= 768) {
       if (width >= 1024)
         expect(position.date.right).toBeLessThan(position.title.left);
       else expect(position.date.bottom).toBeLessThan(position.title.top);
+    }
+    if (width >= 1024) expect(position.titleFlexGrow).toBe("1");
+    if (position.actions) {
+      // The action stack fits its buttons; no former summary-width column remains.
+      expect(position.actions.width).toBeCloseTo(position.widestAction!, 1);
+      expect(position.actions.width).toBeLessThan(position.title.width);
+      if (width >= 1024) {
+        expect(position.actions.left - position.title.right).toBeCloseTo(32, 1);
+        expect(position.actions.right).toBeCloseTo(position.contentRight, 1);
+      } else {
+        expect(position.actions.left).toBeCloseTo(position.title.left, 1);
+        expect(position.actions.top - position.title.bottom).toBeCloseTo(16, 1);
+      }
     }
   }
   await testInfo.attach(`research-section-heading-layout-${width}`, {

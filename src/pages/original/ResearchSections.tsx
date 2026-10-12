@@ -9,7 +9,6 @@ import styles from "./ResearchSections.module.css";
  * Unknown metadata is omitted rather than replaced by invented copy or actions. */
 function Publication({ item }: { item: ResearchPublication }) {
   const indexed = item.kind === "journal" && item.index;
-  const hasDetails = Boolean(item.description || item.links.length);
   return (
     <article
       data-research-paper={item.id}
@@ -27,9 +26,7 @@ function Publication({ item }: { item: ResearchPublication }) {
           {item.date ?? item.status}
         </span>
       </div>
-      <div
-        className={`${styles.titleColumn} ${hasDetails ? styles.withDetails : styles.withoutDetails}`}
-      >
+      <div className={styles.titleColumn}>
         {indexed && (
           <div data-research-meta="">
             <span
@@ -59,25 +56,20 @@ function Publication({ item }: { item: ResearchPublication }) {
           </div>
         )}
       </div>
-      {hasDetails && (
-        <div className={styles.details} data-research-details="">
-          {item.description && (
-            <p className={styles.description}>{item.description}</p>
-          )}
-          {item.links.length > 0 && (
-            <div className={styles.actions} data-research-actions="">
-              {item.links.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.asset ? assetUrl(link.href) : link.href}
-                  target="_blank"
-                  className={styles.action}
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-          )}
+      {/* WHY: This index shows citation metadata and topics; summaries remain
+          in the content source without occupying a visible description column. */}
+      {item.links.length > 0 && (
+        <div className={styles.actions} data-research-actions="">
+          {item.links.map((link) => (
+            <a
+              key={link.href}
+              href={link.asset ? assetUrl(link.href) : link.href}
+              target="_blank"
+              className={styles.action}
+            >
+              {link.label}
+            </a>
+          ))}
         </div>
       )}
     </article>
