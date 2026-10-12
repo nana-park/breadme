@@ -1,3 +1,9 @@
+/* WHAT: Uppercase only approved Home event headings, keeping source text case.
+ * WHY: Subtitle roles/dates and all other carousel typography stay unchanged. */
+.page[data-original-page="home"] [data-home-event-title] {
+  text-transform: uppercase;
+}
+
 /* WHAT: Readable text roles shared by the migrated pages on small screens.
  * WHY: Target actual editorial text, never miniature product demos or every p.
  * The root + role specificity wins source utilities without new !important. */

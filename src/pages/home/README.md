@@ -2,6 +2,14 @@
 
 `/breadme/`와 `/breadme/index.html`의 순서는 기존 Hero → 회사 로고 캐러셀 → 발자취 갤러리 → 경력 → 짧은 Education 요약(`#history-2`) → Product Focus / Core Strengths CTA입니다.
 
+## 행사 캐러셀 표시 문구 (2026-10-12, Home EN)
+
+`#footprint`의 큰 제목은 사용자 승인에 따라 짧은 행사·이정표 이름으로 정리합니다. `APEC` / `Osaka Expo`의 연도와 `NAVER DAN`의 중복 설명은 큰 제목에서 빼고, 아래 역할·날짜는 별도로 유지합니다. 3번은 `NAVER AI CALL` / `Product Launch in Japan · Jan 2025`로 표시합니다. 사용자가 출시는 일본에서만 했다고 확인했으므로 한국 출시로 표현하지 않습니다. 6번 카드는 설명형 제목 `Seoul Inclusive Technology Expo`와 `Exhibition · Nov 2023`으로 수정합니다. 이 영문 제목은 공식 명칭 번역이 아니며, 날짜는 [서울시의 2023년 11월 18일 행사 기록](https://mayor.seoul.go.kr/oh/seoul/newsView.do?curPage=179&photoGallerySn=2271)을 근거로 합니다. 다른 짧은 제목도 사용자 승인 표시용 표현이며 새로운 행사 사실·공식 명칭 주장은 아닙니다.
+
+승인된 표시 차이만 `src/content/site/homeEventCarousel.ts`에 두고, 변환기의 `apply-home-event-carousel-overrides.ts`가 정확히 일치하는 Home 캐러셀 문구에 적용합니다. `OriginalHomeContent.tsx`의 기존 마크업이 계속 렌더링을 맡습니다. 12개 H3의 `data-home-event-title`에만 Home 범위 CSS Module의 `text-transform: uppercase`를 적용하므로, 데이터의 원래 대소문자와 아래 역할·날짜의 표기는 유지됩니다. 기존 18px/20px 제목 크기와 굵기·행간, 카드 폭·사진·alt·순서·가로 스크롤은 바꾸지 않습니다.
+
+단위 검사는 전체 표시 목록과 변환 범위·재적용 안전성을 확인합니다. 브라우저 검사는 320/390/768/1440px에서 12개 제목·부제, 실제 대문자 CSS와 텍스트 경계·넘침, 긴 제목의 줄바꿈과 갤러리 왕복을 확인합니다. 같은 콘텐츠·경계 검사를 `/breadme/` 정적 빌드와 공개 사이트의 390/1440px 검사에도 적용합니다. 브라우저 검사를 정의한 것과 실제 통과·시각 확인은 구분합니다.
+
 ## 현재 Education 요약과 상세 진입 (2026-10-08)
 
 Home은 학력의 빠른 확인과 상세 진입을 맡습니다. 기존 `#history-2` 앵커를 유지하고 아래 두 학위·학교만 간결하게 표시합니다.
