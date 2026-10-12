@@ -30,7 +30,11 @@ export function HomePartnerLogos() {
               alt={cycle === 0 ? partner.name : ""}
               aria-hidden={cycle === 0 ? undefined : true}
               className={
-                partner.id === "sk-inc" ? styles.holdingImage : undefined
+                partner.id === "sk-inc"
+                  ? styles.holdingImage
+                  : partner.id === "line-works"
+                    ? styles.lineWorksImage
+                    : undefined
               }
               style={{
                 filter: "grayscale(100%) opacity(0.45)",

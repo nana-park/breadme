@@ -173,4 +173,4 @@ The [source audit](../../../docs/content/research-source-audit.md) lists every t
 
 ### 2026-10-12 Research 표시 보완
 
-요약문은 화면에서만 제거하고 기존 원문 데이터는 유지합니다. 태그가 없던 진행 중 연구 2건과 학회 3건에는 제목에서 확인되는 주제 태그를 3개씩 추가하며 기존 태그는 바꾸지 않습니다. ICA는 발표가 실린 공식 프로그램 PDF 349쪽의 View Program, 뉴스 인터페이스는 SKKU의 Lab News, Omni-Channel은 확인된 DBpia Read Paper로 연결합니다. 제목·날짜·기관·진행 상태·배지는 유지하며, 상세 근거는 [콘텐츠 출처 기록](../../../docs/content/research-source-audit.md#2026-10-12-approved-presentation-and-link-refinement)에 보존합니다.
+요약문은 화면에서만 제거하고 기존 원문 데이터는 유지합니다. 태그가 없던 진행 중 연구 2건과 학회 3건에는 제목에서 확인되는 주제를 추가했습니다. 후속 요청에 따라 모든 연구 9건의 주제 태그는 기존 표현 중 대표 주제 2개씩으로 통일하며, SSCI/KCI 배지와 In Progress 상태는 주제 태그에 포함하지 않습니다. ICA는 발표가 실린 공식 프로그램 PDF 349쪽의 View Program, 뉴스 인터페이스는 SKKU의 Lab News, Omni-Channel은 확인된 DBpia Read Paper로 연결합니다. 제목·날짜·기관·진행 상태·배지는 유지하며, 상세 근거는 [콘텐츠 출처 기록](../../../docs/content/research-source-audit.md#2026-10-12-approved-presentation-and-link-refinement)에 보존합니다.

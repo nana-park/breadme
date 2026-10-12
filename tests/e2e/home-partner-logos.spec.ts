@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { assertLineWorksLogoScale } from "../support/home-partner-logos";
 
 for (const width of [300, 390, 768, 1440]) {
   test(`Home company logos and loop seam at ${width}px`, async ({
@@ -48,6 +49,7 @@ for (const width of [300, 390, 768, 1440]) {
       "height",
       "26px",
     );
+    const scaleMetrics = await assertLineWorksLogoScale(page);
     const metrics = await track.evaluate((node) => {
       const style = getComputedStyle(node);
       const starts = [0, 1, 2].map(
@@ -69,6 +71,31 @@ for (const width of [300, 390, 768, 1440]) {
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth),
     ).toBeLessThanOrEqual(width);
+    // Check native CSS playback before any WAAPI pause/seek changes ownership.
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    await page.mouse.move(0, 0);
+    await expect(track).toHaveCSS("animation-play-state", "running");
+    const animationTime = () =>
+      track.evaluate((node) => Number(node.getAnimations()[0].currentTime));
+    const runningTime = await animationTime();
+    await expect.poll(animationTime).toBeGreaterThan(runningTime);
+    const hoverPoint = await track.evaluate((node) => {
+      const clip = node.parentElement!.getBoundingClientRect();
+      const rect = node.getBoundingClientRect();
+      return { x: clip.left + 40, y: (rect.top + rect.bottom) / 2 };
+    });
+    // Moving tracks never satisfy locator.hover()'s stable-box precondition.
+    await page.mouse.move(hoverPoint.x, hoverPoint.y);
+    await expect(track).toHaveCSS("animation-play-state", "paused");
+    await expect
+      .poll(() => track.evaluate((node) => node.getAnimations()[0].playState))
+      .toBe("paused");
+    const pausedTime = await animationTime();
+    await page.waitForTimeout(120);
+    expect(await animationTime()).toBe(pausedTime);
+    await page.mouse.move(0, 0);
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await expect(track).toHaveCSS("animation-play-state", "paused");
     for (const partner of ["sk-inc", "line-works"]) {
       // Inspect a real paused animation position so added marks are visible on phones.
       await track.evaluate((node, id) => {
@@ -95,7 +122,7 @@ for (const width of [300, 390, 768, 1440]) {
       });
     }
     await testInfo.attach("Carousel cycle metrics", {
-      body: Buffer.from(JSON.stringify(metrics, null, 2)),
+      body: Buffer.from(JSON.stringify({ ...metrics, scaleMetrics }, null, 2)),
       contentType: "application/json",
     });
   });

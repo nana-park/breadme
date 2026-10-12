@@ -64,6 +64,7 @@ export async function assertResearchIndexBadges(
     await expect(row).toHaveAttribute("data-research-kind", paper.kind);
     await expect(row.locator("h3")).toHaveText(paper.title);
     await expect(row.locator("h3 + p")).toHaveText(paper.venue);
+    await expect(row.locator("[data-research-topics] > span")).toHaveCount(2);
     await expect(row.locator("[data-research-topics] > span")).toHaveText(
       paper.topics ?? preserved?.topics ?? [],
     );

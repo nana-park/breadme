@@ -97,7 +97,7 @@ export const researchSections: ResearchSection[] = [
         venue:
           "Seoul National University Boramae Medical Center, Boston University, NAVER Cloud",
         status: "In Progress",
-        topics: ["Speech Biomarkers", "AI Calls", "Memory Assessment"],
+        topics: ["Speech Biomarkers", "Memory Assessment"],
         links: [],
       },
       {
@@ -107,7 +107,7 @@ export const researchSections: ResearchSection[] = [
           "When 'My AI' Interacts with Others: Scale Development for Measuring Romantic Jealousy in Human-AI Intimacy",
         venue: "Sungkyunkwan University, Pukyong National University",
         status: "In Progress",
-        topics: ["Human-AI Intimacy", "Romantic Jealousy", "Scale Development"],
+        topics: ["Human-AI Intimacy", "Romantic Jealousy"],
         links: [],
       },
     ],
@@ -124,11 +124,7 @@ export const researchSections: ResearchSection[] = [
           "Monetary value of credibility signals: Exploring user experience on online news platforms",
         venue: "ICA2025 · International Communication Association",
         date: "September 26, 2025",
-        topics: [
-          "Credibility Signals",
-          "Online News Platforms",
-          "User Experience",
-        ],
+        topics: ["Credibility Signals", "Online News Platforms"],
         links: [
           {
             label: "View Program",
@@ -144,7 +140,7 @@ export const researchSections: ResearchSection[] = [
           "Evaluating the News Interface: The Gatekeeping Role and Financial Worth of Online News Platforms",
         venue: "Cybercommunication Academic Society",
         date: "November 25, 2022",
-        topics: ["News Interfaces", "Gatekeeping", "Platform Value"],
+        topics: ["News Interfaces", "Gatekeeping"],
         links: [
           {
             label: "Lab News",
@@ -183,7 +179,7 @@ export const researchSections: ResearchSection[] = [
           "Empowering the Omni-Channel Consumer: The Impact of User Agency on E-commerce Success",
         venue: "The Human Factors & Ergonomics Society of Korea",
         date: "October 13, 2022",
-        topics: ["Omni-Channel", "User Agency", "E-commerce"],
+        topics: ["Omni-Channel", "User Agency"],
         links: [
           {
             label: "Read Paper",
