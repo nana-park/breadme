@@ -89,3 +89,24 @@ These dates are **source-listed screenshot dates**, not independently verified c
 - [ ] Review all nine entries' displayed meaning, including the inherited summaries, exact institution lines and separated journal/conference categories.
 - [ ] Complete [runtime/browser QA](../qa/research-sections-review.md). Content review does not replace visual, interaction or link-availability testing.
 - [ ] Obtain separate explicit main-merge/deployment approval before publication.
+
+
+## 2026-10-12 approved presentation and link refinement
+
+The list now omits the four visible summary paragraphs while preserving their original `description` fields. Existing tags and destinations remain unchanged. The five previously untagged records receive only short topic labels derived from their displayed titles; these labels do not assert new methods, findings, publication status or clinical validity.
+
+| Record | New title-derived topics |
+| --- | --- |
+| O1 · speech | Speech Biomarkers · AI Calls · Memory Assessment |
+| O2 · intimacy | Human-AI Intimacy · Romantic Jealousy · Scale Development |
+| C1 · ICA | Credibility Signals · Online News Platforms · User Experience |
+| C2 · news interface | News Interfaces · Gatekeeping · Platform Value |
+| C4 · Omni-Channel | Omni-Channel · User Agency · E-commerce |
+
+Verified destinations added on 2026-10-12 supersede the earlier no-URL decisions for C1, C2 and C4:
+
+- C1 **View Program**: [official ICA 2025 abstracts/program, PDF page 349](https://cdn.ymaws.com/www.icahdq.org/resource/resmgr/conference/2025/ICA25_Abstracts_Program.pdf#page=349), printed page 347. The downloaded page was visually inspected: the exact credibility-signals title appears with Nahyun Park and coauthors in session 6105. The anchor is the PDF page number, not the printed page number. Some mobile PDF viewers may ignore the anchor; printed page 347 is the fallback.
+- C2 **Lab News**: [SKKU DeHub Lab's 2022 Cybercommunication conference post](https://swb.skku.edu/dehublab/community/news.do?mode=view&articleNo=35662&article.offset=30&articleLimit=10). The official post names the Korean news-interface paper and November 25 presentation; the lab research list supports Nahyun Park's coauthorship. It is labeled as news rather than a full paper.
+- C4 **Read Paper**: [DBpia record NODE11288563](https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11288563), with Park Nahyun and Lee Daeho, Sungkyunkwan University, 2022.10, pages 67–68. The publisher's English title is “Effectiveness of providing proactivity in e-commerce with an Omni Channel strategy”; its Korean title and authors establish the mapping to the existing Omni-Channel record. The existing display title is retained. Public metadata is readable; full text may require DBpia or institutional access. The user-provided Scholar citation was blocked by unusual-traffic protection and was not used as a verified mapping or bypassed.
+
+The link refinement does not resolve or silently change the earlier date uncertainties. Ongoing records retain `In Progress` without a date, journal badge or unverified link. Main merge and deployment remain separately authorized actions.

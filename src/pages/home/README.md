@@ -88,13 +88,13 @@ Home은 학력의 빠른 확인과 상세 진입을 맡습니다. 기존 `#histo
 
 앞선 Qualifications 안내를 다음 구조로 교체합니다. 이 기록이 위 CTA의 과거 문구·타입·목적지 설명을 대체합니다.
 
-- H2: From human understanding to AI product experiences.
-- 소개: Grounded in psychology and Human-AI Interaction. (`Human-AI`는 ASCII 하이픈)
+- H2: Designing AI product experiences grounded in psychology and Human-AI Interaction. (`Human-AI`는 ASCII 하이픈)
+- 2026-10-12 요청으로 기존 제목과 소개를 위 한 문장으로 합치고, 중복 소개 문단은 렌더링하지 않습니다. Product Focus / Core Strengths와 Products 버튼, 기존 글자 규격·배경·모바일 본문 좌측 정렬·버튼 중앙 정렬은 유지합니다.
 - 같은 H3 위계: Product Focus / Core Strengths
 - 각 본문: AI Agents · Conversational & Voice AI · Personalized Recommendations / AI UX Design · Research & Data Analysis · Launches in Korea & Japan
 - View products: `originalHref("projects.html")`로 기존 Products 목록 이동
 
-실제 Academic Standing 규격을 사용합니다. H2는 모바일 24px / 768px 이상 28px, H3는 20px / 22px, 소개는 13px / 14px, 그룹 본문은 13px·행간 1.6입니다. 제목 아래 12px, 소개·그룹 사이 24px, 그룹 제목 아래 8px, 버튼 위 32px로 원본 간격 단위를 사용합니다. 모바일에서는 모든 텍스트를 왼쪽에, 버튼을 중앙에 둡니다. 768px 이상은 텍스트와 버튼을 중앙에 둡니다. 강제 줄바꿈·nowrap·배지·추가 성과 수치를 넣지 않습니다.
+실제 Academic Standing 규격을 사용합니다. H2는 모바일 24px / 768px 이상 28px, H3는 20px / 22px, 그룹 본문은 13px·행간 1.6입니다. 제목 아래 12px, 그룹 사이 24px, 그룹 제목 아래 8px, 버튼 위 32px로 원본 간격 단위를 사용합니다. 모바일에서는 모든 텍스트를 왼쪽에, 버튼을 중앙에 둡니다. 768px 이상은 텍스트와 버튼을 중앙에 둡니다. 강제 줄바꿈·nowrap·배지·추가 성과 수치를 넣지 않습니다.
 
 박스의 위치·배경 효과·모서리·24px 내부 가로 패딩·원본 세로 패딩은 유지합니다. Hero·캐러셀·갤러리·경력 제품/성과 데이터·Academic 콘텐츠와 스타일은 바꾸지 않습니다. CTA 텍스트 스타일은 새 페이지 전용 CSS Module이 관리하며, 이전 Qualifications 전용 모바일 보정은 제거합니다.
 

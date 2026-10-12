@@ -20,13 +20,6 @@
   line-height: 1.5;
   letter-spacing: -0.025em;
 }
-.introduction {
-  margin: 0 0 24px;
-  color: #f4f4f5;
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 1.5;
-}
 .groups {
   display: grid;
   gap: 24px;
@@ -94,9 +87,6 @@
   }
   .content h2 {
     font-size: 24px;
-  }
-  .introduction {
-    font-size: 13px;
   }
   .group h3 {
     font-size: 20px;

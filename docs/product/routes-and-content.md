@@ -74,7 +74,7 @@ Qualifications의 기존 인증 내용·필터와 여섯 역량 카드는 보존
 
 세 구획의 제목은 Qualifications의 Academic Standing과 같은 `h2` 규격을 사용한다. 새 메뉴·페이지·필터는 추가하지 않으며 총 라우트는 14개다. 내용은 [research/publications.ts](../../src/content/research/publications.ts), 표현은 [ResearchSections](../../src/pages/original/ResearchSections.tsx)와 [페이지 CSS Module](../../src/pages/original/ResearchSections.module.css)이 소유한다. [정규 변환 override](../../scripts/apply-research-sections-override.ts)가 원본 목록을 이 컴포넌트 연결로 대체한다.
 
-J1/J3의 날짜 충돌은 연도만 표시하고, J2의 정식 출판 제목 적용은 사용자 확인이 필요한 제안으로 기록한다. 기존 요약·태그와 검증된 기존 링크를 보존하되 새 항목에 없는 근거를 만들지 않는다. 학회 날짜는 독립 검증된 개최일이 아니며, 저널과 발표의 선행·후속 관계도 주장하지 않는다. 상세 근거와 보류 항목은 [연구 출처 감사](../content/research-source-audit.md), 실행·스크린샷 대기 상태는 [Research 검수](../qa/research-sections-review.md)에 둔다. 이 본문 IA는 검토용 변경이며 main 병합·배포 완료를 뜻하지 않는다.
+J1/J3의 날짜 충돌은 연도만 표시하고, J2의 정식 출판 제목 적용은 사용자 확인이 필요한 제안으로 기록한다. 기존 요약 데이터는 보존하되 2026-10-12 승인에 따라 저널·Ethereum 학회 목록의 요약문은 표시하지 않는다. 기존 태그·링크는 유지하고, 태그가 없던 5개 항목에는 제목 기반 주제를 추가한다. ICA 프로그램·SKKU 뉴스·DBpia의 확인된 목적지를 연결하며 새 항목에 없는 근거를 만들지 않는다. 학회 날짜는 독립 검증된 개최일이 아니며, 저널과 발표의 선행·후속 관계도 주장하지 않는다. 상세 근거와 보류 항목은 [연구 출처 감사](../content/research-source-audit.md), 실행·스크린샷 대기 상태는 [Research 검수](../qa/research-sections-review.md)에 둔다. 이 본문 IA는 검토용 변경이며 main 병합·배포 완료를 뜻하지 않는다.
 
 ## 기준
 

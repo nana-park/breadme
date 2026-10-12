@@ -10,16 +10,13 @@ for (const width of [300, 320, 360, 375, 390, 414, 430, 767, 768, 1440]) {
     const card = page.locator("#cta-dark-container");
     const content = card.locator("[data-home-capabilities]");
     const title = card.getByRole("heading", { level: 2 });
-    const intro = content.locator(":scope > p");
     const groups = card.getByRole("heading", { level: 3 });
     const action = card.getByRole("link", { name: "View products" });
     await expect(title).toHaveText(
-      "From human understanding to AI product experiences.",
+      "Designing AI product experiences grounded in psychology and Human-AI Interaction.",
     );
-    await expect(intro).toHaveText(
-      "Grounded in psychology and Human-AI Interaction.",
-    );
-    await expect(intro).toHaveCSS("text-align", "left");
+    await expect(content.locator(":scope > p")).toHaveCount(0);
+    await expect(title).toHaveCSS("text-align", "left");
     // Crossing the breakpoint in both directions exposes stale mobile styles.
     await page.setViewportSize({ width, height: 900 });
     await page.evaluate(() => document.fonts.ready);
@@ -27,7 +24,6 @@ for (const width of [300, 320, 360, 375, 390, 414, 430, 767, 768, 1440]) {
     const mobile = width < 768;
     await expect(title).toHaveCSS("font-size", mobile ? "24px" : "28px");
     await expect(title).toHaveCSS("text-align", mobile ? "left" : "center");
-    await expect(intro).toHaveCSS("font-size", mobile ? "13px" : "14px");
     await expect(groups).toHaveText(["Product Focus", "Core Strengths"]);
     await expect(content.locator(":scope > div > div > p")).toHaveText([
       "AI Agents · Conversational & Voice AI · Personalized Recommendations",
@@ -99,7 +95,7 @@ for (const width of [300, 320, 360, 375, 390, 414, 430, 767, 768, 1440]) {
     expect(layout.cardLeft).toBeCloseTo(width * 0.05, 1);
     expect(layout.actionCenter).toBeCloseTo(layout.cardCenter, 1);
     expect(layout.actionHeight).toBeGreaterThanOrEqual(44);
-    expect(layout.text).toHaveLength(6);
+    expect(layout.text).toHaveLength(5);
     for (const item of layout.text) {
       expect(item.lines.length).toBeGreaterThan(0);
       expect(item.left).toBeGreaterThanOrEqual(layout.contentLeft - 1);

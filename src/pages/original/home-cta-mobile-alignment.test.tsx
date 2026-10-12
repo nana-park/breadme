@@ -7,7 +7,8 @@ import { applyHomeCapabilitiesOverride } from "../../../scripts/apply-home-capab
 import { HomeCapabilities } from "../home/HomeCapabilities";
 import { OriginalHomeContent } from "./generated/OriginalHomeContent";
 
-const title = "From human understanding to AI product experiences.";
+const title =
+  "Designing AI product experiences grounded in psychology and Human-AI Interaction.";
 afterEach(() => vi.unstubAllEnvs());
 
 describe("Home product capabilities CTA", () => {
@@ -43,8 +44,10 @@ describe("Home product capabilities CTA", () => {
     expect(groups[1].nextElementSibling).toHaveTextContent(
       "AI UX Design · Research & Data Analysis · Launches in Korea & Japan",
     );
-    expect(heading.nextElementSibling).toHaveTextContent(
-      /^Grounded in psychology and Human-AI Interaction\.$/,
+    expect(heading.nextElementSibling).toContainElement(groups[0]);
+    expect(card.querySelector("[data-home-capabilities] > p")).toBeNull();
+    expect(card).not.toHaveTextContent(
+      "From human understanding to AI product experiences.",
     );
     expect(card.querySelectorAll("br")).toHaveLength(0);
     expect(card).not.toHaveTextContent("Explore Qualifications");

@@ -34,6 +34,8 @@ type ExpectedPublication = {
   status?: "In Progress";
   index?: "SSCI" | "KCI";
   preservedRecord?: number;
+  topics?: string[];
+  links?: { label: string; href: string; asset: boolean }[];
 };
 
 export const expectedResearchRecords: ExpectedPublication[] = [
@@ -74,6 +76,7 @@ export const expectedResearchRecords: ExpectedPublication[] = [
     venue:
       "Seoul National University Boramae Medical Center, Boston University, NAVER Cloud",
     status: "In Progress",
+    topics: ["Speech Biomarkers", "AI Calls", "Memory Assessment"],
   },
   {
     id: "ongoing-intimacy",
@@ -82,6 +85,7 @@ export const expectedResearchRecords: ExpectedPublication[] = [
       "When 'My AI' Interacts with Others: Scale Development for Measuring Romantic Jealousy in Human-AI Intimacy",
     venue: "Sungkyunkwan University, Pukyong National University",
     status: "In Progress",
+    topics: ["Human-AI Intimacy", "Romantic Jealousy", "Scale Development"],
   },
   {
     id: "conference-ica",
@@ -90,6 +94,14 @@ export const expectedResearchRecords: ExpectedPublication[] = [
       "Monetary value of credibility signals: Exploring user experience on online news platforms",
     venue: "ICA2025 · International Communication Association",
     date: "September 26, 2025",
+    topics: ["Credibility Signals", "Online News Platforms", "User Experience"],
+    links: [
+      {
+        label: "View Program",
+        href: "https://cdn.ymaws.com/www.icahdq.org/resource/resmgr/conference/2025/ICA25_Abstracts_Program.pdf#page=349",
+        asset: false,
+      },
+    ],
   },
   {
     id: "conference-news-interface",
@@ -98,6 +110,14 @@ export const expectedResearchRecords: ExpectedPublication[] = [
       "Evaluating the News Interface: The Gatekeeping Role and Financial Worth of Online News Platforms",
     venue: "Cybercommunication Academic Society",
     date: "November 25, 2022",
+    topics: ["News Interfaces", "Gatekeeping", "Platform Value"],
+    links: [
+      {
+        label: "Lab News",
+        href: "https://swb.skku.edu/dehublab/community/news.do?mode=view&articleNo=35662&article.offset=30&articleLimit=10",
+        asset: false,
+      },
+    ],
   },
   {
     id: "conference-ethereum",
@@ -115,5 +135,13 @@ export const expectedResearchRecords: ExpectedPublication[] = [
       "Empowering the Omni-Channel Consumer: The Impact of User Agency on E-commerce Success",
     venue: "The Human Factors & Ergonomics Society of Korea",
     date: "October 13, 2022",
+    topics: ["Omni-Channel", "User Agency", "E-commerce"],
+    links: [
+      {
+        label: "Read Paper",
+        href: "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11288563",
+        asset: false,
+      },
+    ],
   },
 ];
