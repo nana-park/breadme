@@ -15,6 +15,7 @@ import { applyLandingHeroOverride } from "./apply-landing-hero-override.ts";
 import { applyResearchSectionsOverride } from "./apply-research-sections-override.ts";
 import { applyEducationIaOverride } from "./apply-education-ia-override.ts";
 import { applyHomeCapabilitiesOverride } from "./apply-home-capabilities-override.ts";
+import { applyHomeEventCarouselOverrides } from "./apply-home-event-carousel-overrides.ts";
 
 const projectRoot = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
@@ -205,6 +206,7 @@ for (const [sourceFile, componentName] of pageDefinitions) {
   const document = dom.window.document;
   applyCareerContentOverrides(document, sourceFile);
   applyHomeCapabilitiesOverride(document, sourceFile);
+  applyHomeEventCarouselOverrides(document, sourceFile);
   // WHAT: Stable reading roles for the reviewed mobile refinements.
   // WHY: Keep page-owned responsive CSS out of source utility strings and make
   // regeneration preserve the fixes without altering desktop declarations.

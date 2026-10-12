@@ -120,12 +120,13 @@ export function OriginalHomeContent() {
                 </div>
                 {'\n                        '}
                 <h3
+                  data-home-event-title={''}
                   style={{ fontFamily: '"Inter", sans-serif' } as CSSProperties}
                   className={
                     'text-[18px] md:text-[20px] font-normal leading-[1.2] text-[#1A1A1A] tracking-tight mb-1 group-hover/card:text-amber-600 transition-colors'
                   }
                 >
-                  {'\n                            APEC 2025'}
+                  {'\n                            APEC'}
                 </h3>
                 {'\n                        '}
                 <p
@@ -166,12 +167,13 @@ export function OriginalHomeContent() {
                 </div>
                 {'\n                        '}
                 <h3
+                  data-home-event-title={''}
                   style={{ fontFamily: '"Inter", sans-serif' } as CSSProperties}
                   className={
                     'text-[18px] md:text-[20px] font-normal leading-[1.2] text-[#1A1A1A] tracking-tight mb-1 group-hover/card:text-amber-600 transition-colors'
                   }
                 >
-                  {'\n                            Osaka Expo 2025'}
+                  {'\n                            Osaka Expo'}
                 </h3>
                 {'\n                        '}
                 <p
@@ -211,12 +213,13 @@ export function OriginalHomeContent() {
                 </div>
                 {'\n                        '}
                 <h3
+                  data-home-event-title={''}
                   style={{ fontFamily: '"Inter", sans-serif' } as CSSProperties}
                   className={
                     'text-[18px] md:text-[20px] font-normal leading-[1.2] text-[#1A1A1A] tracking-tight mb-1 group-hover/card:text-amber-600 transition-colors'
                   }
                 >
-                  {'\n                            NAVER AiCall JP-KR'}
+                  {'\n                            NAVER AI CALL'}
                 </h3>
                 {'\n                        '}
                 <p
@@ -225,7 +228,7 @@ export function OriginalHomeContent() {
                   }
                 >
                   <span className={'font-medium text-zinc-800'}>
-                    {'Product Launching'}
+                    {'Product Launch in Japan'}
                   </span>
                   {' · Jan 2025'}
                 </p>
@@ -256,12 +259,13 @@ export function OriginalHomeContent() {
                 </div>
                 {'\n                        '}
                 <h3
+                  data-home-event-title={''}
                   style={{ fontFamily: '"Inter", sans-serif' } as CSSProperties}
                   className={
                     'text-[18px] md:text-[20px] font-normal leading-[1.2] text-[#1A1A1A] tracking-tight mb-1 group-hover/card:text-amber-600 transition-colors'
                   }
                 >
-                  {'\n                            NAVER DAN24 Tech Exhibition'}
+                  {'\n                            NAVER DAN'}
                 </h3>
                 {'\n                        '}
                 <p
@@ -301,12 +305,13 @@ export function OriginalHomeContent() {
                 </div>
                 {'\n                        '}
                 <h3
+                  data-home-event-title={''}
                   style={{ fontFamily: '"Inter", sans-serif' } as CSSProperties}
                   className={
                     'text-[18px] md:text-[20px] font-normal leading-[1.2] text-[#1A1A1A] tracking-tight mb-1 group-hover/card:text-amber-600 transition-colors'
                   }
                 >
-                  {'\n                            Smart Life Week Korea'}
+                  {'\n                            Smart Life Week'}
                 </h3>
                 {'\n                        '}
                 <p
@@ -346,13 +351,14 @@ export function OriginalHomeContent() {
                 </div>
                 {'\n                        '}
                 <h3
+                  data-home-event-title={''}
                   style={{ fontFamily: '"Inter", sans-serif' } as CSSProperties}
                   className={
                     'text-[18px] md:text-[20px] font-normal leading-[1.2] text-[#1A1A1A] tracking-tight mb-1 group-hover/card:text-amber-600 transition-colors'
                   }
                 >
                   {
-                    '\n                            Seoul Weak Companion Tech Fair'
+                    '\n                            Seoul Inclusive Technology Expo'
                   }
                 </h3>
                 {'\n                        '}
@@ -364,7 +370,7 @@ export function OriginalHomeContent() {
                   <span className={'font-medium text-zinc-800'}>
                     {'Exhibition'}
                   </span>
-                  {' · Dec 2023'}
+                  {' · Nov 2023'}
                 </p>
                 {'\n                    '}
               </div>
@@ -393,6 +399,7 @@ export function OriginalHomeContent() {
                 </div>
                 {'\n                        '}
                 <h3
+                  data-home-event-title={''}
                   style={{ fontFamily: '"Inter", sans-serif' } as CSSProperties}
                   className={
                     'text-[18px] md:text-[20px] font-normal leading-[1.2] text-[#1A1A1A] tracking-tight mb-1 group-hover/card:text-amber-600 transition-colors'
@@ -438,6 +445,7 @@ export function OriginalHomeContent() {
                 </div>
                 {'\n                        '}
                 <h3
+                  data-home-event-title={''}
                   style={{ fontFamily: '"Inter", sans-serif' } as CSSProperties}
                   className={
                     'text-[18px] md:text-[20px] font-normal leading-[1.2] text-[#1A1A1A] tracking-tight mb-1 group-hover/card:text-amber-600 transition-colors'
@@ -483,6 +491,7 @@ export function OriginalHomeContent() {
                 </div>
                 {'\n                        '}
                 <h3
+                  data-home-event-title={''}
                   style={{ fontFamily: '"Inter", sans-serif' } as CSSProperties}
                   className={
                     'text-[18px] md:text-[20px] font-normal leading-[1.2] text-[#1A1A1A] tracking-tight mb-1 group-hover/card:text-amber-600 transition-colors'
@@ -530,12 +539,13 @@ export function OriginalHomeContent() {
                 </div>
                 {'\n                        '}
                 <h3
+                  data-home-event-title={''}
                   style={{ fontFamily: '"Inter", sans-serif' } as CSSProperties}
                   className={
                     'text-[18px] md:text-[20px] font-normal leading-[1.2] text-[#1A1A1A] tracking-tight mb-1 group-hover/card:text-amber-600 transition-colors'
                   }
                 >
-                  {'\n                            Sungkyunkwan University'}
+                  {'\n                            Master’s Graduation'}
                 </h3>
                 {'\n                        '}
                 <p
@@ -575,13 +585,14 @@ export function OriginalHomeContent() {
                 </div>
                 {'\n                        '}
                 <h3
+                  data-home-event-title={''}
                   style={{ fontFamily: '"Inter", sans-serif' } as CSSProperties}
                   className={
                     'text-[18px] md:text-[20px] font-normal leading-[1.2] text-[#1A1A1A] tracking-tight mb-1 group-hover/card:text-amber-600 transition-colors'
                   }
                 >
                   {
-                    '\n                            SK Telecom Creative Challenge (KAIST)'
+                    '\n                            SK Telecom Creative Challenge at KAIST'
                   }
                 </h3>
                 {'\n                        '}
@@ -622,13 +633,14 @@ export function OriginalHomeContent() {
                 </div>
                 {'\n                        '}
                 <h3
+                  data-home-event-title={''}
                   style={{ fontFamily: '"Inter", sans-serif' } as CSSProperties}
                   className={
                     'text-[18px] md:text-[20px] font-normal leading-[1.2] text-[#1A1A1A] tracking-tight mb-1 group-hover/card:text-amber-600 transition-colors'
                   }
                 >
                   {
-                    '\n                            The Ergonomics Society of Korea'
+                    '\n                            Ergonomics Society Conference'
                   }
                 </h3>
                 {'\n                        '}
