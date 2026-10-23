@@ -703,6 +703,14 @@ export function OriginalHomeContent() {
             {'\n                '}
             {'\n            '}
           </div>
+          <a
+            href={originalHref('qualified.html')}
+            className={
+              'inline-flex items-center justify-center mb-6 px-6 py-2.5 bg-white border border-zinc-200 text-zinc-700 font-sans text-[13px] font-semibold rounded hover:bg-zinc-50 transition-all shadow-sm'
+            }
+          >
+            {'Full education & qualifications ↗'}
+          </a>
           <div className={'grid grid-cols-1 md:grid-cols-2 gap-6'}>
             <div>
               <h3
@@ -710,7 +718,7 @@ export function OriginalHomeContent() {
                   'font-sans text-[#1a1a1a] text-[20px] md:text-[22px] tracking-tight font-normal mb-1'
                 }
               >
-                {'\n                            M.S. in Human-AI Interaction'}
+                {'\n                            MEng in Human-AI Interaction'}
               </h3>
               <p className={'font-sans text-zinc-500 text-[13px] mt-1'}>
                 {'\n                            '}
@@ -735,14 +743,6 @@ export function OriginalHomeContent() {
               </p>
             </div>
           </div>
-          <a
-            href={originalHref('qualified.html')}
-            className={
-              'inline-flex items-center justify-center mt-6 px-6 py-2.5 bg-white border border-zinc-200 text-zinc-700 font-sans text-[13px] font-semibold rounded hover:bg-zinc-50 transition-all shadow-sm'
-            }
-          >
-            {'Full education & qualifications ↗'}
-          </a>
         </div>
         {'\n    '}
       </section>

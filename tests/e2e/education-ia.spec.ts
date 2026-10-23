@@ -226,7 +226,7 @@ for (const width of [320, 390, 767, 768, 1024, 1440]) {
       "Academic Standing",
     );
     await expect(summary.locator("h3")).toHaveText([
-      "M.S. in Human-AI Interaction",
+      "MEng in Human-AI Interaction",
       "B.A. in Psychology",
     ]);
     await expect(summary.locator("p")).toHaveText([
@@ -241,6 +241,10 @@ for (const width of [320, 390, 767, 768, 1024, 1440]) {
     const detailLink = summary.getByRole("link", {
       name: /Full education & qualifications/,
     });
+    expect(await detailLink.evaluate((link) =>
+      link.getBoundingClientRect().bottom <=
+      link.nextElementSibling!.getBoundingClientRect().top,
+    )).toBe(true);
     await expect(detailLink).toHaveAttribute(
       "href",
       "/qualified.html",

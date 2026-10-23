@@ -31,7 +31,7 @@ Home의 `#history`는 사진·모션 없는 흰색 Education 스타일의 `HomeE
 
 ## 학력과 업무 원칙의 현재 위치 (2026-10-08)
 
-- Home `#history-2`: M.S. in Human-AI Interaction / Sungkyunkwan University와 B.A. in Psychology / Sookmyung Women's University의 짧은 요약, `qualified.html` 상세 링크.
+- Home `#history-2`: MEng in Human-AI Interaction / Sungkyunkwan University와 B.A. in Psychology / Sookmyung Women's University의 짧은 요약, `qualified.html` 상세 링크.
 - Qualifications: 기존 Hero → 전체 Academic Standing(`#history-2`) → Core Competencies 6개 → 기존 인증. Academic Standing은 Home에서 사진·기간·학위·학교·추가 전공·Research Focus·View publications·Google Scholar 링크를 내용 변경 없이 옮깁니다. 여섯 역량 카드와 인증 내용·탭 동작은 보존합니다.
 - About: 소개/이름 도식 다음, `#media` 앞에 기존 `#how-work`를 옮깁니다. Persuasive Storytelling, Efficiency-Driven, Communication Architect, Inquiry-Driven Detection 네 카드의 문구·태그·사진·순서를 보존합니다. 기존 미디어 내용과 조작도 유지합니다.
 - Header의 Qualified 표시명과 모든 메뉴 URL, Career의 경력/추천은 변경하지 않습니다. 이후 날짜별 항목에서 학력과 원칙의 이전 위치를 설명한 문장은 해당 변경 당시의 기록입니다.
@@ -174,3 +174,8 @@ The [source audit](../../../docs/content/research-source-audit.md) lists every t
 ### 2026-10-12 Research 표시 보완
 
 요약문은 화면에서만 제거하고 기존 원문 데이터는 유지합니다. 태그가 없던 진행 중 연구 2건과 학회 3건에는 제목에서 확인되는 주제를 추가했습니다. 후속 요청에 따라 모든 연구 9건의 주제 태그는 기존 표현 중 대표 주제 2개씩으로 통일하며, SSCI/KCI 배지와 In Progress 상태는 주제 태그에 포함하지 않습니다. ICA는 발표가 실린 공식 프로그램 PDF 349쪽의 View Program, 뉴스 인터페이스는 SKKU의 Lab News, Omni-Channel은 확인된 DBpia Read Paper로 연결합니다. 제목·날짜·기관·진행 상태·배지는 유지하며, 상세 근거는 [콘텐츠 출처 기록](../../../docs/content/research-source-audit.md#2026-10-12-approved-presentation-and-link-refinement)에 보존합니다.
+
+
+## Education update — 2026-10-23
+
+The Home Full education & qualifications link precedes the degree summary, with its existing 24px separation moved below the link. The Human-AI Interaction degree is MEng in Home and Qualifications (including image alt text); About currently contains no MS degree claim. The converter preserves both changes. Desktop Hero bottom padding is 48px and its viewport minimum height is removed: together with the unchanged 80px partner-section padding, the button-to-partner-copy gap is 128px (approximately one third of the supplied 387px reference). Hero content positions and mobile spacing are preserved.

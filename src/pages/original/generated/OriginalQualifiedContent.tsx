@@ -149,7 +149,7 @@ export function OriginalQualifiedContent() {
                 {'\n                        '}
                 <img
                   src={assetUrl('nahyun_imported/image_source/HOME/MS.jpg')}
-                  alt={'M.S. in Human-AI Interaction'}
+                  alt={'MEng in Human-AI Interaction'}
                   className={
                     'w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]'
                   }
@@ -173,7 +173,7 @@ export function OriginalQualifiedContent() {
                     'font-sans text-[#1a1a1a] text-[20px] md:text-[22px] tracking-tight font-normal mb-1'
                   }
                 >
-                  {'\n                            M.S. in Human-AI Interaction'}
+                  {'\n                            MEng in Human-AI Interaction'}
                 </h3>
                 {'\n                        '}
                 <p

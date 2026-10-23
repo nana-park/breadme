@@ -14,7 +14,7 @@
 
 Home은 학력의 빠른 확인과 상세 진입을 맡습니다. 기존 `#history-2` 앵커를 유지하고 아래 두 학위·학교만 간결하게 표시합니다.
 
-- M.S. in Human-AI Interaction / Sungkyunkwan University
+- MEng in Human-AI Interaction / Sungkyunkwan University
 - B.A. in Psychology / Sookmyung Women's University
 - 학력 상세 링크: `originalHref('qualified.html')`. 기본 경로와 `/breadme/` 모두 Qualifications 페이지 맨 위로 연결합니다. 명시적인 `qualified.html#history-2` 직접 링크는 그대로 지원합니다.
 
@@ -120,3 +120,8 @@ Google을 제거하고 SK주식회사(SK Inc.)와 일본 LINE WORKS 기업 워�
 `HomePartnerLogos`와 `src/content/site/homePartners.ts`가 목록을 관리하며 변환기도 이 연결을 보존합니다. 공식 원본 SVG 파일은 그대로 보존하고, 사용자 요청에 따라 SK Inc.와 LINE WORKS를 포함한 모든 로고에 기존 `grayscale(100%) opacity(0.45)` 처리를 동일하게 적용합니다. SK Inc.는 원본의 비어 있는 오른쪽 캔버스만 바깥 레이아웃에서 가립니다. 기존 네 로고의 높이·흑백/투명도 처리는 유지합니다. 기존 64/96/144px 간격·40초 이동·hover 일시정지·감소된 모션 설정을 유지하고, 마지막에 같은 간격을 채워 세 반복의 이음새를 맞춥니다. 섹션 위치·외부 여백·안내 문구와 나머지 Home은 바꾸지 않습니다. 공식 출처와 파일 검증값은 [로고 에셋 기록](assets/README.md)을 따릅니다.
 
 2026-10-12 요청으로 LINE WORKS만 모든 화면 폭·세 반복에서 중앙 기준 75%로 축소합니다. 기존 26px 높이·약 201.09px 너비의 레이아웃은 그대로 두고 CSS transform으로 보이는 크기를 19.5px·약 150.82px로 줄여, 다른 로고 좌표·셀 폭·간격·이동 주기와 이음새를 유지합니다. E2E는 원래 transform을 잠깐 복원한 같은 정지 프레임과 비교해 세 로고의 실제 경계가 각각 75%인지, 중심과 다른 로고·트랙 폭이 그대로인지 검사합니다.
+
+
+## Education update — 2026-10-23
+
+The Home Full education & qualifications link precedes the degree summary, with its existing 24px separation moved below the link. The Human-AI Interaction degree is MEng in Home and Qualifications (including image alt text); About currently contains no MS degree claim. The converter preserves both changes. Desktop Hero bottom padding is 48px and its viewport minimum height is removed: together with the unchanged 80px partner-section padding, the button-to-partner-copy gap is 128px (approximately one third of the supplied 387px reference). Hero content positions and mobile spacing are preserved.

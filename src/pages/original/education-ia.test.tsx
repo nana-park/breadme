@@ -45,6 +45,15 @@ function expectConserved(
       ?.setAttribute("data-reading-role", "qualification-section-header");
   }
   const original = parse(baseline.sections[key]).body.firstElementChild!;
+  if (key === "education") {
+    original.querySelectorAll("h3, img[alt]").forEach((node) => {
+      const oldDegree = "M.S. in Human-AI Interaction";
+      if (node.getAttribute("alt") === oldDegree)
+        node.setAttribute("alt", "MEng in Human-AI Interaction");
+      if (node.textContent?.trim() === oldDegree)
+        node.textContent = node.textContent.replace(oldDegree, "MEng in Human-AI Interaction");
+    });
+  }
   expect(canonical(clone)).toEqual(canonical(original));
 }
 
@@ -56,7 +65,7 @@ function expectSummary(section: HTMLElement, href: string) {
     Array.from(section.querySelectorAll("h3"), (node) =>
       normalize(node.textContent),
     ),
-  ).toEqual(["M.S. in Human-AI Interaction", "B.A. in Psychology"]);
+  ).toEqual(["MEng in Human-AI Interaction", "B.A. in Psychology"]);
   expect(
     Array.from(section.querySelectorAll("p"), (node) =>
       normalize(node.textContent),
@@ -68,6 +77,9 @@ function expectSummary(section: HTMLElement, href: string) {
   );
   const links = section.querySelectorAll("a");
   expect(links).toHaveLength(1);
+  expect(links[0].nextElementSibling?.querySelector("h3")?.textContent).toContain(
+    "MEng in Human-AI Interaction",
+  );
   expect(links[0].getAttribute("href")).toBe(href);
   expect(normalize(links[0].textContent)).toMatch(
     /Full education & qualifications/,

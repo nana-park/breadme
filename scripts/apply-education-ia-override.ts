@@ -37,9 +37,9 @@ export function applyEducationIaOverride(
     header.setAttribute("class", "mb-6");
     const link = document.createElement("a");
     link.href = "qualified.html";
-    link.className = "inline-flex items-center justify-center mt-6 px-6 py-2.5 bg-white border border-zinc-200 text-zinc-700 font-sans text-[13px] font-semibold rounded hover:bg-zinc-50 transition-all shadow-sm";
+    link.className = "inline-flex items-center justify-center mb-6 px-6 py-2.5 bg-white border border-zinc-200 text-zinc-700 font-sans text-[13px] font-semibold rounded hover:bg-zinc-50 transition-all shadow-sm";
     link.textContent = "Full education & qualifications ↗";
-    container.replaceChildren(header, summary, link);
+    container.replaceChildren(header, link, summary);
     section.classList.remove("pb-24");
     section.classList.add("pb-16");
   }
@@ -58,5 +58,15 @@ export function applyEducationIaOverride(
     principles.setAttribute("data-about-chapter", "principles");
     principles.querySelector("h2")!.parentElement!.setAttribute("data-reading-role", "principles-section-header");
     document.querySelector("#media")!.before(principles);
+  }
+  // Preserve the approved engineering degree when regenerating academic cards.
+  for (const node of document.querySelectorAll("#history-2 h3, #history-2 img[alt]")) {
+    const previous = "M.S. in Human-AI Interaction";
+    const current = "MEng in Human-AI Interaction";
+    if (node.tagName === "IMG" && node.getAttribute("alt") === previous) {
+      node.setAttribute("alt", current);
+    } else if (node.textContent?.trim() === previous) {
+      node.textContent = node.textContent.replace(previous, current);
+    }
   }
 }
