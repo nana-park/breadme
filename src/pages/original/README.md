@@ -179,3 +179,11 @@ The [source audit](../../../docs/content/research-source-audit.md) lists every t
 ## Education update — 2026-10-23
 
 The Home Full education & qualifications link precedes the degree summary, with its existing 24px separation moved below the link. The Human-AI Interaction degree is MEng in Home and Qualifications (including image alt text); About currently contains no MS degree claim. The converter preserves both changes. Desktop Hero bottom padding is 48px and its viewport minimum height is removed: together with the unchanged 80px partner-section padding, the button-to-partner-copy gap is 128px (approximately one third of the supplied 387px reference). Hero content positions and mobile spacing are preserved.
+
+### Project detail scroll overlap correction (2026-10-23)
+
+The Hopzie, Voice IVR, and AI Mentoring concept notes remain in normal reading order below the `lg` (1024px) two-column breakpoint. This corrects overlap at 768–1023px; desktop sticky notes and mobile scroll snapping retain their existing behavior. Shared implementation: `src/styles/mobile-scroll.css` (DE-001). Regression coverage scrolls all three pages at 390, 768, 900, and 1023px.
+
+### Published asset recovery (2026-10-23)
+
+The original Portfolio repository remains private. Clean builds download only the existing 147 manifest-listed files from the public breadme `/original/` path and enforce the unchanged SHA-256 and byte lengths. No credentials or unpublished source files are used. Local verified caches remain supported. The deployed site must retain these paths; unavailable or altered assets fail the build rather than silently changing content.

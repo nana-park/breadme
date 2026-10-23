@@ -12,7 +12,7 @@
     "preview": "vite preview",
     "lint": "eslint . --max-warnings 0",
     "typecheck": "tsc -b --pretty false",
-    "test": "vitest run",
+    "test": "vitest run && node --test scripts/prepare-original-assets.test.mjs",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:pages": "node scripts/verify-static-pages.ts && vitest run --config vitest.pages.config.ts",

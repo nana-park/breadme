@@ -26,18 +26,6 @@
     overflow: clip !important;
     display: flow-root; /* Preserve hidden's original block formatting context. */
   }
-  /* DE-001: In a mobile one-column grid the old sticky explanatory note
-   * covers its next product panel once document scrolling is correctly active.
-   * Keep those notes in reading order; desktop sticky positioning is untouched. */
-  :is(
-      [data-original-page="llm-based-voice-ivr"],
-      [data-original-page="hopzie-oneclickbuilder"],
-      [data-original-page="ai-mentoring-agent-detail"]
-    )
-    .concept-note {
-    position: static !important;
-    top: auto !important;
-  }
   html[data-mobile-scroll-snap]:has(.nav-menu.active) {
     scroll-snap-type: none;
   }
@@ -47,5 +35,20 @@
   html[data-mobile-scroll-snap] {
     scroll-snap-type: none;
     scroll-behavior: auto;
+  }
+}
+
+@media (max-width: 1023px) {
+  /* DE-001: Below the lg (1024px) two-column breakpoint, the sticky explanatory note
+   * covers its next product panel while scrolling.
+   * Keep those notes in reading order; desktop sticky positioning is untouched. */
+  :is(
+      [data-original-page="llm-based-voice-ivr"],
+      [data-original-page="hopzie-oneclickbuilder"],
+      [data-original-page="ai-mentoring-agent-detail"]
+    )
+    .concept-note {
+    position: static !important;
+    top: auto !important;
   }
 }
