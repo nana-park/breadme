@@ -647,7 +647,7 @@ test("Home uses equal mobile section spacing from CTAs to the partner introducti
     spacing,
   );
   await page.setViewportSize({ width: 1440, height: 900 });
-  await expect(page.locator("#home")).toHaveCSS("padding-bottom", "104px");
+  await expect(page.locator("#home")).toHaveCSS("padding-bottom", "48px");
   await expect(page.locator("#partners")).toHaveCSS("padding-top", "80px");
 });
 

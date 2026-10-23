@@ -41,7 +41,7 @@ describe("Career content boundaries", () => {
     ).toBeInTheDocument();
     expect(container.querySelectorAll("#history-2 img")).toHaveLength(0);
     expect(
-      screen.getByRole("heading", { name: "M.S. in Human-AI Interaction" }),
+      screen.getByRole("heading", { name: "MEng in Human-AI Interaction" }),
     ).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: "B.A. in Psychology" }),

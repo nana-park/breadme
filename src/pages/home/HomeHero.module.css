@@ -6,8 +6,10 @@
   align-items: center;
   background: #fff;
   color: #111;
-  padding: 156px 32px 104px;
-  min-height: 85svh;
+  /* Keep the approved content positions; only remove empty space below actions.
+   * 48px here plus the following section's 80px gives a 128px transition. */
+  padding: 156px 32px 48px;
+  min-height: 0;
   text-align: center;
 }
 .introduction {
