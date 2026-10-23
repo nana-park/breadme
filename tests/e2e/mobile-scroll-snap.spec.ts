@@ -767,26 +767,28 @@ for (const pageId of [
   "hopzie-oneclickbuilder",
   "ai-mentoring-agent-detail",
 ] as const) {
-  test(`mobile detail note does not obscure downstream product UI ${pageId}`, async ({
-    page,
-  }, testInfo) => {
-    await page.setViewportSize(MOBILE);
-    await page.emulateMedia({ reducedMotion: "no-preference" });
-    await openRoute(page, pageId);
-    const note = page.locator(".concept-note:visible").first();
-    const columns = await note.evaluate((element) =>
-      getComputedStyle(element.parentElement!)
-        .gridTemplateColumns.trim()
-        .split(/\s+/),
-    );
-    expect(columns, "The source mobile grid is one column").toHaveLength(1);
-    await verifyStackedReading(
+  for (const width of [390, 768, 900, 1023]) {
+    test(`detail note does not obscure downstream product UI ${pageId} at ${width}`, async ({
       page,
-      testInfo,
-      note,
-      `${pageId}-mobile-stacked-note`,
-    );
-  });
+    }, testInfo) => {
+      await page.setViewportSize({ width, height: 844 });
+      await page.emulateMedia({ reducedMotion: "no-preference" });
+      await openRoute(page, pageId);
+      const note = page.locator(".concept-note:visible").first();
+      const columns = await note.evaluate((element) =>
+        getComputedStyle(element.parentElement!)
+          .gridTemplateColumns.trim()
+          .split(/\s+/),
+      );
+      expect(columns, "The source stacked grid is one column").toHaveLength(1);
+      await verifyStackedReading(
+        page,
+        testInfo,
+        note,
+        `${pageId}-${width}-stacked-note`,
+      );
+    });
+  }
 }
 
 test("Enjoy Culinary and Travel sidebars do not cover their mobile galleries", async ({
