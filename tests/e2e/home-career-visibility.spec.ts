@@ -128,22 +128,12 @@ for (const width of [320, 390, 768, 1023, 1024, 1440]) {
     await expect(actions.getByRole("link").last()).toHaveText("Full career↗");
     const primary = actions.getByRole("link", { name: "Products" });
     const secondary = actions.getByRole("link", { name: "Full career" });
-    const academicSecondary = page
-      .locator("#history-2")
-      .getByRole("link", { name: /Full education & qualifications/ });
     await expect(primary).toHaveCSS("background-color", "rgb(26, 26, 26)");
-    for (const property of [
-      "background-color",
-      "color",
-      "border",
-      "border-radius",
-    ]) {
-      const reference = await academicSecondary.evaluate(
-        (node, name) => getComputedStyle(node).getPropertyValue(name),
-        property,
-      );
-      await expect(secondary).toHaveCSS(property, reference);
-    }
+    // The education action is now an icon; Full career keeps its existing button surface.
+    await expect(secondary).toHaveCSS("background-color", "rgb(255, 255, 255)");
+    await expect(secondary).toHaveCSS("color", "rgb(63, 63, 70)");
+    await expect(secondary).toHaveCSS("border", "1px solid rgb(228, 228, 231)");
+    await expect(secondary).toHaveCSS("border-radius", "4px");
     if (width === 1440) {
       await secondary.hover();
       await expect(secondary).toHaveCSS(
