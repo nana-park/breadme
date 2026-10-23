@@ -91,8 +91,11 @@ async function prepareParentDirectories(destination) {
   await ensureCacheDirectory(path.dirname(destination));
 }
 
-async function downloadAsset(asset, temporaryPath) {
-  const response = await fetch(asset.url, {
+export async function downloadAsset(asset, temporaryPath) {
+  // The original repository is private. Reuse only bytes already published by breadme.
+  // The manifest remains the immutable size/SHA-256 lock and source provenance.
+  const publishedUrl = 'https://nana-park.github.io/breadme/original/' + asset.path.split('/').map(encodeURIComponent).join('/');
+  const response = await fetch(publishedUrl, {
     headers: { Accept: 'application/octet-stream' },
     redirect: 'error',
     signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
@@ -163,7 +166,7 @@ async function prepareAsset(asset, sourceRoot, checkOnly) {
 
 export async function main(args = process.argv.slice(2)) {
   if (args.includes('--help')) {
-    console.log('Usage: node scripts/prepare-original-assets.mjs [--check]\n\nOptional ORIGINAL_ASSET_SOURCE_DIR: use a local source checkout before pinned downloads.\n--check: verify the existing local cache only, without writes or network access.\nOnly manifest-listed assets are read; .env files and credentials are never loaded.');
+    console.log('Usage: node scripts/prepare-original-assets.mjs [--check]\n\nOptional ORIGINAL_ASSET_SOURCE_DIR: use a local source checkout before integrity-checked published downloads.\n--check: verify the existing local cache only, without writes or network access.\nOnly manifest-listed assets are read; .env files and credentials are never loaded.');
     return;
   }
   if (args.some((arg) => arg !== '--check')) throw new Error('Unknown argument. Use --help for usage.');
