@@ -692,25 +692,11 @@ export function OriginalHomeContent() {
               {'\n                    Education'}
             </div>
             {'\n                '}
-            <h2
-              className={
-                'font-sans text-zinc-900 text-[24px] md:text-[28px] tracking-tight font-medium mb-3'
-              }
-            >
-              {'Academic\n                    Standing'}
-            </h2>
-            {'\n                '}
-            {'\n                '}
-            {'\n            '}
+            <div className={'flex items-center gap-1 mb-3'}>
+              <h2 className={'font-sans text-zinc-900 text-[24px] md:text-[28px] tracking-tight font-medium'}>Academic Standing</h2>
+              <a href={originalHref('qualified.html')} aria-label="Full education & qualifications" title="Full education & qualifications" className={'inline-flex shrink-0 items-center justify-center w-11 h-11 text-zinc-500 text-[20px] rounded hover:text-zinc-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900'}><span aria-hidden="true">↗</span></a>
+            </div>
           </div>
-          <a
-            href={originalHref('qualified.html')}
-            className={
-              'inline-flex items-center justify-center mb-6 px-6 py-2.5 bg-white border border-zinc-200 text-zinc-700 font-sans text-[13px] font-semibold rounded hover:bg-zinc-50 transition-all shadow-sm'
-            }
-          >
-            {'Full education & qualifications ↗'}
-          </a>
           <div className={'grid grid-cols-1 md:grid-cols-2 gap-6'}>
             <div>
               <h3

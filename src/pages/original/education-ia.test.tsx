@@ -77,13 +77,10 @@ function expectSummary(section: HTMLElement, href: string) {
   );
   const links = section.querySelectorAll("a");
   expect(links).toHaveLength(1);
-  expect(links[0].nextElementSibling?.querySelector("h3")?.textContent).toContain(
-    "MEng in Human-AI Interaction",
-  );
+  expect(links[0].previousElementSibling?.tagName).toBe("H2");
+  expect(links[0].getAttribute("aria-label")).toBe("Full education & qualifications");
   expect(links[0].getAttribute("href")).toBe(href);
-  expect(normalize(links[0].textContent)).toMatch(
-    /Full education & qualifications/,
-  );
+  expect(normalize(links[0].textContent)).toBe("↗");
 }
 
 describe("Education and working-principles information architecture", () => {
