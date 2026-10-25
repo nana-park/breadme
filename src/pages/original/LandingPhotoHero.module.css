@@ -44,6 +44,7 @@
 .hero[data-landing-photo-hero="lectures"] .copy,
 .hero[data-landing-photo-hero="articles"] .copy {
   text-align: left;
+  white-space: normal;
 }
 /* WHY: White body copy retains at least 5.74:1 contrast over a white photo pixel. */
 .shade {
@@ -78,6 +79,11 @@
   margin-top: var(--space-2, 8px);
 }
 @media (min-width: 768px) {
+  /* Align editorial descriptions with the 1200px body column, not an inset 800px block. */
+  .hero[data-landing-photo-hero="lectures"] .content,
+  .hero[data-landing-photo-hero="articles"] .content {
+    max-width: 1200px;
+  }
   .hero {
     margin-bottom: 120px;
   }
