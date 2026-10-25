@@ -241,10 +241,17 @@ for (const width of [320, 390, 767, 768, 1024, 1440]) {
     const detailLink = summary.getByRole("link", {
       name: /Full education & qualifications/,
     });
-    expect(await detailLink.evaluate((link) =>
-      link.getBoundingClientRect().bottom <=
-      link.nextElementSibling!.getBoundingClientRect().top,
-    )).toBe(true);
+    const alignment = await detailLink.evaluate((link) => {
+      const icon = link.getBoundingClientRect();
+      const heading = link.previousElementSibling!.getBoundingClientRect();
+      return { gap: icon.left - heading.right, centerDifference: Math.abs((icon.top + icon.bottom - heading.top - heading.bottom) / 2), width: icon.width, height: icon.height };
+    });
+    expect(alignment.gap).toBeGreaterThanOrEqual(0);
+    expect(alignment.gap).toBeLessThanOrEqual(8);
+    expect(alignment.centerDifference).toBeLessThanOrEqual(1);
+    expect(alignment.width).toBeGreaterThanOrEqual(44);
+    expect(alignment.height).toBeGreaterThanOrEqual(44);
+    await expect(detailLink).toHaveText("↗");
     await expect(detailLink).toHaveAttribute(
       "href",
       "/qualified.html",
@@ -253,6 +260,8 @@ for (const width of [320, 390, 767, 768, 1024, 1440]) {
     await hashClearsHeader(page, "#history-2");
     await detailLink.focus();
     await expect(detailLink).toBeFocused();
+    expect(await detailLink.evaluate(link => getComputedStyle(link).outlineStyle)).not.toBe("none");
+    await summary.screenshot({ path: testInfo.outputPath("academic-shortcut.png") });
     await page.keyboard.press("Enter");
     await expect(page).toHaveURL(/\/qualified\.html$/);
     await ready(page);

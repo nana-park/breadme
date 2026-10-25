@@ -137,3 +137,5 @@ The Home Full education & qualifications link precedes the degree summary, with 
 The Hopzie, Voice IVR, and AI Mentoring concept notes remain in normal reading order below the `lg` (1024px) two-column breakpoint. This corrects overlap at 768–1023px; desktop sticky notes and mobile scroll snapping retain their existing behavior. Shared implementation: `src/styles/mobile-scroll.css` (DE-001). Regression coverage scrolls all three pages at 390, 768, 900, and 1023px.
 
 Lectures category cover: reuses LandingPhotoHero with the generated editorial concept image /images/lectures-editorial-hero.png (not a documentary image of the portfolio owner), a Lectures heading, and the existing introductory meaning. Lecture listings and links remain unchanged. Shared desktop/mobile spacing and alignment are preserved.
+
+Academic Standing shortcut (2026-10-23): Home now uses an icon-only education link adjacent to the heading. The qualified.html destination, MEng copy, accessible name, 44px target, and visible keyboard focus are preserved. The converter reproduces the same layout.

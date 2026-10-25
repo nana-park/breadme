@@ -125,3 +125,5 @@ Google을 제거하고 SK주식회사(SK Inc.)와 일본 LINE WORKS 기업 워�
 ## Education update — 2026-10-23
 
 The Home Full education & qualifications link precedes the degree summary, with its existing 24px separation moved below the link. The Human-AI Interaction degree is MEng in Home and Qualifications (including image alt text); About currently contains no MS degree claim. The converter preserves both changes. Desktop Hero bottom padding is 48px and its viewport minimum height is removed: together with the unchanged 80px partner-section padding, the button-to-partner-copy gap is 128px (approximately one third of the supplied 387px reference). Hero content positions and mobile spacing are preserved.
+
+Academic Standing shortcut (2026-10-23): Home now uses an icon-only education link adjacent to the heading. The qualified.html destination, MEng copy, accessible name, 44px target, and visible keyboard focus are preserved. The converter reproduces the same layout.
