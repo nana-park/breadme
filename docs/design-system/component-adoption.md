@@ -139,3 +139,7 @@ The Hopzie, Voice IVR, and AI Mentoring concept notes remain in normal reading o
 Lectures category cover: reuses LandingPhotoHero with the generated editorial concept image /images/lectures-editorial-hero.png (not a documentary image of the portfolio owner), a Lectures heading, and the existing introductory meaning. Lecture listings and links remain unchanged. Shared desktop/mobile spacing and alignment are preserved.
 
 Academic Standing shortcut (2026-10-23): Home now uses an icon-only education link adjacent to the heading. The qualified.html destination, MEng copy, accessible name, 44px target, and visible keyboard focus are preserved. The converter reproduces the same layout.
+
+### Lectures classroom link (2026-10-25)
+
+`ClassroomGamesCard` uses the existing lecture row proportions (5/12 thumbnail, text alongside; stacked below 1024px), 8px image radius, restrained typography, a 44px link target and visible keyboard focus. `LandingPhotoHero` retains shared layout while scoping description alignment to Articles/Lectures and photo offsets to Lectures. No Products/Research alignment changes.

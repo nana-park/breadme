@@ -189,3 +189,9 @@ The Hopzie, Voice IVR, and AI Mentoring concept notes remain in normal reading o
 The original Portfolio repository remains private. Clean builds download only the existing 147 manifest-listed files from the public breadme `/original/` path and enforce the unchanged SHA-256 and byte lengths. No credentials or unpublished source files are used. Local verified caches remain supported. The deployed site must retain these paths; unavailable or altered assets fail the build rather than silently changing content.
 
 Lectures category cover: reuses LandingPhotoHero with the generated editorial concept image /images/lectures-editorial-hero.png (not a documentary image of the portfolio owner), a Lectures heading, and the existing introductory meaning. Lecture listings and links remain unchanged. Shared desktop/mobile spacing and alignment are preserved.
+
+### Lectures workshop tools and focused header polish (2026-10-25)
+
+Lectures begins with `ClassroomGamesCard`, linking to the existing public Product Thinking: Classroom Games hub. Its thumbnail is a real 1440x900 capture of that hub, not a new generated illustration. Copy describes only the publicly listed games, walkthroughs and rules; it makes no participation, outcome, or unpublished Group 3 claims. The existing lecture list remains in order below it.
+
+`LandingPhotoHero.module.css` shifts the Lectures photo up 24px on desktop and 12px on mobile, preserving headroom. Only Articles and Lectures descriptions gain left alignment; headings and Products/Research alignment retain their existing behavior. Products labels use AI Call / Care Call spacing.

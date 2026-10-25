@@ -65,3 +65,7 @@ ID: naver-cloud
 ## Home 제품 표시 예외 — 2026-10-05
 
 사용자가 Home 경력 카드의 가독성을 위해 `NAVER Care Call`, `NAVER Care Call Console`, `LINE WORKS AI Call` 표기를 지정했습니다. 적용 범위는 Home의 Products 목록이며, 원본 자료의 `CLOVA CareCall` / `LINE WORKS AiCall` 브랜드명은 성과별 내부 데이터와 공식 근거에 유지합니다. 다른 페이지나 전역 명칭은 변경하지 않습니다. 이 로컬 표시 예외는 `src/content/site/homeExperience.ts`에서 관리합니다.
+
+## Products 표시 예외 — 2026-10-25
+
+사용자 요청으로 Products 페이지에도 `AI Call`, `Care Call` 띄어쓰기를 적용합니다. `LINE WORKS AI Call`, `NAVER Care Call`, `NAVER Care Call Console` 표시명과 해당 페이지의 설명·대체텍스트에만 적용하며 URL, 콘텐츠 ID, 이미지 경로와 다른 페이지의 공식 근거는 유지합니다.

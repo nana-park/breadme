@@ -1,4 +1,5 @@
 import { LandingPhotoHero } from '../LandingPhotoHero';
+import { ClassroomGamesCard } from '../ClassroomGamesCard';
 import type { CSSProperties } from 'react';
 import { assetUrl, originalHref } from '@/shared/utils/originalPaths';
 
@@ -29,6 +30,7 @@ export function OriginalLecturesContent() {
               'flex flex-col w-full text-left gap-12 md:gap-16 max-w-[1200px] mx-auto px-4 lg:px-0'
             }
           >
+            <ClassroomGamesCard />
             {'\n\n                '}
             {'\n                '}
             <div
