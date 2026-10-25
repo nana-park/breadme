@@ -1,4 +1,4 @@
-.category { width: 100%; min-width: 0; }
+.category { width: 100%; min-width: 0; padding: 0; }
 /* Reuse the existing Research / Academic Standing section-heading treatment. */
 .title {
   margin: 0 0 48px;
