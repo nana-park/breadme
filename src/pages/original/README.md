@@ -192,6 +192,6 @@ Lectures category cover: reuses LandingPhotoHero with the generated editorial co
 
 ### Lectures workshop tools and focused header polish (2026-10-25)
 
-Lectures begins with `ClassroomGamesCard`, linking to the existing public Product Thinking: Classroom Games hub. Its thumbnail is a real 1440x900 capture of that hub, not a new generated illustration. Copy describes only the publicly listed games, walkthroughs and rules; it makes no participation, outcome, or unpublished Group 3 claims. The existing lecture list remains in order below it.
+Lectures begins with `ClassroomGamesCard`, linking to the existing public Product Thinking: Classroom Games hub. Its thumbnail uses the supplied 1200x630 LinkedIn cover (version 2), displayed with a centered 16:9 crop that preserves both title lines. Copy describes only the publicly listed games, walkthroughs and rules; it makes no participation, outcome, or unpublished Group 3 claims. The existing lecture list remains in order below it.
 
 `LandingPhotoHero.module.css` shifts the Lectures photo up 24px on desktop and 12px on mobile, preserving headroom. Only Articles and Lectures descriptions gain left alignment; headings and Products/Research alignment retain their existing behavior. Products labels use AI Call / Care Call spacing.

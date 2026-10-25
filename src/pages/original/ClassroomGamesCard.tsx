@@ -6,7 +6,7 @@ export function ClassroomGamesCard() {
   return (
     <article id="classroom-games" className={styles.card}>
       <a href={classroomGamesUrl} className={styles.thumbnail} aria-label="Explore Product Thinking: Classroom Games">
-        <img src={`${import.meta.env.BASE_URL}images/classroom-games-live.png`} alt="Product Thinking: Classroom Games website with its interactive workshop games" loading="lazy" width="1440" height="900" />
+        <img src={`${import.meta.env.BASE_URL}images/classroom-games-cover.png`} alt="Product Thinking: Classroom Games cover with the title over its illustrated game world" loading="lazy" width="1200" height="630" />
       </a>
       <div className={styles.content}>
         <h2>Product Thinking: Classroom Games</h2>
