@@ -1,3 +1,4 @@
+import { LectureCategory } from '../LectureCategory';
 import { LandingPhotoHero } from '../LandingPhotoHero';
 import { ClassroomGamesCard } from '../ClassroomGamesCard';
 import type { CSSProperties } from 'react';
@@ -30,7 +31,10 @@ export function OriginalLecturesContent() {
               'flex flex-col w-full text-left gap-12 md:gap-16 max-w-[1200px] mx-auto px-4 lg:px-0'
             }
           >
-            <ClassroomGamesCard />
+            <LectureCategory id="interactive-learning-tools" title="Interactive Learning Tools">
+              <ClassroomGamesCard />
+            </LectureCategory>
+            <LectureCategory id="hands-on-ai-service-workshops" title="Hands-on AI Service Workshops">
             {'\n\n                '}
             {'\n                '}
             <div
@@ -345,6 +349,8 @@ export function OriginalLecturesContent() {
             </div>
             {'\n\n                '}
             {'\n                '}
+            </LectureCategory>
+            <LectureCategory id="career-talks" title="Career Talks: The Role of a Service Planner">
             <div
               className={
                 'flex flex-col lg:flex-row items-center gap-6 lg:gap-12 w-full group'
@@ -599,6 +605,7 @@ export function OriginalLecturesContent() {
               </div>
               {'\n                '}
             </div>
+            </LectureCategory>
             {'\n\n            '}
           </div>
           {'\n        '}
