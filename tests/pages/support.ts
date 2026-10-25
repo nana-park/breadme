@@ -133,6 +133,9 @@ export async function assertLocalLinks(page: Page) {
   expect(links.length).toBeGreaterThan(0);
   for (const href of links) {
     const url = new URL(href);
+    // Separate published project on the same GitHub Pages origin, not a breadme route.
+    if (url.href === "https://nana-park.github.io/product-thinking-classroom-games/")
+      continue;
     if (url.origin === deployment.origin)
       expect(url.pathname, `Internal link: ${href}`).toMatch(/^\/breadme\//);
   }
