@@ -437,7 +437,7 @@ test("expanded project content remains reachable before and after disclosure col
   await openRoute(page, "projects");
   const disclosure = page.locator("details").filter({
     has: page.locator("summary", {
-      hasText: /^\s*NAVER CareCall\s+Senior Care AI Call-bot/,
+      hasText: /^\s*NAVER Care Call\s+Senior Care AI Call-bot/,
     }),
   });
   const summary = disclosure.locator("summary");
