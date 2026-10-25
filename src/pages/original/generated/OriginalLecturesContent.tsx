@@ -1,3 +1,4 @@
+import { LandingPhotoHero } from '../LandingPhotoHero';
 import type { CSSProperties } from 'react';
 import { assetUrl, originalHref } from '@/shared/utils/originalPaths';
 
@@ -17,38 +18,11 @@ export function OriginalLecturesContent() {
       <section
         className={'pb-16 md:pb-24 bg-white'}
         id={'lectures'}
-        style={{ paddingTop: '12rem' } as CSSProperties}
+        style={{ paddingTop: '70px' } as CSSProperties}
       >
         {'\n        '}
+        <LandingPhotoHero page="lectures" />
         <div className={'container mx-auto px-4 lg:px-12 max-w-[1400px]'}>
-          {'\n\n            '}
-          <div
-            className={'flex flex-col items-center mb-16 mx-auto text-center'}
-          >
-            {'\n                '}
-            <h2
-              className={
-                'font-sans tracking-tight text-zinc-900 text-[32px] md:text-[44px] leading-[1.1] font-normal mb-4'
-              }
-              data-reading-role={'landing-title'}
-            >
-              {'\n                    Exchanging insights and experiences'}
-              <br />
-              {'with fellow Product Managers.\n                '}
-            </h2>
-            {'\n                '}
-            <p
-              className={
-                'font-sans text-zinc-600 text-[14px] md:text-[15px] font-normal'
-              }
-              data-reading-role={'landing-copy'}
-            >
-              {
-                '\n                    Lectures, workshops, and speaking engagements.\n                '
-              }
-            </p>
-            {'\n            '}
-          </div>
           {'\n\n            '}
           <div
             className={

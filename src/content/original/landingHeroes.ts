@@ -2,6 +2,12 @@ import { articlesPageContent } from "./articles/pageContent";
 
 // WHAT: Short page labels with the existing introductory meaning retained below.
 export const landingHeroes = {
+  lectures: {
+    title: "Lectures",
+    image: "/images/lectures-editorial-hero.png",
+    imageAlt: "Illustrative concept image of a presenter beside an easel in a sunlit workspace",
+    paragraphs: ["Sharing insights and experiences in product management.", "Lectures, workshops, and speaking engagements."],
+  },
   qualified: {
     title: "Qualifications",
     image: "nahyun_imported/image_source/About_Qualified/thumnail.png",

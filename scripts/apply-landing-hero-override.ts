@@ -4,6 +4,7 @@ export function applyLandingHeroOverride(
   sourceFile: string,
 ) {
   const pages = {
+    "lectures.html": "lectures",
     "qualified.html": "qualified",
     "projects.html": "projects",
     "research.html": "research",

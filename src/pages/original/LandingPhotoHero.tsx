@@ -13,7 +13,9 @@ export function LandingPhotoHero({ page }: { page: LandingHeroPage }) {
     <div className={styles.hero} data-landing-photo-hero={page}>
       <img
         className={styles.photo}
-        src={assetUrl(content.image)}
+        src={content.image.startsWith("/")
+          ? `${import.meta.env.BASE_URL}${content.image.slice(1)}`
+          : assetUrl(content.image)}
         alt={content.imageAlt}
         fetchPriority="high"
       />

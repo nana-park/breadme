@@ -17,7 +17,7 @@ describe("Contact-style landing heroes", () => {
       ).toBeVisible();
       expect(screen.getByAltText(content.imageAlt)).toHaveAttribute(
         "src",
-        `/original/${content.image}`,
+        content.image.startsWith("/") ? content.image : `/original/${content.image}`,
       );
       expect(container.querySelectorAll("p")).toHaveLength(2);
       for (const paragraph of content.paragraphs)
