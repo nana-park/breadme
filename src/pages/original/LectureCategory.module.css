@@ -1,0 +1,16 @@
+.category { width: 100%; min-width: 0; }
+/* Reuse the existing Research / Academic Standing section-heading treatment. */
+.title {
+  margin: 0 0 48px;
+  color: #18181b;
+  font-family: var(--font-sans);
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.025em;
+  text-align: left;
+  white-space: normal;
+}
+@media (max-width: 767px) {
+  .title { font-size: 24px; }
+}

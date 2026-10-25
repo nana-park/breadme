@@ -195,3 +195,7 @@ Lectures category cover: reuses LandingPhotoHero with the generated editorial co
 Lectures begins with `ClassroomGamesCard`, linking to the existing public Product Thinking: Classroom Games hub. Its thumbnail uses the supplied 1200x630 LinkedIn cover (version 2), displayed with a centered 16:9 crop that preserves both title lines. Copy describes only the publicly listed games, walkthroughs and rules; it makes no participation, outcome, or unpublished Group 3 claims. The existing lecture list remains in order below it.
 
 `LandingPhotoHero.module.css` shifts the Lectures photo up 24px on desktop and 12px on mobile, preserving headroom. Only Articles and Lectures descriptions gain left alignment; headings and Products/Research alignment retain their existing behavior. Products labels use AI Call / Care Call spacing.
+
+### Lectures category headings (2026-10-25)
+
+The existing cards are grouped by `LectureCategory` into Interactive Learning Tools, Hands-on AI Service Workshops, and Career Talks: The Role of a Service Planner. These are semantic sections with h2 headings in continuous reading order; card titles are h3. The scoped CSS reuses the Research/Academic Standing heading values (28px desktop, 24px mobile, weight 500, 48px bottom margin) and allows natural wrapping. Existing card text, dates, images, links and carousel behavior are preserved. Additional career records and unresolved ongoing-course outcome wording are outside this change.

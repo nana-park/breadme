@@ -143,3 +143,7 @@ Academic Standing shortcut (2026-10-23): Home now uses an icon-only education li
 ### Lectures classroom link (2026-10-25)
 
 `ClassroomGamesCard` uses the existing lecture row proportions (5/12 thumbnail, text alongside; stacked below 1024px), 8px image radius, restrained typography, a 44px link target and visible keyboard focus. `LandingPhotoHero` retains shared layout while scoping description alignment to Articles/Lectures and photo offsets to Lectures. No Products/Research alignment changes.
+
+### Lectures category headings (2026-10-25)
+
+`LectureCategory` groups the existing cards without tabs or new content. Three h2 headings reuse the Research/Academic Standing treatment (28px desktop / 24px mobile, weight 500, line-height 1.5, tracking -0.025em, #18181b, 48px bottom margin). Card titles remain subordinate h3 headings. The scoped CSS allows wrapping and preserves the existing container, hero, cover and card styles; no global design change.
