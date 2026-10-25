@@ -187,3 +187,5 @@ The Hopzie, Voice IVR, and AI Mentoring concept notes remain in normal reading o
 ### Published asset recovery (2026-10-23)
 
 The original Portfolio repository remains private. Clean builds download only the existing 147 manifest-listed files from the public breadme `/original/` path and enforce the unchanged SHA-256 and byte lengths. No credentials or unpublished source files are used. Local verified caches remain supported. The deployed site must retain these paths; unavailable or altered assets fail the build rather than silently changing content.
+
+Lectures category cover: reuses LandingPhotoHero with the existing conference speaking photo footprint_hci_2022.jpg, a Lectures heading, and the existing introductory meaning. Lecture listings and links remain unchanged. Shared desktop/mobile spacing and alignment are preserved.

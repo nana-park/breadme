@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 for (const width of [320, 390, 430, 768, 1440]) {
   for (const [route, title] of Object.entries({
+    lectures: "Lectures",
     qualified: "Qualifications",
     projects: "Products",
     research: "Research",
