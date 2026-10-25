@@ -18,6 +18,9 @@
 .hero[data-landing-photo-hero="qualified"] {
   margin-bottom: 0;
 }
+.hero[data-landing-photo-hero="lectures"] {
+  overflow: hidden;
+}
 .photo,
 .shade {
   position: absolute;
@@ -33,6 +36,14 @@
 .hero[data-landing-photo-hero="projects"] .photo,
 .hero[data-landing-photo-hero="lectures"] .photo {
   object-position: center top;
+}
+.hero[data-landing-photo-hero="lectures"] .photo {
+  top: -24px;
+  height: calc(100% + 24px);
+}
+.hero[data-landing-photo-hero="lectures"] .copy,
+.hero[data-landing-photo-hero="articles"] .copy {
+  text-align: left;
 }
 /* WHY: White body copy retains at least 5.74:1 contrast over a white photo pixel. */
 .shade {
@@ -80,6 +91,10 @@
   }
 }
 @media (max-width: 767px) {
+  .hero[data-landing-photo-hero="lectures"] .photo {
+    top: -12px;
+    height: calc(100% + 12px);
+  }
   .hero {
     padding-inline: 20px;
     text-align: left;

@@ -123,3 +123,9 @@
 - 14개 경로·핵심 조작·반응형·원본 대조 검수와 확인 범위 정리
 
 초기 목표였던 Home 기본 구조에서 사용자 요청에 따라 전체 원본 이관으로 범위를 확장했습니다. 버전 번호는 아직 출시된 버전이 아니며 전체 검수, beta 통합, 별도 main 승인과 배포는 완료되지 않았습니다. 자료 전송 백엔드와 새 번역은 이 릴리스에 구현된 것으로 표시하지 않습니다.
+
+### Portfolio polish — 2026-10-25 [EN]
+
+- Lectures: lift the cover image with desktop/mobile headroom; add the existing Classroom Games hub as the first listing using an actual public-site screenshot.
+- Articles/Lectures: left-align hero descriptions only; preserve headings and Products/Research alignment.
+- Products: display AI Call and Care Call with spaces, including Console labels.

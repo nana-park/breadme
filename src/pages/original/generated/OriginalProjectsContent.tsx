@@ -131,7 +131,7 @@ export function OriginalProjectsContent() {
                           src={assetUrl(
                             'nahyun_imported/image_source/Projects_Products/thumnail_aicall.png',
                           )}
-                          alt={'LINE WORKS AiCall'}
+                          alt={'LINE WORKS AI Call'}
                           className={'w-full h-full object-cover'}
                         />
                         {'\n                                    '}
@@ -160,7 +160,7 @@ export function OriginalProjectsContent() {
                         'font-sans text-[12.5px] md:text-[13px] text-zinc-500 mb-1.5 uppercase tracking-wider font-medium'
                       }
                     >
-                      {'\n                                LINE WORKS AiCall'}
+                      {'\n                                LINE WORKS AI Call'}
                     </p>
                     {'\n                            '}
                     <h3
@@ -503,7 +503,7 @@ export function OriginalProjectsContent() {
                           src={assetUrl(
                             'nahyun_imported/image_source/Projects_Products/thumnail_carecall.png',
                           )}
-                          alt={'NAVER CareCall'}
+                          alt={'NAVER Care Call'}
                           className={'w-full h-full object-cover'}
                         />
                         {'\n                                    '}
@@ -548,7 +548,7 @@ export function OriginalProjectsContent() {
                         'font-sans text-[12.5px] md:text-[13px] text-zinc-500 mb-1.5 uppercase tracking-wider font-medium'
                       }
                     >
-                      {'\n                                NAVER CareCall'}
+                      {'\n                                NAVER Care Call'}
                     </p>
                     {'\n                            '}
                     <h3
@@ -760,7 +760,7 @@ export function OriginalProjectsContent() {
                               }
                             >
                               {
-                                '\n                                                Multimodal Avatar-based CareCall'
+                                '\n                                                Multimodal Avatar-based Care Call'
                               }
                             </div>
                             {'\n                                        '}
@@ -1151,7 +1151,7 @@ export function OriginalProjectsContent() {
                           src={assetUrl(
                             'nahyun_imported/image_source/Projects_Products/thumnail_console.png',
                           )}
-                          alt={'NAVER CareCall Console'}
+                          alt={'NAVER Care Call Console'}
                           className={'w-full h-full object-cover'}
                         />
                         {'\n                                    '}
@@ -1189,7 +1189,7 @@ export function OriginalProjectsContent() {
                       }
                     >
                       {
-                        '\n                                NAVER CareCall Console'
+                        '\n                                NAVER Care Call Console'
                       }
                     </p>
                     {'\n                            '}
@@ -1343,7 +1343,7 @@ export function OriginalProjectsContent() {
                           }
                         >
                           {
-                            '\n                                        Human-in-the-Loop Interface for CareCall'
+                            '\n                                        Human-in-the-Loop Interface for Care Call'
                           }
                         </div>
                         {'\n                                '}
@@ -3375,7 +3375,7 @@ export function OriginalProjectsContent() {
                       >
                         {'\n                '}
                         <span>
-                          {'LINE WORKS AiCall '}
+                          {'LINE WORKS AI Call '}
                           <span
                             className={
                               'text-zinc-500 text-[14px] font-normal ml-2 hidden md:inline-block'
@@ -3560,7 +3560,7 @@ export function OriginalProjectsContent() {
                       >
                         {'\n                '}
                         <span>
-                          {'NAVER CareCall '}
+                          {'NAVER Care Call '}
                           <span
                             className={
                               'text-zinc-500 text-[14px] font-normal ml-2 hidden md:inline-block'
@@ -3701,7 +3701,7 @@ export function OriginalProjectsContent() {
                                   }
                                 >
                                   {
-                                    '\n                                                Multimodal Avatar-based CareCall'
+                                    '\n                                                Multimodal Avatar-based Care Call'
                                   }
                                 </div>
                                 {'\n                                        '}
@@ -4125,7 +4125,7 @@ export function OriginalProjectsContent() {
                       >
                         {'\n                '}
                         <span>
-                          {'NAVER CareCall Console '}
+                          {'NAVER Care Call Console '}
                           <span
                             className={
                               'text-zinc-500 text-[14px] font-normal ml-2 hidden md:inline-block'
@@ -4195,7 +4195,7 @@ export function OriginalProjectsContent() {
                               }
                             >
                               {
-                                '\n                                        Human-in-the-Loop Interface for CareCall'
+                                '\n                                        Human-in-the-Loop Interface for Care Call'
                               }
                             </div>
                             {'\n                                '}
