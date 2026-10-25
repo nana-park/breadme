@@ -4,8 +4,8 @@ import { articlesPageContent } from "./articles/pageContent";
 export const landingHeroes = {
   lectures: {
     title: "Lectures",
-    image: "footprint_hci_2022.jpg",
-    imageAlt: "Speaking at an academic conference",
+    image: "/images/lectures-editorial-hero.png",
+    imageAlt: "Illustrative concept image of a presenter beside an easel in a sunlit workspace",
     paragraphs: ["Sharing insights and experiences in product management.", "Lectures, workshops, and speaking engagements."],
   },
   qualified: {

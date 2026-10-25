@@ -30,7 +30,8 @@
   object-fit: cover;
   object-position: center;
 }
-.hero[data-landing-photo-hero="projects"] .photo {
+.hero[data-landing-photo-hero="projects"] .photo,
+.hero[data-landing-photo-hero="lectures"] .photo {
   object-position: center top;
 }
 /* WHY: White body copy retains at least 5.74:1 contrast over a white photo pixel. */
